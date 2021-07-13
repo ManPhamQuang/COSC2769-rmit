@@ -1,11 +1,12 @@
 const express = require("express");
-const app = express();
+const cors = require("cors");
 const roomRoute = require("./route/roomRoute");
 const userRoute = require("./route/userRoute");
 const AppError = require("./util/appError");
 const GlobalErrorController = require("./controller/errorController");
+const app = express();
 app.use(express.json());
-
+app.use(cors());
 app.use("/helloworld", (req, res) => {
   res.status(200).json({
     message: "Test successfully",
