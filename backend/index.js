@@ -17,7 +17,7 @@ app.use("/helloworld", (req, res) => {
 
 app.use("/api/v1/rooms", roomRoute);
 app.use("/api/v1/users", userRoute);
-app.use("/api/v1/category", categoryRoute);
+app.use("/api/v1/categories", categoryRoute);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Given url ${req.originalUrl} does not exist`, 404));
