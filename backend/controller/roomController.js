@@ -40,3 +40,31 @@ exports.createRoom = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.joinRoom = catchAsync(async (req, res, next) => {
+
+  // Get room UUID
+  let roomUUID = req.query.uuid;
+  if (roomUUID === undefined) {
+    return res.status(404).json({
+      status: "error",
+      message: "Missing uuid query param"
+    });
+  }
+
+  // Find it
+  const room = await Room.findOne({ uuid: roomUUID })
+  if (room === undefined) {
+    return res.status(404).json({
+      status: "error",
+      message: "Room not found"
+    });
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      room,
+    },
+  });
+});
