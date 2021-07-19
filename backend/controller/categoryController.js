@@ -23,7 +23,7 @@ exports.createCategory = catchAsync(async (req, res, next) => {
   }
 
   // Find if it exist
-  var category = await Category.Adventure.findOne({name});
+  var category = await Category.findOne({name});
   if (category) {
     return res.status(200).json({
       status: "success",
