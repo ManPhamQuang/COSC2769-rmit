@@ -43,29 +43,6 @@ const data = [
     },
 ];
 
-const categories = [
-    {
-        id: 1,
-        name: "Design",
-        image: "https://img.freepik.com/free-photo/word-design-written-top-colorful-geometric-3d-shapes_2227-1663.jpg?size=626&ext=jpg&ga=GA1.2.2079899045.1626393600",
-    },
-    {
-        id: 2,
-        name: "Photography",
-        image: "https://www.69dropsstudio.co.uk/wp-content/uploads/2016/11/benefits-of-photography.jpg",
-    },
-    {
-        id: 3,
-        name: "IT and Software",
-        image: "https://download-oem-software.com/wp-content/uploads/2021/05/Top-6-Software-Development-Methodologies.jpg",
-    },
-    {
-        id: 4,
-        name: "Music",
-        image: "https://image.freepik.com/free-vector/elegant-musical-notes-music-chord-background_1017-20759.jpg",
-    },
-];
-
 export default function Home() {
     return (
         <>
@@ -86,13 +63,8 @@ export default function Home() {
                         <Card key={course.id} props={course} />
                     ))}
                 </div>
-
                 <h1 className="font-bold text-4xl mb-4 mt-8">Top categories</h1>
-                <div className="flex flex-wrap sm:space-x-5 overflow-x-auto ">
-                    {categories.map((category) => (
-                        <Category key={category.id} props={category} />
-                    ))}
-                </div>
+                <Category />
             </div>
         </>
     );
