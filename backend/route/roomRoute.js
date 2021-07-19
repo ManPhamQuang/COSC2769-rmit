@@ -7,9 +7,9 @@ const {
   joinRoom
 } = require("../controller/roomController");
 
+router.get("/join", joinRoom);
 router.get("/", getAllRooms);
 router.get("/:id", getRoom);
 router.post("/", createRoom);
-router.post("/join", joinRoom);
 
 module.exports = router;

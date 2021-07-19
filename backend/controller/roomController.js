@@ -28,7 +28,7 @@ exports.getRoom = catchAsync(async (req, res, next) => {
 exports.createRoom = catchAsync(async (req, res, next) => {
   // As soon as we create a new room, we assign a UUID to it
   // It's where the student can join a room later
-  // e.g.: domain.com/room/join?uuid=xxx-xxx-xxx-xxx
+  // e.g.: domain.com/api/v1/rooms/join?uuid=xxx-xxx-xxx-xxx
   req.body.uuid = uuidv4();
 
   // Create new room
@@ -42,10 +42,9 @@ exports.createRoom = catchAsync(async (req, res, next) => {
 });
 
 exports.joinRoom = catchAsync(async (req, res, next) => {
-
   // Get room UUID
   let roomUUID = req.query.uuid;
-  if (roomUUID === undefined) {
+  if (!roomUUID) {
     return res.status(404).json({
       status: "error",
       message: "Missing uuid query param"
@@ -54,7 +53,7 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
 
   // Find it
   const room = await Room.findOne({ uuid: roomUUID })
-  if (room === undefined) {
+  if (!room) {
     return res.status(404).json({
       status: "error",
       message: "Room not found"
