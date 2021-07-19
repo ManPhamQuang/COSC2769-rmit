@@ -88,7 +88,7 @@ export default function Home() {
                 </div>
 
                 <h1 className="font-bold text-4xl mb-4 mt-8">Top categories</h1>
-                <div className="space-x-5 flex overflow-x-auto">
+                <div className="flex flex-wrap sm:space-x-5 overflow-x-auto ">
                     {categories.map((category) => (
                         <Category key={category.id} props={category} />
                     ))}
