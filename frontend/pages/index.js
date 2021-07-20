@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { StarIcon } from "@heroicons/react/solid";
 import Card from "../components/Card";
-
+import Category from "../components/Category";
 
 const data = [
     {
@@ -44,24 +44,28 @@ const data = [
 ];
 
 export default function Home() {
-
     return (
         <>
-        <Head>
-            <title>Homepage</title>
-            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        </Head>
-        <div className="container mx-auto p-14">
-            <h1 className="font-bold text-4xl mb-4">What to learn next</h1>
-            <h1 className="font-bold text-2xl mb-4">Students are viewing</h1>
-            <div className="space-x-5 flex overflow-x-auto">
-                {data.map((course) => (
-                    <Card key={course.id} props={course} />
-                ))}
+            <Head>
+                <title>Homepage</title>
+                <meta
+                    name="viewport"
+                    content="initial-scale=1.0, width=device-width"
+                />
+            </Head>
+            <div className="container mx-auto p-14">
+                <h1 className="font-bold text-4xl mb-4">What to learn next</h1>
+                <h1 className="font-bold text-2xl mb-4">
+                    Students are viewing
+                </h1>
+                <div className="space-x-5 flex overflow-x-auto">
+                    {data.map((course) => (
+                        <Card key={course.id} props={course} />
+                    ))}
+                </div>
+                <h1 className="font-bold text-4xl mb-4 mt-8">Top categories</h1>
+                <Category />
             </div>
-        </div>
         </>
-        
     );
 }
-

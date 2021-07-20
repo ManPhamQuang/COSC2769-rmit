@@ -5,9 +5,7 @@ export default function Card({ props }) {
     const { id, title, teacher, rating, views, price, tag } = props;
 
     return (
-        <div
-            className="flex-none w-64 group cursor-pointer inline-block"
-        >
+        <div className="flex-none w-64 group cursor-pointer inline-block">
             <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
                 <img
                     src="/Python-language.png"
