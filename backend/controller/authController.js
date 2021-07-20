@@ -44,7 +44,8 @@ exports.isAuthenticated = catchAsync(async (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
   if (token) {
     const decodedToken = await jwt.verify(token, process.env.SECRET);
-    req.userID = decodedToken;
+    const user = await User.findById(decodedToken.id)
+    req.user = user;
     next();
   } else {
     req.user = undefined;

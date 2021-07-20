@@ -1,10 +1,11 @@
 const Room = require("../model/Room");
 const Category = require("../model/Category");
+const Transaction = require("../model/Transaction");
 const catchAsync = require("../util/catchAsync");
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 
 exports.getAllRooms = catchAsync(async (req, res, next) => {
-  const rooms = await Room.find().populate('category');
+  const rooms = await Room.find().populate("category");
 
   res.status(200).json({
     status: "success",
@@ -48,25 +49,58 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
   if (!roomUUID) {
     return res.status(404).json({
       status: "error",
-      message: "Missing uuid query param"
+      message: "Missing uuid query param",
     });
   }
 
-  // Find it
-  const room = await Room.findOne({ uuid: roomUUID })
+  // Get current user
+  const user = req.user;
+  if (user === undefined) {
+    return res.status(400).json({
+      status: "error",
+      message: "Required authenticated user",
+    });
+  }
+
+  // Find the room
+  const room = await Room.findOne({ uuid: roomUUID }).populate("createdBy");
   if (!room) {
     return res.status(404).json({
       status: "error",
-      message: "Room not found"
+      message: "Room not found",
     });
   }
-  
-  res.status(200).json({
-    status: "success",
-    data: {
-      room,
-    },
-  });
+
+  var isAbleToJoin = false;
+  const createdByUser = room.createdBy;
+
+  // check if this room is created by expert
+  if (user.role == "expert") {
+    isAbleToJoin = createdByUser.id == user.id;
+  }
+  // check if this room is paied by normal use
+  else if (user.role == "user") {
+    const transaction = await Transaction.findOne({
+      from: user,
+      to: createdByUser,
+      room: room,
+    });
+    isAbleToJoin = transaction != null;
+  }
+
+  if (isAbleToJoin) {
+    return res.status(200).json({
+      status: "success",
+      data: {
+        room,
+      },
+    });
+  } else {
+    return res.status(404).json({
+      status: "error",
+      message: "Do not allow to join this room.",
+    });
+  }
 });
 
 exports.fetchRoomByCategory = catchAsync(async (req, res, next) => {
