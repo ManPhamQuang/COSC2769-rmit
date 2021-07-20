@@ -53,15 +53,6 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
     });
   }
 
-  // Get current user
-  const user = req.user;
-  if (user === undefined) {
-    return res.status(400).json({
-      status: "error",
-      message: "Required authenticated user",
-    });
-  }
-
   // Find the room
   const room = await Room.findOne({ uuid: roomUUID }).populate("createdBy");
   if (!room) {
