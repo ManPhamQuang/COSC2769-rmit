@@ -28,8 +28,13 @@ const roomSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "User",
   },
+  category: {
+    type: mongoose.Types.ObjectId,
+    ref: "Category",
+  },
   url: String,
   videoUrl: String,
+  uuid: String
 });
 
 module.exports = mongoose.model("Room", roomSchema);
