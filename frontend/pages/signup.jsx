@@ -25,18 +25,20 @@ const Signup = () => {
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault();
+    setError({message: ""})
     try {
-      await axios.post(API_Endpoint, {
+      let response = await axios.post(API_Endpoint, {
         name,
         email,
         password,
         passwordConfirm,
         role,
       });
+      localStorage.setItem("accessToken", response.data.data.token);
     } catch (err) {
       setError({ message: err.response.data.message });
     }
+    e.preventDefault();
   };
 
   return (

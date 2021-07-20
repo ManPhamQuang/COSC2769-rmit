@@ -15,15 +15,17 @@ const Login = () => {
   const isInvalid = email === "" || password === "";
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    setError({message: ""})
     try {
-      await axios.post(API_Endpoint, {
+      let response = await axios.post(API_Endpoint, {
         email,
         password,
       });
+      localStorage.setItem("accessToken", response.data.data.token);
     } catch (err) {
       setError({ message: err.response.data.message });
     }
+    e.preventDefault();
   };
 
   return (
