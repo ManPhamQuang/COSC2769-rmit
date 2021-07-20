@@ -1,6 +1,6 @@
 import Link from "next/link";
 import axios from "axios";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 const API_Endpoint = "http://localhost:5000/api/v1/users/signup";
 
@@ -22,16 +22,12 @@ const Signup = () => {
 
   const handleRoleChange = (e) => {
     e.target.checked ? setRole("expert") : setRole("user");
-    console.log(e.target.checked);
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (password !== passwordConfirm) {
-      setError({ message: "Password not matched!" });
-    }
     try {
-      const response = await axios.post(API_Endpoint, {
+      await axios.post(API_Endpoint, {
         name,
         email,
         password,
@@ -39,7 +35,7 @@ const Signup = () => {
         role,
       });
     } catch (err) {
-      setError({ message: err.response.data.message});
+      setError({ message: err.response.data.message });
     }
   };
 
