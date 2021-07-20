@@ -75,11 +75,18 @@ const Signup = () => {
                     </span>
                   </label>
                 </div>
-
+                <div className="text-center mt-6">
+                  <button
+                    className="bg-indigo-600 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                    type="button"
+                  >
+                    Sign up
+                  </button>
+                </div>
                 
               </form>
             </div>
-            <div className="rounded-t mb-0 px-6 py-6">
+            <div className="rounded-t mb-0 px-6 pb-6">
             <hr className="mb-6 border-b-1 border-gray-400 w-4/5 mx-auto" />
               <div className="text-gray-500 text-center mb-3 font-bold">
                 <small>Or sign up with</small>
@@ -110,14 +117,7 @@ const Signup = () => {
                   Google
                 </button>
               </div>
-              <div className="text-center mt-6">
-                  <button
-                    className="bg-indigo-600 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                    type="button"
-                  >
-                    Sign up
-                  </button>
-                </div>
+              
             </div>
           </div>
           <div className="flex flex-wrap mt-6">
