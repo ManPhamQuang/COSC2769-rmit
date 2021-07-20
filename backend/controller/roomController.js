@@ -5,8 +5,33 @@ const catchAsync = require("../util/catchAsync");
 const { v4: uuidv4 } = require("uuid");
 
 exports.getAllRooms = catchAsync(async (req, res, next) => {
-  const rooms = await Room.find().populate("category");
+  // Implement filtering logic
+  // Remove special keywords
+  const excludedFields = ["sort", "page", "limit"];
+  const searchQuery = { ...req.query };
+  excludedFields.forEach(field => delete searchQuery[field]);
+  const stringQuery = JSON.stringify(searchQuery);
+  // Allow mongodb to perform searching with >,>=,<,<=
+  let output = stringQuery.replace(/(gt|gte|lt|lte)/g, match => `$${match}`);
+  let searchObj = JSON.parse(output);
+  const query = Room.find(searchObj);
 
+  // Implement sorting logic
+  if (!req.query.sort) {
+    query.sort("-createdAt");
+  } else {
+    const sort = req.query.sort.replace(/,/g, " ");
+    query.sort(sort);
+  }
+
+  // Implement pagination
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 6;
+  const skip = (page - 1) * limit;
+  query.limit(limit).skip(skip);
+
+  // Execute the final query
+  const rooms = await query;
   res.status(200).json({
     status: "success",
     length: rooms.length,
