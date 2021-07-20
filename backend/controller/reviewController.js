@@ -4,10 +4,9 @@ const AppError = require("../util/appError");
 
 exports.createReview = catchAsync(async (req, res, next) => {
   // Test
-  const from = req.body.from;
   const review = await Review.create({
     ...req.body,
-    from,
+    from: req.user.id,
     to: req.params.teacherId,
   });
 
