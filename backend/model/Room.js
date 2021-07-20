@@ -34,6 +34,7 @@ const roomSchema = new mongoose.Schema({
   },
   url: String,
   videoUrl: String,
+  uuid: String
 });
 
 module.exports = mongoose.model("Room", roomSchema);

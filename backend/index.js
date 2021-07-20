@@ -5,6 +5,7 @@ const userRoute = require("./route/userRoute");
 const categoryRoute = require("./route/categoryRoute");
 const AppError = require("./util/appError");
 const GlobalErrorController = require("./controller/errorController");
+
 const app = express();
 app.use(express.json());
 app.use(cors());
