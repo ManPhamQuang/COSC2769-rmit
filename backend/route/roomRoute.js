@@ -4,8 +4,10 @@ const {
   getAllRooms,
   getRoom,
   createRoom,
+  fetchRoomByCategory
 } = require("../controller/roomController");
 
+router.get("/category", fetchRoomByCategory)
 router.get("/", getAllRooms);
 router.get("/:id", getRoom);
 router.post("/", createRoom);
