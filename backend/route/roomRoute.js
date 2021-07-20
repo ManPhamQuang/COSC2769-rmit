@@ -4,10 +4,12 @@ const {
   getAllRooms,
   getRoom,
   createRoom,
-  joinRoom
+  joinRoom,
+  fetchRoomByCategory
 } = require("../controller/roomController");
 
 router.get("/join", joinRoom);
+router.get("/category", fetchRoomByCategory)
 router.get("/", getAllRooms);
 router.get("/:id", getRoom);
 router.post("/", createRoom);

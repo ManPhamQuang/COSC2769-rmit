@@ -1,9 +1,10 @@
 const Room = require("../model/Room");
+const Category = require("../model/Category");
 const catchAsync = require("../util/catchAsync");
 const { v4: uuidv4 } = require('uuid');
 
 exports.getAllRooms = catchAsync(async (req, res, next) => {
-  const rooms = await Room.find();
+  const rooms = await Room.find().populate('category');
 
   res.status(200).json({
     status: "success",
@@ -64,6 +65,35 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
     status: "success",
     data: {
       room,
+    },
+  });
+});
+
+exports.fetchRoomByCategory = catchAsync(async (req, res, next) => {
+  // Get category name
+  let name = req.query.name;
+  if (!name) {
+    return res.status(400).json({
+      status: "error",
+      message: "Missing name param",
+    });
+  }
+
+  // Find a category with a given name
+  const category = await Category.findOne({ name });
+  if (!category) {
+    return res.status(404).json({
+      status: "error",
+      message: "Could not find a Category",
+    });
+  }
+
+  // Fetch all room with given category
+  const rooms = await Room.find({ category }).populate("category");
+  res.status(200).json({
+    status: "success",
+    data: {
+      rooms,
     },
   });
 });
