@@ -52,3 +52,15 @@ exports.isAuthenticated = catchAsync(async (req, res, next) => {
   const user = await User.findById(decodedToken.id);
   req.user = user;
 });
+
+exports.limitToOnly = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError(`You are not allowed to access this route`),
+        403
+      );
+    }
+    next();
+  };
+};
