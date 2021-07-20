@@ -1,35 +1,45 @@
 import Link from "next/link";
+import axios from "axios";
 import { useState, useRef, useEffect } from "react";
+
+const API_Endpoint = "http://localhost:5000/api/v1/users/signup";
+
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmed, setPasswordConfirmed] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [role, setRole] = useState("user");
   const [error, setError] = useState({ message: "" });
 
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const passwordConfirmedRef = useRef();
+  const passwordConfirmRef = useRef();
 
-  const isInvalid = name === "" || email === "" || password === "" || passwordConfirmed === "";
+  const isInvalid =
+    name === "" || email === "" || password === "" || passwordConfirm === "";
 
   const handleRoleChange = (e) => {
     e.target.checked ? setRole("expert") : setRole("user");
     console.log(e.target.checked);
-  }
+  };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("Button clicked");
-    console.log(name);
-    console.log(email);
-    console.log(password);
-    console.log(passwordConfirmed);
-    console.log(role);
-    if (password !== passwordConfirmed) {
+    if (password !== passwordConfirm) {
       setError({ message: "Password not matched!" });
+    }
+    try {
+      const response = await axios.post(API_Endpoint, {
+        name,
+        email,
+        password,
+        passwordConfirm,
+        role,
+      });
+    } catch (err) {
+      setError({ message: err.response.data.message});
     }
   };
 
@@ -54,7 +64,7 @@ const Signup = () => {
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="Max"
                     ref={nameRef}
-                    onChange={() =>setName(nameRef.current.value)}
+                    onChange={() => setName(nameRef.current.value)}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -66,7 +76,7 @@ const Signup = () => {
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="madmax@example.com"
                     ref={emailRef}
-                    onChange={() =>setEmail(emailRef.current.value)}
+                    onChange={() => setEmail(emailRef.current.value)}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -78,7 +88,7 @@ const Signup = () => {
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="*******"
                     ref={passwordRef}
-                    onChange={() =>setPassword(passwordRef.current.value)}
+                    onChange={() => setPassword(passwordRef.current.value)}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -89,8 +99,10 @@ const Signup = () => {
                     type="password"
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="*******"
-                    ref={passwordConfirmedRef}
-                    onChange={()=>setPasswordConfirmed(passwordConfirmedRef.current.value)}
+                    ref={passwordConfirmRef}
+                    onChange={() =>
+                      setPasswordConfirm(passwordConfirmRef.current.value)
+                    }
                   />
                 </div>
                 <div>
@@ -116,7 +128,11 @@ const Signup = () => {
                     Sign up
                   </button>
                 </div>
-                {error && <div className="text-red-500 text-sm mt-2">{error.message}</div>}
+                {error && (
+                  <div className="text-red-500 text-sm mt-2">
+                    {error.message}
+                  </div>
+                )}
               </form>
             </div>
             <div className="rounded-t mb-0 px-6 pb-6">
