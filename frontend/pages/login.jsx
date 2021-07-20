@@ -1,3 +1,4 @@
+import Link from 'next/link'
 const Login = () => {
   return (
     <div className="container mt-20 mx-auto px-4 h-full">
@@ -83,12 +84,13 @@ const Login = () => {
           <div className="flex flex-wrap mt-6">
             <div className="w-full text-center">
               
-                <small>  
+                <small>
+                  <Link href="/signup">
                 <a
-                href="#pablo"
-                onClick={e => e.preventDefault()}
                 className="text-gray-300 hover:text-indigo-400"
-              >Have not registered any account? Sign up instead </a></small>
+                >Have not registered any account? Sign up instead </a>
+                </Link>  
+                </small>
               
             </div>
           </div>
