@@ -5,12 +5,11 @@ const {
   updateReview,
   deleteReview,
 } = require("../controller/reviewController");
-const router = express.Router();
 const router = express.Router({ mergeParams: true });
 
 router.get("/", getAllReviews);
 router.post("/", createReview);
-router.patch("/:id", updateReview);
-router.delete("/:id", deleteReview);
+router.patch("/:reviewId", updateReview);
+router.delete("/:reviewId", deleteReview);
 
 module.exports = router;
