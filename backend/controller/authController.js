@@ -4,7 +4,7 @@ const User = require("../model/User");
 const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
 
-const createToken = async id =>
+const createToken = async (id) =>
   await promisify(jwt.sign)({ id }, process.env.SECRET, {
     expiresIn: process.env.EXPIRES_IN,
   });
@@ -37,4 +37,17 @@ exports.login = catchAsync(async (req, res, next) => {
       token,
     },
   });
+});
+
+exports.isAuthenticated = catchAsync(async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token) {
+    const decodedToken = await jwt.verify(token, process.env.SECRET);
+    req.userID = decodedToken;
+    next();
+  } else {
+    req.user = undefined;
+    next();
+  }
 });

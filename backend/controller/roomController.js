@@ -60,7 +60,7 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
       message: "Room not found"
     });
   }
-
+  
   res.status(200).json({
     status: "success",
     data: {
