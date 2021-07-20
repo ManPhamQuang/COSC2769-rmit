@@ -4,12 +4,11 @@ const {
   getAllRooms,
   getRoom,
   createRoom,
-  joinRoom,
-  fetchRoomByCategory
+  joinRoom
 } = require("../controller/roomController");
+const { isAuthenticated } = require("../controller/authController");
 
-router.get("/join", joinRoom);
-router.get("/category", fetchRoomByCategory)
+router.get("/join", isAuthenticated, joinRoom);
 router.get("/", getAllRooms);
 router.get("/:id", getRoom);
 router.post("/", createRoom);

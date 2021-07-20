@@ -5,7 +5,6 @@ const userRoute = require("./route/userRoute");
 const categoryRoute = require("./route/categoryRoute");
 const AppError = require("./util/appError");
 const GlobalErrorController = require("./controller/errorController");
-const { isAuthenticated } = require("./controller/authController");
 
 const app = express();
 app.use(express.json());
@@ -17,7 +16,6 @@ app.use("/helloworld", (req, res) => {
   });
 });
 
-app.use(isAuthenticated);
 app.use("/api/v1/rooms", roomRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/categories", categoryRoute);
