@@ -11,6 +11,6 @@ const { isAuthenticated } = require("../controller/authController");
 router.get("/join", isAuthenticated, joinRoom);
 router.get("/", getAllRooms);
 router.get("/:id", getRoom);
-router.post("/", createRoom);
+router.post("/", isAuthenticated, createRoom);
 
 module.exports = router;
