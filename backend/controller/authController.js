@@ -4,7 +4,7 @@ const User = require("../model/User");
 const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
 
-const createToken = async (id) =>
+const createToken = async id =>
   await promisify(jwt.sign)({ id }, process.env.SECRET, {
     expiresIn: process.env.EXPIRES_IN,
   });
@@ -40,15 +40,27 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 exports.isAuthenticated = catchAsync(async (req, res, next) => {
+  let token;
   const authHeader = req.headers.authorization;
-  const token = authHeader && authHeader.split(" ")[1];
-  if (token) {
-    const decodedToken = await jwt.verify(token, process.env.SECRET);
-    const user = await User.findById(decodedToken.id)
-    req.user = user;
-    next();
-  } else {
-    req.user = undefined;
-    next();
+  if (authHeader && authHeader.startsWith("Bearer")) {
+    token = req.headers.authorization.split(" ")[1];
   }
+  if (!token) {
+    return next(new AppError("Please login to access this route", 401));
+  }
+  const decodedToken = await promisify(jwt.verify)(token, process.env.SECRET);
+  const user = await User.findById(decodedToken.id);
+  req.user = user;
 });
+
+exports.limitToOnly = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError(`You are not allowed to access this route`),
+        403
+      );
+    }
+    next();
+  };
+};
