@@ -3,8 +3,6 @@ import { StarIcon } from "@heroicons/react/solid";
 import Tippy from "@tippyjs/react/headless";
 import DateFormatter from "../utils/DateFormat";
 
-const color = "pink";
-
 export default function Card({ props }) {
     const {
         _id,
@@ -30,11 +28,6 @@ export default function Card({ props }) {
                             className={`bg-white mb-28 block z-50 font-normal border-2 shadow-lg leading-normal  max-w-xs text-left no-underline break-words rounded-lg`}
                         >
                             <div className="p-4 leading-snug">
-                                {/* <div
-                                className={`bg-gray-600 opacity-75 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg`}
-                            >
-                                {color} tooltip title
-                            </div> */}
                                 <h1 className="font-bold">{title}</h1>
                                 <p className="text-sm font-normal text-gray-500">
                                     Status:{" "}
@@ -54,6 +47,12 @@ export default function Card({ props }) {
                                     </p>
                                 </div>
                                 <div className="">{description}</div>
+                                <button
+                                    className="bg-indigo-600 mt-3 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full disabled:bg-indigo-200 disabled:cursor-not-allowed"
+                                    type="button"
+                                >
+                                    Add to Cart
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -88,7 +87,7 @@ export default function Card({ props }) {
                             <p className="inline text-sm font-normal text-gray-500">
                                 (630,406)
                             </p>
-                            <h1 className="font-bold">{price}</h1>
+                            <h1 className="font-bold">${price}</h1>
                             <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
                                 <p className="text-xs font-semibold mx-auto text-center">
                                     {category.name}
