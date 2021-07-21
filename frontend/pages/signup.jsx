@@ -1,8 +1,16 @@
 import Link from "next/link";
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState, useRef, useReducer } from "react";
+import { signup } from "../context/authContext/apiCalls";
+import AuthReducer from "../context/authContext/AuthReducer";
 
 const API_Endpoint = "http://localhost:5000/api/v1/users/signup";
+
+const INITIAL_STATE = {
+  user: null,
+  isFetching: false,
+  error: null,
+};
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -10,12 +18,16 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [role, setRole] = useState("user");
-  const [error, setError] = useState({ message: "" });
 
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+
+  const [state, dispatch] = useReducer(
+    AuthReducer,
+    INITIAL_STATE
+  );
 
   const isInvalid =
     name === "" || email === "" || password === "" || passwordConfirm === "";
@@ -24,20 +36,8 @@ const Signup = () => {
     e.target.checked ? setRole("expert") : setRole("user");
   };
 
-  const handleRegister = async (e) => {
-    setError({message: ""})
-    try {
-      let response = await axios.post(API_Endpoint, {
-        name,
-        email,
-        password,
-        passwordConfirm,
-        role,
-      });
-      localStorage.setItem("accessToken", response.data.data.token);
-    } catch (err) {
-      setError({ message: err.response.data.message });
-    }
+  const handleRegister = (e) => {
+    signup({name, email, password, passwordConfirm, role }, dispatch);
     e.preventDefault();
   };
 
@@ -126,11 +126,16 @@ const Signup = () => {
                     Sign up
                   </button>
                 </div>
-                {error && (
-                  <div className="text-red-500 text-sm mt-2">
-                    {error.message}
-                  </div>
-                )}
+                {state.isFetching && (
+                    <div className="text-red-500 text-sm mt-2">
+                      Fetching data
+                    </div>
+                  )}
+                  {state.error && (
+                    <div className="text-red-500 text-sm mt-2">
+                      {state.error}
+                    </div>
+                  )}
               </form>
             </div>
             <div className="rounded-t mb-0 px-6 pb-6">
