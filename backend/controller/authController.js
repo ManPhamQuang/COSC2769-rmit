@@ -38,3 +38,29 @@ exports.login = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.isAuthenticated = catchAsync(async (req, res, next) => {
+  let token;
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith("Bearer")) {
+    token = req.headers.authorization.split(" ")[1];
+  }
+  if (!token) {
+    return next(new AppError("Please login to access this route", 401));
+  }
+  const decodedToken = await promisify(jwt.verify)(token, process.env.SECRET);
+  const user = await User.findById(decodedToken.id);
+  req.user = user;
+});
+
+exports.limitToOnly = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError(`You are not allowed to access this route`),
+        403
+      );
+    }
+    next();
+  };
+};

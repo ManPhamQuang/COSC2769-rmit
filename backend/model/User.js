@@ -50,9 +50,12 @@ const userSchema = new mongoose.Schema({
   },
   ratingsAverage: {
     type: Number,
-    default: 5.0,
+    default: null,
     min: [1, "Rating must be above 1.0"],
     max: [5, "Rating must be below 5.0"],
+    set(value) {
+      return Math.round((value + Number.EPSILON) * 100) / 100;
+    },
   },
   ratingsQuantity: {
     type: Number,

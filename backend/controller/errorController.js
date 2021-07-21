@@ -24,6 +24,13 @@ module.exports = (error, req, res, next) => {
     );
   }
 
+  if (error.name === "TokenExpiredError") {
+    errorMsgObj = new AppError(
+      "Invalid token or expired token. Please login again",
+      401
+    );
+  }
+
   if (error.type === "entity.parse.failed") {
     errorMsgObj = new AppError(`Invalid JSON body`, 404);
   }

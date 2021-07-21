@@ -29,7 +29,7 @@ export default function Card({ props }) {
                         <div
                             className={`bg-white mb-28 block z-50 font-normal border-2 shadow-lg leading-normal  max-w-xs text-left no-underline break-words rounded-lg`}
                         >
-                            <div className="p-6 leading-snug">
+                            <div className="p-4 leading-snug">
                                 {/* <div
                                 className={`bg-gray-600 opacity-75 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg`}
                             >
@@ -37,7 +37,10 @@ export default function Card({ props }) {
                             </div> */}
                                 <h1 className="font-bold">{title}</h1>
                                 <p className="text-sm font-normal text-gray-500">
-                                    {createdBy}
+                                    Status:{" "}
+                                    <span className="font-semibold">
+                                        {status}
+                                    </span>
                                 </p>
                                 <p className="text-sm font-normal text-green-700">
                                     Published on{" "}
@@ -45,9 +48,9 @@ export default function Card({ props }) {
                                         {DateFormatter(createdAt)}
                                     </span>
                                 </p>
-                                <div className="py-1 bg-yellow-200 w-16 rounded-sm">
+                                <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
                                     <p className="text-xs font-semibold mx-auto text-center">
-                                        {category}
+                                        {category.name}
                                     </p>
                                 </div>
                                 <div className="">{description}</div>
@@ -72,7 +75,7 @@ export default function Card({ props }) {
                         <div className="leading-snug mt-2">
                             <h1 className="font-bold">{title}</h1>
                             <p className="text-sm font-normal text-gray-500 truncate">
-                                {createdBy}
+                                {createdBy.name}
                             </p>
                             <p className="text-yellow-700 font-semibold inline">
                                 4.7
@@ -86,9 +89,9 @@ export default function Card({ props }) {
                                 (630,406)
                             </p>
                             <h1 className="font-bold">{price}</h1>
-                            <div className="py-1 bg-yellow-200 w-16 rounded-sm">
+                            <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
                                 <p className="text-xs font-semibold mx-auto text-center">
-                                    {category}
+                                    {category.name}
                                 </p>
                             </div>
                         </div>
