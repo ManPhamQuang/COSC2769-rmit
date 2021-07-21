@@ -1,10 +1,7 @@
 import Link from "next/link";
-import axios from "axios";
 import { useState, useRef, useReducer } from "react";
 import { signup } from "../context/authContext/apiCalls";
 import AuthReducer from "../context/authContext/AuthReducer";
-
-const API_Endpoint = "http://localhost:5000/api/v1/users/signup";
 
 const INITIAL_STATE = {
   user: null,
@@ -24,10 +21,7 @@ const Signup = () => {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-  const [state, dispatch] = useReducer(
-    AuthReducer,
-    INITIAL_STATE
-  );
+  const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
   const isInvalid =
     name === "" || email === "" || password === "" || passwordConfirm === "";
@@ -37,7 +31,7 @@ const Signup = () => {
   };
 
   const handleRegister = (e) => {
-    signup({name, email, password, passwordConfirm, role }, dispatch);
+    signup({ name, email, password, passwordConfirm, role }, dispatch);
     e.preventDefault();
   };
 
@@ -117,25 +111,48 @@ const Signup = () => {
                   </label>
                 </div>
                 <div className="text-center mt-6">
-                  <button
-                    className="bg-indigo-600 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full disabled:bg-indigo-200 disabled:cursor-not-allowed"
-                    type="button"
-                    disabled={isInvalid}
-                    onClick={handleRegister}
-                  >
-                    Sign up
-                  </button>
+                  {state.isFetching ? (
+                    <button
+                      type="button"
+                      className="inline-flex justify-center items-center w-full mb-1 uppercase px-6 py-3 border border-transparent text-sm font-bold rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150 disabled:cursor-not-allowed"
+                      disabled
+                    >
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          stroke-width="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Processing
+                    </button>
+                  ) : (
+                    <button
+                      className="bg-indigo-600 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full disabled:bg-indigo-200 disabled:cursor-not-allowed"
+                      type="button"
+                      disabled={isInvalid}
+                      onClick={handleRegister}
+                    >
+                      Sign up
+                    </button>
+                  )}
                 </div>
-                {state.isFetching && (
-                    <div className="text-red-500 text-sm mt-2">
-                      Fetching data
-                    </div>
-                  )}
-                  {state.error && (
-                    <div className="text-red-500 text-sm mt-2">
-                      {state.error}
-                    </div>
-                  )}
+                {state.error && (
+                  <div className="text-red-500 text-sm mt-2">{state.error}</div>
+                )}
               </form>
             </div>
             <div className="rounded-t mb-0 px-6 pb-6">

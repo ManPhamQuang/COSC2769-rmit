@@ -1,10 +1,10 @@
 import axios from "axios";
 import { authenStart, authenSuccess, authenFailure } from "./AuthActions";
 
-export const login = async (user, dispatch) => {
+export const login = async (userCredentials, dispatch) => {
   dispatch(authenStart());
   try {
-    const res = await axios.post("http://localhost:5000/api/v1/users/login", user);
+    const res = await axios.post("http://localhost:5000/api/v1/users/login", userCredentials);
     dispatch(authenSuccess(res.data));
     localStorage.setItem("accessToken", res.data.data.token);
   } catch (err) {
@@ -12,10 +12,10 @@ export const login = async (user, dispatch) => {
   }
 };
 
-export const signup = async (user, dispatch) => {
+export const signup = async (userCredentials, dispatch) => {
   dispatch(authenStart());
   try {
-    const res = await axios.post("http://localhost:5000/api/v1/users/signup", user);
+    const res = await axios.post("http://localhost:5000/api/v1/users/signup", userCredentials);
     dispatch(authenSuccess(res.data));
     localStorage.setItem("accessToken", res.data.data.token);
   } catch (err) {
