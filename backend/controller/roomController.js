@@ -5,7 +5,7 @@ const catchAsync = require("../util/catchAsync");
 const { v4: uuidv4 } = require("uuid");
 
 exports.getAllRooms = catchAsync(async (req, res, next) => {
-  const rooms = await Room.find().populate("category");
+  const rooms = await Room.find().populate("category").populate("createdBy");
 
   res.status(200).json({
     status: "success",
@@ -17,7 +17,7 @@ exports.getAllRooms = catchAsync(async (req, res, next) => {
 });
 
 exports.getRoom = catchAsync(async (req, res, next) => {
-  const room = await Room.findById(req.params.id);
+  const room = await Room.findById(req.params.id).populate("category").populate("createdBy");
 
   res.status(200).json({
     status: "success",
@@ -54,7 +54,7 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
   }
 
   // Find the room
-  const room = await Room.findOne({ uuid: roomUUID }).populate("createdBy");
+  const room = await Room.findOne({ uuid: roomUUID }).populate("category").populate("createdBy");
   if (!room) {
     return res.status(404).json({
       status: "error",
@@ -114,7 +114,7 @@ exports.fetchRoomByCategory = catchAsync(async (req, res, next) => {
   }
 
   // Fetch all room with given category
-  const rooms = await Room.find({ category }).populate("category");
+  const rooms = await Room.find({ category }).populate("category").populate("createdBy");
   res.status(200).json({
     status: "success",
     data: {
