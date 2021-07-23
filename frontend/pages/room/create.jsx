@@ -1,6 +1,20 @@
-import React from "react";
+import { Fragment, useState } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+
+const people = [
+  { name: "Web Development" },
+  { name: "Data Science" },
+  { name: "Mobile Development" },
+  { name: "Game Development" },
+  { name: "Software Testing" },
+  { name: "No-Code Development" },
+  { name: "iOS Development" },
+  { name: "Android Development" },
+];
 
 const create = () => {
+  const [selected, setSelected] = useState(people[0]);
   return (
     <div className="container mt-20 mx-auto px-4 h-full">
       <div className="md:grid md:grid-cols-3 md:gap-6">
@@ -25,59 +39,61 @@ const create = () => {
                       for="company-website"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Website
+                      Category
                     </label>
-                    <div className="mt-1 flex rounded-md shadow-sm">
-                      <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                        http://
-                      </span>
-                      <input
-                        type="text"
-                        name="company-website"
-                        id="company-website"
-                        className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
-                        placeholder="www.example.com"
-                      />
+                    <div className="">
+                      <Listbox value={selected} onChange={setSelected}>
+                        <div className="relative mt-1">
+                          <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
+                            <span className="block truncate">
+                              {selected.name}
+                            </span>
+                            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                              <SelectorIcon
+                                className="w-5 h-5 text-gray-400"
+                                aria-hidden="true"
+                              />
+                            </span>
+                          </Listbox.Button>
+                          <Transition
+                            as={Fragment}
+                            leave="transition ease-in duration-100"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                              {people.map((person, personIdx) => (
+                                <Listbox.Option
+                                  key={personIdx}
+                                  className={({ active }) => `${ active ? "text-amber-900 bg-amber-100" : "text-gray-900" } cursor-default select-none relative py-2 pl-10 pr-4`}
+                                  value={person}
+                                >
+                                  {({ selected, active }) => (
+                                    <>
+                                      <span className={`${ selected ? "font-medium" : "font-normal" } block truncate`} >
+                                        {person.name}
+                                      </span>
+                                      {selected ? (
+                                        <span className={`${ active ? "text-amber-600" : "text-amber-600" } absolute inset-y-0 left-0 flex items-center pl-3`} >
+                                          <CheckIcon
+                                            className="w-5 h-5"
+                                            aria-hidden="true"
+                                          />
+                                        </span>
+                                      ) : null}
+                                    </>
+                                  )}
+                                </Listbox.Option>
+                              ))}
+                            </Listbox.Options>
+                          </Transition>
+                        </div>
+                      </Listbox>
                     </div>
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-6">
-                  <div className="col-span-3 sm:col-span-2">
-                  <label id="listbox-label" class="block text-sm font-medium text-gray-700">
-    Assigned to
-  </label>
-  <div class="mt-1 relative">
-    <button type="button" class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
-      <span class="flex items-center">
-        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="flex-shrink-0 h-6 w-6 rounded-full"/>
-        <span class="ml-3 block truncate">
-          Tom Cook
-        </span>
-      </span>
-      <span class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-      </span>
-    </button>
-    <ul class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
-      <li class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
-        <div class="flex items-center">
-          <img src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="flex-shrink-0 h-6 w-6 rounded-full"/>
-          <span class="font-normal ml-3 block truncate">
-            Wade Cooper
-          </span>
-        </div>
-        <span class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4">
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </span>
-      </li>
-
-    </ul>
-  </div>
-                  </div>
+                  <div className="col-span-3 sm:col-span-2"></div>
                 </div>
                 <div class="col-span-6 sm:col-span-4">
                   <label
@@ -94,7 +110,6 @@ const create = () => {
                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
-
                 <div>
                   <label
                     for="about"
@@ -116,7 +131,7 @@ const create = () => {
                   </p>
                 </div>
                 <div className="grid grid-cols-3 gap-6">
-                  <div className="col-span-3 sm:col-span-2">
+                  <div className="col-span-3 sm:col-span-1">
                     <label
                       for="price"
                       className="block text-sm font-medium text-gray-700"
