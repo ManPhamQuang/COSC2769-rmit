@@ -1,4 +1,4 @@
-import { useState, useRef, useReducer } from "react";
+import React,{ useState, useRef, useReducer } from "react";
 import TeacherSelfIntroduction from "../components/TeacherSelfIntroduction";
 import {
     StarIcon,
@@ -79,7 +79,8 @@ const relevantCourses = [
 const teacherSelfIntroduction = [
     {
         id: 1,
-        name: "Mimosa",
+        name: "Angela",
+        job:"Developer and Lead Instructor",
         rating: 5,
         seftIntroduction:
             "I'm Angela, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
@@ -139,10 +140,11 @@ export default function description() {
             </div>
             
             <div className="container mx-auto p-14">
+            <div class="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold">Instructors</div>
                 <div className="relative flex flex-col ">
                     <TeacherSelfIntroduction
-                        key={teacherSelfIntroduction.id}
-                        props={teacherSelfIntroduction}
+                        key={teacherSelfIntroduction[0].id}
+                        props={teacherSelfIntroduction[0]}
                     ></TeacherSelfIntroduction>
                 </div>
             </div>
