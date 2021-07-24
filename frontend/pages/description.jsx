@@ -137,6 +137,7 @@ export default function description() {
                     </div>
                 </div>
             </div>
+            
             <div className="container mx-auto p-14">
                 <div className="relative flex flex-col ">
                     <TeacherSelfIntroduction

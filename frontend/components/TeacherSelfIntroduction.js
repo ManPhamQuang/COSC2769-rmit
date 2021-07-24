@@ -1,7 +1,7 @@
 import React from "react";
 import { StarIcon } from "@heroicons/react/solid";
 
- export default function Review({ props }){
+ export default function teacherSelfIntroduction({ props }){
     const { id, name, rating, seftIntroduction} = props;
     return(
 
@@ -10,10 +10,10 @@ import { StarIcon } from "@heroicons/react/solid";
                 <div class="flex-shrink-0">
                     <div class="inline-block relative">
                         <p class="mt-1 max-w-xs dark:text-white">
-                            Instructors
+                            Instructors {id}
                         </p>
                         <a href="#" class="block relative">
-                            <img alt="profil" src="https://img-c.udemycdn.com/user/200_H/15722848_5948_3.jpg" class=" object-cover rounded-full md:h-16 md:w-16 "/>
+                            <img alt="profil" src="https://img-c.udemycdn.com/user/200_H/15722848_5948_3.jpg" class="mx-auto object-cover rounded-full sm:h-50 sm:w-50 md:h-16 md:w-16 "/>
                         </a>
                         <p className="text-yellow-700 font-semibold inline">{rating}</p>
                         <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
