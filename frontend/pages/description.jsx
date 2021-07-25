@@ -155,21 +155,25 @@ export default function description() {
 
                     <div class="bg-white dark:bg-gray-800 w- rounded-lg p-4 mb-6 shadow sm:inline-block">
                             <div class="md:flex items-start md:text-left">
-                                <div class="md:w-1/2 px-3 mb-6 md:mb-5 inline" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                                    <p class="text-red text-s inline ml-1">Concepts of Object Oriented Programming (OOP): The type system, variables, functions and methods, inheritance, structures, classes and protocols.</p>
-                                </div>
-                                <div class="md:w-1/2 px-3 mb-6 md:mb-5 inline" >
+                                <div class=" px-3 mb-6 md:mb-5 inline" >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                                     <p class="text-red text-s inline ml-1">Concepts of Object Oriented Programming (OOP): The type system, variables, functions and methods, inheritance, structures, classes and protocols.</p>
                                 </div>
                             </div>
                             <div class="md:flex items-start md:text-left">
-                                <div class="md:w-1/2 px-3 mb-6 md:mb-5 inline" >
+                                <div class="px-3 mb-6 md:mb-5 inline" >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                                     <p class="text-red text-s inline ml-1">Concepts of Object Oriented Programming (OOP): The type system, variables, functions and methods, inheritance, structures, classes and protocols.</p>
                                 </div>
-                                <div class="md:w-1/2 px-3 mb-6 md:mb-5 inline" >
+                            </div>
+                            <div class="md:flex items-start md:text-left">
+                                <div class=" px-3 mb-6 md:mb-5 inline" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                    <p class="text-red text-s inline ml-1">Concepts of Object Oriented Programming (OOP): The type system, variables, functions and methods, inheritance, structures, classes and protocols.</p>
+                                </div>
+                            </div>
+                            <div class="md:flex items-start md:text-left">
+                                <div class=" px-3 mb-6 md:mb-5 inline" >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                                     <p class="text-red text-s inline ml-1">Concepts of Object Oriented Programming (OOP): The type system, variables, functions and methods, inheritance, structures, classes and protocols.</p>
                                 </div>
