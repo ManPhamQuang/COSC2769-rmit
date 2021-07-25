@@ -1,4 +1,4 @@
-import { useState, useRef, useReducer } from "react";
+import { React, useState, useRef, useReducer } from "react";
 import TeacherSelfIntroduction from "../components/TeacherSelfIntroduction";
 import {
     StarIcon,
@@ -9,6 +9,7 @@ import {
     ShareIcon,
     GiftIcon,
 } from "@heroicons/react/solid";
+import RoomDetailHeader from "../components/RoomDetailHeader";
 
 const courseInfor = [
     {
@@ -86,58 +87,30 @@ const teacherSelfIntroduction = [
     },
 ];
 
+const goal = [
+    {
+        courseGoal: [
+            "Setup Python Development Environment",
+            "Build a Digital Clock with Python",
+            "Build a Music Player with Python",
+            "Build a loan Calculator with Python",
+            "Build an Analogue Clock with JavaScript",
+            "Build a To-do App with JavaScript",
+            "Build a Count Down Timer with JavaScript",
+            "Learn Python Fundamentals",
+            "Build a Currency Converter with Python",
+            "Build an Image Slider with Python",
+            "Learn JavaScript Fundamentals",
+            "Build a Digital Calculator with JavaScript",
+            "Build an interactive Quiz App with JavaScript",
+        ],
+    },
+];
+
 export default function description() {
     return (
         <div>
-            <div className="p-14 bg-black">
-                <div className="container mx-auto p-16 leading-loose">
-                    <p className="text-4xl subpixel-antialiased text-white font-bold pb-2">
-                        Python and JavaScript for beginners: Build 10 Projects
-                    </p>
-                    <p className="text-2xl subpixel-antialiased text-white">
-                        Learn to code using Python and JavaScript
-                    </p>
-                    <p className="text-yellow-500 font-semibold inline">4.7</p>
-                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
-                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
-                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
-                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
-                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
-                    <p className="inline text-base text-white">
-                        &nbsp;(91 ratings) &nbsp;30,000 students
-                    </p>
-                    <p className="text-base text-white">Created by Thien An</p>
-                    <div className="flex items-center mt-1">
-                        <ExclamationCircleIcon className="text-white h-5 w-5 inline" />
-                        <p className="inline text-base text-white">
-                            &nbsp;Last updated 6/2021&nbsp;
-                        </p>
-                        <GlobeAltIcon className="text-white h-5 w-5 inline" />
-                        <p className="inline text-base text-white">
-                            &nbsp;English&nbsp;
-                        </p>
-                        <DocumentTextIcon className="text-white h-5 w-5 inline" />
-                        <p className="inline text-base text-white">
-                            &nbsp;English [Auto]&nbsp;
-                        </p>
-                    </div>
-                    <div className="flex items-center mt-4 space-x-3">
-                        <button className="inline text-base text-white font-semibold border p-2 flex items-center hover:bg-gray-800">
-                            Wishlist&nbsp;
-                            <HeartIcon className="text-white h-5 w-5 inline" />
-                        </button>
-                        <button className="inline text-base text-white font-semibold border p-2 flex items-center hover:bg-gray-800">
-                            Share&nbsp;
-                            <ShareIcon className="text-white h-5 w-5 inline" />
-                        </button>
-                        <button className="inline text-base text-white font-semibold border p-2 flex items-center hover:bg-gray-800">
-                            Gift this course&nbsp;
-                            <GiftIcon className="text-white h-5 w-5 inline" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
+            <RoomDetailHeader props={goal} />
             <div className="container mx-auto p-14">
                 <div className="relative flex flex-col ">
                     <TeacherSelfIntroduction
