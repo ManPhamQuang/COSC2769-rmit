@@ -62,17 +62,6 @@ export default function RoomDetailHeader({ props }) {
                     </div>
                 </div>
             </div>
-
-            <div className="container mx-auto w-3/6 h-auto border mt-5">
-                <p className="text-2xl subpixel-antialiased font-bold">
-                    What you'll learn
-                </p>
-                {/* <div className="grid grid-cols-3 gap-4">
-                    {goals.map((goal) => (
-                        <p>{goal}</p>
-                    ))}
-                </div> */}
-            </div>
         </div>
     );
 }
