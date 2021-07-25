@@ -120,11 +120,11 @@ const goal = [
 export default function description() {
     return (
         <div>
-            <RoomDetailHeader props={goal} />
+            <RoomDetailHeader />
 
-            <div className="container mx-auto p-14">
+            <div className="container ml-80 w-5/12 h-auto py-4 ">
                 <div className="relative flex flex-col ">
-                    <div class="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold">
+                    <div className="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold">
                         What you'll learn
                     </div>
 

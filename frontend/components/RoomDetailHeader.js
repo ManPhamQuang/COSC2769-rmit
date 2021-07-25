@@ -9,13 +9,11 @@ import {
     GiftIcon,
 } from "@heroicons/react/solid";
 
-export default function RoomDetailHeader({ props }) {
-    const goals = props;
-    console.log(goals);
+export default function RoomDetailHeader() {
     return (
         <div>
-            <div className="bg-black">
-                <div className="container mx-auto px-48 py-12 leading-loose">
+            <div className="bg-black z-0">
+                <div className="container ml-80 w-5/12 h-auto py-12 leading-loose">
                     <p className="text-4xl subpixel-antialiased text-white font-bold pb-2">
                         Python and JavaScript for beginners: Build 10 Projects
                     </p>
@@ -60,6 +58,25 @@ export default function RoomDetailHeader({ props }) {
                             <GiftIcon className="text-white h-5 w-5 inline" />
                         </button>
                     </div>
+                </div>
+            </div>
+            <div className="absolute bg-white z-10 border w-80 h-screen top-14 right-4 mr-80 shadow-xl">
+                <div className="px-5 py-4 space-y-3">
+                    <p className="text-4xl subpixel-antialiased font-bold">
+                        $89.99
+                    </p>
+                    <button className="text-1xl text-white font-bold bg-purple-600 py-3 w-full hover:bg-purple-800">
+                        Add to cart
+                    </button>
+                    <button className="text-1xl font-bold py-3 w-full hover:bg-gray-300 border border-black">
+                        Buy now
+                    </button>
+                    <p className="text-xs text-center">
+                        30-Day Money-Back Guarantee
+                    </p>
+                    <p className="text-base font-bold ">
+                        This workshop includes:
+                    </p>
                 </div>
             </div>
         </div>
