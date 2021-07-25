@@ -75,6 +75,7 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
   const createdByUser = room.createdBy;
 
   // check if this room is created by expert
+  const user = req.user;
   if (user.role == "expert") {
     isAbleToJoin = createdByUser.id == user.id;
   }
@@ -128,6 +129,28 @@ exports.fetchRoomByCategory = catchAsync(async (req, res, next) => {
     .populate("createdBy");
   res.status(200).json({
     status: "success",
+    data: {
+      rooms,
+    },
+  });
+});
+
+exports.expertRoom = catchAsync(async (req, res, next) => {
+  // check if it's an expert
+  const user = req.user;
+  if (user.role != "expert") {
+    return next(new AppError("This Endpoint is for Expert account.", 401));
+  }
+
+  const { mongooseQuery: query } = new ApiFeature(req.query, Room.find({ createdBy: user }))
+    .filter()
+    .sort()
+    .pagination();
+  
+  const rooms = await query.populate("category").populate("createdBy");
+  res.status(200).json({
+    status: "success",
+    length: rooms.length,
     data: {
       rooms,
     },
