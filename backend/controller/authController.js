@@ -51,6 +51,7 @@ exports.isAuthenticated = catchAsync(async (req, res, next) => {
   const decodedToken = await promisify(jwt.verify)(token, process.env.SECRET);
   const user = await User.findById(decodedToken.id);
   req.user = user;
+  next();
 });
 
 exports.limitToOnly = (...roles) => {
