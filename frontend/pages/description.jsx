@@ -122,7 +122,7 @@ export default function description() {
         <div>
             <RoomDetailHeader />
 
-            <div className="container ml-80 w-5/12 h-auto py-4 ">
+            {/* <div className="container ml-80 w-5/12 h-auto py-4 ">
                 <div className="relative flex flex-col ">
                     <div className="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold">
                         What you'll learn
@@ -237,7 +237,7 @@ export default function description() {
                         props={teacherSelfIntroduction[0]}
                     ></TeacherSelfIntroduction>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
