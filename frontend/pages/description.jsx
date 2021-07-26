@@ -1,16 +1,6 @@
 import { React, useState, useRef, useReducer } from "react";
 import TeacherSelfIntroduction from "../components/TeacherSelfIntroduction";
 import RoomDetailBody from "../components/RoomDetailBody";
-
-import {
-    StarIcon,
-    ExclamationCircleIcon,
-    GlobeAltIcon,
-    DocumentTextIcon,
-    HeartIcon,
-    ShareIcon,
-    GiftIcon,
-} from "@heroicons/react/solid";
 import RoomDetailHeader from "../components/RoomDetailHeader";
 
 const courseInfor = {
@@ -85,30 +75,6 @@ const teacherSelfIntroduction = [
             "I'm Angela, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
     },
 ];
-
-const Component = ({ name }) => {
-    return (
-        <div class="md:flex items-start md:text-left">
-            <div class=" px-3 mb-6 md:mb-5 inline">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 inline"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                    />
-                </svg>
-                <p class="text-red text-s inline ml-1">{name}</p>
-            </div>
-        </div>
-    );
-};
 
 const goal = [
     {
