@@ -238,7 +238,7 @@ export default function description() {
                         props={teacherSelfIntroduction[0]}
                     ></TeacherSelfIntroduction>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
