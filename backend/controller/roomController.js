@@ -75,6 +75,7 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
   const createdByUser = room.createdBy;
 
   // check if this room is created by expert
+  const user = req.user;
   if (user.role == "expert") {
     isAbleToJoin = createdByUser.id == user.id;
   }
