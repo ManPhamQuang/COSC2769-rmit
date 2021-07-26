@@ -1,0 +1,34 @@
+[
+  {
+    "id": "60f538256799c21940d0c100",
+    "name": "Web Development"
+  },
+  {
+    "id": "60f538446799c21940d0c101",
+    "name": "Data Science"
+  },
+  {
+    "id": "60f538886799c21940d0c102",
+    "name": "Mobile Development"
+  },
+  {
+    "id": "60f538926799c21940d0c103",
+    "name": "Game Development"
+  },
+  {
+    "id": "60f5389f6799c21940d0c104",
+    "name": "Software Testing"
+  },
+  {
+    "id": "60f538b06799c21940d0c105",
+    "name": "No-Code Development"
+  },
+  {
+    "id": "60f538ba6799c21940d0c106",
+    "name": "iOS Development"
+  },
+  {
+    "id": "60f538be6799c21940d0c107",
+    "name": "Android Development"
+  }
+]
