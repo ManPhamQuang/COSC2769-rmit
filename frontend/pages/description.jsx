@@ -2,7 +2,6 @@ import { React, useState, useRef, useReducer } from "react";
 import TeacherSelfIntroduction from "../components/TeacherSelfIntroduction";
 import RoomDetailBody from "../components/RoomDetailBody";
 
-
 import {
     StarIcon,
     ExclamationCircleIcon,
@@ -87,7 +86,6 @@ const teacherSelfIntroduction = [
     },
 ];
 
-
 const Component = ({ name }) => {
     return (
         <div class="md:flex items-start md:text-left">
@@ -138,25 +136,24 @@ export default function description() {
             <RoomDetailHeader />
             {/* <div className="container ml-80 w-5/12 h-auto py-4 "> */}
 
-            <div className="max-w-md mx-auto rounded-xl md:max-w-2xl mt-4 sm:mx-10 ">
-                <div className="relative flex flex-col">
-                    <div className="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold">
+            <div className="max-w-md mx-auto rounded-xl md:max-w-2xl mt-4 ">
+                <div className="relative flex flex-col px-10" >
+                    <div className="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold ">
                         What you'll learn
                     </div>
                     {courseInfor.features.map((feature) => (
                         <RoomDetailBody name={feature} />
                     ))}
                 </div>
-            </div>
-            <div class="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold mt-10">
-                Instructors
-            </div>
-
-            <div className="relative flex flex-col ">
-                <TeacherSelfIntroduction
-                    key={teacherSelfIntroduction[0].id}
-                    props={teacherSelfIntroduction[0]}
-                ></TeacherSelfIntroduction>
+                <div class="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold mt-10 px-10">
+                    Instructors
+                </div>
+                <div className="relative flex flex-col px-10">
+                    <TeacherSelfIntroduction
+                        key={teacherSelfIntroduction[0].id}
+                        props={teacherSelfIntroduction[0]}
+                    ></TeacherSelfIntroduction>
+                </div>
             </div>
         </div>
     );
