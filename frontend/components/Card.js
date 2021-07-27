@@ -43,7 +43,7 @@ export default function Card({ props }) {
                                 </p>
                                 <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
                                     <p className="text-xs font-semibold mx-auto text-center">
-                                        {category.name}
+                                        {category?.name}
                                     </p>
                                 </div>
                                 <div className="">{description}</div>
@@ -90,7 +90,7 @@ export default function Card({ props }) {
                             <h1 className="font-bold">${price}</h1>
                             <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
                                 <p className="text-xs font-semibold mx-auto text-center">
-                                    {category.name}
+                                    {category?.name}
                                 </p>
                             </div>
                         </div>
