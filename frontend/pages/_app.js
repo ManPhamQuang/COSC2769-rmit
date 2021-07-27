@@ -1,8 +1,9 @@
-import 'tailwindcss/tailwind.css'
-import './index.css'
+import "tailwindcss/tailwind.css";
+import "./index.css";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+    const getLayout = Component.getLayout || ((page) => page);
+    return getLayout(<Component {...pageProps} />);
 }
 
-export default MyApp
+export default MyApp;
