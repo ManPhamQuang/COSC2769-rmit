@@ -46,7 +46,7 @@ function DashboardLayout({ children }) {
                         className={
                             isStatic
                                 ? "z-20 bg-gray-700 w-64 min-h-screen flex flex-col"
-                                : "z-20 bg-gray-700 w-64 min-h-screen flex flex-col fixed"
+                                : "z-20 bg-gray-700 w-64 min-h-screen flex flex-col fixed border-"
                         }
                     >
                         <div className="bg-gray-700 border-r border-b-gray-800 border-b px-4 h-10 flex items-center justify-between">
@@ -76,6 +76,7 @@ function DashboardLayout({ children }) {
                                                     ? activeLinkClass
                                                     : inactiveLinkClass
                                             }
+                                            onClick={() => setIsClosed(true)}
                                         >
                                             Dashboard
                                         </li>
@@ -88,6 +89,7 @@ function DashboardLayout({ children }) {
                                                     ? activeLinkClass
                                                     : inactiveLinkClass
                                             }
+                                            onClick={() => setIsClosed(true)}
                                         >
                                             Profile
                                         </li>
@@ -98,6 +100,18 @@ function DashboardLayout({ children }) {
                     </aside>
                 </Transition>
 
+                <Transition
+                    appear={true}
+                    show={!isStatic && !isClosed}
+                    enter="transition-opacity duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-75"
+                    leave="transition-opacity duration-300"
+                    leaveFrom="opacity-50"
+                    leaveTo="opacity-0"
+                >
+                    <div className="fixed inset-0 bg-black opacity-50" />
+                </Transition>
                 <main className="flex-grow flex flex-col min-h-screen">
                     <header className="bg-white border-b h-10 flex items-center justify-center">
                         {!isStatic && (
@@ -115,7 +129,7 @@ function DashboardLayout({ children }) {
                         <div className="flex flex-grow items-center justify-between px-3">
                             <h1 className="text-lg">{ScreenName}</h1>
                             <button className="text-blue-700 underline">
-                                Log in
+                                Log out
                             </button>
                         </div>
                     </header>
