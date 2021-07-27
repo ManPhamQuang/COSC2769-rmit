@@ -13,8 +13,7 @@ export default function ExpertDashboard() {
                 />
             </Head>
             <div>
-                <h1>Hello</h1>
-                {/* <RoomTable /> */}
+                <RoomTable />
             </div>
         </>
     );
