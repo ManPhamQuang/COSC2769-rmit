@@ -1,0 +1,20 @@
+[
+  {
+    "id": "60f6ce0e02f5102cea240400",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "minh",
+    "email": "minh@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240401",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "expert1",
+    "email": "expert1@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 0,
+    "ratingsAverage": null
+  }
+]
