@@ -17,7 +17,7 @@ export default function Wrapper(props) {
 
 function DashboardLayout({ children }) {
     const { pathname } = useRouter(); // get current path
-    const isStatic = useBreakpoint("sm");
+    const isStatic = useBreakpoint("md");
     const [isClosed, setIsClosed] = useState(true);
 
     const activeLinkClass = "p-3 hover:bg-gray-600 cursor-pointer ";
@@ -45,8 +45,8 @@ function DashboardLayout({ children }) {
                     <aside
                         className={
                             isStatic
-                                ? "z-20 bg-gray-700 w-64 min-h-screen flex flex-col"
-                                : "z-20 bg-gray-700 w-64 min-h-screen flex flex-col fixed border-"
+                                ? "z-20 bg-gray-700 w-64 min-h-screen flex flex-col h-full"
+                                : "z-20 bg-gray-700 w-64 min-h-screen flex flex-col fixed"
                         }
                     >
                         <div className="bg-gray-700 border-r border-b-gray-800 border-b px-4 h-10 flex items-center justify-between">
