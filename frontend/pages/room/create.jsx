@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useReducer } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import axios from "axios";
@@ -14,15 +14,39 @@ const categories = [
   { name: "Android Development" },
 ];
 
-// const INIT_STATE = {
-//   user: localStorage.getItem("accessToken") || null,
-//   room: null,
-//   isFetching: false,
-//   isError: null
-// }
+const roomReducer = (state, action) => {
+  switch (action.type) {
+    case "ROOM_INIT":
+      return {
+        ...state,
+        isLoading: true,
+        isError: null,
+      };
+    case "ROOM_CREATE_SUCCESS":
+      return {
+        ...state,
+        data: action.payload,
+        isLoading: false,
+        isError: null,
+      };
+    case "ROOM_CREATE_FAILURE":
+      return {
+        ...state,
+        isLoading: false,
+        isError: action.payload,
+      };
+    default:
+      throw new Error();
+  }
+};
 
 const create = () => {
   const [selected, setSelected] = useState(categories[0]);
+  const [room, dispatchRoom] = useReducer(roomReducer, {
+    data: {},
+    isLoading: false,
+    isError: null,
+  });
 
   const handleCreateButtonClick = (event) => {
     const data = {
@@ -34,27 +58,51 @@ const create = () => {
       url: "url1",
       videoUrl: "url2",
     };
-    console.log(data);
-    let accessToken = localStorage.getItem("accessToken") || null;
+    let accessToken =
+      localStorage.getItem("accessToken") ||
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjY5NDFmNDkyZTNhNjA0ZGU1NzlmNyIsImlhdCI6MTYyNzQ2MTY3NywiZXhwIjoxNjI3NjM0NDc3fQ.XYTg0qz2etS4fsvhKSozlkOvD1sQV5lxQI1sxz67-a0aksjdfhds";
+
     console.log(accessToken);
+
+    dispatchRoom({ type: "ROOM_INIT" });
 
     axios
       .post("http://localhost:5000/api/v1/rooms", data, {
-        headers: {"Authorization" : `Bearer ${accessToken}`},
+        headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
-        console.log("Create success");
-        console.log(response.data);
+        dispatchRoom({
+          type: "ROOM_CREATE_SUCCESS",
+          payload: response.data.data.room,
+        });
       })
       .catch((error) => {
-        console.log("Fail");
-        console.log(error.response.data.message);
+        dispatchRoom({
+          type: "ROOM_CREATE_FAILURE",
+          payload: error.response.data.message,
+        });
       });
 
     event.preventDefault();
   };
+  console.log("Create success");
+  console.log(room.data);
+  console.log(room.isError);
   return (
     <div className="container mt-20 mx-auto px-4 h-full">
+      {room.isLoading && (
+        <div
+          className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center"
+        >
+          <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
+          <h2 className="text-center text-white text-xl font-semibold">
+            Loading...
+          </h2>
+          <p className="w-1/3 text-center text-white">
+            This may take a few seconds, please don't close this page.
+          </p>
+        </div>
+      )}
       <div className="md:grid md:grid-cols-3 md:gap-6">
         <div className="md:col-span-1">
           <div className="px-4 sm:px-0">
