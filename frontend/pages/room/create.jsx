@@ -19,6 +19,12 @@ const roomReducer = (state, action) => {
     case "ROOM_INIT":
       return {
         ...state,
+        isLoading: false,
+        isError: null,
+      };
+    case "ROOM_LOADING":
+      return {
+        ...state,
         isLoading: true,
         isError: null,
       };
@@ -64,7 +70,7 @@ const create = () => {
 
     console.log(accessToken);
 
-    dispatchRoom({ type: "ROOM_INIT" });
+    dispatchRoom({ type: "ROOM_LOADING" });
 
     axios
       .post("http://localhost:5000/api/v1/rooms", data, {
@@ -90,10 +96,21 @@ const create = () => {
   console.log(room.isError);
   return (
     <div className="container mt-20 mx-auto px-4 h-full">
+      {room.isError && (
+        <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
+          <span className="text-xl inline-block mr-5 align-middle">
+            <i className="fas fa-bell" />
+          </span>
+          <span className="inline-block align-middle mr-8">
+            <b className="capitalize">Error!</b> {room.isError}
+          </span>
+          <button className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onClick={() => { dispatchRoom({ type: "ROOM_INIT" }); }}>
+            <span>×</span>
+          </button>
+        </div>
+      )}
       {room.isLoading && (
-        <div
-          className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center"
-        >
+        <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
           <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
           <h2 className="text-center text-white text-xl font-semibold">
             Loading...
