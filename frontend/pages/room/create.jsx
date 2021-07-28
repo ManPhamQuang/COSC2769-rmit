@@ -1,9 +1,10 @@
-import { Fragment, useState, useReducer } from "react";
+import { Fragment, useState, useReducer, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import axios from "axios";
+import router, { useRouter } from 'next/router'
 
-const categories = [
+const INIT_CATEGORY = [
   { name: "Web Development" },
   { name: "Data Science" },
   { name: "Mobile Development" },
@@ -20,58 +21,83 @@ const roomReducer = (state, action) => {
       return {
         ...state,
         isLoading: false,
-        isError: null,
+        error: null,
       };
     case "ROOM_LOADING":
       return {
         ...state,
         isLoading: true,
-        isError: null,
+        error: null,
       };
     case "ROOM_CREATE_SUCCESS":
       return {
         ...state,
         data: action.payload,
         isLoading: false,
-        isError: null,
+        error: null,
       };
     case "ROOM_CREATE_FAILURE":
       return {
         ...state,
         isLoading: false,
-        isError: action.payload,
+        error: action.payload,
       };
     default:
       throw new Error();
   }
 };
 
-const create = () => {
+const data = {
+  title: "Room01",
+  description: "Room 01 Description",
+  price: 20,
+  endedAt: 1626124601736,
+  createdBy: "60f597fa4ef1fd0860d57a3b",
+  url: "url1",
+  videoUrl: "url2",
+};
+
+const Create = () => {
+  const [categories, setCategories] = useState(INIT_CATEGORY);
   const [selected, setSelected] = useState(categories[0]);
   const [room, dispatchRoom] = useReducer(roomReducer, {
     data: {},
     isLoading: false,
-    isError: null,
+    error: null,
   });
+  
+  let accessToken = null;
+
+  useEffect(() => {
+    // Fix bug localStorage undefined in NextJS
+    if (typeof window !== 'undefined') {
+      accessToken = localStorage.getItem("accessToken") ?? null;
+    }
+
+    // Navigate users to Sign Up page when missing accessToken in localStorage
+    if (!accessToken) {
+      router.push("/signup");
+    }
+
+    // Fetch all available categories
+    axios
+      .get("http://localhost:5000/api/v1/categories", {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        setCategories(response.data.data.categories)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }, [])
 
   const handleCreateButtonClick = (event) => {
-    const data = {
-      title: "Room01",
-      description: "Room 01 Description",
-      price: 20,
-      endedAt: 1626124601736,
-      createdBy: "60f597fa4ef1fd0860d57a3b",
-      url: "url1",
-      videoUrl: "url2",
-    };
-    let accessToken =
-      localStorage.getItem("accessToken") ||
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjY5NDFmNDkyZTNhNjA0ZGU1NzlmNyIsImlhdCI6MTYyNzQ2MTY3NywiZXhwIjoxNjI3NjM0NDc3fQ.XYTg0qz2etS4fsvhKSozlkOvD1sQV5lxQI1sxz67-a0aksjdfhds";
+    // let accessToken = localStorage.getItem("accessToken") || undefined;
 
-    console.log(accessToken);
+    // console.log(accessToken);
 
     dispatchRoom({ type: "ROOM_LOADING" });
-
     axios
       .post("http://localhost:5000/api/v1/rooms", data, {
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -85,24 +111,21 @@ const create = () => {
       .catch((error) => {
         dispatchRoom({
           type: "ROOM_CREATE_FAILURE",
-          payload: error.response.data.message,
+          payload: error.response.data,
         });
       });
 
     event.preventDefault();
   };
-  console.log("Create success");
-  console.log(room.data);
-  console.log(room.isError);
   return (
     <div className="container mt-20 mx-auto px-4 h-full">
-      {room.isError && (
+      {room.error && (
         <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
           <span className="text-xl inline-block mr-5 align-middle">
             <i className="fas fa-bell" />
           </span>
           <span className="inline-block align-middle mr-8">
-            <b className="capitalize">Error!</b> {room.isError}
+            <b className="capitalize">Error!</b> {room.error.message}
           </span>
           <button className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onClick={() => { dispatchRoom({ type: "ROOM_INIT" }); }}>
             <span>×</span>
@@ -312,4 +335,4 @@ const create = () => {
   );
 };
 
-export default create;
+export default Create;
