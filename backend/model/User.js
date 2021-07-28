@@ -50,17 +50,15 @@ const userSchema = new mongoose.Schema({
   },
   ratingsAverage: {
     type: Number,
-    default: null,
     min: [1, "Rating must be above 1.0"],
     max: [5, "Rating must be below 5.0"],
     set(value) {
-      return Math.round((value + Number.EPSILON) * 100) / 100;
+      return value === null
+        ? null
+        : Math.round((value + Number.EPSILON) * 100) / 100;
     },
   },
-  ratingsQuantity: {
-    type: Number,
-    default: 0,
-  },
+  ratingsQuantity: Number,
 });
 
 userSchema.methods.comparePassword = async function (
@@ -79,6 +77,10 @@ userSchema.pre("save", async function (next) {
   if (this.role === "user") {
     this.ratingsQuantity = undefined;
     this.ratingsAverage = undefined;
+  }
+  if (this.role === "expert") {
+    this.ratingsAverage = null;
+    this.ratingsQuantity = 0;
   }
   next();
 });
