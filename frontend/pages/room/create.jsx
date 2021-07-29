@@ -1,8 +1,7 @@
-import { Fragment, useState, useReducer, useEffect } from "react";
+import { useState, useReducer, useEffect, useRef } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import axios from "axios";
-import router, { useRouter } from 'next/router'
+import router from "next/router";
 
 const INIT_CATEGORY = [
   { name: "Web Development" },
@@ -58,23 +57,33 @@ const data = {
 };
 
 const Create = () => {
+  // State to display dropdown options for categories
   const [categories, setCategories] = useState(INIT_CATEGORY);
-  const [selected, setSelected] = useState(categories[0]);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0].name);
+
+  // State to prepare data for server request 
+  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const [thumbnail, setThumbnail] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
+
+  // Reducer for handling state when creating room
   const [room, dispatchRoom] = useReducer(roomReducer, {
     data: {},
     isLoading: false,
     error: null,
   });
-  
+
   let accessToken = null;
 
   useEffect(() => {
     // Fix bug localStorage undefined in NextJS
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       accessToken = localStorage.getItem("accessToken") ?? null;
     }
 
-    // Navigate users to Sign Up page when missing accessToken in localStorage
     if (!accessToken) {
       router.push("/signup");
     }
@@ -85,18 +94,14 @@ const Create = () => {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
-        setCategories(response.data.data.categories)
+        setCategories(response.data.data.categories);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       });
-  }, [])
+  }, []);
 
   const handleCreateButtonClick = (event) => {
-    // let accessToken = localStorage.getItem("accessToken") || undefined;
-
-    // console.log(accessToken);
-
     dispatchRoom({ type: "ROOM_LOADING" });
     axios
       .post("http://localhost:5000/api/v1/rooms", data, {
@@ -117,6 +122,12 @@ const Create = () => {
 
     event.preventDefault();
   };
+
+  const testRef = (e) => {
+    console.log
+    e.preventDefault();
+  }
+
   return (
     <div className="container mt-20 mx-auto px-4 h-full">
       {room.error && (
@@ -127,7 +138,12 @@ const Create = () => {
           <span className="inline-block align-middle mr-8">
             <b className="capitalize">Error!</b> {room.error.message}
           </span>
-          <button className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onClick={() => { dispatchRoom({ type: "ROOM_INIT" }); }}>
+          <button
+            className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+            onClick={() => {
+              dispatchRoom({ type: "ROOM_INIT" });
+            }}
+          >
             <span>×</span>
           </button>
         </div>
@@ -144,7 +160,7 @@ const Create = () => {
         </div>
       )}
       <div className="md:grid md:grid-cols-3 md:gap-6">
-        <div className="md:col-span-1">
+        <div className="col-span-3 lg:col-span-1">
           <div className="px-4 sm:px-0">
             <h3 className="text-lg font-medium leading-6 text-gray-900">
               Create New Chatroom
@@ -155,83 +171,115 @@ const Create = () => {
             </p>
           </div>
         </div>
-        <div className="mt-5 md:mt-0 md:col-span-2">
+        <div className="mt-5 md:mt-0 col-span-3 lg:col-span-2">
           <form>
             <div className="shadow sm:rounded-md sm:overflow-hidden">
               <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                 <div className="grid grid-cols-3 gap-6">
-                  <div className="col-span-3 sm:col-span-1">
-                    <label className="block text-sm font-medium text-gray-700">
-                      Category
-                    </label>
-                    <div className="">
-                      <Listbox value={selected} onChange={setSelected}>
-                        <div className="relative mt-1">
-                          <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
-                            <span className="block truncate">
-                              {selected.name}
-                            </span>
-                            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                              <SelectorIcon
-                                className="w-5 h-5 text-gray-400"
-                                aria-hidden="true"
-                              />
-                            </span>
-                          </Listbox.Button>
-                          <Transition
-                            as={Fragment}
-                            leave="transition ease-in duration-100"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                          >
-                            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                              {categories.map((category, index) => (
-                                <Listbox.Option
-                                  key={index}
-                                  className={({ active }) =>
-                                    `${
-                                      active
-                                        ? "text-amber-900 bg-amber-100"
-                                        : "text-gray-900"
-                                    }
-                                          cursor-default select-none relative py-2 pl-10 pr-4`
-                                  }
-                                  value={category}
-                                >
-                                  {({ selected, active }) => (
-                                    <>
-                                      <span
-                                        className={`${
-                                          selected
-                                            ? "font-medium"
-                                            : "font-normal"
-                                        } block truncate`}
+                  <div className="col-span-3 sm:col-span-3 md:col-span-2 lg:col-span-1">
+                    <div className="flex items-center justify-center ">
+                      <div className="w-full mx-auto">
+                        <Listbox
+                          as="div"
+                          className="space-y-1"
+                          value={selectedCategory}
+                          onChange={setSelectedCategory}
+                        >
+                          {({ open }) => (
+                            <>
+                              <Listbox.Label className="block text-sm font-medium text-gray-700">
+                                Category
+                              </Listbox.Label>
+                              <div className="relative">
+                                <span className="inline-block w-full rounded-md shadow-sm">
+                                  <Listbox.Button className="cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                    <span className="block truncate">
+                                      {selectedCategory}
+                                    </span>
+                                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                      <svg
+                                        className="h-5 w-5 text-gray-400"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        stroke="currentColor"
                                       >
-                                        {category.name}
-                                      </span>
-                                      {selected ? (
-                                        <span
-                                          className={`${
-                                            active
-                                              ? "text-amber-600"
-                                              : "text-amber-600"
-                                          }
-                                                absolute inset-y-0 left-0 flex items-center pl-3`}
-                                        >
-                                          <CheckIcon
-                                            className="w-5 h-5"
-                                            aria-hidden="true"
-                                          />
-                                        </span>
-                                      ) : null}
-                                    </>
-                                  )}
-                                </Listbox.Option>
-                              ))}
-                            </Listbox.Options>
-                          </Transition>
-                        </div>
-                      </Listbox>
+                                        <path
+                                          d="M7 7l3-3 3 3m0 6l-3 3-3-3"
+                                          strokeWidth="1.5"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                        />
+                                      </svg>
+                                    </span>
+                                  </Listbox.Button>
+                                </span>
+
+                                <Transition
+                                  show={open}
+                                  leave="transition ease-in duration-100"
+                                  leaveFrom="opacity-100"
+                                  leaveTo="opacity-0"
+                                  className="absolute mt-1 w-full rounded-md bg-white shadow-lg"
+                                >
+                                  <Listbox.Options
+                                    static
+                                    className="max-h-60 rounded-md py-1 text-base leading-6 shadow-xs overflow-auto focus:outline-none sm:text-sm sm:leading-5"
+                                  >
+                                    {categories.map((category, index) => (
+                                      <Listbox.Option
+                                        key={index}
+                                        value={category.name}
+                                      >
+                                        {({ selected, active }) => (
+                                          <div
+                                            className={`${
+                                              active
+                                                ? "text-white bg-indigo-600"
+                                                : "text-gray-900"
+                                            } cursor-default select-none relative py-2 pl-8 pr-4`}
+                                          >
+                                            <span
+                                              className={`${
+                                                selected
+                                                  ? "font-semibold"
+                                                  : "font-normal"
+                                              } block truncate`}
+                                            >
+                                              {category.name}
+                                            </span>
+                                            {selected && (
+                                              <span
+                                                className={`${
+                                                  active
+                                                    ? "text-white"
+                                                    : "text-indigo-600"
+                                                } absolute inset-y-0 left-0 flex items-center pl-1.5`}
+                                              >
+                                                <svg
+                                                  className="h-5 w-5"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                  viewBox="0 0 20 20"
+                                                  fill="currentColor"
+                                                >
+                                                  <path
+                                                    fillRule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clipRule="evenodd"
+                                                  />
+                                                </svg>
+                                              </span>
+                                            )}
+                                          </div>
+                                        )}
+                                      </Listbox.Option>
+                                    ))}
+                                  </Listbox.Options>
+                                </Transition>
+                              </div>
+                            </>
+                          )}
+                        </Listbox>
+                      </div>
                     </div>
                   </div>
                 </div>
