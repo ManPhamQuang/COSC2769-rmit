@@ -1,7 +1,7 @@
 import { useState, useReducer, useEffect, useRef } from "react";
-import { Listbox, Transition } from "@headlessui/react";
 import axios from "axios";
 import router from "next/router";
+import CategoryDropDown from "../../components/CategoryDropDown";
 
 const INIT_CATEGORY = [
   { name: "Web Development" },
@@ -61,8 +61,8 @@ const Create = () => {
   const [categories, setCategories] = useState(INIT_CATEGORY);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
-  // State to prepare data for server request 
-  const [category, setCategory] = useState("");
+  // State to prepare data for server request
+  const [categoryID, setCategoryID] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -102,34 +102,30 @@ const Create = () => {
   }, []);
 
   const handleCreateButtonClick = (event) => {
-    dispatchRoom({ type: "ROOM_LOADING" });
-    axios
-      .post("http://localhost:5000/api/v1/rooms", data, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((response) => {
-        dispatchRoom({
-          type: "ROOM_CREATE_SUCCESS",
-          payload: response.data.data.room,
-        });
-      })
-      .catch((error) => {
-        dispatchRoom({
-          type: "ROOM_CREATE_FAILURE",
-          payload: error.response.data,
-        });
-      });
-
+    // dispatchRoom({ type: "ROOM_LOADING" });
+    // axios
+    //   .post("http://localhost:5000/api/v1/rooms", data, {
+    //     headers: { Authorization: `Bearer ${accessToken}` },
+    //   })
+    //   .then((response) => {
+    //     dispatchRoom({
+    //       type: "ROOM_CREATE_SUCCESS",
+    //       payload: response.data.data.room,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     dispatchRoom({
+    //       type: "ROOM_CREATE_FAILURE",
+    //       payload: error.response.data,
+    //     });
+    //   });
+    console.log(selectedCategory.name)
+    console.log(categoryID);
     event.preventDefault();
   };
 
-  const testRef = (e) => {
-    console.log
-    e.preventDefault();
-  }
-
   const categoryDropdownOnChange = (category) => {
-    console.log(category)
+    setCategoryID(category._id);
     setSelectedCategory(category);
   };
 
@@ -184,84 +180,11 @@ const Create = () => {
                   <div className="col-span-3 sm:col-span-3 md:col-span-2 lg:col-span-1">
                     <div className="flex items-center justify-center ">
                       <div className="w-full mx-auto">
-                        <Listbox
-                          as="div"
-                          className="space-y-1"
-                          value={selectedCategory.name}
-                          onChange={categoryDropdownOnChange}
-                        >
-                          {({ open }) => (
-                            <>
-                              <Listbox.Label className="block text-sm font-medium text-gray-700">
-                                Category
-                              </Listbox.Label>
-                              <div className="relative">
-                                <span className="inline-block w-full rounded-md shadow-sm">
-                                  <Listbox.Button className="cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                                    <span className="block truncate">
-                                      {selectedCategory.name}
-                                    </span>
-                                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                                      <svg
-                                        className="h-5 w-5 text-gray-400"
-                                        viewBox="0 0 20 20"
-                                        fill="none"
-                                        stroke="currentColor"
-                                      >
-                                        <path
-                                          d="M7 7l3-3 3 3m0 6l-3 3-3-3"
-                                          strokeWidth="1.5"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                        />
-                                      </svg>
-                                    </span>
-                                  </Listbox.Button>
-                                </span>
-
-                                <Transition
-                                  show={open}
-                                  leave="transition ease-in duration-100"
-                                  leaveFrom="opacity-100"
-                                  leaveTo="opacity-0"
-                                  className="absolute mt-1 w-full rounded-md bg-white shadow-lg"
-                                >
-                                  <Listbox.Options
-                                    static
-                                    className="max-h-60 rounded-md py-1 text-base leading-6 shadow-xs overflow-auto focus:outline-none sm:text-sm sm:leading-5"
-                                  >
-                                    {categories.map((category, index) => (
-                                      <Listbox.Option
-                                        key={index}
-                                        value={category}
-                                      >
-                                        {({ selected, active }) => (
-                                          <div
-                                            className={`${
-                                              active
-                                                ? "text-white bg-indigo-600"
-                                                : "text-gray-900"
-                                            } cursor-default select-none relative py-2 pl-8 pr-4`}
-                                          >
-                                            <span
-                                              className={`${
-                                                selected
-                                                  ? "font-semibold"
-                                                  : "font-normal"
-                                              } block truncate`}
-                                            >
-                                              {category.name}
-                                            </span>
-                                          </div>
-                                        )}
-                                      </Listbox.Option>
-                                    ))}
-                                  </Listbox.Options>
-                                </Transition>
-                              </div>
-                            </>
-                          )}
-                        </Listbox>
+                        <CategoryDropDown
+                          categories={categories}
+                          selectedCategory={selectedCategory}
+                          categoryDropdownOnChange={categoryDropdownOnChange}
+                        />
                       </div>
                     </div>
                   </div>
