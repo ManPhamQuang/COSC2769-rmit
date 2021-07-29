@@ -3,6 +3,9 @@ import axios from "axios";
 import router from "next/router";
 import CategoryDropDown from "../../components/CategoryDropDown";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 const INIT_CATEGORY = [
   { name: "Web Development" },
   { name: "Data Science" },
@@ -46,15 +49,15 @@ const roomReducer = (state, action) => {
   }
 };
 
-const data = {
-  title: "Room01",
-  description: "Room 01 Description",
-  price: 20,
-  endedAt: 1626124601736,
-  createdBy: "60f597fa4ef1fd0860d57a3b",
-  url: "url1",
-  videoUrl: "url2",
-};
+// const data = {
+//   title: "Room01",
+//   description: "Room 01 Description",
+//   price: 20,
+//   endedAt: 1626124601736,
+//   createdBy: "60f597fa4ef1fd0860d57a3b",
+//   url: "url1",
+//   videoUrl: "url2",
+// };
 
 const Create = () => {
   // State to display dropdown options for categories
@@ -67,7 +70,7 @@ const Create = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [thumbnail, setThumbnail] = useState("");
-  const [createdAt, setCreatedAt] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
 
   // Reducer for handling state when creating room
   const [room, dispatchRoom] = useReducer(roomReducer, {
@@ -76,10 +79,10 @@ const Create = () => {
     error: null,
   });
 
-  let accessToken = null;
-
   useEffect(() => {
     // Fix bug localStorage undefined in NextJS
+    let accessToken = null;
+
     if (typeof window !== "undefined") {
       accessToken = localStorage.getItem("accessToken") ?? null;
     }
@@ -102,25 +105,46 @@ const Create = () => {
   }, []);
 
   const handleCreateButtonClick = (event) => {
-    // dispatchRoom({ type: "ROOM_LOADING" });
-    // axios
-    //   .post("http://localhost:5000/api/v1/rooms", data, {
-    //     headers: { Authorization: `Bearer ${accessToken}` },
-    //   })
-    //   .then((response) => {
-    //     dispatchRoom({
-    //       type: "ROOM_CREATE_SUCCESS",
-    //       payload: response.data.data.room,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     dispatchRoom({
-    //       type: "ROOM_CREATE_FAILURE",
-    //       payload: error.response.data,
-    //     });
-    //   });
-    console.log(selectedCategory.name)
+    let data = {
+      title : "Room title Test",
+      description: "Room description test",
+      price: 19.99,
+      category: categoryID,
+      startedAt: startDate
+    }
+
+    // Fix bug localStorage undefined in NextJS
+    let accessToken = null;
+    
+    if (typeof window !== "undefined") {
+      accessToken = localStorage.getItem("accessToken") ?? null;
+    }
+
+    if (!accessToken) {
+      router.push("/signup");
+    }
+
+    dispatchRoom({ type: "ROOM_LOADING" });
+    axios
+      .post("http://localhost:5000/api/v1/rooms", data, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        dispatchRoom({
+          type: "ROOM_CREATE_SUCCESS",
+          payload: response.data.data.room,
+        });
+      })
+      .catch((error) => {
+        dispatchRoom({
+          type: "ROOM_CREATE_FAILURE",
+          payload: error.response.data,
+        });
+      });
+    console.log(accessToken)  
+    console.log(selectedCategory.name);
     console.log(categoryID);
+    console.log(startDate);
     event.preventDefault();
   };
 
@@ -175,11 +199,11 @@ const Create = () => {
         <div className="mt-5 md:mt-0 col-span-3 lg:col-span-2">
           <form>
             <div className="shadow sm:rounded-md sm:overflow-hidden">
-              <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+              <div className="px-4 py-5 bg-white space-y-4 sm:p-6">
                 <div className="grid grid-cols-3 gap-6">
-                  <div className="col-span-3 sm:col-span-3 md:col-span-2 lg:col-span-1">
-                    <div className="flex items-center justify-center ">
-                      <div className="w-full mx-auto">
+                  <div className="col-span-3 sm:col-span-3 md:col-span-2 lg:col-span-2">
+                    <div className="flex items-center justify-center">
+                      <div className="w-full mx-auto z-10">
                         <CategoryDropDown
                           categories={categories}
                           selectedCategory={selectedCategory}
@@ -188,37 +212,7 @@ const Create = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="grid grid-cols-3 gap-6">
-                  <div className="col-span-3 sm:col-span-2"></div>
-                </div>
-                <div className="col-span-6 sm:col-span-4">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Title
-                  </label>
-                  <input
-                    type="text"
-                    autoComplete="email"
-                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Description
-                  </label>
-                  <div className="mt-1">
-                    <textarea
-                      rows="3"
-                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                      placeholder="Description about this chatroom"
-                    ></textarea>
-                  </div>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Brief description for your chatroom. URLs are hyperlinked.
-                  </p>
-                </div>
-                <div className="grid grid-cols-3 gap-6">
-                  <div className="col-span-3 sm:col-span-1">
+                  <div className="col-span-3 sm:col-span-3 md:col-span-1 lg:col-span-1">
                     <label className="block text-sm font-medium text-gray-700">
                       Price
                     </label>
@@ -234,7 +228,33 @@ const Create = () => {
                     </div>
                   </div>
                 </div>
-                <div>
+
+                <div className="col-span-6 sm:col-span-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    autoComplete="email"
+                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  />
+                </div>
+                <div className="my-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Description
+                  </label>
+                  <div className="mt-1">
+                    <textarea
+                      rows="5"
+                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                      placeholder="Description about this chatroom"
+                    ></textarea>
+                  </div>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Brief description for your chatroom. URLs are hyperlinked.
+                  </p>
+                </div>
+                <div className="my-2">
                   <label className="block text-sm font-medium text-gray-700">
                     Thumbnail
                   </label>
@@ -269,6 +289,19 @@ const Create = () => {
                       <p className="text-xs text-gray-500">
                         PNG, JPG, GIF up to 10MB
                       </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 gap-6">
+                  <div className="col-span-4 lg:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Started date
+                    </label>
+                    <div className="mt-1 relative rounded-md shadow-sm">
+                      <DatePicker
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                      />
                     </div>
                   </div>
                 </div>
