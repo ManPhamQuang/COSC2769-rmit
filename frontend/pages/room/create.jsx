@@ -74,9 +74,9 @@ const Create = () => {
     if (typeof window !== "undefined") {
       accessToken = localStorage.getItem("accessToken") ?? null;
     }
-    if (!accessToken) {
-      router.push("/signup");
-    }
+    // if (!accessToken) {
+    //   router.push("/signup");
+    // }
 
     // Fetch all available categories
     axios
