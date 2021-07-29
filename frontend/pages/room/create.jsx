@@ -7,14 +7,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const INIT_CATEGORY = [
-  { name: "Web Development" },
-  { name: "Data Science" },
-  { name: "Mobile Development" },
-  { name: "Game Development" },
-  { name: "Software Testing" },
-  { name: "No-Code Development" },
-  { name: "iOS Development" },
-  { name: "Android Development" },
+  { name: "Web Development", _id: "61026b57c6afff6b84054269" },
+  { name: "Data Science", _id: "61026b63c6afff6b8405426b" },
 ];
 
 const roomReducer = (state, action) => {
@@ -49,28 +43,21 @@ const roomReducer = (state, action) => {
   }
 };
 
-// const data = {
-//   title: "Room01",
-//   description: "Room 01 Description",
-//   price: 20,
-//   endedAt: 1626124601736,
-//   createdBy: "60f597fa4ef1fd0860d57a3b",
-//   url: "url1",
-//   videoUrl: "url2",
-// };
-
 const Create = () => {
   // State to display dropdown options for categories
   const [categories, setCategories] = useState(INIT_CATEGORY);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   // State to prepare data for server request
-  const [categoryID, setCategoryID] = useState("");
+  const [categoryID, setCategoryID] = useState(selectedCategory._id);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-  const [thumbnail, setThumbnail] = useState("");
+  const [price, setPrice] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+
+  const titleRef = useRef();
+  const descRef = useRef();
+  const priceRef = useRef();
 
   // Reducer for handling state when creating room
   const [room, dispatchRoom] = useReducer(roomReducer, {
@@ -79,14 +66,24 @@ const Create = () => {
     error: null,
   });
 
+  // Frontend form validation
+  const isFloat = (price) => {
+    var objRegex = /(^-?\d\d*\.\d\d*$)|(^-?\.\d\d*$)/;
+    //check for numeric characters
+    if (objRegex.test(price)) {
+      return true;
+    } 
+    return false;
+  };
+
+  const isInvalid = title === "" || description === "" || price === "";
+
   useEffect(() => {
     // Fix bug localStorage undefined in NextJS
     let accessToken = null;
-
     if (typeof window !== "undefined") {
       accessToken = localStorage.getItem("accessToken") ?? null;
     }
-
     if (!accessToken) {
       router.push("/signup");
     }
@@ -104,53 +101,61 @@ const Create = () => {
       });
   }, []);
 
-  const handleCreateButtonClick = (event) => {
-    let data = {
-      title : "Room title Test",
-      description: "Room description test",
-      price: 19.99,
-      category: categoryID,
-      startedAt: startDate
-    }
-
-    // Fix bug localStorage undefined in NextJS
-    let accessToken = null;
-    
-    if (typeof window !== "undefined") {
-      accessToken = localStorage.getItem("accessToken") ?? null;
-    }
-
-    if (!accessToken) {
-      router.push("/signup");
-    }
-
-    dispatchRoom({ type: "ROOM_LOADING" });
-    axios
-      .post("http://localhost:5000/api/v1/rooms", data, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((response) => {
-        dispatchRoom({
-          type: "ROOM_CREATE_SUCCESS",
-          payload: response.data.data.room,
-        });
-      })
-      .catch((error) => {
-        dispatchRoom({
-          type: "ROOM_CREATE_FAILURE",
-          payload: error.response.data,
-        });
-      });
-    console.log(accessToken)  
-    console.log(selectedCategory.name);
-    console.log(categoryID);
-    console.log(startDate);
-    event.preventDefault();
-  };
+  const handlePriceChange = (e) => {
+    console.log("handle price change")
+    console.log(priceRef.current.value);
+    setPrice(priceRef.current.value);
+    e.preventDefault();
+  }
 
   const categoryDropdownOnChange = (category) => {
     setCategoryID(category._id);
     setSelectedCategory(category);
+  };
+
+  const handleCreateButtonClick = (event) => {
+    let data = {
+      title: title,
+      description: description,
+      price: price,
+      category: categoryID,
+      startedAt: startDate,
+    };
+
+    // Fix bug localStorage undefined in NextJS
+    let accessToken = null;
+    if (typeof window !== "undefined") {
+      accessToken = localStorage.getItem("accessToken") ?? null;
+    }
+    if (!accessToken) {
+      router.push("/signup");
+    }
+
+    // dispatchRoom({ type: "ROOM_LOADING" });
+    // axios
+    //   .post("http://localhost:5000/api/v1/rooms", data, {
+    //     headers: { Authorization: `Bearer ${accessToken}` },
+    //   })
+    //   .then((response) => {
+    //     dispatchRoom({
+    //       type: "ROOM_CREATE_SUCCESS",
+    //       payload: response.data.data.room,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     dispatchRoom({
+    //       type: "ROOM_CREATE_FAILURE",
+    //       payload: error.response.data,
+    //     });
+    //   });
+    console.log(accessToken);
+    console.log(selectedCategory.name);
+    console.log(data.title);
+    console.log(data.description);
+    console.log(data.price);
+    console.log(data.category);
+    console.log(data.startedAt);
+    event.preventDefault();
   };
 
   return (
@@ -221,9 +226,11 @@ const Create = () => {
                         <span className="text-gray-500 sm:text-sm">$</span>
                       </div>
                       <input
-                        type="text"
+                        type="number" step="0.01"
                         className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
                         placeholder="0.00"
+                        ref={priceRef}
+                        onChange={handlePriceChange}
                       />
                     </div>
                   </div>
@@ -237,6 +244,8 @@ const Create = () => {
                     type="text"
                     autoComplete="email"
                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    ref={titleRef}
+                    onChange={() => setTitle(titleRef.current.value)}
                   />
                 </div>
                 <div className="my-2">
@@ -248,6 +257,8 @@ const Create = () => {
                       rows="5"
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                       placeholder="Description about this chatroom"
+                      ref={descRef}
+                      onChange={() => setDescription(descRef.current.value)}
                     ></textarea>
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
@@ -308,8 +319,10 @@ const Create = () => {
               </div>
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  // className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex justify-center py-2 px-4 bg-indigo-600 text-white active:bg-indigo-700 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 disabled:bg-indigo-200 disabled:cursor-not-allowed"
                   onClick={handleCreateButtonClick}
+                  disabled={isInvalid}
                 >
                   Create Room
                 </button>
