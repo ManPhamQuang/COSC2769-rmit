@@ -66,16 +66,6 @@ const Create = () => {
     error: null,
   });
 
-  // Frontend form validation
-  const isFloat = (price) => {
-    var objRegex = /(^-?\d\d*\.\d\d*$)|(^-?\.\d\d*$)/;
-    //check for numeric characters
-    if (objRegex.test(price)) {
-      return true;
-    } 
-    return false;
-  };
-
   const isInvalid = title === "" || description === "" || price === "";
 
   useEffect(() => {
@@ -101,13 +91,6 @@ const Create = () => {
       });
   }, []);
 
-  const handlePriceChange = (e) => {
-    console.log("handle price change")
-    console.log(priceRef.current.value);
-    setPrice(priceRef.current.value);
-    e.preventDefault();
-  }
-
   const categoryDropdownOnChange = (category) => {
     setCategoryID(category._id);
     setSelectedCategory(category);
@@ -131,30 +114,23 @@ const Create = () => {
       router.push("/signup");
     }
 
-    // dispatchRoom({ type: "ROOM_LOADING" });
-    // axios
-    //   .post("http://localhost:5000/api/v1/rooms", data, {
-    //     headers: { Authorization: `Bearer ${accessToken}` },
-    //   })
-    //   .then((response) => {
-    //     dispatchRoom({
-    //       type: "ROOM_CREATE_SUCCESS",
-    //       payload: response.data.data.room,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     dispatchRoom({
-    //       type: "ROOM_CREATE_FAILURE",
-    //       payload: error.response.data,
-    //     });
-    //   });
-    console.log(accessToken);
-    console.log(selectedCategory.name);
-    console.log(data.title);
-    console.log(data.description);
-    console.log(data.price);
-    console.log(data.category);
-    console.log(data.startedAt);
+    dispatchRoom({ type: "ROOM_LOADING" });
+    axios
+      .post("http://localhost:5000/api/v1/rooms", data, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        dispatchRoom({
+          type: "ROOM_CREATE_SUCCESS",
+          payload: response.data.data.room,
+        });
+      })
+      .catch((error) => {
+        dispatchRoom({
+          type: "ROOM_CREATE_FAILURE",
+          payload: error.response.data,
+        });
+      });
     event.preventDefault();
   };
 
@@ -230,7 +206,7 @@ const Create = () => {
                         className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
                         placeholder="0.00"
                         ref={priceRef}
-                        onChange={handlePriceChange}
+                        onChange={() => setPrice(priceRef.current.value)}
                       />
                     </div>
                   </div>
