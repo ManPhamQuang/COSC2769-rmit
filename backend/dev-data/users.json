@@ -106,6 +106,152 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 0,
     "ratingsAverage": null
+  },
+  {
+    "id": "60f6ce0e02f5102cea240402",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "John",
+    "email": "expert2@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 10,
+    "ratingsAverage": 3
+  },
+  {
+    "id": "60f6ce0e02f5102cea240403",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Steph Ray",
+    "email": "StephRay@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240404",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "John Biden",
+    "email": "JohnBiden@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 20,
+    "ratingsAverage": 5
+  },
+  {
+    "id": "60f6ce0e02f5102cea240405",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Lisa Nguyen",
+    "email": "LisaNguyen@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240406",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Long Nguyen",
+    "email": "LongNguyen@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 30,
+    "ratingsAverage": 4.2
+  },
+  {
+    "id": "60f6ce0e02f5102cea240407",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Phuong Nguyen",
+    "email": "PhuongNguyen@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240408",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Long Nguyen",
+    "email": "LongNguyen@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 20,
+    "ratingsAverage": 4
+  },
+  {
+    "id": "60f6ce0e02f5102cea240409",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Lina Do",
+    "email": "LinaDo@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 30,
+    "ratingsAverage": 4.2
+  },
+  {
+    "id": "60f6ce0e02f5102cea240410",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Phat Nguyen",
+    "email": "PhatNguyen@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240411",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Mai Hoang",
+    "email": "MaiHoang@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 25,
+    "ratingsAverage": 4.2
+  },
+  {
+    "id": "60f6ce0e02f5102cea240412",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Phuc Phan",
+    "email": "PhucPhan@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240413",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Lucia Lam",
+    "email": "LuciaLam@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 15,
+    "ratingsAverage": 4
+  },
+  {
+    "id": "60f6ce0e02f5102cea240414",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Christina Le",
+    "email": "ChristinaLe@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240415",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Chloe Nguyen",
+    "email": "ChloeNguyen@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 28,
+    "ratingsAverage": 4.2
+  },
+  {
+    "id": "60f6ce0e02f5102cea240416",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Kayle Tran",
+    "email": "KayleTran@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240417",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Mike Nguyen",
+    "email": "MikeNguyen@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 29,
+    "ratingsAverage": 4.2
   }
   
 ]
