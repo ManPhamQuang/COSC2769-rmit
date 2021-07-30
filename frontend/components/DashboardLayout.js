@@ -17,7 +17,7 @@ export default function Wrapper(props) {
 
 function DashboardLayout({ children }) {
     const { pathname } = useRouter(); // get current path
-    const isStatic = useBreakpoint("md");
+    const isStatic = useBreakpoint("laptop");
     const [isClosed, setIsClosed] = useState(true);
 
     const activeLinkClass = "p-3 hover:bg-gray-600 cursor-pointer ";
@@ -33,7 +33,7 @@ function DashboardLayout({ children }) {
 
     return (
         <>
-            <div className="md:flex bg-gray-100">
+            <div className="laptop:flex bg-gray-100">
                 <Transition
                     show={isStatic || !isClosed}
                     enter="transition-all duration-500"

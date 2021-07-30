@@ -1,4 +1,5 @@
 import React from "react";
+import useBreakpoint from "../hooks/useBreakpoint";
 
 /* This example requires Tailwind CSS v2.0+ */
 const rooms = [
@@ -11,14 +12,14 @@ const rooms = [
     },
     {
         _id: "1321321321",
-        title: "Development Bootcamp Development Bootcamp Development Bootcamp Development Bootcamp Development Bootcamp Development Bootcamp",
+        title: "Agile Crash Course: Agile Project Management; Agile Delivery",
         beginAt: "12/04/2020",
         status: "pending",
         category: "music",
     },
     {
         _id: "2090909",
-        title: "Development Bootcamp",
+        title: "JavaScript Projects Bootcamp:HTML, CSS, VanillaJS, Bootstrap",
         beginAt: "18/06/2020",
         status: "active",
         category: "Fullstack Development",
@@ -35,8 +36,17 @@ const rooms = [
 
 export default function RoomTable() {
     return (
-        <div className="md:p-20">
-            <div className="flex flex-col">
+        <div className="p-5 lg:p-10">
+            <div className="">
+                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                    Your Rooms
+                </h3>
+                <p className="mt-1 text-sm text-gray-600">
+                    This list contains all rooms created by you. You can edit
+                    any room's detail by clicking on the row or the Edit button.
+                </p>
+            </div>
+            <div className="mt-5 flex flex-col">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -94,30 +104,32 @@ export default function RoomTable() {
                                                 key={room._id}
                                                 className="group cursor-pointer hover:bg-gray-200 cursor"
                                             >
-                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                <td className="px-3 py-2 whitespace-nowrap">
                                                     <div className="flex items-center">
-                                                        <div className="text-sm text-gray-500">
+                                                        <div
+                                                            className={`text-sm text-gray-500 max-w-[160px] xl:max-w-none truncate`}
+                                                        >
                                                             {room.title}
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                <td className="px-3 py-2 whitespace-nowrap">
                                                     <div className="text-sm text-gray-900">
                                                         {room.beginAt}
                                                     </div>
                                                     {/* <div className="text-sm text-gray-500">{room.status}</div> */}
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                <td className="px-3 py-2 whitespace-nowrap">
                                                     <span
                                                         className={`px-2 inline-flex text-xs leading-5 font-semibold ${color} rounded-full`}
                                                     >
                                                         {room.status}
                                                     </span>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                                                     {room.category}
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                                                     <a
                                                         href="#"
                                                         className="text-indigo-600 hover:text-indigo-900"
