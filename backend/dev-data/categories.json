@@ -30,5 +30,46 @@
   {
     "id": "60f538be6799c21940d0c107",
     "name": "Android Development"
+  },
+  {
+    "id": "60f538be6799c21940d0c108",
+    "name": "Music"
+  }
+  ,
+  {
+    "id": "60f538be6799c21940d0c109",
+    "name": "Photography"
+  },
+  {
+    "id": "60f538be6799c21940d0c110",
+    "name": "Business"
+  },
+  {
+    "id": "60f538be6799c21940d0c111",
+    "name": "Personal Development"
+  },
+  {
+    "id": "60f538be6799c21940d0c112",
+    "name": "IT and Software"
+  },
+  {
+    "id": "60f538be6799c21940d0c113",
+    "name": "Design"
+  },
+  {
+    "id": "60f538be6799c21940d0c114",
+    "name": "Marketing"
+  },
+  {
+    "id": "60f538be6799c21940d0c115",
+    "name": "Web Development"
+  },
+  {
+    "id": "60f538be6799c21940d0c116",
+    "name": "AWS Certification"
+  },
+  {
+    "id": "60f538be6799c21940d0c117",
+    "name": "SQL"
   }
 ]
