@@ -16,5 +16,96 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 0,
     "ratingsAverage": null
+  },
+  {
+    "id": "60f6ce0e02f5102cea240412",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Bao Ngoc",
+    "email": "baongoc@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240413",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Huu Luan",
+    "email": "huuluan@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240414",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Quang Man",
+    "email": "quangman@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240415",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Lam Phuong",
+    "email": "lamphuong@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240416",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "user",
+    "name": "Tan Thien",
+    "email": "tanthien@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
+  },
+  {
+    "id": "60f6ce0e02f5102cea240417",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Mark Zuckerberg",
+    "email": "markzuckerberg@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 0,
+    "ratingsAverage": null
+  },
+  {
+    "id": "60f6ce0e02f5102cea240418",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Bill Gate",
+    "email": "billgate@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 0,
+    "ratingsAverage": null
+  },
+  {
+    "id": "60f6ce0e02f5102cea240419",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Elon Musk",
+    "email": "elonmusk@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 0,
+    "ratingsAverage": null
+  },
+  {
+    "id": "60f6ce0e02f5102cea240420",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Warren Buffett",
+    "email": "warrenbuffett@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 0,
+    "ratingsAverage": null
+  },
+  {
+    "id": "60f6ce0e02f5102cea240421",
+    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+    "role": "expert",
+    "name": "Bernard Arnault",
+    "email": "bernardarnault@gmail.com",
+    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
+    "ratingsQuantity": 0,
+    "ratingsAverage": null
   }
+  
 ]
