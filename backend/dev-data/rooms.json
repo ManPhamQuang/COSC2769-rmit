@@ -237,6 +237,91 @@
       "Bid for projects on freelance websites",
       "Be a comfortable front-end developer"
     ]
+  },
+  {
+    "id": "60f552932152bb2281277f12",
+    "status": "pending",
+    "thumbnail": "default.png",
+    "title": "Counselling Children & Adolescents",
+    "description": "Work from home, become a professional counsellor, teenagers and child psychology, grief and bereavement, depression",
+    "price": "$29.99",
+    "category": "60f538be6799c21940d0c126",
+    "createdBy": "60f6ce0e02f5102cea240405",
+    "createdAt": "1627196863542",
+    "endedAt": "1627200463542",
+    "language":"English",
+    "subtitle":"English",
+    "content":[
+      "Learn how to work with children and adolescents in therapeutic settings",
+      "Understand about the role of behavioural therapies & use of language when working with children",
+      "Understand how therapy takes place: transformation, new skills, recovery",
+      "Learn about developmental stages of growth in children",
+      "Learn about child's psychological issues: grief, dysfunctional families, bullying",
+      "Learn how to set up your own therapeutic practice & work as a counsellor"
+    ]
+  },
+  {
+    "id": "60f552932152bb2281277f13",
+    "status": "active",
+    "thumbnail": "default.png",
+    "title": "Psychology and Therapy of Addictions",
+    "description": "Working with alcohol and drugs addictions, substance misuse and rehabilitation helper, counselling, psychotherapy, coach",
+    "price": "$39.99",
+    "category": "60f538be6799c21940d0c126",
+    "createdBy": "60f6ce0e02f5102cea240411",
+    "createdAt": "1627196863542",
+    "endedAt": "1627200463542",
+    "language":"English",
+    "subtitle":"English",
+    "content":[
+      "Understand Theories of Addictions",
+      "Develop an awareness of alcohol and drug related disorders and issues",
+      "Learn about working as a 'Helper' in addiction related settings",
+      "Learn how to work in Addictions related Therapies",
+      "Learn about co-dependency, families of addicted persons, and relapse",
+      "Understand how addictions are treated (psychology & medicine)"
+    ]
+  },
+  {
+    "id": "60f552932152bb2281277f14",
+    "status": "pending",
+    "thumbnail": "default.png",
+    "title": "Natural Skincare :: Luscious herbal Recipes for Younger Skin",
+    "description": "Easily make superior & safe skin care using natural herbs and botanicals from herbalism. Beauty at its best!",
+    "price": "$69.99",
+    "category": "60f538be6799c21940d0c125",
+    "createdBy": "60f6ce0e02f5102cea240413",
+    "createdAt": "1627196863542",
+    "endedAt": "1627200463542",
+    "language":"English",
+    "subtitle":"English",
+    "content":[
+      "Deeply nourish the skin for long-term benefits so you look your best today and years from now",
+      "Easy step-by-step instructions and simple recipes for your mature or dry skin",
+      "Taylor the ingredients to your exact needs",
+      "Understand the most beneficial and effective ingredients for healthy, vibrant skin",
+      "Knowledge to create complete regimens of fabulous quality skincare"
+    ]
+  },
+  {
+    "id": "60f552932152bb2281277f15",
+    "status": "active",
+    "thumbnail": "default.png",
+    "title": "Makeup: Effortless Makeup for Real Women",
+    "description": "A comprehensive guide on creating flawless looking makeup for every day, occasion, budget and time limits.",
+    "price": "$59.99",
+    "category": "60f538be6799c21940d0c125",
+    "createdBy": "60f6ce0e02f5102cea240415",
+    "createdAt": "1627196863542",
+    "endedAt": "1627200463542",
+    "language":"English",
+    "subtitle":"English",
+    "content":[
+      "Apply three full makeup looks - day, evening and night",
+      "Do a full makeup look within a frantic busy schedule",
+      "Look youthful, healthy and flawless every day",
+      "Find budget products which perform like high end versions",
+      "Feel confident choosing the perfect products for all ages and skin types"
+    ]
   }
-
 ]
