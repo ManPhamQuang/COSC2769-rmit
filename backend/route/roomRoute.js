@@ -4,13 +4,16 @@ const {
   getAllRooms,
   getRoom,
   createRoom,
-  joinRoom
+  joinRoom,
 } = require("../controller/roomController");
-const { isAuthenticated } = require("../controller/authController");
+const {
+  isAuthenticated,
+  limitToOnly,
+} = require("../controller/authController");
 
 router.get("/join", isAuthenticated, joinRoom);
 router.get("/", getAllRooms);
 router.get("/:id", getRoom);
-router.post("/", isAuthenticated, createRoom);
+router.post("/", isAuthenticated, limitToOnly("expert"), createRoom);
 
 module.exports = router;

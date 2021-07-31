@@ -1,0 +1,14 @@
+[
+  {
+    "id": "60f552932152bb2281277f01",
+    "status": "pending",
+    "thumbnail": "default.png",
+    "title": "2021 Complete Python Bootcamp From Zero to Hero in Python",
+    "description": "Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games",
+    "price": 10,
+    "category": "60f538be6799c21940d0c107",
+    "createdBy": "60f6ce0e02f5102cea240400",
+    "createdAt": "1627196863542",
+    "endedAt": "1627200463542"
+  }
+]

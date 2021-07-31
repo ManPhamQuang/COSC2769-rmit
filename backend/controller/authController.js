@@ -9,12 +9,21 @@ const createToken = async id =>
     expiresIn: process.env.EXPIRES_IN,
   });
 
+const extractUserData = user => ({
+  name: user.name,
+  email: user.email,
+  role: user.role,
+  avatar: user.avatar,
+});
+
 exports.createUser = catchAsync(async (req, res, next) => {
   const user = await User.create(req.body);
   const token = await createToken(user.id);
+  const userData = extractUserData(user);
   res.status(201).json({
     status: "success",
     data: {
+      user: userData,
       token,
     },
   });
@@ -31,9 +40,11 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!user || !(await user.comparePassword(req.body.password, user.password)))
     return next(new AppError("Incorrect email or password", 400));
   const token = await createToken(user.id);
+  const userData = extractUserData(user);
   res.status(200).json({
     status: "success",
     data: {
+      user: userData,
       token,
     },
   });
@@ -51,14 +62,14 @@ exports.isAuthenticated = catchAsync(async (req, res, next) => {
   const decodedToken = await promisify(jwt.verify)(token, process.env.SECRET);
   const user = await User.findById(decodedToken.id);
   req.user = user;
+  next();
 });
 
 exports.limitToOnly = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(
-        new AppError(`You are not allowed to access this route`),
-        403
+        new AppError(`You are not allowed to access this route`, 403)
       );
     }
     next();
