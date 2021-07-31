@@ -1,5 +1,5 @@
-import RoomTable from "../components/RoomTable";
-import DashboardLayout from "../components/DashboardLayout";
+import RoomTable from "../../components/RoomTable";
+import DashboardLayout from "../../components/DashboardLayout";
 import Head from "next/head";
 
 export default function ExpertDashboard() {

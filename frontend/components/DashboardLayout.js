@@ -27,7 +27,7 @@ function DashboardLayout({ children }) {
         case "/dashboard":
             ScreenName = "Dashboard";
             break;
-        case "/profile":
+        case "/dashboard/profile":
             ScreenName = "Profile";
     }
 
@@ -82,10 +82,11 @@ function DashboardLayout({ children }) {
                                         </li>
                                     </Link>
 
-                                    <Link href="/profile">
+                                    <Link href="/dashboard/profile">
                                         <li
                                             className={
-                                                pathname === "/profile"
+                                                pathname ===
+                                                "/dashboard/profile"
                                                     ? activeLinkClass
                                                     : inactiveLinkClass
                                             }
