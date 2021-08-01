@@ -13,7 +13,7 @@ export default function RoomDetailHeader() {
     return (
         <div>
             <div className="bg-black z-0 w-full">
-                <div className="container leading-loose mx-auto w-full h-auto px-4 text-left py-5 lg:ml-80 lg:w-5/12 h-auto py-12">
+                <div className="container leading-loose mx-auto w-full h-auto px-4 text-left py-5 xl:ml-80 xl:w-5/12 h-auto py-12">
                     <p className="subpixel-antialiased text-white font-bold pb-2 text-1xl lg:text-4xl ">
                         Python and JavaScript for beginners: Build 10 Projects
                     </p>
@@ -52,10 +52,10 @@ export default function RoomDetailHeader() {
                             </p>
                         </div>
                     </div>
-                    <div className="text-white text-2xl font-bold mt-2 lg:hidden">
+                    <div className="text-white text-2xl font-bold mt-2 xl:hidden">
                         <p>$89.99</p>
                     </div>
-                    <div className="hidden lg:flex items-center mt-4 space-x-3">
+                    <div className="hidden xl:flex items-center mt-4 space-x-3">
                         <button className="inline text-base text-white font-semibold border p-2 flex items-center hover:bg-gray-800">
                             Wishlist&nbsp;
                             <HeartIcon className="text-white h-5 w-5 inline" />
@@ -69,7 +69,7 @@ export default function RoomDetailHeader() {
                             <GiftIcon className="text-white h-5 w-5 inline" />
                         </button>
                     </div>
-                    <div className="block mt-4 space-y-3 pb-4 lg:hidden">
+                    <div className="block mt-4 space-y-3 pb-4 xl:hidden">
                         <button className="text-base text-white font-bold bg-purple-600 p-2 w-full hover:bg-purple-800">
                             Add to cart
                         </button>
@@ -94,7 +94,7 @@ export default function RoomDetailHeader() {
                     </div>
                 </div>
             </div>
-            <div className="hidden lg:inline-block absolute bg-white z-10 border w-80 h-screen top-14 right-9 mr-80 shadow-xl">
+            <div className="hidden xl:block absolute bg-white z-10 border w-80 h-screen right-1.5 top-14 mr-72 shadow-xl">
                 <div className="px-5 py-4 space-y-3">
                     <p className="text-4xl subpixel-antialiased font-bold">
                         $89.99
@@ -113,7 +113,7 @@ export default function RoomDetailHeader() {
                     </p>
                 </div>
             </div>
-            <div className="fixed inline-flex justify-evenly bottom-0 w-full bg-white z-10 p-2 border-t-2 space-x-4 lg:hidden">
+            <div className="fixed inline-flex justify-evenly bottom-0 w-full bg-white z-10 p-2 border-t-2 space-x-4 xl:hidden">
                 <div className="inline-flex items-center ">
                     <p className="inline text-2xl font-bold w-3/12">$89.99</p>
                 </div>

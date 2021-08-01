@@ -100,8 +100,6 @@ export default function description() {
     return (
         <div>
             <RoomDetailHeader />
-            {/* <div className="container ml-80 w-5/12 h-auto py-4 "> */}
-
             <div className="max-w-md mx-auto rounded-xl md:max-w-2xl mt-4 ">
                 <div className="relative flex flex-col px-10">
                     <div className="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold ">
