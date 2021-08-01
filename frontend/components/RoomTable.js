@@ -1,9 +1,7 @@
 import React from "react";
-import useBreakpoint from "../hooks/useBreakpoint";
 import useSWR from "swr";
 import axios from "axios";
 import DateFormatter from "../utils/DateFormat";
-// import { HiOutlineVideoCamera } from 'react-icons/fa';
 
 const fetcher = (url, token) =>
     axios
@@ -120,19 +118,19 @@ export default function RoomTable({ user }) {
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {rooms.map((room) => {
                                             let color = "";
-                                            let joinButtonColor="border border-green-500 text-green-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-green-600 focus:outline-none focus:shadow-outline"
-                                            let joinButton=""
+                                            let joinButtonColor =
+                                                "border border-green-500 text-green-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-green-600 focus:outline-none focus:shadow-outline";
+                                            let joinButton = "";
                                             if (room.status == "active") {
                                                 color =
                                                     "bg-green-100 text-green-800";
-                                                joinButton="yes";
-                                                
+                                                joinButton = "yes";
                                             } else if (
                                                 room.status == "pending"
                                             ) {
                                                 color =
                                                     "bg-yellow-100 text-yellow-700";
-                                                    joinButton="yes";
+                                                joinButton = "yes";
                                             } else {
                                                 color =
                                                     "bg-red-200 text-red-700";
@@ -170,11 +168,21 @@ export default function RoomTable({ user }) {
                                                         {room.category?.name}
                                                     </td>
                                                     <td>
-                                                        <a
-                                                            href="#"
-                                                            
-                                                        >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-3 " fill="none" viewBox="0 0 24 24" stroke="green"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                                                        <a href="#">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                className="h-6 w-6 ml-3 "
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                stroke="green"
+                                                            >
+                                                                <path
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth="2"
+                                                                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                                                />
+                                                            </svg>
                                                         </a>
                                                     </td>
                                                     <td className="inline-block m-1 w-20 h-8 text-xs pt-1.5 font-medium text-center  transition bg-transparent border-2 border-indigo-500 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-100 focus:outline-none">
@@ -190,10 +198,8 @@ export default function RoomTable({ user }) {
                                                             href="#"
                                                             className="text-indigo-600 hover:text-indigo-900"
                                                         >
-                                                            Edit 
-                                                            
+                                                            Edit
                                                         </a>
-                                                        
                                                     </td>
                                                 </tr>
                                             );
