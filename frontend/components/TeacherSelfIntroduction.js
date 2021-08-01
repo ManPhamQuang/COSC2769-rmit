@@ -4,7 +4,7 @@ import { StarIcon } from "@heroicons/react/solid";
 export default function teacherSelfIntroduction({ props }) {
     // const { id, name, rating, seftIntroduction} = props;
     return (
-        <div className="bg-white dark:bg-gray-800 w- rounded-lg p-4 mb-6 shadow sm:inline-block">
+        <div className="bg-white w- p-4 mb-6 sm:inline-block">
             <div className="md:flex items-start md:text-left">
                 <div className="flex-shrink-0">
                     <div className="inline-block relative flex flex-col space-y-1 justify-center items-center ">

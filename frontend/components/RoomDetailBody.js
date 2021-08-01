@@ -1,5 +1,10 @@
 import React from "react";
-import { CheckIcon } from "@heroicons/react/solid";
+import {
+    CheckIcon,
+    ThumbUpIcon,
+    DeviceMobileIcon,
+} from "@heroicons/react/outline";
+import TeacherSelfIntroduction from "./TeacherSelfIntroduction";
 
 const courseInfor = {
     id: 1,
@@ -18,11 +23,23 @@ const courseInfor = {
         "Software Design: How to organise and format code",
     ],
 };
-
+const teacherSelfIntroduction = [
+    {
+        id: 1,
+        avatar: "https://img-c.udemycdn.com/user/200_H/15722848_5948_3.jpg",
+        name: "Angela",
+        job: "Developer and Lead Instructor",
+        rating: 5,
+        roomAmount: 80,
+        reviewerAmount: "314,629",
+        seftIntroduction:
+            "I'm Angela, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
+    },
+];
 export default function RoomDetailBody() {
     return (
         <div className="w-full grid grid-cols-3 gap-2">
-            <div className="col-span-2 px-24 py-6">
+            <div className="col-span-2 px-24 py-6 space-y-4">
                 <div className="border space-y-4 px-12 py-4 border-gray-300">
                     <p className="font-bold text-3xl">What you'll learn</p>
                     {courseInfor.features.map((feature) => (
@@ -31,6 +48,15 @@ export default function RoomDetailBody() {
                             <p className="inline">&nbsp;{feature}</p>
                         </div>
                     ))}
+                </div>
+                <div className=" px-12 py-4">
+                    <p className="font-bold text-3xl">Description</p>
+                </div>
+                <div className=" px-12 py-4">
+                    <TeacherSelfIntroduction
+                        key={teacherSelfIntroduction[0].id}
+                        props={teacherSelfIntroduction[0]}
+                    />
                 </div>
             </div>
             <div className="px-24 py-6">
@@ -50,6 +76,20 @@ export default function RoomDetailBody() {
                     <p className="text-base font-bold ">
                         This workshop includes:
                     </p>
+                    <div>
+                        <div>
+                            <ThumbUpIcon className="h-5 w-5 inline mb-1" />
+                            <p className="inline text-base">
+                                &nbsp;&nbsp;Real-time interaction
+                            </p>
+                        </div>
+                        <div>
+                            <DeviceMobileIcon className="h-5 w-5 inline mb-1" />
+                            <p className="inline text-base">
+                                &nbsp;&nbsp;Access on mobile and TV
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
