@@ -100,8 +100,9 @@ export default function description() {
     return (
         <div>
             <RoomDetailHeader />
-            <div className="max-w-md mx-auto rounded-xl md:max-w-2xl mt-4 ">
-                <div className="relative flex flex-col px-10">
+            <RoomDetailBody />
+            {/* <div className="max-w-md mx-auto rounded-xl md:max-w-2xl mt-4 ">
+                <div className="px-10">
                     <div className="uppercase tracking-wide text-lg dark:text-gray-200 font-semibold ">
                         What you'll learn
                     </div>
@@ -118,7 +119,7 @@ export default function description() {
                         props={teacherSelfIntroduction[0]}
                     ></TeacherSelfIntroduction>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

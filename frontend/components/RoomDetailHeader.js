@@ -7,6 +7,7 @@ import {
     HeartIcon,
     ShareIcon,
     GiftIcon,
+    CheckIcon,
 } from "@heroicons/react/solid";
 
 export default function RoomDetailHeader() {
@@ -94,7 +95,7 @@ export default function RoomDetailHeader() {
                     </div>
                 </div>
             </div>
-            <div className="hidden xl:block absolute bg-white z-10 border w-80 h-screen right-1.5 top-14 mr-72 shadow-xl">
+            {/* <div className="hidden xl:block absolute bg-white z-10 border w-80 h-screen right-1.5 top-14 mr-72 shadow-xl">
                 <div className="px-5 py-4 space-y-3">
                     <p className="text-4xl subpixel-antialiased font-bold">
                         $89.99
@@ -112,7 +113,7 @@ export default function RoomDetailHeader() {
                         This workshop includes:
                     </p>
                 </div>
-            </div>
+            </div> */}
             <div className="fixed inline-flex justify-evenly bottom-0 w-full bg-white z-10 p-2 border-t-2 space-x-4 xl:hidden">
                 <div className="inline-flex items-center ">
                     <p className="inline text-2xl font-bold w-3/12">$89.99</p>
