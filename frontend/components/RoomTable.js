@@ -185,7 +185,7 @@ export default function RoomTable({ user }) {
                                                             Copy Link
                                                         </a>
                                                     </td>
-                                                    <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
+                                                    <td className="px-3 py-2 whitespace-nowrap  text-sm font-medium ">
                                                         <a
                                                             href="#"
                                                             className="text-indigo-600 hover:text-indigo-900"
