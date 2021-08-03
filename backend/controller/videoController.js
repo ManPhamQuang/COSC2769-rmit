@@ -1,7 +1,7 @@
 const catchAsync = require("../util/catchAsync");
 const twilio = require("twilio");
 const AccessToken = twilio.jwt.AccessToken;
-const { VideoGrant } = AccessToken;
+const { VideoGrant, ChatGrant } = AccessToken;
 
 exports.generateTwilioToken = catchAsync(async (req, res, next) => {
   const identity = req.body.identity;

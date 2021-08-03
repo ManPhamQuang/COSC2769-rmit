@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import Video from "twilio-video";
 import Lobby from "./Lobby";
 import Room from "./Room";
+import { getTwilioToken } from "../utils/API"
 
 const VideoChat = () => {
   const [username, setUsername] = useState("");
@@ -21,17 +22,7 @@ const VideoChat = () => {
     async (event) => {
       event.preventDefault();
       setConnecting(true);
-      const data = await fetch("http://localhost:5000/api/v1/videos/token", {
-        method: "POST",
-        body: JSON.stringify({
-          identity: username,
-          room: roomName,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then((res) => res.json());
-      const token = data.data.token;
+      const token = await getTwilioToken(username, roomName);
       console.log(`Fetched Token = ${token}`);
       Video.connect(token, {
         name: roomName,
