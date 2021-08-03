@@ -9,7 +9,7 @@ const VideoChat = () => {
   const [roomName, setRoomName] = useState("");
   const [room, setRoom] = useState(null);
   const [connecting, setConnecting] = useState(false);
-
+  const [token, setToken] = useState(null);
   const handleUsernameChange = useCallback((event) => {
     setUsername(event.target.value);
   }, []);
@@ -23,6 +23,7 @@ const VideoChat = () => {
       event.preventDefault();
       setConnecting(true);
       const token = await getTwilioToken(username, roomName);
+      setToken(token);
       console.log(`Fetched Token = ${token}`);
       Video.connect(token, {
         name: roomName,
@@ -74,7 +75,7 @@ const VideoChat = () => {
   let render;
   if (room) {
     render = (
-      <Room username={username} roomName={roomName} room={room} handleLogout={handleLogout} />
+      <Room username={username} roomName={roomName} room={room} handleLogout={handleLogout} token={token}/>
     );
   } else {
     render = (

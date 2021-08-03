@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const ChatAPI = require("twilio-chat");
 import { getTwilioToken } from "../utils/API";
 
-function Chat({ username, roomName }) {
+function Chat({ username, roomName, token }) {
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
   const [channel, setChannel] = useState(null);
@@ -15,19 +15,10 @@ function Chat({ username, roomName }) {
 
   let scrollDiv = useRef(null);
   useEffect(async () => {
-    let token = "";
-
     setLoading(true);
 
-    try {
-      token = await getTwilioToken(username, roomName);
-      //   console.log(token)
-    } catch {
-      throw new Error("Unable to get token, please reload this page");
-    }
-
+    // Chat Logic
     const client = await ChatAPI.Client.create(token);
-
     client.on("tokenAboutToExpire", async () => {
       const token = await getTwilioToken(username, roomName);
       client.updateToken(token);
@@ -41,15 +32,11 @@ function Chat({ username, roomName }) {
     client.on("channelJoined", async (channel) => {
       // getting list of all messages since this is an existing channel
       const newMessages = await channel.getMessages();
-      console.log(newMessages);
-      // messages.push(newMessages.items || [])
       setMessages(newMessages.items || []);
-      // scrollToBottom();
     });
 
     try {
       const channel = await client.getChannelByUniqueName(room);
-      console.log(channel);
       joinChannel(channel);
       setChannel(channel);
     } catch (err) {
@@ -58,7 +45,6 @@ function Chat({ username, roomName }) {
           uniqueName: room,
           friendlyName: room,
         });
-
         joinChannel(channel);
       } catch {
         throw new Error("Unable to create channel, please reload this page");
@@ -95,7 +81,6 @@ function Chat({ username, roomName }) {
 
   const sendMessage = () => {
     if (text) {
-      console.log(String(text).trim());
       setLoading(true);
       channel.sendMessage(String(text).trim());
       setText("");
@@ -106,8 +91,8 @@ function Chat({ username, roomName }) {
   return (
     <div>
       <p className="text-2xl">Chat Message</p>
-      <div className="chatContainer" ref={scrollDiv}>
-        <div className="chatContents">
+      <div ref={scrollDiv} className="w-2/3">
+        <div>
           {messages &&
             room !== "chat" &&
             messages.map((message, index) => (
@@ -115,12 +100,13 @@ function Chat({ username, roomName }) {
             ))}
         </div>
         {room !== "chat" && (
-          <div className="chatFooter">
+          <div className="flex space-x-4 my-4">
             <input
               type="text"
               placeholder="Type Message"
               onChange={(e) => updateText(e.target.value)}
               value={text}
+              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
             />
             <button onClick={sendMessage}>Send</button>
           </div>
