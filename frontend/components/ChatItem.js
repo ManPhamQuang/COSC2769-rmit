@@ -1,10 +1,9 @@
 import React from "react";
-import { ListItem } from "@material-ui/core";
 
 function ChatItem({ message, email }) {
   const isOwnMessage = message.author === email;
   return (
-    <ListItem style={styles.listItem(isOwnMessage)}>
+    <div style={styles.listItem(isOwnMessage)}>
       <div style={styles.author}>{message.author}</div>
       <div style={styles.container(isOwnMessage)}>
         {message.body}
@@ -12,7 +11,7 @@ function ChatItem({ message, email }) {
           {new Date(message.dateCreated.toISOString()).toLocaleString()}
         </div>
       </div>
-    </ListItem>
+    </div>
   );
 }
 

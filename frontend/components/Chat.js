@@ -4,13 +4,16 @@ import ChatItem from "./ChatItem";
 import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 const ChatAPI = require("twilio-chat");
+import { getTwilioToken } from "../utils/API"
 
-function Chat({ email, room }) {
+function Chat({ username, roomName }) {
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
   const [channel, setChannel] = useState(null);
   const [text, setText] = useState("");
 
+  const room = roomName;
+  const email = username;
   const roomsList = ["general"];
   let scrollDiv = useRef(null);
   useEffect(async () => {
@@ -23,7 +26,7 @@ function Chat({ email, room }) {
     setLoading(true);
 
     try {
-      token = await getToken(email);
+      token = await getTwilioToken(username, roomName);
       //   console.log(token)
     } catch {
       throw new Error("Unable to get token, please reload this page");
@@ -32,12 +35,12 @@ function Chat({ email, room }) {
     const client = await ChatAPI.Client.create(token);
 
     client.on("tokenAboutToExpire", async () => {
-      const token = await getToken(email);
+      const token = await getTwilioToken(username, roomName);
       client.updateToken(token);
     });
 
     client.on("tokenExpired", async () => {
-      const token = await getToken(email);
+      const token = await getTwilioToken(username, roomName);
       client.updateToken(token);
     });
 
@@ -90,14 +93,6 @@ function Chat({ email, room }) {
 
   const changeRoom = (room) => {
     history.push(room);
-  };
-
-  const getToken = async (email) => {
-    const response = await axios.get(
-      `http://localhost:5000/api/v1/video/chat/${email}`
-    );
-    const { data } = response;
-    return data.token;
   };
 
   const handleMessageAdded = (message) => {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Participant from "./Participant";
+import Chat from "./Chat";
 
-const Room = ({ roomName, room, handleLogout }) => {
+const Room = ({ username, roomName, room, handleLogout }) => {
   const [participants, setParticipants] = useState([]);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ const Room = ({ roomName, room, handleLogout }) => {
       </div>
       <h3 className="text-2xl my-5">Remote Participants</h3>
       <div className="remote-participants">{remoteParticipants}</div>
+      <Chat username={username} roomName={roomName}></Chat>
     </div>
   );
 };

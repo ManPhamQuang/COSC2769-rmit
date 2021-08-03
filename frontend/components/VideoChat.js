@@ -26,6 +26,7 @@ const VideoChat = () => {
       console.log(`Fetched Token = ${token}`);
       Video.connect(token, {
         name: roomName,
+        video: false
       })
         .then((room) => {
           setConnecting(false);
@@ -73,7 +74,7 @@ const VideoChat = () => {
   let render;
   if (room) {
     render = (
-      <Room roomName={roomName} room={room} handleLogout={handleLogout} />
+      <Room username={username} roomName={roomName} room={room} handleLogout={handleLogout} />
     );
   } else {
     render = (
