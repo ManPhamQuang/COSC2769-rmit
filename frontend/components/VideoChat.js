@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Video from "twilio-video";
 import Lobby from "./Lobby";
-import Room from "./Room";
+import VideoRoom from "./VideoRoom";
 
 const VideoChat = () => {
   const [username, setUsername] = useState("");
@@ -82,7 +82,7 @@ const VideoChat = () => {
   let render;
   if (room) {
     render = (
-      <Room roomName={roomName} room={room} handleLogout={handleLogout} />
+      <VideoRoom roomName={roomName} room={room} handleLogout={handleLogout} />
     );
   } else {
     render = (
