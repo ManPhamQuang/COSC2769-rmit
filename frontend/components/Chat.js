@@ -1,10 +1,8 @@
-import { useHistory } from "react-router-dom";
-import axios from "axios";
 import ChatItem from "./ChatItem";
 import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 const ChatAPI = require("twilio-chat");
-import { getTwilioToken } from "../utils/API"
+import { getTwilioToken } from "../utils/API";
 
 function Chat({ username, roomName }) {
   const [loading, setLoading] = useState(false);
@@ -14,14 +12,10 @@ function Chat({ username, roomName }) {
 
   const room = roomName;
   const email = username;
-  const roomsList = ["general"];
+
   let scrollDiv = useRef(null);
   useEffect(async () => {
     let token = "";
-
-    if (!email) {
-      history.push("/");
-    }
 
     setLoading(true);
 
@@ -66,7 +60,6 @@ function Chat({ username, roomName }) {
         });
 
         joinChannel(channel);
-        //   console.log("channel:"+channel)
       } catch {
         throw new Error("Unable to create channel, please reload this page");
       }
@@ -86,20 +79,10 @@ function Chat({ username, roomName }) {
     channel.on("messageAdded", function (message) {
       handleMessageAdded(message);
     });
-    //    scrollToBottom();
-  };
-
-  let history = useHistory();
-
-  const changeRoom = (room) => {
-    history.push(room);
   };
 
   const handleMessageAdded = (message) => {
     setMessages((messages) => [...messages, message]);
-    // messages.push(message)
-    console.log(message);
-    console.log("messages:" + messages);
     scrollToBottom();
   };
 
@@ -121,30 +104,16 @@ function Chat({ username, roomName }) {
   };
 
   return (
-    <div className="chatScreen">
-      <div className="sidebar">
-        <h4>{email}</h4>
-        <h2>Rooms</h2>
-        {roomsList.map((room) => (
-          <p key={room} onClick={() => changeRoom(room)}>
-            {room}
-          </p>
-        ))}
-      </div>
-
+    <div>
+      <p className="text-2xl">Chat Message</p>
       <div className="chatContainer" ref={scrollDiv}>
-        <div className="chatHeader">
-          {room === "chat" ? "Choose A Room" : room}
-        </div>
-
         <div className="chatContents">
           {messages &&
             room !== "chat" &&
-            messages.map((message) => (
-              <ChatItem key={message.index} message={message} email={email} />
+            messages.map((message, index) => (
+              <ChatItem key={index} message={message} email={email} />
             ))}
         </div>
-
         {room !== "chat" && (
           <div className="chatFooter">
             <input
