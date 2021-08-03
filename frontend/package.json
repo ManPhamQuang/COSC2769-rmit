@@ -18,6 +18,7 @@
     "react-dom": "^17.0.2",
     "react-responsive": "^9.0.0-beta.2",
     "swr": "^0.5.6",
+    "twilio-chat": "^5.0.2",
     "twilio-video": "^2.15.3"
   },
   "devDependencies": {
