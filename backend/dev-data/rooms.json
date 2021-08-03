@@ -1,6 +1,6 @@
 [
   {
-    "id": "60f552932152bb2281277f01",
+    "_id": "60f552932152bb2281277f01",
     "status": "pending",
     "thumbnail": "default.png",
     "title": "2021 Complete Python Bootcamp From Zero to Hero in Python",
@@ -10,11 +10,11 @@
     "createdBy": "60f6ce0e02f5102cea240400",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English"
+    "language": "English",
+    "subtitle": "English"
   },
   {
-    "id": "60f552932152bb2281277f02",
+    "_id": "60f552932152bb2281277f02",
     "status": "over",
     "thumbnail": "default.png",
     "title": "Python for Data Science and Machine Learning Bootcamp",
@@ -24,9 +24,9 @@
     "createdBy": "60f6ce0e02f5102cea240417",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English",
-    "content":[
+    "language": "English",
+    "subtitle": "English",
+    "content": [
       "Use Python for Data Science and Machine Learning",
       "Use Spark for Big Data Analysis",
       "Implement Machine Learning Algorithms",
@@ -38,7 +38,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f03",
+    "_id": "60f552932152bb2281277f03",
     "status": "active",
     "thumbnail": "default.png",
     "title": "Learn Python Programming Masterclass",
@@ -48,9 +48,9 @@
     "createdBy": "60f6ce0e02f5102cea240412",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English",
-    "content":[
+    "language": "English",
+    "subtitle": "English",
+    "content": [
       "Have a fundamental understanding of the Python programming language",
       "Have the skills and understanding of Python to confidently apply for Python programming jobs.",
       "Acquire the pre-requisite Python skills to move into specific branches - Machine Learning, Data Science, etc..",
@@ -61,7 +61,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f04",
+    "_id": "60f552932152bb2281277f04",
     "status": "pending",
     "thumbnail": "default.png",
     "title": "The Ultimate Drawing Course - Beginner to Advanced",
@@ -71,9 +71,9 @@
     "createdBy": "60f6ce0e02f5102cea240404",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English",
-    "content":[
+    "language": "English",
+    "subtitle": "English",
+    "content": [
       "Draw objects out of your head",
       "Understand the fundamentals of art",
       "Draw realistic light and shadow",
@@ -82,7 +82,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f05",
+    "_id": "60f552932152bb2281277f05",
     "status": "over",
     "thumbnail": "default.png",
     "title": "Pianoforall - Incredible New Way To Learn Piano & Keyboard",
@@ -92,18 +92,17 @@
     "createdBy": "60f6ce0e02f5102cea240421",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"Vietnamese",
-    "subtitle":"English",
-    "content":[
+    "language": "Vietnamese",
+    "subtitle": "English",
+    "content": [
       "Pianoforall will take complete beginners to an intermediate level in a very short space of time",
       "You get to sound like a pro right from the start",
       "You will learn the absolute basic essential techniques that will allow you to play any song in any style - by ear!",
       "You will learn to read sheet music AS you learn to play-by-ear"
     ]
-  }
-  ,
+  },
   {
-    "id": "60f552932152bb2281277f06",
+    "_id": "60f552932152bb2281277f06",
     "status": "active",
     "thumbnail": "default.png",
     "title": "Photography Masterclass: A Complete Guide to Photography",
@@ -113,9 +112,9 @@
     "createdBy": "60f6ce0e02f5102cea240421",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"Vietnamese",
-    "subtitle":"English",
-    "content":[
+    "language": "Vietnamese",
+    "subtitle": "English",
+    "content": [
       "You will know how to take amazing photos that impress your family and friends",
       "You will know how to photograph in different scenarios like family portraits, landscapes, aerial, product, wildlife, and much more",
       "You will know how to light your subjects with flash and natural lighting",
@@ -127,7 +126,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f07",
+    "_id": "60f552932152bb2281277f07",
     "status": "over",
     "thumbnail": "default.png",
     "title": "The Complete Video Production Bootcamp",
@@ -137,9 +136,9 @@
     "createdBy": "60f6ce0e02f5102cea240421",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"Vietnamese",
-    "subtitle":"English",
-    "content":[
+    "language": "Vietnamese",
+    "subtitle": "English",
+    "content": [
       "You'll create professional videos with the equipment you already have",
       "Downloadable guides to help you with every section",
       "You'll know how to choose the right video to make with the best story.",
@@ -151,7 +150,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f08",
+    "_id": "60f552932152bb2281277f08",
     "status": "pending",
     "thumbnail": "default.png",
     "title": "The Complete Digital Marketing Course - 12 Courses in 1",
@@ -161,16 +160,16 @@
     "createdBy": "60f6ce0e02f5102cea240413",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"Vietnamese",
-    "subtitle":"English",
-    "content":[
+    "language": "Vietnamese",
+    "subtitle": "English",
+    "content": [
       "Grow a Business Online From Scratch",
       "Get Hired as a Digital Marketing Expert",
       "Make Money as an Affiliate Marketer"
     ]
   },
   {
-    "id": "60f552932152bb2281277f09",
+    "_id": "60f552932152bb2281277f09",
     "status": "pending",
     "thumbnail": "default.png",
     "title": "Instagram Marketing 2021: Complete Guide To Instagram Growth",
@@ -180,9 +179,9 @@
     "createdBy": "60f6ce0e02f5102cea240413",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"Vietnamese",
-    "subtitle":"English",
-    "content":[
+    "language": "Vietnamese",
+    "subtitle": "English",
+    "content": [
       "Have a powerful Instagram account setup for your Business or personal that you can build your brand and convert your followers into paying customers.",
       "Convert your new Instagram followers to long-term loyal paying customers who love your business!",
       "We are up to date with all the new Instagram features and will guide you step by step on how to utilise these functions to grow your account and market your ",
@@ -191,7 +190,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f10",
+    "_id": "60f552932152bb2281277f10",
     "status": "pending",
     "thumbnail": "default.png",
     "title": "Ultimate AWS Certified Developer Associate 2021 - NEW!",
@@ -201,9 +200,9 @@
     "createdBy": "60f6ce0e02f5102cea240402",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English",
-    "content":[
+    "language": "English",
+    "subtitle": "English",
+    "content": [
       "Pass the AWS Certified Developer Associate Certification (DVA-C01)",
       "Apply the right AWS services for your future real-world AWS projects",
       "Understand Serverless API using AWS Lambda, API Gateway, DynamoDB & Cognito",
@@ -212,11 +211,10 @@
       "Deploy an application using Elastic Beanstalk and AWS CICD tools with full automation",
       "Write infrastructure as code using AWS CloudFormation",
       "Master the CLI, SDK and IAM security best practices in EC2"
-      
     ]
   },
   {
-    "id": "60f552932152bb2281277f11",
+    "_id": "60f552932152bb2281277f11",
     "status": "active",
     "thumbnail": "default.png",
     "title": "The Complete Web Developer Course 2.0",
@@ -226,9 +224,9 @@
     "createdBy": "60f6ce0e02f5102cea240417",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English",
-    "content":[
+    "language": "English",
+    "subtitle": "English",
+    "content": [
       "Build websites and webapps",
       "Get a job as a junior web developer",
       "Start their own online business",
@@ -239,7 +237,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f12",
+    "_id": "60f552932152bb2281277f12",
     "status": "pending",
     "thumbnail": "default.png",
     "title": "Counselling Children & Adolescents",
@@ -249,9 +247,9 @@
     "createdBy": "60f6ce0e02f5102cea240405",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English",
-    "content":[
+    "language": "English",
+    "subtitle": "English",
+    "content": [
       "Learn how to work with children and adolescents in therapeutic settings",
       "Understand about the role of behavioural therapies & use of language when working with children",
       "Understand how therapy takes place: transformation, new skills, recovery",
@@ -261,7 +259,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f13",
+    "_id": "60f552932152bb2281277f13",
     "status": "active",
     "thumbnail": "default.png",
     "title": "Psychology and Therapy of Addictions",
@@ -271,9 +269,9 @@
     "createdBy": "60f6ce0e02f5102cea240411",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English",
-    "content":[
+    "language": "English",
+    "subtitle": "English",
+    "content": [
       "Understand Theories of Addictions",
       "Develop an awareness of alcohol and drug related disorders and issues",
       "Learn about working as a 'Helper' in addiction related settings",
@@ -283,7 +281,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f14",
+    "_id": "60f552932152bb2281277f14",
     "status": "pending",
     "thumbnail": "default.png",
     "title": "Natural Skincare :: Luscious herbal Recipes for Younger Skin",
@@ -293,9 +291,9 @@
     "createdBy": "60f6ce0e02f5102cea240413",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English",
-    "content":[
+    "language": "English",
+    "subtitle": "English",
+    "content": [
       "Deeply nourish the skin for long-term benefits so you look your best today and years from now",
       "Easy step-by-step instructions and simple recipes for your mature or dry skin",
       "Taylor the ingredients to your exact needs",
@@ -304,7 +302,7 @@
     ]
   },
   {
-    "id": "60f552932152bb2281277f15",
+    "_id": "60f552932152bb2281277f15",
     "status": "active",
     "thumbnail": "default.png",
     "title": "Makeup: Effortless Makeup for Real Women",
@@ -314,9 +312,9 @@
     "createdBy": "60f6ce0e02f5102cea240415",
     "createdAt": "1627196863542",
     "endedAt": "1627200463542",
-    "language":"English",
-    "subtitle":"English",
-    "content":[
+    "language": "English",
+    "subtitle": "English",
+    "content": [
       "Apply three full makeup looks - day, evening and night",
       "Do a full makeup look within a frantic busy schedule",
       "Look youthful, healthy and flawless every day",
