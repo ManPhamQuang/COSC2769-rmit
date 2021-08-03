@@ -21,7 +21,7 @@ const VideoChat = () => {
     async (event) => {
       event.preventDefault();
       setConnecting(true);
-      const data = await fetch("/video/token", {
+      const data = await fetch("http://localhost:5000/api/v1/videos/token", {
         method: "POST",
         body: JSON.stringify({
           identity: username,
@@ -31,7 +31,9 @@ const VideoChat = () => {
           "Content-Type": "application/json",
         },
       }).then((res) => res.json());
-      Video.connect(data.token, {
+      const token = data.data.token;
+      console.log(`Fetched Token = ${token}`);
+      Video.connect(token, {
         name: roomName,
       })
         .then((room) => {
