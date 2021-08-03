@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LocalParticipant from "./LocalParticipant";
+import RemoteParticipant from "./RemoteParticipant";
 import VideoRoomNavBar from "./VideoRoomNavBar";
 
 const Room = ({ roomName, room, handleLogout }) => {
@@ -7,6 +8,7 @@ const Room = ({ roomName, room, handleLogout }) => {
 
   useEffect(() => {
     const participantConnected = (participant) => {
+      console.log(participant);
       setParticipants((prevParticipants) => [...prevParticipants, participant]);
     };
 
@@ -30,10 +32,10 @@ const Room = ({ roomName, room, handleLogout }) => {
   // ));
 
   return (
-    <div className="room">
+    <div className="room relative">
       <div className="local-participant h-full">
         {room ? (
-          <Participant
+          <LocalParticipant
             key={room.localParticipant.sid}
             participant={room.localParticipant}
           />
@@ -42,7 +44,12 @@ const Room = ({ roomName, room, handleLogout }) => {
         )}
       </div>
       {/* <div className="remote-participants">{remoteParticipants}</div> */}
-      <VideoRoomNavBar roomName={roomName} handleLogout={handleLogout}/>
+      <div className="flex flex-row absolute bottom-20 left-2">
+        {participants.map((participant) => (
+          <RemoteParticipant key={participant.sid} participant={participant} />
+        ))}
+      </div>
+      <VideoRoomNavBar roomName={roomName} handleLogout={handleLogout} />
     </div>
   );
 };
