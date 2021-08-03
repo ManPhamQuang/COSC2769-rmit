@@ -27,7 +27,6 @@ const VideoChat = () => {
       console.log(`Fetched Token = ${token}`);
       Video.connect(token, {
         name: roomName,
-        video: false
       })
         .then((room) => {
           setConnecting(false);

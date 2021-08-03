@@ -10,10 +10,6 @@ function Chat({ username, roomName, token }) {
   const [channel, setChannel] = useState(null);
   const [text, setText] = useState("");
 
-  const room = roomName;
-  const email = username;
-
-  let scrollDiv = useRef(null);
   useEffect(async () => {
     setLoading(true);
 
@@ -36,14 +32,14 @@ function Chat({ username, roomName, token }) {
     });
 
     try {
-      const channel = await client.getChannelByUniqueName(room);
+      const channel = await client.getChannelByUniqueName(roomName);
       joinChannel(channel);
       setChannel(channel);
     } catch (err) {
       try {
         const channel = await client.createChannel({
-          uniqueName: room,
-          friendlyName: room,
+          uniqueName: roomName,
+          friendlyName: roomName,
         });
         joinChannel(channel);
       } catch {
@@ -69,14 +65,6 @@ function Chat({ username, roomName, token }) {
 
   const handleMessageAdded = (message) => {
     setMessages((messages) => [...messages, message]);
-    scrollToBottom();
-  };
-
-  const scrollToBottom = () => {
-    const scrollHeight = scrollDiv.current.scrollHeight;
-    const height = scrollDiv.current.clientHeight;
-    const maxScrollTop = scrollHeight - height;
-    scrollDiv.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
   };
 
   const sendMessage = () => {
@@ -91,26 +79,23 @@ function Chat({ username, roomName, token }) {
   return (
     <div>
       <p className="text-2xl">Chat Message</p>
-      <div ref={scrollDiv} className="w-2/3">
+      <div className="w-2/3">
         <div>
           {messages &&
-            room !== "chat" &&
             messages.map((message, index) => (
-              <ChatItem key={index} message={message} email={email} />
+              <ChatItem key={index} message={message} username={username} />
             ))}
         </div>
-        {room !== "chat" && (
-          <div className="flex space-x-4 my-4">
-            <input
-              type="text"
-              placeholder="Type Message"
-              onChange={(e) => updateText(e.target.value)}
-              value={text}
-              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-            />
-            <button onClick={sendMessage}>Send</button>
-          </div>
-        )}
+        <div className="flex space-x-4 my-4">
+          <input
+            type="text"
+            placeholder="Type Message"
+            onChange={(e) => updateText(e.target.value)}
+            value={text}
+            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          />
+          <button onClick={sendMessage}>Send</button>
+        </div>
       </div>
     </div>
   );

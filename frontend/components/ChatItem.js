@@ -1,7 +1,7 @@
 import React from "react";
 
-function ChatItem({ message, email }) {
-  const isOwnMessage = message.author === email;
+function ChatItem({ message, username }) {
+  const isOwnMessage = message.author === username;
   return (
     <div style={styles.listItem(isOwnMessage)}>
       <div style={styles.author}>{message.author}</div>
