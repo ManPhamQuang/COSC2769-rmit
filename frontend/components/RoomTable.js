@@ -2,6 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import axios from "axios";
 import DateFormatter from "../utils/DateFormat";
+import Link from "next/link";
 
 const fetcher = (url, token) =>
     axios
@@ -51,10 +52,20 @@ export default function RoomTable({ user }) {
                 <h3 className="text-lg font-medium leading-6 text-gray-900">
                     Your Rooms
                 </h3>
-                <p className="mt-1 text-sm text-gray-600">
-                    This list contains all rooms created by you. You can edit
-                    any room's detail by clicking on the row or the Edit button.
-                </p>
+                <div className="flex justify-between items-center">
+                    <p className="mt-1 text-sm text-gray-600">
+                        This list contains all rooms created by you. You can edit
+                        any room's detail by clicking on the row or the Edit button.
+                    </p>
+                    <Link href="/room/create">
+                    <button className="flex items-center hover:bg-indigo-600 p-2 rounded-md bg-indigo-500 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                        <span className="text-sm ">Create Room</span>
+                    </button>
+                    </Link>
+                </div>
             </div>
             <div className="mt-5 flex flex-col">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
