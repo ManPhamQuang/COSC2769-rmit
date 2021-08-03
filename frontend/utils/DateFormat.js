@@ -1,4 +1,5 @@
-export default function DateFormatter(str = "2021-07-19T10:27:38.016Z") {
+export default function DateFormatter(str = null) {
+    if (!str) return "";
     let date = new Date(str);
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
