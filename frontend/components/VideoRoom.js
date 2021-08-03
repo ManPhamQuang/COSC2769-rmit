@@ -27,10 +27,6 @@ const Room = ({ roomName, room, handleLogout }) => {
     };
   }, [room]);
 
-  // const remoteParticipants = participants.map((participant) => (
-  //   <Participant key={participant.sid} participant={participant} />
-  // ));
-
   return (
     <div className="room relative">
       <div className="local-participant h-full">
@@ -43,7 +39,6 @@ const Room = ({ roomName, room, handleLogout }) => {
           ""
         )}
       </div>
-      {/* <div className="remote-participants">{remoteParticipants}</div> */}
       <div className="flex flex-row absolute bottom-20 left-2">
         {participants.map((participant) => (
           <RemoteParticipant key={participant.sid} participant={participant} />

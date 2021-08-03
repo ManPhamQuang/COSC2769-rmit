@@ -9,7 +9,7 @@ const Lobby = ({
   connecting,
 }) => {
   return (
-    <form onSubmit={handleSubmit} className="w-1/2">
+    <form onSubmit={handleSubmit} className="w-1/3 mt-10 mx-auto">
       <h1 className="font-bold text-xl mb-4">Room Lobby:</h1>
       <div className="col-span-6 sm:col-span-3">
         <label
