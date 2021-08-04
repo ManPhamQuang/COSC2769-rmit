@@ -5,11 +5,16 @@ import useSWR from "swr";
 import SkeletonCard from "./SkeletonCard";
 import Carousel from "react-grid-carousel";
 
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+const fetcher = (url, params) =>
+    axios
+        .get(url, {
+            params: params,
+        })
+        .then((res) => res.data);
 
-export default function CardSlider() {
+export default function RoomCardsSlider({ params }) {
     const { data, error } = useSWR(
-        "http://localhost:5000/api/v1/rooms?limit=10",
+        ["http://localhost:5000/api/v1/rooms", params],
         fetcher
     );
 

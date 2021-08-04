@@ -2,6 +2,7 @@ import React from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import Tippy from "@tippyjs/react/headless";
 import DateFormatter from "../utils/DateFormat";
+import DateTimeFormatter from "../utils/DateTimeFormat";
 
 export default function Card({ props }) {
     const {
@@ -12,6 +13,7 @@ export default function Card({ props }) {
         description,
         thumbnail,
         createdAt,
+        startedAt,
         category,
         status,
     } = props;
@@ -36,9 +38,9 @@ export default function Card({ props }) {
                                     </span>
                                 </p>
                                 <p className="text-sm font-normal text-green-700">
-                                    Published on{" "}
+                                    Starts at{" "}
                                     <span className="font-semibold">
-                                        {DateFormatter(createdAt)}
+                                        {DateTimeFormatter(startedAt)}
                                     </span>
                                 </p>
                                 {category && (
