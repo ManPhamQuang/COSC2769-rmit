@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Video from "twilio-video";
 import Lobby from "./Lobby";
-import Room from "./Room";
 import { getTwilioToken } from "../utils/API"
+import VideoRoom from "./VideoRoom";
 
 const VideoChat = () => {
   const [username, setUsername] = useState("");
@@ -74,7 +74,7 @@ const VideoChat = () => {
   let render;
   if (room) {
     render = (
-      <Room username={username} roomName={roomName} room={room} handleLogout={handleLogout} token={token}/>
+      <VideoRoom username={username} roomName={roomName} room={room} handleLogout={handleLogout} token={token}/>
     );
   } else {
     render = (

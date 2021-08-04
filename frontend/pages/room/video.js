@@ -11,7 +11,7 @@ export default function Home() {
                     content="initial-scale=1.0, width=device-width"
                 />
             </Head>
-            <div className="container mx-auto p-5 lg:p-14">
+            <div className="">
                 <VideoChat></VideoChat>
             </div>
         </>
