@@ -57,7 +57,7 @@ export default function RoomDetailHeader({ room }) {
                     </div>
 
                     <div className="text-white text-2xl font-bold mt-2 xl:hidden">
-                        <p>$89.99</p>
+                        <p>${room.price}</p>
                     </div>
                     <div className="hidden xl:flex items-center mt-4 space-x-3 justify-center">
                         <button className="inline text-base text-white font-semibold border p-2 flex items-center hover:bg-gray-800">
@@ -100,7 +100,9 @@ export default function RoomDetailHeader({ room }) {
             </div>
             <div className="fixed inline-flex justify-evenly bottom-0 w-full bg-white z-10 p-2 border-t-2 space-x-4 xl:hidden">
                 <div className="inline-flex items-center ">
-                    <p className="inline text-2xl font-bold w-3/12">$89.99</p>
+                    <p className="inline text-2xl font-bold w-3/12">
+                        ${room.price}
+                    </p>
                 </div>
                 <button className="inline w-9/12 bg-black text-white p-2">
                     Buy now

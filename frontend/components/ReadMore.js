@@ -8,7 +8,7 @@ const ReadMore = ({ children }) => {
         setIsReadMore(!isReadMore);
     };
     return (
-        <p className="">
+        <span>
             {isReadMore ? text.slice(0, 500) : text}
             <div
                 onClick={toggleReadMore}
@@ -26,14 +26,14 @@ const ReadMore = ({ children }) => {
                     </span>
                 )}
             </div>
-        </p>
+        </span>
     );
 };
 
 const Description = () => {
     return (
         <div>
-            <p className="leading-relaxed text-base text-justify">
+            <p className="leading-relaxed text-sm text-justify lg:text-base">
                 <ReadMore>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Aenean aliquet, ante sed efficitur sodales, lorem velit

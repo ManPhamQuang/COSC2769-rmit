@@ -39,21 +39,25 @@ const teacherSelfIntroduction = [
 ];
 export default function RoomDetailBody({ room }) {
     return (
-        <div className="w-full block mx-auto lg:grid grid-cols-3 px-56">
-            <div className="block px-2 py-2 lg:col-span-2 px-24 py-6 space-y-8">
-                <div className="border border-gray-300 space-y-2 px-2 py-2 lg:space-y-4 px-12 py-4 ">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 lg:px-56">
+            <div className="col-span-1 px-4 py-2 lg:px-24 py-6 lg:col-span-2 space-y-8 ">
+                <div className="border border-gray-300 space-y-2 px-2 py-2 lg:space-y-4 lg:px-12 lg:py-4 ">
                     <p className="font-bold text-1xl lg:text-3xl">
                         What you'll learn
                     </p>
                     {courseInfor.features.map((feature, index) => (
                         <div className="" key={index}>
                             <CheckIcon className="h-4 w-4 inline mb-1" />
-                            <p className="inline">&nbsp;{feature}</p>
+                            <p className="inline text-sm lg:text-base">
+                                &nbsp;{feature}
+                            </p>
                         </div>
                     ))}
                 </div>
                 <div className="space-y-2">
-                    <p className="font-bold text-3xl">Description</p>
+                    <p className="font-bold text-1xl lg:text-3xl">
+                        Description
+                    </p>
                     <ReadMore />
                 </div>
                 <div>
