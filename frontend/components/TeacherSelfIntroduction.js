@@ -79,7 +79,7 @@ export default function teacherSelfIntroduction({ props }) {
                 </div>
             </div>
             <div className="mt-3">
-                <p className="mt-1 text-sm text-justify lg:text-base">
+                <p className="mt-1 text-sm text-justify mb-20 lg:text-base">
                     {props.seftIntroduction}
                 </p>
             </div>
