@@ -8,16 +8,16 @@ export default function Category() {
             .get("http://localhost:5000/api/v1/categories")
             .then((res) => setCategories(res.data.data.categories))
             .catch((err) => console.log(err));
-    });
+    }, []);
 
     return (
-        <div className="flex flex-wrap justify-around lg:justify-start">
+        <div className="flex flex-wrap justify-around lg:justify-start mt-10">
             {categories.map((category) => (
                 <React.Fragment key={category._id}>
                     <div className="hidden sm:inline-block flex-none w-52 group cursor-pointer mb-5 lg:mr-4 inline-block w-80 flex-none group cursor-pointer mb-5 ">
                         <div className="h-40 w-full lg:h-60">
                             <img
-                                src="/Python-language.png"
+                                src="/default.png"
                                 className="object-cover border rounded-md h-full w-full mix-blend-multiply lg:transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
                             />
                         </div>
