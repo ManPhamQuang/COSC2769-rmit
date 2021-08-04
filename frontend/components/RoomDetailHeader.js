@@ -10,16 +10,16 @@ import {
     CheckIcon,
 } from "@heroicons/react/solid";
 
-export default function RoomDetailHeader() {
+export default function RoomDetailHeader({ room }) {
     return (
         <div>
             <div className="bg-black z-0 w-full">
-                <div className="container leading-loose mx-auto w-full h-auto px-4 text-left py-5 xl:ml-80 xl:w-5/12 h-auto py-12">
+                <div className="container leading-loose mx-auto w-full h-auto px-4 py-5 text-center">
                     <p className="subpixel-antialiased text-white font-bold pb-2 text-1xl lg:text-4xl ">
-                        Python and JavaScript for beginners: Build 10 Projects
+                        {room.title}
                     </p>
                     <p className="subpixel-antialiased text-white text-base lg:text-2xl ">
-                        Learn to code using Python and JavaScript
+                        {room.description}
                     </p>
                     <p className="text-yellow-500 font-semibold inline">4.7</p>
                     <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
@@ -33,30 +33,33 @@ export default function RoomDetailHeader() {
                     <p className="text-white text-xs lg:text-base">
                         Created by Thien An
                     </p>
-                    <div className="items-center mt-1 block lg:flex ">
-                        <div>
-                            <ExclamationCircleIcon className="text-white h-5 w-5 inline" />
-                            <p className="text-white inline text-sm lg:text-base">
-                                &nbsp;Last updated 6/2021&nbsp;
-                            </p>
-                        </div>
-                        <div>
-                            <GlobeAltIcon className="text-white h-5 w-5 inline" />
-                            <p className="inline text-white text-sm lg:text-base">
-                                &nbsp;English&nbsp;
-                            </p>
-                        </div>
-                        <div>
-                            <DocumentTextIcon className="text-white h-5 w-5 inline" />
-                            <p className="inline text-white text-sm lg:text-base">
-                                &nbsp;English [Auto]&nbsp;
-                            </p>
+                    <div className="w-full mx-auto flex justify-center">
+                        <div className="items-center mt-1 block lg:flex ">
+                            <div>
+                                <ExclamationCircleIcon className="text-white h-5 w-5 inline" />
+                                <p className="text-white inline text-sm lg:text-base">
+                                    &nbsp;Last updated 6/2021&nbsp;
+                                </p>
+                            </div>
+                            <div>
+                                <GlobeAltIcon className="text-white h-5 w-5 inline" />
+                                <p className="inline text-white text-sm lg:text-base">
+                                    &nbsp;English&nbsp;
+                                </p>
+                            </div>
+                            <div>
+                                <DocumentTextIcon className="text-white h-5 w-5 inline" />
+                                <p className="inline text-white text-sm lg:text-base">
+                                    &nbsp;English [Auto]&nbsp;
+                                </p>
+                            </div>
                         </div>
                     </div>
+
                     <div className="text-white text-2xl font-bold mt-2 xl:hidden">
                         <p>$89.99</p>
                     </div>
-                    <div className="hidden xl:flex items-center mt-4 space-x-3">
+                    <div className="hidden xl:flex items-center mt-4 space-x-3 justify-center">
                         <button className="inline text-base text-white font-semibold border p-2 flex items-center hover:bg-gray-800">
                             Wishlist&nbsp;
                             <HeartIcon className="text-white h-5 w-5 inline" />
@@ -95,25 +98,6 @@ export default function RoomDetailHeader() {
                     </div>
                 </div>
             </div>
-            {/* <div className="hidden xl:block absolute bg-white z-10 border w-80 h-screen right-1.5 top-14 mr-72 shadow-xl">
-                <div className="px-5 py-4 space-y-3">
-                    <p className="text-4xl subpixel-antialiased font-bold">
-                        $89.99
-                    </p>
-                    <button className="text-1xl text-white font-bold bg-purple-600 py-3 w-full hover:bg-purple-800">
-                        Add to cart
-                    </button>
-                    <button className="text-1xl font-bold py-3 w-full hover:bg-gray-300 border border-black">
-                        Buy now
-                    </button>
-                    <p className="text-sm text-center">
-                        30-Day Money-Back Guarantee
-                    </p>
-                    <p className="text-base font-bold ">
-                        This workshop includes:
-                    </p>
-                </div>
-            </div> */}
             <div className="fixed inline-flex justify-evenly bottom-0 w-full bg-white z-10 p-2 border-t-2 space-x-4 xl:hidden">
                 <div className="inline-flex items-center ">
                     <p className="inline text-2xl font-bold w-3/12">$89.99</p>
