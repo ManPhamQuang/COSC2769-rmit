@@ -2,6 +2,7 @@ import React from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import Tippy from "@tippyjs/react/headless";
 import DateFormatter from "../utils/DateFormat";
+import DateTimeFormatter from "../utils/DateTimeFormat";
 
 export default function Card({ props }) {
     const {
@@ -12,6 +13,7 @@ export default function Card({ props }) {
         description,
         thumbnail,
         createdAt,
+        startedAt,
         category,
         status,
     } = props;
@@ -36,17 +38,21 @@ export default function Card({ props }) {
                                     </span>
                                 </p>
                                 <p className="text-sm font-normal text-green-700">
-                                    Published on{" "}
+                                    Starts at{" "}
                                     <span className="font-semibold">
-                                        {DateFormatter(createdAt)}
+                                        {DateTimeFormatter(startedAt)}
                                     </span>
                                 </p>
-                                <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
-                                    <p className="text-xs font-semibold mx-auto text-center">
-                                        {category.name}
-                                    </p>
+                                {category && (
+                                    <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
+                                        <p className="text-xs font-semibold mx-auto text-center">
+                                            {category?.name}
+                                        </p>
+                                    </div>
+                                )}
+                                <div className="line-clamp-5">
+                                    {description}
                                 </div>
-                                <div className="">{description}</div>
                                 <button
                                     className="bg-indigo-600 mt-3 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full disabled:bg-indigo-200 disabled:cursor-not-allowed"
                                     type="button"
@@ -88,11 +94,13 @@ export default function Card({ props }) {
                                 (630,406)
                             </p>
                             <h1 className="font-bold">${price}</h1>
-                            <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
-                                <p className="text-xs font-semibold mx-auto text-center">
-                                    {category.name}
-                                </p>
-                            </div>
+                            {category && (
+                                <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
+                                    <p className="text-xs font-semibold mx-auto text-center">
+                                        {category?.name}
+                                    </p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

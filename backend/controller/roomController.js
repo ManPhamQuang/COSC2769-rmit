@@ -38,10 +38,11 @@ exports.createRoom = catchAsync(async (req, res, next) => {
   // As soon as we create a new room, we assign a UUID to it
   // It's where the student can join a room later
   // e.g.: domain.com/api/v1/rooms/join?uuid=xxx-xxx-xxx-xxx
-  req.body.uuid = uuidv4();
-
+  const data = { ...req.body };
+  data.uuid = uuidv4();
+  data.createdBy = req.user.id;
   // Create new room
-  const room = await Room.create(req.body);
+  const room = await Room.create(data);
   res.status(201).json({
     status: "success",
     data: {
@@ -75,6 +76,7 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
   const createdByUser = room.createdBy;
 
   // check if this room is created by expert
+  const user = req.user;
   if (user.role == "expert") {
     isAbleToJoin = createdByUser.id == user.id;
   }

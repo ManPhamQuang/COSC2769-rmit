@@ -11,6 +11,7 @@ const roomSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  startedAt: Date,
   endedAt: Date,
   status: {
     type: String,
@@ -34,7 +35,7 @@ const roomSchema = new mongoose.Schema({
   },
   url: String,
   videoUrl: String,
-  uuid: String
+  uuid: String,
 });
 
 module.exports = mongoose.model("Room", roomSchema);
