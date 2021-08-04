@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Video from "twilio-video";
 import Lobby from "./Lobby";
+import { getTwilioToken } from "../utils/API"
 import VideoRoom from "./VideoRoom";
 
 const VideoChat = () => {
@@ -8,7 +9,7 @@ const VideoChat = () => {
   const [roomName, setRoomName] = useState("");
   const [room, setRoom] = useState(null);
   const [connecting, setConnecting] = useState(false);
-
+  const [token, setToken] = useState(null);
   const handleUsernameChange = useCallback((event) => {
     setUsername(event.target.value);
   }, []);
@@ -21,17 +22,8 @@ const VideoChat = () => {
     async (event) => {
       event.preventDefault();
       setConnecting(true);
-      const data = await fetch("http://localhost:5000/api/v1/videos/token", {
-        method: "POST",
-        body: JSON.stringify({
-          identity: username,
-          room: roomName,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then((res) => res.json());
-      const token = data.data.token;
+      const token = await getTwilioToken(username, roomName);
+      setToken(token);
       console.log(`Fetched Token = ${token}`);
       Video.connect(token, {
         name: roomName,
@@ -82,7 +74,7 @@ const VideoChat = () => {
   let render;
   if (room) {
     render = (
-      <VideoRoom roomName={roomName} room={room} handleLogout={handleLogout} />
+      <VideoRoom username={username} roomName={roomName} room={room} handleLogout={handleLogout} token={token}/>
     );
   } else {
     render = (

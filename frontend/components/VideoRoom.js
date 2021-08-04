@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Chat from "./Chat";
 import LocalParticipant from "./LocalParticipant";
 import RemoteParticipant from "./RemoteParticipant";
 import VideoRoomNavBar from "./VideoRoomNavBar";
 
-const Room = ({ roomName, room, handleLogout }) => {
+const Room = ({ username, roomName, room, handleLogout, token}) => {
   const [participants, setParticipants] = useState([]);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ const Room = ({ roomName, room, handleLogout }) => {
           <RemoteParticipant key={participant.sid} participant={participant} />
         ))}
       </div>
+      <Chat username={username} roomName={roomName} token={token}></Chat>
       <VideoRoomNavBar roomName={roomName} handleLogout={handleLogout} />
     </div>
   );
