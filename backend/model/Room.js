@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 
 const roomSchema = new mongoose.Schema({
-  title: String,
-  description: String,
+  title: { type: String, required: [true, "Room must have a title"] },
+  description: {
+    type: String,
+    required: [true, "Room must have a description"],
+  },
   price: {
     type: Number,
     required: [true, "Price is required"],
@@ -28,10 +31,12 @@ const roomSchema = new mongoose.Schema({
   createdBy: {
     type: mongoose.Types.ObjectId,
     ref: "User",
+    required: [true, "Room must be created by an expert"],
   },
   category: {
     type: mongoose.Types.ObjectId,
     ref: "Category",
+    required: [true, "Room must have a category"],
   },
   url: String,
   videoUrl: String,
