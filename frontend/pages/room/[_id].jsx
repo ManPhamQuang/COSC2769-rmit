@@ -2,16 +2,49 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import useSWR from "swr";
 import Card from "../../components/Card";
+import router from "next/router";
 
-const fetcher = (url) => axios.get(url).then((res) => res.data.data);
+const roomFetcher = (url) => axios.get(url).then((res) => res.data.data);
+const userFetcher = (url, token) =>
+  axios
+    .get(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => res.data.data);
 
 export default function RoomDetail() {
   const router = useRouter();
   const _id = router.query._id;
-
   const url = `http://localhost:5000/api/v1/rooms/${_id}`;
-  const { data, error } = useSWR(_id ? url : null, _id ? fetcher : null);
-  console.log(data);
+
+  // Fix bug SWR with query undefined
+  const { data, roomErr } = useSWR(_id ? url : null, _id ? roomFetcher : null);
+
+  // Fix bug localStorage undefined in NextJS
+  const getAccessToken = () => {
+    let accessToken = null;
+    if (typeof window !== "undefined") {
+      accessToken = localStorage.getItem("accessToken") ?? null;
+    }
+    return accessToken;
+  };
+
+  let accessToken = getAccessToken();
+  const { data: user, userErr } = useSWR(
+    ["http://localhost:5000/api/v1/users/getMe", accessToken],
+    userFetcher
+  );
+
+  const handleJoinRoom = (e) => {
+    console.log(_id);
+    console.log(user);
+    console.log(data.room);
+    if (!accessToken) {
+      router.push("/login");
+    }
+
+    e.preventDefault();
+  };
 
   return (
     <div>
@@ -25,6 +58,7 @@ export default function RoomDetail() {
               <button
                 className="bg-indigo-600 mt-4 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full "
                 type="button"
+                onClick={handleJoinRoom}
               >
                 Join Room
               </button>
