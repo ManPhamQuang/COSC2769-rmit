@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import useSWR from "swr";
 import Card from "../../components/Card";
-import router from "next/router";
 
 const roomFetcher = (url) => axios.get(url).then((res) => res.data.data);
 const userFetcher = (url, token) =>
@@ -42,7 +41,10 @@ export default function RoomDetail() {
     if (!accessToken) {
       router.push("/login");
     }
-
+    router.push({
+        pathname: '/room/join',
+        query: { roomID: _id },
+    });
     e.preventDefault();
   };
 
