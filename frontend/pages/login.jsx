@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { useState, useRef, useReducer } from "react";
+import { useState, useRef, useReducer, useEffect } from "react";
 import { login } from "../context/authContext/apiCalls";
 import AuthReducer from "../context/authContext/AuthReducer";
+import router from "next/router";
 
 const INITIAL_STATE = {
   user: null,
@@ -21,8 +22,28 @@ const Login = () => {
 
   const handleLogin = (e) => {
     login({ email, password }, dispatch);
+    router.push("/");
     e.preventDefault();
   };
+
+  const getAccessToken = () => {
+    let accessToken = null;
+
+    // Fix bug localStorage undefined in NextJS
+    if (typeof window !== "undefined") {
+      accessToken = localStorage.getItem("accessToken") ?? null;
+    }
+    return accessToken;
+  }
+
+  useEffect(() => {
+    let accessToken = getAccessToken();
+
+    // Navigate user to Homepage if find token
+    if (accessToken) {
+      router.push("/");
+    }
+  },[]);
 
   return (
     <div className="container mt-20 mx-auto px-4 h-full">

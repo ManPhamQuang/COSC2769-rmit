@@ -63,14 +63,22 @@ const Create = () => {
 
   const isInvalid = title === "" || description === "" || price === "" || categoryID === "";
 
-  useEffect(() => {
-    // Fix bug localStorage undefined in NextJS
+  const getAccessToken = () => {
     let accessToken = null;
+
+    // Fix bug localStorage undefined in NextJS
     if (typeof window !== "undefined") {
       accessToken = localStorage.getItem("accessToken") ?? null;
     }
+    return accessToken;
+  }
+
+  useEffect(() => {
+    let accessToken = getAccessToken();
+
+    // Navigate user to Login page if can not find token
     if (!accessToken) {
-      router.push("/signup");
+      router.push("/login");
     }
 
     // Fetch all available categories
@@ -100,14 +108,7 @@ const Create = () => {
       startedAt: startDate,
     };
 
-    // Fix bug localStorage undefined in NextJS
-    let accessToken = null;
-    if (typeof window !== "undefined") {
-      accessToken = localStorage.getItem("accessToken") ?? null;
-    }
-    // if (!accessToken) {
-    //   router.push("/signup");
-    // }
+    let accessToken = getAccessToken();
 
     dispatchRoom({ type: "ROOM_LOADING" });
     axios

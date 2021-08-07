@@ -35,6 +35,16 @@ const Signup = () => {
     e.preventDefault();
   };
 
+  const getAccessToken = () => {
+    let accessToken = null;
+
+    // Fix bug localStorage undefined in NextJS
+    if (typeof window !== "undefined") {
+      accessToken = localStorage.getItem("accessToken") ?? null;
+    }
+    return accessToken;
+  }
+
   return (
     <div className="container mt-20 mx-auto px-4 h-full">
       <div className="flex content-center items-center justify-center h-full ">
