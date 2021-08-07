@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { useState, useRef, useReducer } from "react";
+import { useState, useRef, useReducer, useEffect } from "react";
 import { signup } from "../context/authContext/apiCalls";
 import AuthReducer from "../context/authContext/AuthReducer";
+import router from "next/router";
 
 const INITIAL_STATE = {
   user: null,
@@ -32,6 +33,7 @@ const Signup = () => {
 
   const handleRegister = (e) => {
     signup({ name, email, password, passwordConfirm, role }, dispatch);
+    router.push("/");
     e.preventDefault();
   };
 
@@ -44,6 +46,15 @@ const Signup = () => {
     }
     return accessToken;
   }
+
+  useEffect(() => {
+    let accessToken = getAccessToken();
+    alert(accessToken);
+    // Navigate user to Homepage if find token
+    if (accessToken) {
+      router.push("/");
+    }
+  },[]);
 
   return (
     <div className="container mt-20 mx-auto px-4 h-full">
