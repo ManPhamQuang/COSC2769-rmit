@@ -7,8 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const INIT_CATEGORY = [
-  { name: "Web Development", _id: "61026b57c6afff6b84054269" },
-  { name: "Data Science", _id: "61026b63c6afff6b8405426b" },
+  { name: "Select Category" },
 ];
 
 const roomReducer = (state, action) => {
@@ -49,15 +48,11 @@ const Create = () => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   // State to prepare data for server request
-  const [categoryID, setCategoryID] = useState(selectedCategory._id);
+  const [categoryID, setCategoryID] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-
-  const titleRef = useRef();
-  const descRef = useRef();
-  const priceRef = useRef();
 
   // Reducer for handling state when creating room
   const [room, dispatchRoom] = useReducer(roomReducer, {
@@ -209,8 +204,7 @@ const Create = () => {
                           step="0.01"
                           className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
                           placeholder="0.00"
-                          ref={priceRef}
-                          onChange={() => setPrice(priceRef.current.value)}
+                          onChange={(e) => setPrice(e.target.value)}
                         />
                       </div>
                     </div>
@@ -224,8 +218,7 @@ const Create = () => {
                       type="text"
                       autoComplete="email"
                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      ref={titleRef}
-                      onChange={() => setTitle(titleRef.current.value)}
+                      onChange={(e) => setTitle(e.target.value)}
                     />
                   </div>
                   <div className="my-2">
@@ -237,8 +230,7 @@ const Create = () => {
                         rows="5"
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         placeholder="Description about this chatroom"
-                        ref={descRef}
-                        onChange={() => setDescription(descRef.current.value)}
+                        onChange={(e) => setDescription(e.target.value)}
                       ></textarea>
                     </div>
                     <p className="mt-2 text-sm text-gray-500">
