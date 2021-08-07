@@ -53,7 +53,7 @@ exports.createRoom = catchAsync(async (req, res, next) => {
 });
 
 exports.joinRoom = catchAsync(async (req, res, next) => {
-
+  console.log("----------------")
   // Find the room
   const room = await Room.findById(req.query.id)
     .populate("category")
