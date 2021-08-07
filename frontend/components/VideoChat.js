@@ -4,9 +4,10 @@ import Lobby from "./Lobby";
 import { getTwilioToken } from "../utils/API"
 import VideoRoom from "./VideoRoom";
 
-const VideoChat = () => {
+const VideoChat = ({props}) => {
+  const {title} = props;
   const [username, setUsername] = useState("");
-  const [roomName, setRoomName] = useState("");
+  const [roomName, setRoomName] = useState(title);
   const [room, setRoom] = useState(null);
   const [connecting, setConnecting] = useState(false);
   const [token, setToken] = useState(null);
@@ -53,6 +54,7 @@ const VideoChat = () => {
   }, []);
 
   useEffect(() => {
+    console.log(title);
     if (room) {
       const tidyUp = (event) => {
         if (event.persisted) {
