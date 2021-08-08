@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import useSWR from "swr";
 import axios from "axios";
 import DateFormatter from "../utils/DateFormat";
@@ -21,12 +21,18 @@ export default function RoomTable({ user }) {
     fetcher
   );
 
+  const [copied, setCopied] = useState(false);
   const handleJoinButtonClick = (roomID) => {
     router.push({
         pathname: '/room/join',
         query: { roomID: roomID },
     });
   };
+  const handleCopyButtonClick = (shareURL) => {
+    console.log("Copied to clipboard");
+    console.log(shareURL);
+  }
+
   const SkeletonRows = () => (
     <tbody className="animate-pulse bg-white divide-y divide-gray-200">
       <tr>
@@ -196,10 +202,7 @@ export default function RoomTable({ user }) {
                             </button>
                           </td>
                           <td className="inline-block m-1 w-20 h-8 text-xs pt-1.5 font-medium text-center  transition bg-transparent border-2 border-indigo-500 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-100 focus:outline-none">
-                            {/* <button href="#" className=" text-indigo-600">
-                              Copy Link
-                            </button> */}
-                            <CopyLink props={room}/>
+                            <CopyLink id={room._id} handleCopyButtonClick={handleCopyButtonClick}/>
                           </td>
                           <td className="px-3 py-2 whitespace-nowrap  text-sm font-medium ">
                             <a
