@@ -5,6 +5,8 @@ import DateFormatter from "../utils/DateFormat";
 import Link from "next/link";
 import router from "next/router";
 
+import CopyLink from "./CopyLink";
+
 const fetcher = (url, token) =>
   axios
     .get(url, {
@@ -194,9 +196,10 @@ export default function RoomTable({ user }) {
                             </button>
                           </td>
                           <td className="inline-block m-1 w-20 h-8 text-xs pt-1.5 font-medium text-center  transition bg-transparent border-2 border-indigo-500 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-100 focus:outline-none">
-                            <a href="#" className=" text-indigo-600">
+                            {/* <button href="#" className=" text-indigo-600">
                               Copy Link
-                            </a>
+                            </button> */}
+                            <CopyLink props={room}/>
                           </td>
                           <td className="px-3 py-2 whitespace-nowrap  text-sm font-medium ">
                             <a
