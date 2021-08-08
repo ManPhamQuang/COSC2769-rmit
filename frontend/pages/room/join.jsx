@@ -28,18 +28,18 @@ export default function Join() {
 
   let accessToken = getAccessToken();
 
-  // Call /join Endpoint (NOTE: Fix bug SWR with query undefined)
-  const { data, roomErr } = useSWR(
-    roomID ? [url, accessToken] : null,
-    roomID ? fetcher : null
-  );
-
   useEffect(() => {
     // Navigate user to Login page if can not find token
     if (!accessToken) {
       router.push("/login");
     }
   }, []);
+
+  // Call /join Endpoint (NOTE: Fix bug SWR with query undefined)
+  const { data, roomErr } = useSWR(
+    roomID ? [url, accessToken] : null,
+    roomID ? fetcher : null
+  );
 
   return (
     <div className="">

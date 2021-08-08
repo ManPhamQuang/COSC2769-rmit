@@ -4,22 +4,16 @@ import useSWR from "swr";
 import Card from "../../components/Card";
 
 const roomFetcher = (url) => axios.get(url).then((res) => res.data.data);
-const userFetcher = (url, token) =>
-  axios
-    .get(url, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then((res) => res.data.data);
 
 export default function RoomDetail() {
   const router = useRouter();
   const _id = router.query._id;
   const url = `http://localhost:5000/api/v1/rooms/${_id}`;
 
-  // Fix bug SWR with query undefined
+  //Fetch room detail from /room/:id Endpoint. (NOTE: Check _id to fix bug SWR with query undefined)
   const { data, roomErr } = useSWR(_id ? url : null, _id ? roomFetcher : null);
 
-  // Fix bug localStorage undefined in NextJS
+  //Get access token from local storage. (NOTE: Check window type to fix bug localStorage undefined in NextJS)
   const getAccessToken = () => {
     let accessToken = null;
     if (typeof window !== "undefined") {
@@ -27,17 +21,11 @@ export default function RoomDetail() {
     }
     return accessToken;
   };
-
-  let accessToken = getAccessToken();
-  const { data: user, userErr } = useSWR(
-    ["http://localhost:5000/api/v1/users/getMe", accessToken],
-    userFetcher
-  );
-
+  
   const handleJoinRoom = (e) => {
-    console.log(_id);
-    console.log(user);
-    console.log(data.room);
+    let accessToken = getAccessToken();
+
+    // Navigate to Log In page if can not find access Token
     if (!accessToken) {
       router.push("/login");
     }
@@ -51,7 +39,7 @@ export default function RoomDetail() {
   return (
     <div>
       <h1>Room Detail page</h1>
-      <h2>{_id}</h2>
+      <h2>RoomID: {_id}</h2>
       {data && (
         <div className="container mt-20 mx-auto px-4 h-full">
           <div className="flex content-center items-center justify-center h-full ">
