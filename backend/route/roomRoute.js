@@ -14,11 +14,11 @@ const {
 } = require("../controller/authController");
 
 router.get("/", getAllRooms);
+router.get("/join", isAuthenticated, joinRoom);
 router.get("/:id", getRoom);
-// Route for login users
-router.use(isAuthenticated);
-router.get("/join", joinRoom);
+
 // Route only for experts
+router.use(isAuthenticated);
 router.use(limitToOnly("expert"));
 router.post("/", createRoom);
 router.patch("/:id", updateRoom);
