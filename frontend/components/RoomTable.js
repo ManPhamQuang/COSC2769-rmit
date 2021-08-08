@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import useSWR from "swr";
 import axios from "axios";
 import DateFormatter from "../utils/DateFormat";
@@ -24,14 +24,14 @@ export default function RoomTable({ user }) {
   const [copied, setCopied] = useState(false);
   const handleJoinButtonClick = (roomID) => {
     router.push({
-        pathname: '/room/join',
-        query: { roomID: roomID },
+      pathname: "/room/join",
+      query: { roomID: roomID },
     });
   };
   const handleCopyButtonClick = (shareURL) => {
-    console.log("Copied to clipboard");
     console.log(shareURL);
-  }
+    setCopied(true);
+  };
 
   const SkeletonRows = () => (
     <tbody className="animate-pulse bg-white divide-y divide-gray-200">
@@ -65,6 +65,23 @@ export default function RoomTable({ user }) {
   return (
     <div className="p-5 lg:p-10">
       <div className="">
+        {copied && (
+          <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500 z-40">
+            <span className="text-xl inline-block mr-5 align-middle">
+              <i className="fas fa-bell" />
+            </span>
+            <span className="inline-block align-middle mr-8">
+              <b>COPIED!</b> This room URL has been
+              copied to your clipboard.
+            </span>
+            <button
+              className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+              onClick={() => setCopied(false)}
+            >
+              <span>×</span>
+            </button>
+          </div>
+        )}
         <h3 className="text-lg font-medium leading-6 text-gray-900">
           Your Rooms
         </h3>
@@ -184,7 +201,9 @@ export default function RoomTable({ user }) {
                             {room.category?.name}
                           </td>
                           <td>
-                            <button onClick={() => handleJoinButtonClick(room._id)}>
+                            <button
+                              onClick={() => handleJoinButtonClick(room._id)}
+                            >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-6 w-6 ml-3 "
@@ -202,7 +221,10 @@ export default function RoomTable({ user }) {
                             </button>
                           </td>
                           <td className="inline-block m-1 w-20 h-8 text-xs pt-1.5 font-medium text-center  transition bg-transparent border-2 border-indigo-500 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-100 focus:outline-none">
-                            <CopyLink id={room._id} handleCopyButtonClick={handleCopyButtonClick}/>
+                            <CopyLink
+                              id={room._id}
+                              handleCopyButtonClick={handleCopyButtonClick}
+                            />
                           </td>
                           <td className="px-3 py-2 whitespace-nowrap  text-sm font-medium ">
                             <a
