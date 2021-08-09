@@ -4,7 +4,7 @@ import useSWR from "swr";
 import Card from "../../components/Card";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext/AuthContext";
-import MainNavBar from "../../components/navbar/MainNavBar";
+import NavBar from "../../components/navbar/NavBar";
 
 const roomFetcher = (url) => axios.get(url).then((res) => res.data.data);
 
@@ -33,7 +33,7 @@ export default function RoomDetail() {
 
   return (
     <div>
-      <MainNavBar/>
+      <NavBar/>
       <div className="container mx-auto h-full">
         {data && (
           <div className="p-2">

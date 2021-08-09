@@ -5,10 +5,10 @@ import axios from "axios";
 import dynamic from 'next/dynamic'
 
 // Use dynamic import NextJS
-const AuthNavBar = dynamic(() => import('./AuthNavBar'), {ssr: false});
-const RegularNavbar = dynamic(() => import('./RegularNavbar'), {ssr: false});
+const NavBarAuthen = dynamic(() => import('./NavBarAuthen.js'), {ssr: false});
+const NavBarNonAuthen = dynamic(() => import('./NavBarNonAuthen'), {ssr: false});
 
-const MainNavBar = () => {
+const NavBar = () => {
   const { state, dispatch } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
 
@@ -21,9 +21,9 @@ const MainNavBar = () => {
 
   return (
     <div>
-      {state.user ? <AuthNavBar categories={categories} user={state.user} /> : <RegularNavbar categories={categories}/>}
+      {state.user ? <NavBarAuthen categories={categories} user={state.user} /> : <NavBarNonAuthen categories={categories}/>}
     </div>
   )
 };
 
-export default MainNavBar;
+export default NavBar;

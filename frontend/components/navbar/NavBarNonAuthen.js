@@ -3,7 +3,7 @@ import Link from "next/link";
 import NavCategory from "./NavCategory";
 import SearchBar from "./SearchBar";
 
-const RegularNavbar = ({categories}) => {
+const NavBarNonAuthen = ({categories}) => {
   return (
     <div className="bg-white h-20 py-2 px-12 flex justify-between items-center text-base fixed w-full z-20 shadow-md">
       <div className="flex items-center font-medium text-indigo-900 relative w-1/5">
@@ -35,4 +35,4 @@ const RegularNavbar = ({categories}) => {
   );
 }
 
-export default RegularNavbar;
+export default NavBarNonAuthen;

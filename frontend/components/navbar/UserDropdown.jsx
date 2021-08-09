@@ -1,7 +1,20 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../context/authContext/AuthContext";
+import { logout } from "../../context/authContext/AuthActions";
+import router from "next/router";
 
 const UserDropdown = ({ user }) => {
+  const { state, dispatch } = useContext(AuthContext);
+
+  const handleLogout = (e) => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("accessToken");
+    dispatch(logout());
+    router.push("/login");
+    e.preventDefault();
+  };
+
   return (
     <>
       <Menu as="div" className="relative inline-block text-left mr-3">
@@ -56,6 +69,7 @@ const UserDropdown = ({ user }) => {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={handleLogout}
                     className={`${
                       active ? "text-indigo-600" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}

@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { login } from "../context/authContext/apiCalls";
 import router from "next/router";
 import { AuthContext } from "../context/authContext/AuthContext";
-import MainNavBar from "../components/navbar/MainNavBar";
+import NavBar from "../components/navbar/NavBar";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ const Login = () => {
 
   return (
     <div>
-      <MainNavBar/>
+      <NavBar/>
       <div className="container mx-auto p-4 h-full">
         <div className="flex content-center items-center justify-center h-full mt-32">
           <div className="w-full lg:w-4/12 px-4">
