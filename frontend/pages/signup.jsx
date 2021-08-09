@@ -1,15 +1,8 @@
 import Link from "next/link";
-import { useState, useRef, useReducer, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { signup } from "../context/authContext/apiCalls";
-import AuthReducer from "../context/authContext/AuthReducer";
 import router from "next/router";
-
-const INITIAL_STATE = {
-  user: null,
-  token: null,
-  isFetching: false,
-  error: null,
-};
+import { AuthContext } from '../context/authContext/AuthContext';
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -18,7 +11,7 @@ const Signup = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [role, setRole] = useState("user");
 
-  const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
+  const {state, dispatch} = useContext(AuthContext);
 
   const isInvalid =
     name === "" || email === "" || password === "" || passwordConfirm === "";
@@ -32,20 +25,9 @@ const Signup = () => {
     e.preventDefault();
   };
 
-  const getAccessToken = () => {
-    let accessToken = null;
-
-    // Get accessToken from local Storage. (NOTE: check window type to fix bug localStorage undefined in NextJS)
-    if (typeof window !== "undefined") {
-      accessToken = localStorage.getItem("accessToken") ?? null;
-    }
-    return accessToken;
-  }
-
   useEffect(() => {
-    let accessToken = getAccessToken();
     // Navigate user to Homepage if find token
-    if (accessToken) {
+    if (state.token) {
       router.push("/");
     }
   },[]);
