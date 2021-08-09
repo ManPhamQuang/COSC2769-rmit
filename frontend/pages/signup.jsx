@@ -43,7 +43,7 @@ const Signup = () => {
                   Sign up with credentials
                 </h6>
               </div>
-              <form>
+              <form onSubmit={handleRegister}>
                 <div className="relative w-full mb-3 ">
                   <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
                     Username
@@ -135,9 +135,8 @@ const Signup = () => {
                   ) : (
                     <button
                       className="bg-indigo-600 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full disabled:bg-indigo-200 disabled:cursor-not-allowed"
-                      type="button"
+                      type="submit"
                       disabled={isInvalid}
-                      onClick={handleRegister}
                     >
                       Sign up
                     </button>

@@ -14,7 +14,7 @@ export const AuthContextProvider = ({ children }) => {
   };
   const token = getAccessToken();
 
-  // Get accessToken from local Storage. (NOTE: check window type to fix bug localStorage undefined in NextJS)
+  // Get user from local Storage. (NOTE: check window type to fix bug localStorage undefined in NextJS)
   const getUser = () => {
     let user = null;
     if (typeof window !== "undefined") {

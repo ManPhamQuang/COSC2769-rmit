@@ -1,10 +1,12 @@
-import { useState, useReducer, useEffect, useRef } from "react";
+import { useState, useReducer, useEffect, useContext } from "react";
 import axios from "axios";
 import router from "next/router";
 import CategoryDropDown from "../../components/CategoryDropDown";
 
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from '../../context/authContext/AuthContext';
 
 const INIT_CATEGORY = [
   { name: "Select Category" },
@@ -54,6 +56,8 @@ const Create = () => {
   const [price, setPrice] = useState("");
   const [startDate, setStartDate] = useState(new Date());
 
+  const {state, dispatch} = useContext(AuthContext);
+
   // Reducer for handling state when creating room
   const [room, dispatchRoom] = useReducer(roomReducer, {
     data: {},
@@ -63,28 +67,16 @@ const Create = () => {
 
   const isInvalid = title === "" || description === "" || price === "" || categoryID === "";
 
-  const getAccessToken = () => {
-    let accessToken = null;
-
-    // Fix bug localStorage undefined in NextJS
-    if (typeof window !== "undefined") {
-      accessToken = localStorage.getItem("accessToken") ?? null;
-    }
-    return accessToken;
-  }
-
   useEffect(() => {
-    let accessToken = getAccessToken();
-
     // Navigate user to Login page if can not find token
-    if (!accessToken) {
+    if (!state.token) {
       router.push("/login");
     }
 
     // Fetch all available categories
     axios
       .get("http://localhost:5000/api/v1/categories", {
-        headers: { Authorization: `Bearer ${accessToken}` },
+        headers: { Authorization: `Bearer ${state.token}` },
       })
       .then((response) => {
         setCategories(response.data.data.categories);
@@ -108,12 +100,10 @@ const Create = () => {
       startedAt: startDate,
     };
 
-    let accessToken = getAccessToken();
-
     dispatchRoom({ type: "ROOM_LOADING" });
     axios
       .post("http://localhost:5000/api/v1/rooms", data, {
-        headers: { Authorization: `Bearer ${accessToken}` },
+        headers: { Authorization: `Bearer ${state.token}` },
       })
       .then((response) => {
         dispatchRoom({
@@ -177,7 +167,7 @@ const Create = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 col-span-3 lg:col-span-2">
-            <form>
+            <form onSubmit={handleCreateButtonClick}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-4 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
@@ -293,7 +283,7 @@ const Create = () => {
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
                     className="inline-flex justify-center py-2 px-4 bg-indigo-600 text-white active:bg-indigo-700 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 disabled:bg-indigo-200 disabled:cursor-not-allowed"
-                    onClick={handleCreateButtonClick}
+                    type="submit"
                     disabled={isInvalid}
                   >
                     Create Room
