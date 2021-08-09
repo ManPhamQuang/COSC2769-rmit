@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import useSWR from "swr";
 import Card from "../../components/Card";
+import { useContext } from 'react';
+import { AuthContext } from '../../context/authContext/AuthContext';
 
 const roomFetcher = (url) => axios.get(url).then((res) => res.data.data);
 
@@ -10,25 +12,17 @@ export default function RoomDetail() {
   const _id = router.query._id;
   const url = `http://localhost:5000/api/v1/rooms/${_id}`;
 
-  //Fetch room detail from /room/:id Endpoint. (NOTE: Check _id to fix bug SWR with query undefined)
+  //Fetch room detail from server. (NOTE: Check _id to fix bug SWR with query undefined)
   const { data, roomErr } = useSWR(_id ? url : null, _id ? roomFetcher : null);
 
-  //Get access token from local storage. (NOTE: Check window type to fix bug localStorage undefined in NextJS)
-  const getAccessToken = () => {
-    let accessToken = null;
-    if (typeof window !== "undefined") {
-      accessToken = localStorage.getItem("accessToken") ?? null;
-    }
-    return accessToken;
-  };
+  const {state, dispatch} = useContext(AuthContext);
   
   const handleJoinRoom = (e) => {
-    let accessToken = getAccessToken();
-
     // Navigate to Log In page if can not find access Token
-    if (!accessToken) {
+    if (!state.token) {
       router.push("/login");
     }
+
     router.push({
         pathname: '/room/join',
         query: { roomID: _id },
