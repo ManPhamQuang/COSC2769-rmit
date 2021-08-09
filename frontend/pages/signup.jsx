@@ -6,6 +6,7 @@ import router from "next/router";
 
 const INITIAL_STATE = {
   user: null,
+  token: null,
   isFetching: false,
   error: null,
 };
@@ -33,7 +34,6 @@ const Signup = () => {
 
   const handleRegister = (e) => {
     signup({ name, email, password, passwordConfirm, role }, dispatch);
-    router.push("/");
     e.preventDefault();
   };
 

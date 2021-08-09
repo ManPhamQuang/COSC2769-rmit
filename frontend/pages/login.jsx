@@ -6,6 +6,7 @@ import router from "next/router";
 
 const INITIAL_STATE = {
   user: null,
+  token: null,
   isFetching: false,
   error: null,
 };
@@ -22,7 +23,6 @@ const Login = () => {
 
   const handleLogin = (e) => {
     login({ email, password }, dispatch);
-    router.push("/");
     e.preventDefault();
   };
 
