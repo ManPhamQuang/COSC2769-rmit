@@ -2,7 +2,6 @@ import React from 'react'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/authContext/AuthContext';
 
-
 const MainNavBar = () => {
   const {state, dispatch} = useContext(AuthContext);
   console.log(state.user);

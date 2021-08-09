@@ -1,21 +1,12 @@
 import Link from "next/link";
-import { useState, useRef, useReducer, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { login } from "../context/authContext/apiCalls";
-import AuthReducer from "../context/authContext/AuthReducer";
 import router from "next/router";
 import { AuthContext } from '../context/authContext/AuthContext';
-
-const INITIAL_STATE = {
-  user: null,
-  token: null,
-  isFetching: false,
-  error: null,
-};
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
   const {state, dispatch} = useContext(AuthContext);
 
   const isInvalid = email === "" || password === "";
@@ -25,20 +16,9 @@ const Login = () => {
     e.preventDefault();
   };
 
-  // Get accessToken from local Storage. (NOTE: check window type to fix bug localStorage undefined in NextJS)
-  const getAccessToken = () => {
-    let accessToken = null;
-    if (typeof window !== "undefined") {
-      accessToken = localStorage.getItem("accessToken") ?? null;
-    }
-    return accessToken;
-  }
-
   useEffect(() => {
-    let accessToken = getAccessToken();
-
     // Navigate user to Homepage if find token
-    if (accessToken) {
+    if (state.token) {
       router.push("/");
     }
   },[]);
