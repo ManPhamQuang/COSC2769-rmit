@@ -131,7 +131,7 @@ const Create = () => {
   };
 
   return (
-    <>
+    <div>
       <MainNavBar />
       <div className="container mx-auto p-4 h-full">
         {room.isLoading && (
@@ -285,7 +285,7 @@ const Create = () => {
           </div>
         </div>
         {room.error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-5 h-10">
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-5">
             <span className="inline-block align-middle mr-8">
               <b className="font-bold">Error!</b> {room.error.message}
             </span>
@@ -300,7 +300,7 @@ const Create = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

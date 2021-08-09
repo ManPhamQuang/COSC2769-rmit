@@ -32,12 +32,12 @@ export default function RoomDetail() {
   };
 
   return (
-    <>
+    <div>
       <MainNavBar/>
       <div className="container mx-auto h-full">
         {data && (
           <div className="p-2">
-            <div className="mt-20 flex content-center items-center justify-center">
+            <div className="mt-32 flex content-center items-center justify-center">
               <div className="w-full lg:w-4/12 px-4">
                 <Card props={data.room} />
                 <button
@@ -52,6 +52,6 @@ export default function RoomDetail() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

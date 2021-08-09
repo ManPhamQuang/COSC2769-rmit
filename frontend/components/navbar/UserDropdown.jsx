@@ -3,14 +3,14 @@ import { Fragment } from "react";
 
 const UserDropdown = ({ user }) => {
   return (
-    <Fragment>
+    <>
       <Menu as="div" className="relative inline-block text-left mr-3">
         <div>
           <Menu.Button className="inline-flex justify-center items-center w-full px-4 py-2 text-base font-medium text-gray-800">
-          <span className="mr-2 text-base">Hi {user.name}!</span>
+            <span className="mr-2 text-base">Hi {user.name}!</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7"
+              className="h-7 w-7 text-gray-500"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -20,7 +20,6 @@ const UserDropdown = ({ user }) => {
                 clipRule="evenodd"
               />
             </svg>
-            
           </Menu.Button>
         </div>
         <Transition
@@ -34,14 +33,13 @@ const UserDropdown = ({ user }) => {
         >
           <Menu.Items className="absolute right-0 w-56 h-50 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none  overflow-y-auto">
             <div className="mt-4 mb-2 px-4 py-1 flex flex-col justify-center items-center truncate cursor-default">
-                <img
-                  className="h-14 w-14 rounded-full border border-gray-200 "
-                  src={user.avatar}
-                  alt=""
-                />
-                <span className="mt-2 text-base">{user.name}</span>
-                <span className="my-1 text-xs text-gray-400">{user.email}</span>
-
+              <img
+                className="h-14 w-14 rounded-full border border-gray-200 "
+                src={user.avatar}
+                alt=""
+              />
+              <span className="mt-2 text-base">{user.name}</span>
+              <span className="my-1 text-xs text-gray-400">{user.email}</span>
             </div>
             <div className="px-4 py-1 truncate">
               <Menu.Item>
@@ -70,7 +68,7 @@ const UserDropdown = ({ user }) => {
           </Menu.Items>
         </Transition>
       </Menu>
-    </Fragment>
+    </>
   );
 };
 

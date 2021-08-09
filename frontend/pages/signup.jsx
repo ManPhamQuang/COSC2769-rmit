@@ -34,7 +34,7 @@ const Signup = () => {
   },[]);
 
   return (
-    <>
+    <div>
     <MainNavBar/>
     <div className="container mx-auto p-4 h-full">
       <div className="flex content-center items-center justify-center h-full mt-32">
@@ -191,7 +191,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-    </>
+    </div>
   );
 };
 
