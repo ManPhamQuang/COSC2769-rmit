@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { signup } from "../context/authContext/apiCalls";
 import router from "next/router";
 import { AuthContext } from '../context/authContext/AuthContext';
+import MainNavBar from "../components/navbar/MainNavBar";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -33,10 +34,12 @@ const Signup = () => {
   },[]);
 
   return (
-    <div className="container mt-20 mx-auto px-4 h-full">
-      <div className="flex content-center items-center justify-center h-full ">
+    <>
+    <MainNavBar/>
+    <div className="container mx-auto p-4 h-full">
+      <div className="flex content-center items-center justify-center h-full mt-32">
         <div className="w-full lg:w-4/12 px-4">
-          <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-indigo-50 border-0">
+          <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-indigo-50 border-0 ">
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <div className="text-center my-6">
                 <h6 className="text-indigo-600 text-xl font-bold">
@@ -188,6 +191,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

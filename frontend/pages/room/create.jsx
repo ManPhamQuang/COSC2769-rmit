@@ -3,14 +3,12 @@ import axios from "axios";
 import router from "next/router";
 import CategoryDropDown from "../../components/CategoryDropDown";
 
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AuthContext } from '../../context/authContext/AuthContext';
+import { AuthContext } from "../../context/authContext/AuthContext";
+import MainNavBar from "../../components/navbar/MainNavBar";
 
-const INIT_CATEGORY = [
-  { name: "Select Category" },
-];
+const INIT_CATEGORY = [{ name: "Select Category" }];
 
 const roomReducer = (state, action) => {
   switch (action.type) {
@@ -56,7 +54,7 @@ const Create = () => {
   const [price, setPrice] = useState("");
   const [startDate, setStartDate] = useState(new Date());
 
-  const {state, dispatch} = useContext(AuthContext);
+  const { state, dispatch } = useContext(AuthContext);
 
   // Reducer for handling state when creating room
   const [room, dispatchRoom] = useReducer(roomReducer, {
@@ -65,7 +63,8 @@ const Create = () => {
     error: null,
   });
 
-  const isInvalid = title === "" || description === "" || price === "" || categoryID === "";
+  const isInvalid =
+    title === "" || description === "" || price === "" || categoryID === "";
 
   useEffect(() => {
     // Navigate user to Login page if can not find token
@@ -91,7 +90,17 @@ const Create = () => {
     setSelectedCategory(category);
   };
 
+  const getAccessToken = () => {
+    let accessToken = null;
+    if (typeof window !== "undefined") {
+      accessToken = localStorage.getItem("accessToken") ?? null;
+    }
+    return accessToken;
+  };
+
   const handleCreateButtonClick = (event) => {
+    const token = getAccessToken();
+
     let data = {
       title: title,
       description: description,
@@ -103,7 +112,7 @@ const Create = () => {
     dispatchRoom({ type: "ROOM_LOADING" });
     axios
       .post("http://localhost:5000/api/v1/rooms", data, {
-        headers: { Authorization: `Bearer ${state.token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         dispatchRoom({
@@ -122,27 +131,9 @@ const Create = () => {
   };
 
   return (
-    <div>
-      {/* <NavBar /> */}
-      <div className="container mt-20 mx-auto px-4 h-full">
-        {room.error && (
-          <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
-            <span className="text-xl inline-block mr-5 align-middle">
-              <i className="fas fa-bell" />
-            </span>
-            <span className="inline-block align-middle mr-8">
-              <b className="capitalize">Error!</b> {room.error.message}
-            </span>
-            <button
-              className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
-              onClick={() => {
-                dispatchRoom({ type: "ROOM_INIT" });
-              }}
-            >
-              <span>×</span>
-            </button>
-          </div>
-        )}
+    <>
+      <MainNavBar />
+      <div className="container mx-auto p-4 h-full">
         {room.isLoading && (
           <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
             <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
@@ -154,7 +145,7 @@ const Create = () => {
             </p>
           </div>
         )}
-        <div className="md:grid md:grid-cols-3 md:gap-6">
+        <div className="md:grid md:grid-cols-3 md:gap-6 mt-32">
           <div className="col-span-3 lg:col-span-1">
             <div className="px-4 sm:px-0">
               <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -293,8 +284,23 @@ const Create = () => {
             </form>
           </div>
         </div>
+        {room.error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-5 h-10">
+            <span className="inline-block align-middle mr-8">
+              <b className="font-bold">Error!</b> {room.error.message}
+            </span>
+            <button
+              className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+              onClick={() => {
+                dispatchRoom({ type: "ROOM_INIT" });
+              }}
+            >
+              <span>×</span>
+            </button>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 
