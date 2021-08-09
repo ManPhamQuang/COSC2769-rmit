@@ -3,7 +3,9 @@ import VideoChat from "../../components/VideoChat";
 import { useRouter } from "next/router";
 import axios from "axios";
 import useSWR from "swr";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../context/authContext/AuthContext";
+import NavBar from "../../components/navbar/NavBar";
 
 const fetcher = (url, token) =>
   axios
@@ -17,27 +19,18 @@ export default function Join() {
   const roomID = router.query.roomID;
   const url = `http://localhost:5000/api/v1/rooms/join?id=${roomID}`;
 
-  // Get accessToken from local storage. (NOTE: Fix bug localStorage undefined in NextJS)
-  const getAccessToken = () => {
-    let accessToken = null;
-    if (typeof window !== "undefined") {
-      accessToken = localStorage.getItem("accessToken") ?? null;
-    }
-    return accessToken;
-  };
-
-  let accessToken = getAccessToken();
+  const { state, dispatch } = useContext(AuthContext);
 
   useEffect(() => {
     // Navigate user to Login page if can not find token
-    if (!accessToken) {
+    if (!state.token) {
       router.push("/login");
     }
   }, []);
 
   // Call /join Endpoint (NOTE: Fix bug SWR with query undefined)
   const { data, roomErr } = useSWR(
-    roomID ? [url, accessToken] : null,
+    roomID ? [url, state.token] : null,
     roomID ? fetcher : null
   );
 
