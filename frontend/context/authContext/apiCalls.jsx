@@ -8,6 +8,7 @@ export const login = async (userCredentials, dispatch) => {
     const res = await axios.post("http://localhost:5000/api/v1/users/login", userCredentials);
     console.log(res.data.data);
     dispatch(authenSuccess(res.data.data));
+    localStorage.setItem("user", JSON.stringify(res.data.data.user));
     localStorage.setItem("accessToken", res.data.data.token);
     router.push("/");
   } catch (err) {
@@ -21,6 +22,7 @@ export const signup = async (userCredentials, dispatch) => {
     const res = await axios.post("http://localhost:5000/api/v1/users/signup", userCredentials);
     console.log(res.data.data);
     dispatch(authenSuccess(res.data.data));
+    localStorage.setItem("user", JSON.stringify(res.data.data.user));
     localStorage.setItem("accessToken", res.data.data.token);
     router.push("/");
   } catch (err) {

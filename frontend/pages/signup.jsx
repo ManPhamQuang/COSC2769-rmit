@@ -18,11 +18,6 @@ const Signup = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [role, setRole] = useState("user");
 
-  const nameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
   const isInvalid =
@@ -40,7 +35,7 @@ const Signup = () => {
   const getAccessToken = () => {
     let accessToken = null;
 
-    // Fix bug localStorage undefined in NextJS
+    // Get accessToken from local Storage. (NOTE: check window type to fix bug localStorage undefined in NextJS)
     if (typeof window !== "undefined") {
       accessToken = localStorage.getItem("accessToken") ?? null;
     }
@@ -49,7 +44,6 @@ const Signup = () => {
 
   useEffect(() => {
     let accessToken = getAccessToken();
-    alert(accessToken);
     // Navigate user to Homepage if find token
     if (accessToken) {
       router.push("/");
@@ -76,8 +70,7 @@ const Signup = () => {
                     type="text"
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="Max"
-                    ref={nameRef}
-                    onChange={() => setName(nameRef.current.value)}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -88,8 +81,7 @@ const Signup = () => {
                     type="email"
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="madmax@example.com"
-                    ref={emailRef}
-                    onChange={() => setEmail(emailRef.current.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -100,8 +92,7 @@ const Signup = () => {
                     type="password"
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="*******"
-                    ref={passwordRef}
-                    onChange={() => setPassword(passwordRef.current.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -112,9 +103,8 @@ const Signup = () => {
                     type="password"
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="*******"
-                    ref={passwordConfirmRef}
-                    onChange={() =>
-                      setPasswordConfirm(passwordConfirmRef.current.value)
+                    onChange={(e) =>
+                      setPasswordConfirm(e.target.value)
                     }
                   />
                 </div>

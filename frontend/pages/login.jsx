@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { useState, useRef, useReducer, useEffect } from "react";
+import { useState, useRef, useReducer, useEffect, useContext } from "react";
 import { login } from "../context/authContext/apiCalls";
 import AuthReducer from "../context/authContext/AuthReducer";
 import router from "next/router";
+import { AuthContext } from '../context/authContext/AuthContext';
 
 const INITIAL_STATE = {
   user: null,
@@ -14,10 +15,8 @@ const INITIAL_STATE = {
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
-
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  // const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
+  const {state, dispatch} = useContext(AuthContext);
 
   const isInvalid = email === "" || password === "";
 
@@ -26,10 +25,9 @@ const Login = () => {
     e.preventDefault();
   };
 
+  // Get accessToken from local Storage. (NOTE: check window type to fix bug localStorage undefined in NextJS)
   const getAccessToken = () => {
     let accessToken = null;
-
-    // Fix bug localStorage undefined in NextJS
     if (typeof window !== "undefined") {
       accessToken = localStorage.getItem("accessToken") ?? null;
     }
@@ -65,8 +63,7 @@ const Login = () => {
                     type="email"
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="madmax@example.com"
-                    ref={emailRef}
-                    onChange={() => setEmail(emailRef.current.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -77,8 +74,7 @@ const Login = () => {
                     type="password"
                     className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="*******"
-                    ref={passwordRef}
-                    onChange={() => setPassword(passwordRef.current.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="text-center mt-6 w-full">
