@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
 import useBreakpoint from "../hooks/useBreakpoint";
 import { Transition } from "@headlessui/react";
+
+import { AuthContext } from "../context/authContext/AuthContext";
+import router from "next/router";
 
 export default function Wrapper(props) {
     const [mounted, setMounted] = useState(false);
@@ -30,6 +33,15 @@ function DashboardLayout({ children }) {
         case "/dashboard/profile":
             ScreenName = "Profile";
     }
+
+    const { state, dispatch } = useContext(AuthContext);
+
+    useEffect(() => {
+        // Navigate user to Login page if can not find token
+        if (!state.token) {
+          router.push("/login");
+        }
+    }, []);
 
     return (
         <>
