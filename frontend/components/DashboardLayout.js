@@ -45,14 +45,6 @@ function DashboardLayout({ children }) {
     }
   }, []);
 
-  const handleLogout = (e) => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("accessToken");
-    dispatch(logout());
-    router.push("/login");
-    e.preventDefault();
-  };
-
   return (
     <>
       <div className="laptop:flex bg-gray-100">
