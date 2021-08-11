@@ -33,9 +33,9 @@ const Room = ({ username, roomName, room, handleLogout, token }) => {
     }, [room]);
 
     return (
-        <div className="room relative">
+        <div className="room relative h-screen overflow-hidden">
             <div className="flex">
-                <div className="local-participant h-full w-full">
+                <div className="local-participant w-full">
                     {room ? (
                         <LocalParticipant
                             key={room.localParticipant.sid}
@@ -45,13 +45,14 @@ const Room = ({ username, roomName, room, handleLogout, token }) => {
                         ""
                     )}
                 </div>
-                {showChat && (
-                    <Chat
-                        username={username}
-                        roomName={roomName}
-                        token={token}
-                    ></Chat>
-                )}
+                {/* Pass to component to avoid it becoming unmount, thus losing all the message and have to establish connection again*/}
+                <Chat
+                    closeChat={setShowChat}
+                    isHidden={showChat}
+                    username={username}
+                    roomName={roomName}
+                    token={token}
+                ></Chat>
             </div>
             <div className="flex flex-row absolute bottom-20 left-2">
                 {participants.map((participant) => (
