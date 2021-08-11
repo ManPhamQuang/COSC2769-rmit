@@ -62,6 +62,7 @@ const Room = ({ username, roomName, room, handleLogout, token }) => {
                 ))}
             </div>
             <VideoRoomNavBar
+                room={room}
                 roomName={roomName}
                 handleLogout={handleLogout}
                 setShowChat={setShowChat}

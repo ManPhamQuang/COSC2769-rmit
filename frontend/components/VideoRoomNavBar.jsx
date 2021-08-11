@@ -20,7 +20,6 @@ const VideoRoomNavBar = ({ roomName, handleLogout, setShowChat, room }) => {
     if (room) {
       room.localParticipant.audioTracks.forEach((track) => {
         const audioTrack = track.track;
-        console.log(audioTrack)
         isEnabled ? audioTrack.enable() : audioTrack.disable();
       });
     }
