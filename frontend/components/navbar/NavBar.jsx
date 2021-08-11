@@ -4,9 +4,11 @@ import { AuthContext } from "../../context/authContext/AuthContext";
 import axios from "axios";
 import dynamic from 'next/dynamic'
 
+
 // Use dynamic import NextJS
 const NavBarAuthen = dynamic(() => import('./NavBarAuthen.js'), {ssr: false});
 const NavBarNonAuthen = dynamic(() => import('./NavBarNonAuthen'), {ssr: false});
+const NavBarResponsive = dynamic(() => import('./NavBarResponisve'), {ssr: false});
 
 const NavBar = () => {
   const { state, dispatch } = useContext(AuthContext);
@@ -21,7 +23,8 @@ const NavBar = () => {
 
   return (
     <div>
-      {state.user ? <NavBarAuthen categories={categories} user={state.user} /> : <NavBarNonAuthen categories={categories}/>}
+      {/* {state.user ? <NavBarAuthen categories={categories} user={state.user} /> : <NavBarNonAuthen categories={categories}/>} */}
+      {state.user ? <NavBarAuthen categories={categories} user={state.user} /> : <NavBarResponsive categories={categories}/>}
     </div>
   )
 };
