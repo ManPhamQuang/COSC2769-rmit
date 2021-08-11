@@ -15,6 +15,18 @@ const VideoRoomNavBar = ({ roomName, handleLogout, setShowChat, room }) => {
     setIsVideoEnable(isEnabled);
   };
 
+  const audioBtnOnClick = (e) => {
+    const isEnabled = !isAudioEnable;
+    if (room) {
+      room.localParticipant.audioTracks.forEach((track) => {
+        const audioTrack = track.track;
+        console.log(audioTrack)
+        isEnabled ? audioTrack.enable() : audioTrack.disable();
+      });
+    }
+    setIsAudioEnable(isEnabled);
+  };
+
   return (
     <div className="bg-gray-100 h-16 py-4 px-10 flex justify-between items-center text-base absolute bottom-0 w-full">
       <div className="flex items-center font-medium text-indigo-900">
@@ -22,7 +34,7 @@ const VideoRoomNavBar = ({ roomName, handleLogout, setShowChat, room }) => {
       </div>
       <div className="flex items-center">
         <div>
-          <button className="flex items-center ml-4">
+          <button className="flex items-center ml-4" onClick={audioBtnOnClick}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 mr-1 text-gray-600"
