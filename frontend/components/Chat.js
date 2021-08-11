@@ -88,9 +88,9 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
 
     return (
         <div
-            className={`bg-white min-h-screen w-96 border border-[#E4E7E9] ${
-                isHidden ? "hidden" : "block"
-            }`}
+            className={`bg-white h-screen w-96 border border-[#E4E7E9] ${
+                isHidden ? "hidden" : "flex"
+            } flex-col`}
         >
             <div className="bg-[#F4F4F6] px-3 py-5 border-b border-[#E4E7E9] shadow-sm">
                 <div className="flex justify-between">
@@ -113,7 +113,7 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
                 </div>
             </div>
             <div
-                className={`px-2 py-4 space-y-5 h-[73vh] border-b border-[#E4E7E9] shadow-sm ${
+                className={`px-2 py-4 space-y-5 h-[70vh] border-b border-[#E4E7E9] shadow-sm ${
                     loading ? "overflow-hidden" : "overflow-auto"
                 }`}
             >
@@ -131,17 +131,17 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
                 ))}
                 <div ref={bottomChat}></div>
             </div>
-            <div className="space-x-4 ">
+            <div className="space-x-4">
                 <form className="px-3" onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Type Message"
-                        onChange={(e) => updateText(e.target.value)}
-                        value={text}
-                        className="mt-5 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    />
-                    <div className="flex mt-3">
-                        <button className="ml-auto focus:outline-none focus:rotate-90 rotate-45 hover:rotate-90 duration-300 ">
+                    <div className="relative">
+                        <input
+                            type="text"
+                            placeholder="Type Message"
+                            onChange={(e) => updateText(e.target.value)}
+                            value={text}
+                            className="mt-5 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md pr-8"
+                        />
+                        <button className="ml-auto focus:outline-none focus:rotate-90 rotate-45 hover:rotate-90 duration-300 absolute right-0 bottom-2">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-6 w-6"
