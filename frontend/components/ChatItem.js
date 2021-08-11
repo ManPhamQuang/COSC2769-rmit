@@ -1,35 +1,30 @@
 import React from "react";
-
+import dayjs from "dayjs";
 function ChatItem({ message, username }) {
-  const isOwnMessage = message.author === username;
-  return (
-    <div style={styles.listItem(isOwnMessage)}>
-      <div style={styles.author}>{message.author}</div>
-      <div style={styles.container(isOwnMessage)}>
-        {message.body}
-        <div>
-          {new Date(message.dateCreated.toISOString()).toLocaleString()}
+    const isOwnMessage = message.author === username;
+    console.log(message);
+    return (
+        <div className="space-y-2">
+            <div className="flex text-xs text-gray-500 justify-between">
+                <p>
+                    {message.author} {isOwnMessage && " (You)"}
+                </p>
+                <p>
+                    {dayjs(message.dateCreated.toISOString()).format("hh:mm a")}
+                </p>
+            </div>
+            <div className="flex">
+                <p
+                    className={`rounded-xl p-3 text-sm 
+                      ${isOwnMessage ? "bg-[#E1E3EA]" : "bg-[#CCE4FF]"}
+                      ${isOwnMessage && "ml-auto"} 
+                    `}
+                >
+                    {message.body}
+                </p>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
-
-const styles = {
-  listItem: (isOwnMessage) => ({
-    flexDirection: "column",
-    alignItems: isOwnMessage ? "flex-end" : "flex-start",
-  }),
-  container: (isOwnMessage) => ({
-    maxWidth: "75%",
-    borderRadius: 12,
-    padding: 16,
-    color: "white",
-    fontSize: 12,
-    backgroundColor: isOwnMessage ? "#F36E65" : "#9ea1a8",
-  }),
-  author: { fontSize: 10, color: "gray" },
-  timestamp: { fontSize: 8, color: "white", textAlign: "right", paddingTop: 4 },
-};
 
 export default ChatItem;
