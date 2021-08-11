@@ -10,7 +10,6 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
     const [channel, setChannel] = useState(null);
     const [text, setText] = useState("");
     const bottomChat = useRef(null);
-
     useEffect(async () => {
         setLoading(true);
 
@@ -30,7 +29,7 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
             // getting list of all messages since this is an existing channel
             const newMessages = await channel.getMessages();
             setMessages(newMessages.items || []);
-            bottomChat.current.scrollIntoView({ behavior: "smooth" });
+            bottomChat.current?.scrollIntoView({ behavior: "smooth" });
         });
 
         try {
@@ -70,14 +69,14 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
 
     const handleMessageAdded = (message) => {
         setMessages((messages) => [...messages, message]);
-        bottomChat.current.scrollIntoView({ behavior: "smooth" });
+        bottomChat.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     const sendMessage = () => {
         if (text) {
             channel.sendMessage(String(text).trim());
             setText("");
-            bottomChat.current.scrollIntoView({ behavior: "smooth" });
+            bottomChat.current?.scrollIntoView({ behavior: "smooth" });
         }
     };
 
@@ -113,8 +112,8 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
                 </div>
             </div>
             <div
-                className={`px-2 py-4 space-y-5 h-[70vh] border-b border-[#E4E7E9] shadow-sm ${
-                    loading ? "overflow-hidden" : "overflow-auto"
+                className={`px-2 py-4 space-y-5 h-[73vh] border-b border-[#E4E7E9] shadow-sm ${
+                    loading ? "overflow-hidden" : "overflow-y-scroll"
                 }`}
             >
                 {loading && (
@@ -135,11 +134,13 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
                 <form className="px-3" onSubmit={handleSubmit}>
                     <div className="relative">
                         <input
+                            disabled={loading}
                             type="text"
                             placeholder="Type Message"
                             onChange={(e) => updateText(e.target.value)}
                             value={text}
-                            className="mt-5 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md pr-8"
+                            className="mt-5 focus:ring-blue-500 focus:border-blue-500 
+                             w-full shadow-sm sm:text-sm border-gray-300 rounded-md pr-8 disabled:cursor-not-allowed"
                         />
                         <button className="ml-auto focus:outline-none focus:rotate-90 rotate-45 hover:rotate-90 duration-300 absolute right-0 bottom-2">
                             <svg
