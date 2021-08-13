@@ -20,7 +20,7 @@ const UserDropdown = ({ user }) => {
       <Menu as="div" className="relative inline-block text-left mr-3">
         <div>
           <Menu.Button className="inline-flex justify-center items-center w-full px-4 py-2 text-base font-medium text-gray-800">
-            <span className="mr-2 text-base">Hi {user.name}!</span>
+            <span className="mr-2 text-base hidden md:inline-flex">Hi {user.name}!</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-7 w-7 text-gray-500"
@@ -54,13 +54,13 @@ const UserDropdown = ({ user }) => {
               <span className="mt-2 text-base">{user.name}</span>
               <span className="my-1 text-xs text-gray-400">{user.email}</span>
             </div>
-            <div className="px-4 py-1 truncate">
+            <div className="text-left">
               <Menu.Item>
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "text-indigo-600" : "text-gray-900"
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      active ? "text-indigo-600 bg-gray-100" : "text-gray-900"
+                    } block px-4 py-2 text-sm text-gray-700 w-full`}
                   >
                     Edit Profile
                   </button>
@@ -71,8 +71,8 @@ const UserDropdown = ({ user }) => {
                   <button
                     onClick={handleLogout}
                     className={`${
-                      active ? "text-indigo-600" : "text-gray-900"
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      active ? "text-indigo-600 bg-gray-100" : "text-gray-900"
+                    } block px-4 py-2 text-sm text-gray-700 w-full`}
                   >
                     Log out
                   </button>
