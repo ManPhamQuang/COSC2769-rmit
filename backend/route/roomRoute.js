@@ -5,15 +5,23 @@ const {
   getRoom,
   createRoom,
   joinRoom,
+  updateRoom,
+  deleteRoom,
 } = require("../controller/roomController");
 const {
   isAuthenticated,
   limitToOnly,
 } = require("../controller/authController");
 
-router.get("/join", isAuthenticated, joinRoom);
 router.get("/", getAllRooms);
+router.get("/join", isAuthenticated, joinRoom);
 router.get("/:id", getRoom);
-router.post("/", isAuthenticated, limitToOnly("expert"), createRoom);
+
+// Route only for experts
+router.use(isAuthenticated);
+router.use(limitToOnly("expert"));
+router.post("/", createRoom);
+router.patch("/:id", updateRoom);
+router.delete("/:id", deleteRoom);
 
 module.exports = router;
