@@ -38,6 +38,18 @@ const teacherSelfIntroduction = [
     },
 ];
 export default function RoomDetailBody({ room }) {
+    const handleJoinRoom = (e) => {
+        // Navigate to Log In page if can not find access Token
+        if (!state.token) {
+            router.push("/login");
+        }
+
+        router.push({
+            pathname: "/room/join",
+            query: { roomID: _id },
+        });
+        e.preventDefault();
+    };
     return (
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 lg:px-56">
             <div className="col-span-1 px-4 py-2 lg:px-24 py-6 lg:col-span-2 space-y-8 ">
@@ -83,6 +95,13 @@ export default function RoomDetailBody({ room }) {
                         </button>
                         <button className="text-1xl font-bold py-3 w-full hover:bg-gray-300 border border-black">
                             Buy now
+                        </button>
+                        <button
+                            className="text-1xl text-white font-bold bg-purple-600 py-3 w-full hover:bg-purple-800 "
+                           
+                            onClick={handleJoinRoom}
+                        >
+                            Join Room
                         </button>
                         <p className="text-sm text-center">
                             30-Day Money-Back Guarantee
