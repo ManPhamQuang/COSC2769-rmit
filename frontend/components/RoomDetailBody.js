@@ -82,7 +82,7 @@ export default function RoomDetailBody({ room }) {
             <div className="hidden xl:block px-20 py-6">
                 <div className="border border-gray-300">
                     <img
-                        src={room.thumbnail}
+                        src="/default.png"
                         alt="Room thumbnail"
                         className="w-full h-auto border-b-2 border-gray-300"
                     />
@@ -98,7 +98,6 @@ export default function RoomDetailBody({ room }) {
                         </button>
                         <button
                             className="text-1xl text-white font-bold bg-purple-600 py-3 w-full hover:bg-purple-800 "
-                           
                             onClick={handleJoinRoom}
                         >
                             Join Room
