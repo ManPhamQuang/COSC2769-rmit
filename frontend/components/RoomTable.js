@@ -227,7 +227,7 @@ export default function RoomTable({ user }) {
                             />
                           </td>
                           <td className="px-3 py-2 whitespace-nowrap  text-sm font-medium ">
-                            <Link href="/room/create" >
+                            <Link href="/room/update" >
                               <p className="text-indigo-600 hover:text-indigo-900">Edit</p>
                             </Link>
                           </td>
