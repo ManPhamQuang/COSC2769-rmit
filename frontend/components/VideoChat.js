@@ -23,12 +23,28 @@ const VideoChat = ({ props }) => {
         async (event) => {
             event.preventDefault();
             setConnecting(true);
+
+            // Get Twilio Token
             const token = await getTwilioToken(username, roomName);
             setToken(token);
-            console.log(`Fetched Token = ${token}`);
-            Video.connect(token, {
+
+            // Check audio/video hardware available
+            var roomOption = {
                 name: roomName,
-            })
+            };
+            try {
+                const track = await Video.createLocalVideoTrack();
+            } catch {
+                roomOption.video = false;
+            }
+            try {
+                const track = await Video.createLocalAudioTrack();
+            } catch {
+                roomOption.audio = false;
+            }
+
+            // Connect to room
+            Video.connect(token, roomOption)
                 .then((room) => {
                     setConnecting(false);
                     setRoom(room);
