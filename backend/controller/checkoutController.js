@@ -12,8 +12,8 @@ exports.getCheckoutUrl = catchAsync(async (req, res, next) => {
     mode: "payment",
     client_reference_id: room.id,
     customer_email: req.user.email,
-    success_url: `${req.get("origin")}/room/${room.id}?status=success`,
-    cancel_url: `${req.get("origin")}`,
+    success_url: `${req.get("origin")}/room/join?roomID=${room.id}`,
+    cancel_url: `${req.get("origin")}/room/${room.id}`,
     line_items: [
       {
         name: room.title,
