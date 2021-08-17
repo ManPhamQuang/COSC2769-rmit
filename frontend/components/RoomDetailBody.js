@@ -76,7 +76,7 @@ export default function RoomDetailBody({ room }) {
                     <p className="font-bold text-1xl lg:text-3xl">
                         Description
                     </p>
-                    <ReadMore />
+                    {/* <ReadMore /> */}
                 </div>
                 <div>
                     <TeacherSelfIntroduction
