@@ -34,6 +34,26 @@ export default function RoomDetail() {
         e.preventDefault();
     };
 
+    const handleCheckout = async (e) => {
+        if (!state.token) {
+            router.push("/login");
+        }
+        try {
+            const request = await axios.get(
+                `http://localhost:5000/api/v1/checkouts/${_id}`,
+                {
+                    headers: {
+                        Authorization: "Bearer " + state.token,
+                    },
+                }
+            );
+            const { url } = request.data.data;
+            router.push(url);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div>
             <NavBar />
@@ -46,7 +66,7 @@ export default function RoomDetail() {
                                 <button
                                     className="bg-indigo-600 mt-4 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full "
                                     type="button"
-                                    onClick={handleJoinRoom}
+                                    onClick={handleCheckout}
                                 >
                                     Join Room
                                 </button>
@@ -56,31 +76,6 @@ export default function RoomDetail() {
                 )}
             </div>
             {/* Test Stripe only */}
-            <div className="flex justify-center items-center mt-5">
-                <button
-                    className="py-2 px-5 bg-indigo-700 text-white uppercase tracking-wide rounded-md hover:shadow-md transition-all hover:bg-indigo-500"
-                    onClick={async (e) => {
-                        const token = localStorage.getItem("accessToken");
-                        console.log(token);
-                        try {
-                            const request = await axios.get(
-                                `http://localhost:5000/api/v1/checkouts/${_id}`,
-                                {
-                                    headers: {
-                                        Authorization: "Bearer " + token,
-                                    },
-                                }
-                            );
-                            const { url } = request.data.data;
-                            router.push(url);
-                        } catch (error) {
-                            console.log(error);
-                        }
-                    }}
-                >
-                    Checkout
-                </button>
-            </div>
         </div>
     );
 }
