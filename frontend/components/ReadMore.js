@@ -35,7 +35,7 @@ const Description = () => {
         <div>
             <p className="leading-relaxed text-sm text-justify lg:text-base">
                 <ReadMore>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Aenean aliquet, ante sed efficitur sodales, lorem velit
                     viverra justo, ut maximus leo dolor nec risus. Nulla
                     efficitur nisi sed sapien sodales maximus. Donec a elit
@@ -90,7 +90,7 @@ const Description = () => {
                     mauris. In maximus dignissim lorem, vitae placerat odio
                     ultrices sit amet. Cras consectetur quis tortor ac volutpat.
                     Donec dignissim arcu vel urna convallis, eu rutrum ante
-                    pretium.
+                    pretium. */}
                 </ReadMore>
             </p>
         </div>
