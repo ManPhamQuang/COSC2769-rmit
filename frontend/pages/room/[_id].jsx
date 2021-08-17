@@ -21,28 +21,12 @@ export default function RoomDetail() {
         _id ? roomFetcher : null
     );
 
-    const { state, dispatch } = useContext(AuthContext);
-
-    const handleJoinRoom = (e) => {
-        // Navigate to Log In page if can not find access Token
-        if (!state.token) {
-            router.push("/login");
-        }
-
-        router.push({
-            pathname: "/room/join",
-            query: { roomID: _id },
-        });
-        e.preventDefault();
-    };
-
     return (
         <div>
             <NavBar />
             <div>
                 {data && (
                     <div>
-                        
                         <RoomDetailHeader room={data.room} />
                         <RoomDetailBody room={data.room} />
                     </div>

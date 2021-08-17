@@ -6,6 +6,9 @@ import {
 } from "@heroicons/react/outline";
 import TeacherSelfIntroduction from "./TeacherSelfIntroduction";
 import ReadMore from "./ReadMore";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext/AuthContext";
+import { useRouter } from "next/router";
 
 const courseInfor = {
     id: 1,
@@ -37,13 +40,16 @@ const teacherSelfIntroduction = [
             "I'm Angela, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
     },
 ];
+
 export default function RoomDetailBody({ room }) {
+    const router = useRouter();
+    const _id = router.query._id;
+    const { state, dispatch } = useContext(AuthContext);
     const handleJoinRoom = (e) => {
         // Navigate to Log In page if can not find access Token
         if (!state.token) {
             router.push("/login");
         }
-
         router.push({
             pathname: "/room/join",
             query: { roomID: _id },
