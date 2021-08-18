@@ -158,22 +158,3 @@ exports.deleteRoom = catchAsync(async (req, res, next) => {
   await Room.findByIdAndDelete(req.params.id);
   res.status(204).end();
 });
-
-exports.searchRoomsByName = catchAsync(async (req, res, next) => {
-  const name = req.query.name;
-
-  // Find by name
-  const text = escapeRegExp(name);
-  const rooms = await Room.find({
-    title: { $regex: text, $options: "i" },
-  })
-    .populate("category")
-    .populate("createdBy");
-  res.status(200).json({
-    status: "success",
-    length: rooms.length,
-    data: {
-      rooms,
-    },
-  });
-});
