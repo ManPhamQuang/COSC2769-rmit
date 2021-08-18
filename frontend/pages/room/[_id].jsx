@@ -5,6 +5,8 @@ import Card from "../../components/Card";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import NavBar from "../../components/navbar/NavBar";
+import RoomDetailBody from "../../components/RoomDetailBody";
+import RoomDetailHeader from "../../components/RoomDetailHeader";
 
 const roomFetcher = (url) => axios.get(url).then((res) => res.data.data);
 
@@ -19,63 +21,17 @@ export default function RoomDetail() {
         _id ? roomFetcher : null
     );
 
-    const { state, dispatch } = useContext(AuthContext);
-
-    const handleJoinRoom = (e) => {
-        // Navigate to Log In page if can not find access Token
-        if (!state.token) {
-            router.push("/login");
-        }
-
-        router.push({
-            pathname: "/room/join",
-            query: { roomID: _id },
-        });
-        e.preventDefault();
-    };
-
-    const handleCheckout = async (e) => {
-        if (!state.token) {
-            router.push("/login");
-        }
-        try {
-            const request = await axios.get(
-                `http://localhost:5000/api/v1/checkouts/${_id}`,
-                {
-                    headers: {
-                        Authorization: "Bearer " + state.token,
-                    },
-                }
-            );
-            const { url } = request.data.data;
-            router.push(url);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     return (
         <div>
             <NavBar />
-            <div className="container mx-auto h-full">
+            <div>
                 {data && (
-                    <div className="p-2">
-                        <div className="mt-32 flex content-center items-center justify-center">
-                            <div className="w-full lg:w-4/12 px-4">
-                                <Card props={data.room} />
-                                <button
-                                    className="bg-indigo-600 mt-4 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full "
-                                    type="button"
-                                    onClick={handleCheckout}
-                                >
-                                    Join Room
-                                </button>
-                            </div>
-                        </div>
+                    <div>
+                        <RoomDetailHeader room={data.room} />
+                        <RoomDetailBody room={data.room} />
                     </div>
                 )}
             </div>
-            {/* Test Stripe only */}
         </div>
     );
 }
