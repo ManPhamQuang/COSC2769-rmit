@@ -7,6 +7,7 @@ const {
   joinRoom,
   updateRoom,
   deleteRoom,
+  searchRoomsByName
 } = require("../controller/roomController");
 const {
   isAuthenticated,
@@ -14,6 +15,7 @@ const {
 } = require("../controller/authController");
 
 router.get("/", getAllRooms);
+router.get("/search", searchRoomsByName)
 router.get("/join", isAuthenticated, joinRoom);
 router.get("/:id", getRoom);
 
