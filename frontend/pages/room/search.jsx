@@ -4,24 +4,27 @@ import useSWR from "swr";
 import { useState, useEffect, useContext } from "react";
 import NavBar from "../../components/navbar/NavBar";
 
-const fetcher = (url, title) =>
+const fetcher = (url, term) =>
     axios
         .get(url, {
             params: {
                 sort: "-startedAt",
                 status: "pending",
-                title: title,
+                title: term,
             },
         })
         .then((res) => res.data);
 
 const Search = () => {
-    const title = "development";
+    const router = useRouter();
+    const { term } = router.query;
+    console.log(term);
+    
     const { data, error } = useSWR(
-        ["http://localhost:5000/api/v1/rooms", title],
+        ["http://localhost:5000/api/v1/rooms", term],
         fetcher
     );
-
+      
     console.log(data);
 
     return (
