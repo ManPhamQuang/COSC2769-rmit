@@ -13,66 +13,36 @@ function classNames(...classes) {
 }
 
 export default function MyRooms() {
-    let [categories] = useState({
-        Recent: [
-            {
-                id: 1,
-                title: "Does drinking coffee make you smarter?",
-                date: "5h ago",
-                commentCount: 5,
-                shareCount: 2,
-            },
-            {
-                id: 2,
-                title: "So you've bought coffee... now what?",
-                date: "2h ago",
-                commentCount: 3,
-                shareCount: 2,
-            },
-        ],
-        Popular: [
-            {
-                id: 1,
-                title: "Is tech making coffee better or worse?",
-                date: "Jan 7",
-                commentCount: 29,
-                shareCount: 16,
-            },
-            {
-                id: 2,
-                title: "The most innovative things happening in coffee",
-                date: "Mar 19",
-                commentCount: 24,
-                shareCount: 12,
-            },
-        ],
-        Trending: [
-            {
-                id: 1,
-                title: "Ask Me Anything: 10 answers to your questions about coffee",
-                date: "2d ago",
-                commentCount: 9,
-                shareCount: 5,
-            },
-            {
-                id: 2,
-                title: "The worst advice we've ever heard about coffee",
-                date: "4d ago",
-                commentCount: 1,
-                shareCount: 2,
-            },
-        ],
-    });
+    let [rooms, setRooms] = useState({
+        Active: [],
+        Pending: [],
+        Over: [],
+    }); // TODO: implement useSWR for loading
     const { state, dispatch } = useContext(AuthContext);
-    const { rooms, setRooms } = useState([]);
     useEffect(() => {
         // Navigate user to Login page if can not find token
         if (!state.token) {
             router.push("/login");
         }
         axios
-            .get("http://localhost:5000/api/v1/rooms")
-            .then((res) => console.log(res.data.data.rooms))
+            .get("http://localhost:5000/api/v1/rooms") // TODO: need to change the api to fetch users's room
+            .then((res) => {
+                let results = res.data.data.rooms;
+                let activeRooms = results.filter(
+                    (room) => room.status === "active"
+                );
+                let pendingRooms = results.filter(
+                    (room) => room.status === "pending"
+                );
+                let overRooms = results.filter(
+                    (room) => room.status === "over"
+                );
+                setRooms({
+                    Active: activeRooms,
+                    Pending: pendingRooms,
+                    Over: overRooms,
+                });
+            })
             .catch((err) => console.log(err));
     }, []);
 
@@ -160,71 +130,37 @@ export default function MyRooms() {
             <NavBar />
             <Tab.Group>
                 <header className="bg-gray-500 min-w-full">
-                    <div className="container mx-auto pt-10  text-white">
+                    <div className="container mx-auto px-10 laptop:px-24 3xl:px-0 pt-10  text-white">
                         <h2 className="text-3xl font-semibold">My Rooms</h2>
                         <Tab.List className="flex w-max space-x-1 ">
-                            {Object.keys(categories).map((category) => (
+                            {Object.keys(rooms).map((room) => (
                                 <Tab
-                                    key={category}
+                                    key={room}
                                     className={({ selected }) =>
                                         classNames(
                                             "w-[100px] py-2.5 text-sm leading-5 font-medium ",
                                             "",
                                             selected
-                                                ? "border-b-2 border-white"
+                                                ? "border-b-4 border-gray-300 rounded-none"
                                                 : "text-gray-300 hover:bg-white/[0.12] hover:text-white"
                                         )
                                     }
                                 >
-                                    {category}
+                                    {room}
                                 </Tab>
                             ))}
                         </Tab.List>
                     </div>
                 </header>
-                <div className="container mx-auto bg-blue-200">
-                    <h1>My rooms</h1>
+                <div className="container mx-auto px-10 laptop:px-24 3xl:px-0">
                     <Tab.Panels className="mt-2">
-                        {Object.values(categories).map((posts, idx) => (
-                            <Tab.Panel
-                                key={idx}
-                                className={classNames(
-                                    "bg-white",
-                                    "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"
-                                )}
-                            >
-                                <ul>
-                                    {posts.map((post) => (
-                                        <li
-                                            key={post.id}
-                                            className="relative p-3 hover:bg-coolGray-100"
-                                        >
-                                            <h3 className="text-sm font-medium leading-5">
-                                                {post.title}
-                                            </h3>
-
-                                            <ul className="flex mt-1 space-x-1 text-xs font-normal leading-4 text-coolGray-500">
-                                                <li>{post.date}</li>
-                                                <li>&middot;</li>
-                                                <li>
-                                                    {post.commentCount} comments
-                                                </li>
-                                                <li>&middot;</li>
-                                                <li>
-                                                    {post.shareCount} shares
-                                                </li>
-                                            </ul>
-
-                                            <a
-                                                href="#"
-                                                className={classNames(
-                                                    "absolute inset-0",
-                                                    "focus:z-10 focus:outline-none focus:ring-2 ring-blue-400"
-                                                )}
-                                            />
-                                        </li>
+                        {Object.values(rooms).map((roomStatus, idx) => (
+                            <Tab.Panel key={idx}>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 laptop:grid-cols-3  xl:grid-cols-4 3xl:grid-cols-5 gap-4">
+                                    {roomStatus.map((room) => (
+                                        <Card props={room} />
                                     ))}
-                                </ul>
+                                </div>
                             </Tab.Panel>
                         ))}
                     </Tab.Panels>
