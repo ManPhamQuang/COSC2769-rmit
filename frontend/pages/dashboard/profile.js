@@ -1,6 +1,7 @@
 import React from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 import { AuthContextProvider } from "../../context/authContext/AuthContext";
+import ImageUpload from "../../components/ImageUpload";
 
 const Breaker = () => (
   <div className="hidden sm:block" aria-hidden="true">
@@ -10,6 +11,7 @@ const Breaker = () => (
   </div>
 );
 export default function Profile() {
+  
   return (
     <div className="p-5 lg:p-10">
       <div>
@@ -118,6 +120,7 @@ export default function Profile() {
                       </button>
                     </div>
                   </div>
+                  {/* <ImageUpload image={image} setImage={setImage} /> */}
                   <div>
                     <label
                       htmlFor="about"
