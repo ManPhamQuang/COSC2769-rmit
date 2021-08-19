@@ -9,3 +9,26 @@ exports.getMe = catchAsync(async (req, res, next) => {
     data: user,
   });
 });
+
+exports.updateMe = catchAsync(async (req, res, next) => {
+  const data = {};
+  if (req.body.name) {
+    data.name = req.body.name;
+  }
+  if (req.body.avatar) {
+    data.avatar = req.body.avatar;
+  }
+  if (req.body.description && req.user.role === "expert") {
+    data.description = req.body.description;
+  }
+  const user = await User.findByIdAndUpdate(req.user.id, data, {
+    runValidators: true,
+    new: true,
+  });
+  res.status(200).json({
+    status: "success",
+    data: {
+      user,
+    },
+  });
+});
