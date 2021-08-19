@@ -9,7 +9,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavNonAuth({ categories }) {
+export default function NavNonAuth({ categories, handleSearchInputChange, handleSearchSubmit  }) {
   return (
     <Disclosure as="nav" className="bg-white z-20 shadow-md relative">
       {({ open }) => (
@@ -49,7 +49,7 @@ export default function NavNonAuth({ categories }) {
                 </div>
               </div>
               <div className="flex-shrink items-center hidden md:justify-start md:flex md:w-2/5 lg:w-3/5 px-2">
-                <SearchBar />
+                <SearchBar handleSearchInputChange={handleSearchInputChange} handleSearchSubmit={handleSearchSubmit} />
               </div>
               <div className="absolute inset-y-0 right-0 flex flex-shrink-0 items-center pr-2 sm:static sm:inset-auto sm:pr-0 lg:w-1/5 lg:justify-end">
                 <Link href="/login">
