@@ -5,6 +5,7 @@ const catchAsync = require("../util/catchAsync");
 const ApiFeature = require("../util/apiFeature");
 const { v4: uuidv4 } = require("uuid");
 const AppError = require("../util/appError");
+const { escapeRegExp } = require("../util/utils");
 
 exports.getAllRooms = catchAsync(async (req, res, next) => {
   const { mongooseQuery: query } = new ApiFeature(req.query, Room.find())

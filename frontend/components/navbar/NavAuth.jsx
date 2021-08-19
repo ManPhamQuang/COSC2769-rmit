@@ -10,7 +10,12 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-export default function NavAuth({ categories, user }) {
+export default function NavAuth({
+    categories,
+    user,
+    handleSearchInputChange,
+    handleSearchSubmit,
+}) {
     return (
         <Disclosure as="nav" className="bg-white z-20 shadow-md relative">
             {({ open }) => (
@@ -58,7 +63,12 @@ export default function NavAuth({ categories, user }) {
                                 </div>
                             </div>
                             <div className="flex-shrink items-center hidden md:justify-start md:flex md:w-2/5 lg:w-3/5 px-2">
-                                <SearchBar />
+                                <SearchBar
+                                    handleSearchInputChange={
+                                        handleSearchInputChange
+                                    }
+                                    handleSearchSubmit={handleSearchSubmit}
+                                />
                             </div>
                             <Link href="/my-rooms">
                                 <button className="cusor-pointer hover:text-indigo-600">
@@ -73,28 +83,32 @@ export default function NavAuth({ categories, user }) {
 
                     <Disclosure.Panel className="md:hidden divide-y divide-gray-100">
                         <div className="px-2 pb-2 space-y-1">
-                            <div className="mx-2 bg-white rounded-md border-none border-gray-600 px-2 py-1 flex items-center text-gray-400 focus-within:text-gray-600 ">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5 "
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            <div className="mx-2 bg-white rounded-md border-none border-gray-600 px-2 py-1  text-gray-400 focus-within:text-gray-600 ">
+                                <form className="flex items-center">
+                                    <button onClick={handleSearchSubmit}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-5 w-5 "
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <input
+                                        type="text"
+                                        name="search"
+                                        onChange={handleSearchInputChange}
+                                        className="ml-0 w-full bg-white  border-none focus:ring-0"
+                                        placeholder="Search for anything"
                                     />
-                                </svg>
-                                <input
-                                    type="text"
-                                    name="search"
-                                    // onChange={handleSearch}
-                                    className="ml-0 w-full bg-white  border-none focus:ring-0"
-                                    placeholder="Search for anything"
-                                />
+                                </form>
                             </div>
                         </div>
                         <div className="px-2 pt-2 pb-3 space-y-1">

@@ -1,3 +1,4 @@
+const { escapeRegExp } = require("./utils");
 class ApiFeature {
   constructor(queryObj, mongooseQuery) {
     this.queryObj = queryObj;
@@ -7,13 +8,18 @@ class ApiFeature {
   // Implement filter logic
   filter() {
     // Remove special field
-    const excludedFields = ["sort", "page", "limit"];
+    const excludedFields = ["sort", "page", "limit", "title"];
     const searchQuery = { ...this.queryObj };
     excludedFields.forEach(field => delete searchQuery[field]);
     const stringQuery = JSON.stringify(searchQuery);
     // Allow mongodb to perform filter with special keywords >(gt),>=(gte),<(lt),<=(lte)
     let output = stringQuery.replace(/(gt|gte|lt|lte)/g, match => `$${match}`);
     let filterObj = JSON.parse(output);
+    // Check if the request obj contains title
+    if (this.queryObj.title) {
+      const searchString = escapeRegExp(this.queryObj.title);
+      filterObj.title = { $regex: searchString, $options: "i" };
+    }
     this.mongooseQuery.find(filterObj);
     return this;
   }
