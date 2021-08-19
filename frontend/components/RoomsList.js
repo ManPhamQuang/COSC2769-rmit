@@ -5,9 +5,11 @@ import axios from "axios";
 import SkeletonCard from "./SkeletonCard";
 import Card from "./Card";
 
-const fetcher = (url) =>
+const fetcher = (url, token) =>
     axios
-        .get(url) // TODO: need to change the api to fetch users's room
+        .get(url, {
+            headers: { Authorization: `Bearer ${token}` },
+        }) // TODO: need to change the api to fetch users's room
         .then((res) => {
             let results = res.data.data.rooms;
             let activeRooms = results.filter(
@@ -25,9 +27,9 @@ const fetcher = (url) =>
             return result;
         });
 
-export default function RoomsList() {
+export default function RoomsList({ token }) {
     const { data, error } = useSWR(
-        "http://localhost:5000/api/v1/rooms",
+        ["http://localhost:5000/api/v1/transactions", token],
         fetcher
     );
     if (!data)

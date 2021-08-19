@@ -87,7 +87,7 @@ export default function MyRooms() {
                     </div>
                 </header>
                 <div className="container mx-auto px-10 laptop:px-24 3xl:px-0">
-                    <RoomsList />
+                    <RoomsList token={state.token} />
                 </div>
             </Tab.Group>
         </>
