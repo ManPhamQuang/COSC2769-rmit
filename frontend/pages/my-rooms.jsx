@@ -1,47 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Card from "../components/Card";
 import NavBar from "../components/navbar/NavBar";
 import Head from "next/head";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
 import { Tab } from "@headlessui/react";
 import router from "next/router";
-import axios from "axios";
-import useSWR from "swr";
 import RoomsList from "../components/RoomsList";
-import RoomCardsSlider from "../components/RoomCardsSlider";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
 const TabTitles = ["Active", "Pending", "Over"];
-
-const fetcher = (url) => {
-    axios
-        .get(url) // TODO: need to change the api to fetch users's room
-        .then((res) => {
-            let results = res.data.data.rooms;
-            console.log(results);
-            let activeRooms = results.filter(
-                (room) => room.status === "active"
-            );
-            let pendingRooms = results.filter(
-                (room) => room.status === "pending"
-            );
-            let overRooms = results.filter((room) => room.status === "over");
-            console.log({
-                Active: activeRooms,
-                Pending: pendingRooms,
-                Over: overRooms,
-            });
-            return {
-                Active: activeRooms,
-                Pending: pendingRooms,
-                Over: overRooms,
-            };
-        });
-};
 
 export default function MyRooms() {
     const { state, dispatch } = useContext(AuthContext);
