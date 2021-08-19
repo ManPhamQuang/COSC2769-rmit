@@ -4,6 +4,7 @@ const roomRoute = require("./route/roomRoute");
 const userRoute = require("./route/userRoute");
 const categoryRoute = require("./route/categoryRoute");
 const videoRoute = require("./route/videoRoute");
+const checkoutRoute = require("./route/checkoutRoute");
 const AppError = require("./util/appError");
 const GlobalErrorController = require("./controller/errorController");
 
@@ -21,6 +22,7 @@ app.use("/api/v1/rooms", roomRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/categories", categoryRoute);
 app.use("/api/v1/videos", videoRoute);
+app.use("/api/v1/checkouts", checkoutRoute);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Given url ${req.originalUrl} does not exist`, 404));
