@@ -79,21 +79,23 @@ export default function NavAuth({
                     <Disclosure.Panel className="md:hidden divide-y divide-gray-100">
                         <div className="px-2 pb-2 space-y-1">
                             <div className="mx-2 bg-white rounded-md border-none border-gray-600 px-2 py-1  text-gray-400 focus-within:text-gray-600 ">
-                                <form className="flex items-center" onSubmit={handleSearchSubmit}>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5 "
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                        />
-                                    </svg>
+                                <form className="flex items-center">
+                                    <button onClick={handleSearchSubmit}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-5 w-5 "
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                            />
+                                        </svg>
+                                    </button>
                                     <input
                                         type="text"
                                         name="search"
