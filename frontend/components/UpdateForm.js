@@ -6,9 +6,10 @@ import { AuthContext } from "../context/authContext/AuthContext";
 import CategoryDropDown from "./CategoryDropDown";
 import axios from "axios";
 
-const INIT_CATEGORY = [{ name: "Select Category" }];
+
 export default function UpdateForm({ roomDetail }) {
     const { state, dispatch } = useContext(AuthContext);
+    const INIT_CATEGORY = [{ name: roomDetail.category.name }];
 
     // State to display dropdown options for categories
     const [categories, setCategories] = useState(INIT_CATEGORY);
