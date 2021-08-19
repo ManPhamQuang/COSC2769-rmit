@@ -72,10 +72,9 @@ const Search = () => {
                 )}
                 <div className="mt-6 grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {data.data.rooms.map((room) => (
-                        <Link href={`/room/${room._id}`}>
+                        <Link href={`/room/${room._id}`} key={room._id}>
                             <div
                                 className=" group cursor-pointer"
-                                key={room._id}
                             >
                                 <div>
                                     <div className="h-48 md:h-44 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">

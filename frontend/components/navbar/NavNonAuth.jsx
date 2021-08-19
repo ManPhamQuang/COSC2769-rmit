@@ -68,7 +68,8 @@ export default function NavNonAuth({ categories, handleSearchInputChange, handle
 
           <Disclosure.Panel className="md:hidden divide-y divide-gray-100">
             <div className="px-2 pb-2 space-y-1">
-              <div className="mx-2 bg-white rounded-md border-none border-gray-600 px-2 py-1 flex items-center text-gray-400 focus-within:text-gray-600 ">
+              <div className="mx-2 bg-white rounded-md border-none border-gray-600 px-2 py-1 text-gray-400 focus-within:text-gray-600 ">
+              <form className="flex items-center" onSubmit={handleSearchSubmit}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 "
@@ -86,10 +87,11 @@ export default function NavNonAuth({ categories, handleSearchInputChange, handle
                 <input
                   type="text"
                   name="search"
-                  // onChange={handleSearch}
+                  onChange={handleSearchInputChange}
                   className="ml-0 w-full bg-white  border-none focus:ring-0"
                   placeholder="Search for anything"
                 />
+                </form>
               </div>
               <Link href="/signup">
                 <a className="block px-3 py-2 rounded-md text-sm font-normal text-indigo-700 hover:bg-gray-700 hover:text-white cursor-pointer">
