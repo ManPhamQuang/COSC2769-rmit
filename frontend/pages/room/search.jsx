@@ -11,7 +11,6 @@ const fetcher = (url, term) =>
         .get(url, {
             params: {
                 sort: "-startedAt",
-                status: "pending",
                 title: term,
             },
         })
