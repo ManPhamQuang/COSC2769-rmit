@@ -11,7 +11,8 @@ const fetcher = (url, token) =>
             headers: { Authorization: `Bearer ${token}` },
         }) // TODO: need to change the api to fetch users's room
         .then((res) => {
-            let results = res.data.data.rooms;
+            let transactions = res.data.data.transactions;
+            let results = transactions.map((el) => el.room);
             let activeRooms = results.filter(
                 (room) => room.status === "active"
             );
