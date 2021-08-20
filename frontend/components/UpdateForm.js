@@ -18,7 +18,7 @@ export default function UpdateForm({ roomDetail }) {
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
     // State to prepare data for server request
-    const [categoryID, setCategoryID] = useState("");
+    const [categoryID, setCategoryID] = useState(roomDetail.category._id);
     const [title, setTitle] = useState(roomDetail.title);
     const [description, setDescription] = useState(roomDetail.description);
     const [price, setPrice] = useState(roomDetail.price);
