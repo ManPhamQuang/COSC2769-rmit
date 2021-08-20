@@ -3,7 +3,12 @@ const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
 
 exports.getAllTransactions = catchAsync(async (req, res, next) => {
-  const transactions = await Transaction.find({ from: req.user.id }).populate("room");
+    const transactions = await Transaction.find({ from: req.user.id })
+    .select("-from -to")
+    .populate({
+      path: "room",
+      populate: "createdBy",
+    });
 
   res.status(200).json({
     status: "success",
