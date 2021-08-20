@@ -5,11 +5,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/authContext/AuthContext";
 import CategoryDropDown from "./CategoryDropDown";
 import axios from "axios";
-
+import { useDropzone } from "react-dropzone";
 
 export default function UpdateForm({ roomDetail }) {
     const { state, dispatch } = useContext(AuthContext);
     const INIT_CATEGORY = [{ name: roomDetail.category.name }];
+    const [files, setFiles] = useState([]);
+    const [errors, setErrors] = useState("");
 
     // State to display dropdown options for categories
     const [categories, setCategories] = useState(INIT_CATEGORY);
@@ -54,6 +56,54 @@ export default function UpdateForm({ roomDetail }) {
                 console.log(error);
             });
     }, []);
+
+    const { getRootProps, getInputProps } = useDropzone({
+        accept: "image/*",
+        maxSize: "10485760",
+        maxFiles: 1,
+        multiple: false,
+        onDrop: (acceptedFiles, fileRejections) => {
+            setFiles(
+                acceptedFiles.map((file) =>
+                    Object.assign(file, {
+                        preview: URL.createObjectURL(file),
+                    })
+                )
+            );
+            fileRejections.forEach((file) => {
+                file.errors.forEach((err) => {
+                    if (err.code === "file-too-large") {
+                        setErrors("Error: File must not exceed 10MB limit!");
+                    }
+
+                    if (err.code === "file-invalid-type") {
+                        setErrors("Error: File must be an image!");
+                    }
+                });
+            });
+        },
+    });
+
+    const thumbs = files.map((file) => (
+        <div key={file.name}>
+            <div>
+                <img src={file.preview} />
+            </div>
+        </div>
+    ));
+
+    useEffect(
+        () => () => {
+            // Make sure to revoke the data uris to avoid memory leaks
+            files.forEach((file) => URL.revokeObjectURL(file.preview));
+        },
+        [files]
+    );
+
+    const handleUpdate = async (event) => {
+        event.preventDefault();
+    };
+
     return (
         <div className="md:grid md:grid-cols-3 md:gap-6 mt-32">
             <div className="col-span-3 lg:col-span-1">
@@ -149,37 +199,38 @@ export default function UpdateForm({ roomDetail }) {
                                 </label>
                                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                     <div className="space-y-1 text-center">
-                                        <svg
-                                            className="mx-auto h-12 w-12 text-gray-400"
-                                            stroke="currentColor"
-                                            fill="none"
-                                            viewBox="0 0 48 48"
-                                            aria-hidden="true"
+                                        <div
+                                            {...getRootProps({
+                                                className: "dropzone",
+                                            })}
                                         >
-                                            <path
-                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                        <div className="flex text-sm text-gray-600">
-                                            <label className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                <span>Upload a file</span>
-                                                <input
-                                                    id="file-upload"
-                                                    name="file-upload"
-                                                    type="file"
-                                                    className="sr-only"
+                                            <svg
+                                                className="mx-auto h-12 w-12 text-gray-400"
+                                                stroke="currentColor"
+                                                fill="none"
+                                                viewBox="0 0 48 48"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
                                                 />
-                                            </label>
-                                            <p className="pl-1">
-                                                or drag and drop
+                                            </svg>
+                                            <input {...getInputProps()} />
+                                            <p className="text-xs text-gray-500">
+                                                PNG, JPG, GIF up to 10MB
+                                            </p>
+                                            <p className="text-xs text-gray-500">
+                                                Click to select image or drag
+                                                image.
+                                            </p>
+                                            <p className="font-bold text-1xl text-red-500">
+                                                {errors}
                                             </p>
                                         </div>
-                                        <p className="text-xs text-gray-500">
-                                            PNG, JPG, GIF up to 10MB
-                                        </p>
+                                        <aside>{thumbs}</aside>
                                     </div>
                                 </div>
                             </div>
