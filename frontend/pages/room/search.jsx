@@ -28,8 +28,8 @@ const Search = () => {
         return (
             <div>
                 <NavBar />
-                <div className="container mt-4 mx-auto h-full p-5 lg:p-14">
-                    <div className="mt-6 grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div className="container mx-auto h-full p-5 lg:p-14">
+                    <div className="mt-24 grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         <SkeletonCard />
                         <SkeletonCard />
                         <SkeletonCard />
@@ -48,8 +48,8 @@ const Search = () => {
         return (
             <div>
                 <NavBar />
-                <div className="container mt-4 mx-auto h-full p-5 lg:p-14">
-                    <h1 className="text-2xl font-semibold">
+                <div className="container mx-auto h-full p-5 lg:p-14">
+                    <h1 className="mt-24 text-2xl font-semibold">
                         No results found for "{term}"
                     </h1>
                 </div>
@@ -60,13 +60,13 @@ const Search = () => {
     return (
         <div>
             <NavBar />
-            <div className="container mt-4 mx-auto h-full p-5 lg:p-14">
+            <div className="container mx-auto h-full p-5 lg:p-14">
                 {data.length === 1 ? (
-                    <h1 className="text-2xl font-semibold">
+                    <h1 className="mt-24 text-2xl font-semibold">
                         {data.length} result for "{term}"
                     </h1>
                 ) : (
-                    <h1 className="text-2xl font-semibold">
+                    <h1 className="mt-24 text-2xl font-semibold">
                         {data.length} results for "{term}"
                     </h1>
                 )}

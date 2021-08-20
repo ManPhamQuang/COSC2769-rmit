@@ -42,7 +42,7 @@ export default function Home() {
             </Head>
             <NavBar />
             <div className="container mx-auto p-5 lg:p-14">
-                <h1 className="font-bold text-4xl mt-10">What to learn next</h1>
+                <h1 className="font-bold text-4xl mt-24">What to learn next</h1>
                 <div className="mt-10">
                     <h1 className="font-bold text-2xl m-4 mt-0">
                         Upcoming rooms
