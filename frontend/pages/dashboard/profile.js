@@ -4,6 +4,7 @@ import { AuthContextProvider } from "../../context/authContext/AuthContext";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import axios from "axios";
 import ImageUpload from "../../components/ImageUpload";
+import { getMe } from "../../context/authContext/apiCalls";
 
 const Breaker = () => (
     <div className="hidden sm:block" aria-hidden="true">
@@ -52,6 +53,7 @@ export default function Profile() {
             );
             if (`${response.status}`.startsWith("2")) {
                 console.log("ENTERING");
+                getMe(state.token, dispatch);
                 setIsLoading(false);
                 // const data = {};
                 // data.user = response.data.data.user;
