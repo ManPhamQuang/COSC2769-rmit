@@ -59,6 +59,7 @@ const userSchema = new mongoose.Schema({
     },
   },
   ratingsQuantity: Number,
+  description: String,
 });
 
 userSchema.methods.comparePassword = async function (
@@ -77,6 +78,7 @@ userSchema.pre("save", async function (next) {
   if (this.role === "user") {
     this.ratingsQuantity = undefined;
     this.ratingsAverage = undefined;
+    this.description = undefined;
   }
   if (this.role === "expert") {
     this.ratingsAverage = null;
