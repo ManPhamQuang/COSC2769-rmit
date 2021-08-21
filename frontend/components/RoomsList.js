@@ -52,7 +52,7 @@ export default function RoomsList({ token }) {
                     <Tab.Panel key={idx}>
                         <div className="grid grid-cols-1 sm:grid-cols-2 laptop:grid-cols-3  xl:grid-cols-4 3xl:grid-cols-5 gap-4">
                             {roomStatus.map((room) => (
-                                <Card props={room} />
+                                <Card props={room} key={room._id} />
                             ))}
                         </div>
                     </Tab.Panel>
