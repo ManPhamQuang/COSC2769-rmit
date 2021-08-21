@@ -5,7 +5,6 @@ import axios from "axios";
 import useSWR from "swr";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/authContext/AuthContext";
-import NavBar from "../../components/navbar/NavBar";
 
 const fetcher = (url, token) =>
     axios

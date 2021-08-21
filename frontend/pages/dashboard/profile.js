@@ -312,9 +312,3 @@ export default function Profile() {
         </div>
     );
 }
-
-Profile.getLayout = (page) => (
-    <AuthContextProvider>
-        <DashboardLayout>{page}</DashboardLayout>
-    </AuthContextProvider>
-);

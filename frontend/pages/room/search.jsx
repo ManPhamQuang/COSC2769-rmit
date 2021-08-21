@@ -27,7 +27,6 @@ const Search = () => {
     if (!data) {
         return (
             <div>
-                <NavBar />
                 <div className="container mt-4 mx-auto h-full p-5 lg:p-14">
                     <div className="mt-6 grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         <SkeletonCard />
@@ -47,7 +46,6 @@ const Search = () => {
     if (data.length === 0) {
         return (
             <div>
-                <NavBar />
                 <div className="container mt-4 mx-auto h-full p-5 lg:p-14">
                     <h1 className="text-2xl font-semibold">
                         No results found for "{term}"
@@ -59,7 +57,6 @@ const Search = () => {
 
     return (
         <div>
-            <NavBar />
             <div className="container mt-4 mx-auto h-full p-5 lg:p-14">
                 {data.length === 1 ? (
                     <h1 className="text-2xl font-semibold">
@@ -73,9 +70,7 @@ const Search = () => {
                 <div className="mt-6 grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {data.data.rooms.map((room) => (
                         <Link href={`/room/${room._id}`} key={room._id}>
-                            <div
-                                className=" group cursor-pointer"
-                            >
+                            <div className=" group cursor-pointer">
                                 <div>
                                     <div className="h-48 md:h-44 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
                                         <img
