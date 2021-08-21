@@ -66,9 +66,15 @@ const UserDropdown = ({ user }) => {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
-                                        onClick={() =>
-                                            router.push("/dashboard/profile")
-                                        }
+                                        onClick={() => {
+                                            if (state.user.role === "expert") {
+                                                router.push(
+                                                    "/dashboard/profile"
+                                                );
+                                            } else {
+                                                router.push("/edit-profile");
+                                            }
+                                        }}
                                         className={`${
                                             active
                                                 ? "text-indigo-600 bg-gray-100"

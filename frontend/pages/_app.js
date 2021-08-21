@@ -9,31 +9,20 @@ function MyApp({ Component, pageProps }) {
     const { pathname } = useRouter();
     const isDashboard = pathname.includes("/dashboard");
 
-    if (!isDashboard) {
-        return (
-            <AuthContextProvider>
-                <DefaultLayout>
-                    <Component {...pageProps} />
-                </DefaultLayout>
-            </AuthContextProvider>
+    const LayoutWrapper = ({ children }) =>
+        isDashboard ? (
+            <DashboardLayout>{children}</DashboardLayout>
+        ) : (
+            <DefaultLayout>{children}</DefaultLayout>
         );
-    }
 
-    if (isDashboard) {
-        return (
-            <AuthContextProvider>
-                <DashboardLayout>
-                    <Component {...pageProps} />
-                </DashboardLayout>
-            </AuthContextProvider>
-        );
-    }
-
-    //   return getLayout(
-    //     <AuthContextProvider>
-    //       <Component {...pageProps} />
-    //     </AuthContextProvider>
-    //   );
+    return (
+        <AuthContextProvider>
+            <LayoutWrapper>
+                <Component {...pageProps} />
+            </LayoutWrapper>
+        </AuthContextProvider>
+    );
 }
 
 export default MyApp;
