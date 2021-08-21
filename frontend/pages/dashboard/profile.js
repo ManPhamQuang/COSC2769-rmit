@@ -55,19 +55,6 @@ export default function Profile() {
                 console.log("ENTERING");
                 getMe(state.token, dispatch);
                 setIsLoading(false);
-                // const data = {};
-                // data.user = response.data.data.user;
-                // auth.login("update", data);
-                // setTimeout(() =>
-                //     enqueueSnackbar("Successfully update your profile", {
-                //         variant: "success",
-                //         anchorOrigin: {
-                //             vertical: "bottom",
-                //             horizontal: "left",
-                //         },
-                //         autoHideDuration: 4000,
-                //     })
-                // );
             }
         } catch (error) {
             setIsLoading(false);
@@ -131,26 +118,6 @@ export default function Profile() {
                                                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 disabled:text-gray-400 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                             />
                                         </div>
-                                        {/* <div className="col-span-3 sm:col-span-2">
-                                            <label
-                                                htmlFor="company-website"
-                                                className="block text-sm font-medium text-gray-700"
-                                            >
-                                                Website
-                                            </label>
-                                            <div className="mt-1 flex rounded-md shadow-sm">
-                                                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                                                    http://
-                                                </span>
-                                                <input
-                                                    type="text"
-                                                    name="company-website"
-                                                    id="company-website"
-                                                    className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
-                                                    placeholder="www.example.com"
-                                                />
-                                            </div>
-                                        </div> */}
                                     </div>
 
                                     <div>
@@ -162,26 +129,6 @@ export default function Profile() {
                                             setImage={setImage}
                                             currentAvatar={state.user.avatar}
                                         />
-                                        {/* <div className="mt-1 flex items-center">
-                                            <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                                                <svg
-                                                    className="h-full w-full text-gray-300"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                                </svg>
-                                            </span>
-                                            <button
-                                                type="file"
-                                                id="avatar"
-                                                name="avatar"
-                                                accept="image/png, image/jpeg"
-                                                className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                            >
-                                                Change
-                                            </button>
-                                        </div> */}
                                     </div>
                                     <div>
                                         <label
@@ -209,98 +156,46 @@ export default function Profile() {
                                             Brief description for your profile.
                                         </p>
                                     </div>
-
-                                    {/* <div className="grid grid-cols-6 gap-6">
-                                        <div className="col-span-6 sm:col-span-3">
-                                            <label
-                                                htmlFor="country"
-                                                className="block text-sm font-medium text-gray-700"
-                                            >
-                                                Country / Region
-                                            </label>
-                                            <select
-                                                id="country"
-                                                name="country"
-                                                autoComplete="country"
-                                                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            >
-                                                <option>United States</option>
-                                                <option>Canada</option>
-                                                <option>Mexico</option>
-                                            </select>
-                                        </div>
-
-                                        <div className="col-span-6">
-                                            <label
-                                                htmlFor="street-address"
-                                                className="block text-sm font-medium text-gray-700"
-                                            >
-                                                Street address
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="street-address"
-                                                id="street-address"
-                                                autoComplete="street-address"
-                                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                            />
-                                        </div>
-
-                                        <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                                            <label
-                                                htmlFor="city"
-                                                className="block text-sm font-medium text-gray-700"
-                                            >
-                                                City
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="city"
-                                                id="city"
-                                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                            />
-                                        </div>
-
-                                        <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                            <label
-                                                htmlFor="state"
-                                                className="block text-sm font-medium text-gray-700"
-                                            >
-                                                State / Province
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="state"
-                                                id="state"
-                                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                            />
-                                        </div>
-
-                                        <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                            <label
-                                                htmlFor="postal-code"
-                                                className="block text-sm font-medium text-gray-700"
-                                            >
-                                                ZIP / Postal
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="postal-code"
-                                                id="postal-code"
-                                                autoComplete="postal-code"
-                                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                            />
-                                        </div>
-                                    </div> */}
                                 </div>
                                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                    <button
-                                        onClick={handleSubmit}
-                                        type="submit"
-                                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        Save
-                                    </button>
+                                    {isLoading ? (
+                                        <button
+                                            disabled={true}
+                                            onClick={handleSubmit}
+                                            type="submit"
+                                            className="inline-flex w-28 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        >
+                                            <svg
+                                                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <circle
+                                                    className="opacity-25"
+                                                    cx="12"
+                                                    cy="12"
+                                                    r="10"
+                                                    stroke="currentColor"
+                                                    strokeWidth="4"
+                                                ></circle>
+                                                <path
+                                                    className="opacity-75"
+                                                    fill="currentColor"
+                                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                                ></path>
+                                            </svg>
+                                            Saving...
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={handleSubmit}
+                                            type="submit"
+                                            className="inline-flex w-28 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        >
+                                            Save
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </form>
