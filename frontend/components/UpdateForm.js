@@ -7,6 +7,7 @@ import CategoryDropDown from "./CategoryDropDown";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import router from "next/router";
+import { StarIcon } from "@heroicons/react/solid";
 
 const roomReducer = (state, action) => {
     switch (action.type) {
@@ -56,6 +57,7 @@ export default function UpdateForm({ roomDetail }) {
     const [description, setDescription] = useState(roomDetail.description);
     const [price, setPrice] = useState(roomDetail.price);
     const [startDate, setStartDate] = useState(new Date());
+    const [display, setDisplay] = useState("");
 
     const isInvalid =
         title === "" || description === "" || price === "" || categoryID === "";
@@ -126,11 +128,11 @@ export default function UpdateForm({ roomDetail }) {
 
     const thumbs = files.map((file) => (
         <div key={file.name}>
-            <div>
-                <img src={file.preview} />
-                <button type="button" onClick={() => remove(file)}>
-                    Remove
-                </button>
+            <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
+                <img
+                    src={file.preview}
+                    className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:mix-blend-multiply"
+                />
             </div>
         </div>
     ));
@@ -142,12 +144,6 @@ export default function UpdateForm({ roomDetail }) {
         },
         [files]
     );
-
-    const remove = (file) => {
-        const newFiles = [...files]; // make a var for the new array
-        files.splice(file, 1); // remove the file from the array
-        setFiles(newFiles);
-    };
 
     const handleUpdate = async (event) => {
         event.preventDefault();
@@ -214,7 +210,7 @@ export default function UpdateForm({ roomDetail }) {
                 </div>
             )}
             <div className="md:grid md:grid-cols-3 md:gap-6 mt-32">
-                <div className="col-span-3 lg:col-span-1">
+                <div className="col-span-3 lg:col-span-1 space-y-">
                     <div className="px-4 sm:px-0">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">
                             Update Chatroom
@@ -223,6 +219,48 @@ export default function UpdateForm({ roomDetail }) {
                             This information will be displayed publicly so be
                             careful what you share.
                         </p>
+                    </div>
+                    <div className="mt-4 px-4 sm:px-0">
+                        <h3 className="text-lg font-medium leading-6 text-gray-900">
+                            Preview
+                        </h3>
+                        <div className="group cursor-pointer px-16 mt-4">
+                            <div className="border px-8 py-2">
+                                {files.length > 0 && <div>{thumbs}</div>}
+                                {files.length == 0 && (
+                                    <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
+                                        <img
+                                            src={"/default.png"}
+                                            className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:mix-blend-multiply"
+                                        />
+                                    </div>
+                                )}
+
+                                <div className="leading-snug mt-2">
+                                    <h1 className="font-bold">{title}</h1>
+                                    <p className="text-sm font-normal text-gray-500 truncate">
+                                        {roomDetail.createdBy.name}
+                                    </p>
+                                    <p className="text-yellow-700 font-semibold inline">
+                                        4.7
+                                    </p>
+                                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                    <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                    <p className="inline text-sm font-normal text-gray-500">
+                                        (630,406)
+                                    </p>
+                                    <h1 className="font-bold">${price}</h1>
+                                    <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
+                                        <p className="text-xs font-semibold mx-auto text-center">
+                                            {selectedCategory.name}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="mt-5 md:mt-0 col-span-3 lg:col-span-2">
@@ -307,8 +345,8 @@ export default function UpdateForm({ roomDetail }) {
                                     <label className="block text-sm font-medium text-gray-700">
                                         Thumbnail
                                     </label>
-                                    <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                        <div className="space-y-1 text-center">
+                                    <div className="mt-1 flex justify-center px-4 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div className="space-y-4 text-center">
                                             <div
                                                 {...getRootProps({
                                                     className: "dropzone",
@@ -340,7 +378,16 @@ export default function UpdateForm({ roomDetail }) {
                                                     {errors}
                                                 </p>
                                             </div>
-                                            <div>{thumbs}</div>
+                                            <div>
+                                                {thumbs}
+                                                <button
+                                                    type="button"
+                                                    className="justify-center mt-4 py-2 px-4 bg-red-600 text-white active:bg-red-700 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                                                    onClick={() => setFiles([])}
+                                                >
+                                                    Remove
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
