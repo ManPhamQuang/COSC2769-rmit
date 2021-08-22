@@ -9,6 +9,7 @@ import ReadMore from "./ReadMore";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const courseInfor = {
     id: 1,
@@ -79,10 +80,13 @@ export default function RoomDetailBody({ room }) {
                     {/* <ReadMore /> */}
                 </div>
                 <div>
-                    <TeacherSelfIntroduction
-                        key={teacherSelfIntroduction[0].id}
-                        props={teacherSelfIntroduction[0]}
-                    />
+                    {/* <Link href={`/expertprofile/${room.createdBy._id}`}> */}
+                        <TeacherSelfIntroduction
+                            key={room.createdBy}
+                            props={room.createdBy}
+                        />
+                    {/* </Link> */}
+                    
                 </div>
             </div>
             <div className="hidden xl:block px-20 py-6">

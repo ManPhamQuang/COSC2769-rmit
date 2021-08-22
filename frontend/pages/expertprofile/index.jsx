@@ -7,20 +7,21 @@ import axios from "axios";
 import useSWR from "swr";
 import { AuthContextProvider } from "../../context/authContext/AuthContext";
 import { StarIcon } from "@heroicons/react/solid";
+import { data } from "autoprefixer";
 
-// const fetcher = (url, token) =>
-//   axios
-//     .get(url, {
-//       headers: { Authorization: `Bearer ${token}` },
-//     })
-//     .then((res) => res.data.data);
+const fetcher = (url, token) =>
+  axios
+    .get(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => res.data.data);
 
 export default function ExpertProfile() {
-    //   const token = localStorage.getItem("accessToken");
-    //   const { data: user, error } = useSWR(
-    //     ["http://localhost:5000/api/v1/users/getMe", token],
-    //     fetcher
-    //   );
+      const token = localStorage.getItem("accessToken");
+      const { data, error } = useSWR(
+        ["http://localhost:5000/api/v1/users/getMe", token],
+        fetcher
+      );
 
     return (
         <>
@@ -41,10 +42,10 @@ export default function ExpertProfile() {
                                     Instructor
                                 </p>
                                 <p className="py-5 font-bold uppercase tracking-wide sm:text-2xl text-3xl text-indigo-500 lg:text-4xl">
-                                    Zachary Reece
+                                    {data.name}
                                 </p>
                                 <p className="pb-5 font-bold tracking-wide text-sm text-gray-600 lg:text-base">
-                                    Software Entrepreneur
+                                    {data.job}
                                 </p>
                             </div>
                             <div>

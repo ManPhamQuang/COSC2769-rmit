@@ -25,12 +25,12 @@ export default function teacherSelfIntroduction({ props }) {
                             className="inline object-cover rounded-full h-26 w-26 md:h-40 w-40"
                         />
                     </div>
-                    <div className="col-span-3 flex items-center">
+                    <div className="col-span-3 flex items-center pl-10">
                         <div className="space-y-4">
                             <div className="inline">
                                 <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1 lg:h-5 lg:w-5" />
                                 <p className="text-gray-600 inline text-sm lg:text-base">
-                                    {props.rating}
+                                    {props.ratingsAverage}
                                 </p>
                                 <p className="text-gray-600 inline text-sm lg:text-base">
                                     &nbsp;Instructor Rating
@@ -80,7 +80,7 @@ export default function teacherSelfIntroduction({ props }) {
             </div>
             <div className="mt-3">
                 <p className="mt-1 text-sm text-justify mb-20 lg:text-base">
-                    {props.seftIntroduction}
+                    {props.description}
                 </p>
             </div>
         </div>
