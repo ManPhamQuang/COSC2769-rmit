@@ -57,7 +57,7 @@ export default function UpdateForm({ roomDetail }) {
     const [description, setDescription] = useState(roomDetail.description);
     const [price, setPrice] = useState(roomDetail.price);
     const [startDate, setStartDate] = useState(new Date());
-    const [display, setDisplay] = useState("");
+    const [oldThumb, setOldThumb] = useState(roomDetail.thumbnail);
 
     const isInvalid =
         title === "" || description === "" || price === "" || categoryID === "";
@@ -225,12 +225,20 @@ export default function UpdateForm({ roomDetail }) {
                             Preview
                         </h3>
                         <div className="group cursor-pointer px-16 mt-4">
-                            <div className="border px-8 py-2">
+                            <div className="border px-8 py-6 border-2 border-gray-500 rounded-lg">
                                 {files.length > 0 && <div>{thumbs}</div>}
-                                {files.length == 0 && (
+                                {files.length == 0 && oldThumb.length == 0 && (
                                     <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
                                         <img
                                             src={"/default.png"}
+                                            className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:mix-blend-multiply"
+                                        />
+                                    </div>
+                                )}
+                                {files.length == 0 && oldThumb.length > 0 && (
+                                    <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
+                                        <img
+                                            src={oldThumb}
                                             className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:mix-blend-multiply"
                                         />
                                     </div>
@@ -380,13 +388,17 @@ export default function UpdateForm({ roomDetail }) {
                                             </div>
                                             <div>
                                                 {thumbs}
-                                                <button
-                                                    type="button"
-                                                    className="justify-center mt-4 py-2 px-4 bg-red-600 text-white active:bg-red-700 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                                                    onClick={() => setFiles([])}
-                                                >
-                                                    Remove
-                                                </button>
+                                                {files.length > 0 && (
+                                                    <button
+                                                        type="button"
+                                                        className="justify-center mt-4 py-2 px-4 bg-red-600 text-white active:bg-red-700 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                                                        onClick={() =>
+                                                            setFiles([])
+                                                        }
+                                                    >
+                                                        Remove
+                                                    </button>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
