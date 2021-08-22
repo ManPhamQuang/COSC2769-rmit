@@ -81,7 +81,7 @@ export default function NavNonAuth({
                         </div>
                     </div>
 
-                    <Disclosure.Panel className="md:hidden divide-y divide-gray-100">
+                    <Disclosure.Panel className="md:hidden divide-y divide-gray-100 h-screen overflow-y-auto">
                         <div className="px-2 pb-2 space-y-1">
                             <div className="mx-2 bg-white rounded-md border-none border-gray-600 px-2 py-1 text-gray-400 focus-within:text-gray-600 ">
                                 <form className="flex items-center">
@@ -121,7 +121,7 @@ export default function NavNonAuth({
                                 </a>
                             </Link>
                         </div>
-                        <div className="px-2 pt-2 pb-3 space-y-1">
+                        <div className="px-2 pt-2 pb-3 space-y-1 ">
                             <h1 className="px-3 py-2 font-medium">
                                 CATEGORIES
                             </h1>
