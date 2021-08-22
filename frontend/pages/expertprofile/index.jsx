@@ -32,38 +32,38 @@ export default function ExpertProfile() {
                 />
             </Head>
             <NavBar />
-            <div className="w-full grid grid-cols-1 lg:px-56">
-                <div className="col-span-1 px-4 py-2 lg:px-24 py-6 lg:col-span-2 space-y-8 ">
+            <div className="w-full grid grid-cols-1  md:px-20 ">
+                <div className="col-span-1 px-4 py-2 xl:px-40 py-6 lg:col-span-2 space-y-8 ">
                     <div className="space-y-2 px-2 py-2 lg:space-y-4 lg:px-12 lg:py-4 ">
                         <div className="mt-2">
                             <div>
-                                <p className="font-bold text-sm mb-2 text-gray-600 lg:text-2xl">
+                                <p className="font-bold text-sm text-gray-600 lg:text-2xl">
                                     Instructor
                                 </p>
-                                <p className="font-bold uppercase tracking-wide text-3xl text-indigo-500 lg:text-4xl">
+                                <p className="py-5 font-bold uppercase tracking-wide sm:text-2xl text-3xl text-indigo-500 lg:text-4xl">
                                     Zachary Reece
                                 </p>
-                                <p className="font-bold tracking-wide text-sm text-gray-600 lg:text-base">
+                                <p className="pb-5 font-bold tracking-wide text-sm text-gray-600 lg:text-base">
                                     Software Entrepreneur
                                 </p>
                             </div>
                             <div>
-                                <div className="grid grid-cols-4 py-2">
+                                <div className="sm:grid sm:grid-cols-4 sm:py-2 sm:pb-10 flex flex-col">
                                     <div className=" ">
                                         <img
                                             alt="Expert Avatar"
                                             src="https://img-c.udemycdn.com/user/200_H/15722848_5948_3.jpg"
-                                            className="inline object-cover rounded-full h-26 w-26 md:h-60 w-60"
+                                            className="inline object-cover rounded-full h-25 w-25 sm:h-60 sm:w-60 ml-15 sm:place-self-center "
                                         />
                                     </div>
-                                    <div className="col-span-3 pl-10 flex items-center">
+                                    <div className="w-50 col-span-3 pl-10 flex items-center">
                                         <div className="space-y-4">
                                             <div className="inline">
                                                 <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1 lg:h-5 lg:w-5" />
                                                 <p className="text-gray-600 inline text-sm lg:text-base">
                                                     5
                                                 </p>
-                                                <p className="text-gray-600 inline text-sm lg:text-base">
+                                                <p className="text-gray-600 inline text-sm sm:text-base">
                                                     &nbsp;Instructor Rating
                                                 </p>
                                             </div>
@@ -110,7 +110,7 @@ export default function ExpertProfile() {
                                 </div>
                             </div>
                             <div className="mt-3">
-                                <p>About me</p>
+                                <p className="font-bold text-sm mb-2  sm:text-2xl">About me</p>
                                 <p className="mt-1 text-sm text-justify mb-20 lg:text-base">
                                     Hey! I'm Zachary Reece, a startup founder
                                     from Wichita, Kansas. I started building
