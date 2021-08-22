@@ -63,7 +63,6 @@ const SearchResult = ({ term }) => {
                     <SearchCard key={room._id} room={room}/>
                 ))}
             </div>
-            <Pagination />
         </div>
     );
 };
