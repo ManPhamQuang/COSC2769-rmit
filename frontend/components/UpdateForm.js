@@ -128,6 +128,9 @@ export default function UpdateForm({ roomDetail }) {
         <div key={file.name}>
             <div>
                 <img src={file.preview} />
+                <button type="button" onClick={() => remove(file)}>
+                    Remove
+                </button>
             </div>
         </div>
     ));
@@ -140,12 +143,18 @@ export default function UpdateForm({ roomDetail }) {
         [files]
     );
 
+    const remove = (file) => {
+        const newFiles = [...files]; // make a var for the new array
+        files.splice(file, 1); // remove the file from the array
+        setFiles(newFiles);
+    };
+
     const handleUpdate = async (event) => {
         event.preventDefault();
         const token = getAccessToken();
         let thumbnail;
         dispatchRoom({ type: "ROOM_LOADING" });
-        if (files) {
+        if (files.length == 1) {
             const formData = new FormData();
             formData.append("file", files[0]);
             formData.append("upload_preset", "iiyg1094");
@@ -325,13 +334,13 @@ export default function UpdateForm({ roomDetail }) {
                                                 </p>
                                                 <p className="text-xs text-gray-500">
                                                     Click to select image or
-                                                    drag image.
+                                                    drag an image in.
                                                 </p>
                                                 <p className="font-bold text-1xl text-red-500">
                                                     {errors}
                                                 </p>
                                             </div>
-                                            <aside>{thumbs}</aside>
+                                            <div>{thumbs}</div>
                                         </div>
                                     </div>
                                 </div>
