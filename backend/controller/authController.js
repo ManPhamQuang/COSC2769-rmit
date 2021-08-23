@@ -9,12 +9,16 @@ const createToken = async id =>
     expiresIn: process.env.EXPIRES_IN,
   });
 
-const extractUserData = user => ({
-  name: user.name,
-  email: user.email,
-  role: user.role,
-  avatar: user.avatar,
-});
+const extractUserData = user => {
+  const data = {
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    avatar: user.avatar,
+  };
+  if (user.role === "expert") data.description = user.description;
+  return data;
+};
 
 exports.createUser = catchAsync(async (req, res, next) => {
   const user = await User.create(req.body);
