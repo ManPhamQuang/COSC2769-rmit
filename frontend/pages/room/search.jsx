@@ -9,7 +9,7 @@ const Search = () => {
     return (
         <div>
             <NavBar />
-            <SearchResult term={term}/>
+            <SearchResult term={term} />
         </div>
     );
 };
