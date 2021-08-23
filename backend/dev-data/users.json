@@ -28,27 +28,11 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
-    "_id": "60f6ce0e02f5102cea240413",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Huu Luan",
-    "email": "huuluan@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
     "_id": "60f6ce0e02f5102cea240414",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "user",
     "name": "Quang Man",
     "email": "quangman@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
-    "_id": "60f6ce0e02f5102cea240415",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Lam Phuong",
-    "email": "lamphuong@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
@@ -224,14 +208,6 @@
     "job": "Xamarin-Certified Mobile Developer, Software Engineer"
   },
   {
-    "_id": "60f6ce0e02f5102cea240412",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Phuc Phan",
-    "email": "PhucPhan@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
     "_id": "60f6ce0e02f5102cea240413",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
@@ -244,14 +220,6 @@
     "job": "Computer programmer, analyst and teacher"
   },
   {
-    "_id": "60f6ce0e02f5102cea240414",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Christina Le",
-    "email": "ChristinaLe@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
     "_id": "60f6ce0e02f5102cea240415",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
@@ -262,25 +230,5 @@
     "ratingsAverage": 4.2,
     "description": "The Learn Programming Academy was created by Tim Buchalka, a software developer with 35 years experience, who is also an instructor on Udemy, with over 1.24M+ students in his courses on Java, Python, Andro_id, C#  and the Spring framework. The Academy’s goal in the next three years, is to teach one million people to learn how to program.Apart from Tim’s own courses, which are all available here, we are working with the very best teachers, creating courses to teach the essential skills required by developers, at all levels.One other important philosophy is that our courses are taught by real professionals; software developers with real and substantial experience in the industry, who are also great teachers.  All our instructors are experienced, software developers!Our team is busy creating new courses right now.Whether you are a beginner, looking to learn how to program for the very first time, or to brush up on your existing skills, or to learn new languages and frameworks, the Academy has you covered.",
     "job": "Professional Programmers and Teachers"
-  },
-  {
-    "_id": "60f6ce0e02f5102cea240416",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Kayle Tran",
-    "email": "KayleTran@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
-    "_id": "60f6ce0e02f5102cea240417",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "expert",
-    "name": "Mike Nguyen",
-    "email": "MikeNguyen@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
-    "ratingsQuantity": 29,
-    "ratingsAverage": 4.2,
-    "description": "I will get you where you want to be. As an illustrator, painter, art director and author, I’ve helped more than 300,000 students globally, grow their art skills quickly and efficiently. Through my workshops, online school (Art School of Imagination) as well as my, learn to draw characters, understand coloring and perspective, and much more. Whether you’re drawing characters, creatures, making manga or comics, painting portraits or creating worlds, I teach the core art knowledge you need to know to reach a high level quickly. I’ve invested years in learning the fundamental theories behind art and animation, teaching you to think like a master artist. I'm a zealous teacher that strives to bring students to a high level efficiently, with simple, easy to understand concepts, built on rock sol_id art theory. When you learn with me, you’ll learn well, and learn efficiently. That’s my promise to you.Scott Harris is the Art Director of DAS: School of Art and Design, as well as online art school, Art School of Imagination.Scott is also the author of Draw Manga Style: A Beginner’s Step-by-Step Gu_ide for Drawing Anime and Manga published by Quarry Books and available globally.",
-    "job": "Art Director - Art School of Imagination, Art Book Author"
   }
 ]
