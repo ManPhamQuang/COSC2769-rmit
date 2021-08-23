@@ -4,7 +4,6 @@ import Category from "../components/Category";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import RandomRoomCardsSlider from "../components/RandomRoomCardsSlider";
-import NavBar from "../components/navbar/NavBar";
 
 function getRandom(arr, n) {
     var result = new Array(n),
@@ -40,9 +39,8 @@ export default function Home() {
                     content="initial-scale=1.0, width=device-width"
                 />
             </Head>
-            <NavBar />
             <div className="container mx-auto p-5 lg:p-14">
-                <h1 className="font-bold text-4xl mt-10">What to learn next</h1>
+                <h1 className="font-bold text-4xl mt-24">What to learn next</h1>
                 <div className="mt-10">
                     <h1 className="font-bold text-2xl m-4 mt-0">
                         Upcoming rooms

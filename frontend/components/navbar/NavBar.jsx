@@ -36,11 +36,22 @@ const NavBar = () => {
 
     return (
         <div>
-            {state.user ? (
-                <NavAuth categories={categories} user={state.user} handleSearchInputChange={handleSearchInputChange} handleSearchSubmit={handleSearchSubmit}/>
-            ) : (
-                <NavNonAuth categories={categories} handleSearchInputChange={handleSearchInputChange} handleSearchSubmit={handleSearchSubmit}/>
-            )}
+            <div className="fixed w-full z-40">
+                {state.user ? (
+                    <NavAuth
+                        categories={categories}
+                        user={state.user}
+                        handleSearchInputChange={handleSearchInputChange}
+                        handleSearchSubmit={handleSearchSubmit}
+                    />
+                ) : (
+                    <NavNonAuth
+                        categories={categories}
+                        handleSearchInputChange={handleSearchInputChange}
+                        handleSearchSubmit={handleSearchSubmit}
+                    />
+                )}
+            </div>
         </div>
     );
 };
