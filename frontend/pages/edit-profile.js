@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import DashboardLayout from "../components/DashboardLayout";
 import { AuthContextProvider } from "../context/authContext/AuthContext";
 import { AuthContext } from "../context/authContext/AuthContext";
-import axios from "axios";
+import axios from "../components/axios";
 import ImageUpload from "../components/ImageUpload";
 import { getMe } from "../context/authContext/apiCalls";
 
@@ -46,11 +46,9 @@ export default function Profile() {
         };
         if (avatar) body.avatar = avatar;
         try {
-            const response = await axios.patch(
-                "http://localhost:5000/api/v1/users/updateMe",
-                body,
-                { headers: { Authorization: "Bearer " + state.token } }
-            );
+            const response = await axios.patch("/users/updateMe", body, {
+                headers: { Authorization: "Bearer " + state.token },
+            });
             if (`${response.status}`.startsWith("2")) {
                 console.log("ENTERING");
                 getMe(state.token, dispatch);

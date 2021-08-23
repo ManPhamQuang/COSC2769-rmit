@@ -2,7 +2,7 @@ import Head from "next/head";
 import RoomCardsSlider from "../components/RoomCardsSlider";
 import Category from "../components/Category";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../components/axios";
 import RandomRoomCardsSlider from "../components/RandomRoomCardsSlider";
 
 function getRandom(arr, n) {
@@ -23,7 +23,7 @@ export default function Home() {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/v1/categories")
+            .get("/categories")
             .then((res) =>
                 setCategories(getRandom(res.data.data.categories, 6))
             )

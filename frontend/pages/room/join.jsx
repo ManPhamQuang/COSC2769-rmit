@@ -1,7 +1,7 @@
 import Head from "next/head";
 import VideoChat from "../../components/VideoChat";
 import { useRouter } from "next/router";
-import axios from "axios";
+import axios from "../../components/axios";
 import useSWR from "swr";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/authContext/AuthContext";
@@ -16,7 +16,7 @@ const fetcher = (url, token) =>
 export default function Join() {
     const router = useRouter();
     const roomID = router.query.roomID;
-    const url = `http://localhost:5000/api/v1/rooms/join?id=${roomID}`;
+    const url = `/rooms/join?id=${roomID}`;
 
     const { state, dispatch } = useContext(AuthContext);
 

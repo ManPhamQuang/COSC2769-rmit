@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/authContext/AuthContext";
-import axios from "axios";
+import axios from "../axios";
 import dynamic from "next/dynamic";
 import router from "next/router";
 
@@ -16,7 +16,7 @@ const NavBar = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/v1/categories")
+            .get("/categories")
             .then((res) => setCategories(res.data.data.categories))
             .catch((err) => console.log(err));
     }, []);

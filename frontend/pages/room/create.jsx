@@ -1,5 +1,5 @@
 import { useState, useReducer, useEffect, useContext } from "react";
-import axios from "axios";
+import axios from "../../components/axios";
 import router from "next/router";
 import CategoryDropDown from "../../components/CategoryDropDown";
 
@@ -73,7 +73,7 @@ const Create = () => {
 
         // Fetch all available categories
         axios
-            .get("http://localhost:5000/api/v1/categories", {
+            .get("/categories", {
                 headers: { Authorization: `Bearer ${state.token}` },
             })
             .then((response) => {
@@ -110,7 +110,7 @@ const Create = () => {
 
         dispatchRoom({ type: "ROOM_LOADING" });
         axios
-            .post("http://localhost:5000/api/v1/rooms", data, {
+            .post("/rooms", data, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((response) => {

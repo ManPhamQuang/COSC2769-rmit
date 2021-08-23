@@ -5,7 +5,7 @@ import {
     DeviceMobileIcon,
 } from "@heroicons/react/outline";
 import TeacherSelfIntroduction from "./TeacherSelfIntroduction";
-import axios from "axios";
+import axios from "./axios";
 import ReadMore from "./ReadMore";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
@@ -63,14 +63,11 @@ export default function RoomDetailBody({ room }) {
             router.push("/login");
         }
         try {
-            const request = await axios.get(
-                `http://localhost:5000/api/v1/checkouts/${_id}`,
-                {
-                    headers: {
-                        Authorization: "Bearer " + state.token,
-                    },
-                }
-            );
+            const request = await axios.get(`/checkouts/${_id}`, {
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                },
+            });
             const { url } = request.data.data;
             router.push(url);
         } catch (error) {
