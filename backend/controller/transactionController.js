@@ -3,11 +3,11 @@ const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
 
 exports.getAllTransactions = catchAsync(async (req, res, next) => {
-    const transactions = await Transaction.find({ from: req.user.id })
+  const transactions = await Transaction.find({ from: req.user.id })
     .select("-from -to")
     .populate({
       path: "room",
-      populate: "createdBy",
+      populate: "createdBy category",
     });
 
   res.status(200).json({
@@ -20,9 +20,11 @@ exports.getAllTransactions = catchAsync(async (req, res, next) => {
 });
 
 exports.createTransaction = catchAsync(async (req, res, next) => {
-
   // Check if the transaction is already paid
-  const transactions = await Transaction.find({ from: req.user.id, room: req.body.room });
+  const transactions = await Transaction.find({
+    from: req.user.id,
+    room: req.body.room,
+  });
   if (transactions.length > 0) {
     return next(new AppError("This transaction is already paid", 400));
   }
