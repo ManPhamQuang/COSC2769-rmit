@@ -275,6 +275,13 @@ export default function UpdateForm({ roomDetail }) {
                     <form onSubmit={handleUpdate}>
                         <div className="shadow sm:rounded-md sm:overflow-hidden">
                             <div className="px-4 py-5 bg-white space-y-4 sm:p-6">
+                                {isInvalid && (
+                                    <span>
+                                        <h3 className="font-bold text-red-500">
+                                            All fields must not be empty!
+                                        </h3>
+                                    </span>
+                                )}
                                 <div className="grid grid-cols-3 gap-6">
                                     <div className="col-span-3 sm:col-span-3 md:col-span-2 lg:col-span-2">
                                         <div className="flex items-center justify-center">
