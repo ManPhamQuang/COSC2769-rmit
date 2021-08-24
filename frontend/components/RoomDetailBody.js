@@ -5,6 +5,7 @@ import {
     DeviceMobileIcon,
 } from "@heroicons/react/outline";
 import TeacherSelfIntroduction from "./TeacherSelfIntroduction";
+import axios from "./axios";
 import ReadMore from "./ReadMore";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
@@ -57,6 +58,24 @@ export default function RoomDetailBody({ room }) {
         });
         e.preventDefault();
     };
+
+    const handleCheckout = async (e) => {
+        if (!state.token) {
+            router.push("/login");
+        }
+        try {
+            const request = await axios.get(`/checkouts/${_id}`, {
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                },
+            });
+            const { url } = request.data.data;
+            router.push(url);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 lg:px-56">
             <div className="col-span-1 px-4 py-2 lg:px-24 py-6 lg:col-span-2 space-y-8 ">
@@ -103,7 +122,10 @@ export default function RoomDetailBody({ room }) {
                         <button className="text-1xl text-white font-bold bg-purple-600 py-3 w-full hover:bg-purple-800">
                             Add to cart
                         </button>
-                        <button className="text-1xl font-bold py-3 w-full hover:bg-gray-300 border border-black">
+                        <button
+                            className="text-1xl font-bold py-3 w-full hover:bg-gray-300 border border-black"
+                            onClick={handleCheckout}
+                        >
                             Buy now
                         </button>
                         <button

@@ -2,9 +2,8 @@ import Head from "next/head";
 import RoomCardsSlider from "../components/RoomCardsSlider";
 import Category from "../components/Category";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../components/axios";
 import RandomRoomCardsSlider from "../components/RandomRoomCardsSlider";
-import NavBar from "../components/navbar/NavBar";
 
 function getRandom(arr, n) {
     var result = new Array(n),
@@ -24,7 +23,7 @@ export default function Home() {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/v1/categories")
+            .get("/categories")
             .then((res) =>
                 setCategories(getRandom(res.data.data.categories, 6))
             )
@@ -40,9 +39,8 @@ export default function Home() {
                     content="initial-scale=1.0, width=device-width"
                 />
             </Head>
-            <NavBar />
             <div className="container mx-auto p-5 lg:p-14">
-                <h1 className="font-bold text-4xl mt-10">What to learn next</h1>
+                <h1 className="font-bold text-4xl mt-24">What to learn next</h1>
                 <div className="mt-10">
                     <h1 className="font-bold text-2xl m-4 mt-0">
                         Upcoming rooms
