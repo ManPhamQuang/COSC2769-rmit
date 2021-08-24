@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import useSWR from "swr";
 import SkeletonCard from "../SkeletonCard";
 import Pagination from "./Pagination";
@@ -15,10 +15,7 @@ const fetcher = (url, term) =>
         .then((res) => res.data);
 
 const SearchResult = ({ term }) => {
-    const { data, error } = useSWR(
-        ["http://localhost:5000/api/v1/rooms", term],
-        fetcher
-    );
+    const { data, error } = useSWR(["/rooms", term], fetcher);
 
     if (!data) {
         return (
@@ -60,7 +57,7 @@ const SearchResult = ({ term }) => {
             )}
             <div className="mt-6 grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {data.data.rooms.map((room) => (
-                    <SearchCard key={room._id} room={room}/>
+                    <SearchCard key={room._id} room={room} />
                 ))}
             </div>
         </div>

@@ -1,7 +1,7 @@
 import RoomTable from "../../components/RoomTable";
 import DashboardLayout from "../../components/DashboardLayout";
 import Head from "next/head";
-import axios from "axios";
+import axios from "../../components/axios";
 import useSWR from "swr";
 import { AuthContextProvider } from "../../context/authContext/AuthContext";
 
@@ -14,10 +14,7 @@ const fetcher = (url, token) =>
 
 export default function ExpertDashboard() {
     const token = localStorage.getItem("accessToken");
-    const { data: user, error } = useSWR(
-        ["http://localhost:5000/api/v1/users/getMe", token],
-        fetcher
-    );
+    const { data: user, error } = useSWR(["/users/getMe", token], fetcher);
 
     return (
         <>

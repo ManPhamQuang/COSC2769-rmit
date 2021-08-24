@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../components/axios";
 import {
     authenStart,
     authenSuccess,
@@ -12,10 +12,7 @@ import router from "next/router";
 export const login = async (userCredentials, dispatch) => {
     dispatch(authenStart());
     try {
-        const res = await axios.post(
-            "http://localhost:5000/api/v1/users/login",
-            userCredentials
-        );
+        const res = await axios.post("/users/login", userCredentials);
         console.log(res.data.data);
         dispatch(authenSuccess(res.data.data));
         localStorage.setItem("user", JSON.stringify(res.data.data.user));
@@ -30,12 +27,9 @@ export const getMe = async (token, dispatch) => {
     // dispatch(getMeStart());
     dispatch(getMeStart());
     try {
-        const res = await axios.get(
-            "http://localhost:5000/api/v1/users/getMe",
-            {
-                headers: { Authorization: `Bearer ${token}` },
-            }
-        );
+        const res = await axios.get("/users/getMe", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         console.log(res.data.data);
         dispatch(getMeSuccess(res.data.data));
         localStorage.setItem("user", JSON.stringify(res.data.data));
@@ -47,10 +41,7 @@ export const getMe = async (token, dispatch) => {
 export const signup = async (userCredentials, dispatch) => {
     dispatch(authenStart());
     try {
-        const res = await axios.post(
-            "http://localhost:5000/api/v1/users/signup",
-            userCredentials
-        );
+        const res = await axios.post("/users/signup", userCredentials);
         console.log(res.data.data);
         dispatch(authenSuccess(res.data.data));
         localStorage.setItem("user", JSON.stringify(res.data.data.user));

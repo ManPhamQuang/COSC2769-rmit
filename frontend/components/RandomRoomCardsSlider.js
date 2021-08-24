@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import axios from "axios";
+import axios from "./axios";
 import Carousel from "react-grid-carousel";
 
 export default function RandomRoomCardsSlider({ category }) {
     const [data, setData] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/v1/rooms", {
+            .get("/rooms", {
                 params: {
                     limit: 10,
                     status: "pending",
