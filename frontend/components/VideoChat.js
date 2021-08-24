@@ -19,6 +19,7 @@ const VideoChat = ({ props }) => {
         setRoomName(event.target.value);
     }, []);
 
+    
     const handleSubmit = useCallback(
         async (event) => {
             event.preventDefault();
@@ -88,9 +89,11 @@ const VideoChat = ({ props }) => {
             };
             window.addEventListener("pagehide", tidyUp);
             window.addEventListener("beforeunload", tidyUp);
+            window.addEventListener('popstate', tidyUp)
             return () => {
                 window.removeEventListener("pagehide", tidyUp);
                 window.removeEventListener("beforeunload", tidyUp);
+                window.removeEventListener("popstate", tidyUp);
             };
         }
     }, [room, handleLogout]);
