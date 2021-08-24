@@ -1,115 +1,114 @@
 [
   {
-    "id": "60f538256799c21940d0c100",
+    "_id": "60f538256799c21940d0c100",
     "name": "Web Development"
   },
   {
-    "id": "60f538446799c21940d0c101",
+    "_id": "60f538446799c21940d0c101",
     "name": "Data Science"
   },
   {
-    "id": "60f538886799c21940d0c102",
+    "_id": "60f538886799c21940d0c102",
     "name": "Mobile Development"
   },
   {
-    "id": "60f538926799c21940d0c103",
+    "_id": "60f538926799c21940d0c103",
     "name": "Game Development"
   },
   {
-    "id": "60f5389f6799c21940d0c104",
+    "_id": "60f5389f6799c21940d0c104",
     "name": "Software Testing"
   },
   {
-    "id": "60f538b06799c21940d0c105",
+    "_id": "60f538b06799c21940d0c105",
     "name": "No-Code Development"
   },
   {
-    "id": "60f538ba6799c21940d0c106",
+    "_id": "60f538ba6799c21940d0c106",
     "name": "iOS Development"
   },
   {
-    "id": "60f538be6799c21940d0c107",
+    "_id": "60f538be6799c21940d0c107",
     "name": "Android Development"
   },
   {
-    "id": "60f538be6799c21940d0c118",
+    "_id": "60f538be6799c21940d0c118",
     "name": "Music"
   },
   {
-    "id": "60f538be6799c21940d0c108",
+    "_id": "60f538be6799c21940d0c108",
     "name": "Photoshop"
-  }
-  ,
+  },
   {
-    "id": "60f538be6799c21940d0c109",
+    "_id": "60f538be6799c21940d0c109",
     "name": "Photography"
   },
   {
-    "id": "60f538be6799c21940d0c110",
+    "_id": "60f538be6799c21940d0c110",
     "name": "Business"
   },
   {
-    "id": "60f538be6799c21940d0c111",
+    "_id": "60f538be6799c21940d0c111",
     "name": "Video Design"
   },
   {
-    "id": "60f538be6799c21940d0c112",
+    "_id": "60f538be6799c21940d0c112",
     "name": "IT and Software"
   },
   {
-    "id": "60f538be6799c21940d0c113",
+    "_id": "60f538be6799c21940d0c113",
     "name": "Design"
   },
   {
-    "id": "60f538be6799c21940d0c114",
+    "_id": "60f538be6799c21940d0c114",
     "name": "Cyber Security"
   },
   {
-    "id": "60f538be6799c21940d0c115",
+    "_id": "60f538be6799c21940d0c115",
     "name": "Cryptocurrency & Blockchain"
   },
   {
-    "id": "60f538be6799c21940d0c116",
+    "_id": "60f538be6799c21940d0c116",
     "name": "AWS Certification"
   },
   {
-    "id": "60f538be6799c21940d0c117",
+    "_id": "60f538be6799c21940d0c117",
     "name": "SQL"
   },
   {
-    "id": "60f538be6799c21940d0c119",
+    "_id": "60f538be6799c21940d0c119",
     "name": "Art"
   },
   {
-    "id": "60f538be6799c21940d0c120",
+    "_id": "60f538be6799c21940d0c120",
     "name": "Personal Development"
   },
   {
-    "id": "60f538be6799c21940d0c121",
+    "_id": "60f538be6799c21940d0c121",
     "name": "Health & Fitness"
   },
   {
-    "id": "60f538be6799c21940d0c122",
+    "_id": "60f538be6799c21940d0c122",
     "name": "Digital Marketing"
   },
   {
-    "id": "60f538be6799c21940d0c123",
+    "_id": "60f538be6799c21940d0c123",
     "name": "Drawing"
   },
   {
-    "id": "60f538be6799c21940d0c124",
+    "_id": "60f538be6799c21940d0c124",
     "name": "3D & Animation"
   },
   {
-    "id": "60f538be6799c21940d0c125",
+    "_id": "60f538be6799c21940d0c125",
     "name": "Beauty & Makeup"
   },
   {
-    "id": "60f538be6799c21940d0c126",
+    "_id": "60f538be6799c21940d0c126",
     "name": "Mental Health"
   },
   {
-    "id": "60f538be6799c21940d0c127",
+    "_id": "60f538be6799c21940d0c127",
     "name": "Investing & Trading"
   }
 ]
