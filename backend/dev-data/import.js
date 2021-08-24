@@ -37,6 +37,9 @@ const importData = async () => {
     await Category.create(categories, {
       validateBeforeSave: false,
     });
+    await Transaction.create(transactions, {
+      validateBeforeSave: false,
+    });
 
     console.log("DATA SUCCESSFULLY INSERTED");
     process.exit();
