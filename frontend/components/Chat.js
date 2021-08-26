@@ -26,6 +26,13 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
         });
 
         client.on("channelJoined", async (channel) => {
+            
+            // Twilio Chat allows multiple channels
+            // We have to find a channel, which matches the current room.
+            if (channel.uniqueName !== roomName) {
+                return;
+            }
+
             // getting list of all messages since this is an existing channel
             const newMessages = await channel.getMessages();
             setMessages(newMessages.items || []);
@@ -35,7 +42,6 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
         try {
             const channel = await client.getChannelByUniqueName(roomName);
             joinChannel(channel);
-            setChannel(channel);
         } catch (err) {
             try {
                 const channel = await client.createChannel({
@@ -61,7 +67,6 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
 
         setChannel(channel);
         setLoading(false);
-
         channel.on("messageAdded", function (message) {
             handleMessageAdded(message);
         });

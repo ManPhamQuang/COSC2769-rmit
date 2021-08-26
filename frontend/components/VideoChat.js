@@ -19,6 +19,7 @@ const VideoChat = ({ props }) => {
         setRoomName(event.target.value);
     }, []);
 
+    
     const handleSubmit = useCallback(
         async (event) => {
             event.preventDefault();
@@ -32,13 +33,14 @@ const VideoChat = ({ props }) => {
             var roomOption = {
                 name: roomName,
             };
+            var videoTrack, audioTrack;
             try {
-                const track = await Video.createLocalVideoTrack();
+                videoTrack = await Video.createLocalVideoTrack();
             } catch {
                 roomOption.video = false;
             }
             try {
-                const track = await Video.createLocalAudioTrack();
+                audioTrack = await Video.createLocalAudioTrack();
             } catch {
                 roomOption.audio = false;
             }
@@ -46,11 +48,15 @@ const VideoChat = ({ props }) => {
             // Connect to room
             Video.connect(token, roomOption)
                 .then((room) => {
+                    room.videoTrack = videoTrack;
+                    room.audioTrack = audioTrack;
                     setConnecting(false);
                     setRoom(room);
                 })
                 .catch((err) => {
                     console.error(err);
+                    videoTrack?.stop();
+                    audioTrack?.stop();
                     setConnecting(false);
                 });
         },
@@ -63,6 +69,8 @@ const VideoChat = ({ props }) => {
                 prevRoom.localParticipant.tracks.forEach((trackPub) => {
                     trackPub.track.stop();
                 });
+                prevRoom.videoTrack?.stop();
+                prevRoom.audioTrack?.stop();
                 prevRoom.disconnect();
             }
             return null;
@@ -70,7 +78,6 @@ const VideoChat = ({ props }) => {
     }, []);
 
     useEffect(() => {
-        console.log(title);
         if (room) {
             const tidyUp = (event) => {
                 if (event.persisted) {
@@ -82,9 +89,11 @@ const VideoChat = ({ props }) => {
             };
             window.addEventListener("pagehide", tidyUp);
             window.addEventListener("beforeunload", tidyUp);
+            window.addEventListener('popstate', tidyUp)
             return () => {
                 window.removeEventListener("pagehide", tidyUp);
                 window.removeEventListener("beforeunload", tidyUp);
+                window.removeEventListener("popstate", tidyUp);
             };
         }
     }, [room, handleLogout]);
