@@ -55,8 +55,8 @@ const VideoChat = ({ props }) => {
                 })
                 .catch((err) => {
                     console.error(err);
-                    videoTrack.stop();
-                    audioTrack.stop();
+                    videoTrack?.stop();
+                    audioTrack?.stop();
                     setConnecting(false);
                 });
         },
@@ -69,8 +69,8 @@ const VideoChat = ({ props }) => {
                 prevRoom.localParticipant.tracks.forEach((trackPub) => {
                     trackPub.track.stop();
                 });
-                prevRoom.videoTrack.stop();
-                prevRoom.audioTrack.stop();
+                prevRoom.videoTrack?.stop();
+                prevRoom.audioTrack?.stop();
                 prevRoom.disconnect();
             }
             return null;
