@@ -8,7 +8,7 @@ const roomFetcher = (url) => axios.get(url).then((res) => res.data.data);
 export default function filter() {
     const router = useRouter();
     const _id = router.query._id;
-    const url = `/rooms/?category=${_id}`;
+    const url = `/rooms/?category=${_id}&limit=10000`;
 
     const { data, roomErr } = useSWR(
         _id ? url : null,
