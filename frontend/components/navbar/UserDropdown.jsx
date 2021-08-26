@@ -55,6 +55,20 @@ const UserDropdown = ({ user }) => {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
+                                        onClick={() => router.push("/my-rooms")}
+                                        className={`${
+                                            active
+                                                ? "text-indigo-600 bg-gray-100"
+                                                : "text-gray-900"
+                                        } block px-4 py-2 text-sm text-gray-700 w-full`}
+                                    >
+                                        My Rooms
+                                    </button>
+                                )}
+                            </Menu.Item>
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <button
                                         onClick={() => {
                                             if (state.user.role === "expert") {
                                                 router.push(
