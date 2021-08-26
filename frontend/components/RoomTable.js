@@ -17,7 +17,7 @@ const fetcher = (url, token) =>
 export default function RoomTable({ user }) {
     const token = localStorage.getItem("accessToken");
     const { data: rooms, error } = useSWR(
-        [`/rooms?createdBy=${user._id}`, token],
+        [`/rooms?createdBy=${user._id}&limit=1000`, token],
         fetcher
     );
 
