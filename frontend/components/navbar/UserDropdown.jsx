@@ -11,6 +11,7 @@ const UserDropdown = ({ user }) => {
     const handleLogout = (e) => {
         localStorage.removeItem("user");
         localStorage.removeItem("accessToken");
+        localStorage.removeItem("expiredAt");
         dispatch(logout());
         router.push("/login");
         e.preventDefault();
