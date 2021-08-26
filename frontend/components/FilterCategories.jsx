@@ -2,6 +2,7 @@ import React from "react";
 import SearchCard from "./searchResult/SearchCard";
 
 export default function FilterCategories({ rooms }) {
+    console.log(rooms.length);
     return (
         <div>
             {rooms.length > 0 && (
@@ -24,7 +25,7 @@ export default function FilterCategories({ rooms }) {
             {rooms.length == 0 && (
                 <div className="container mx-auto p-5 lg:p-14">
                     <h1 className="font-bold text-4xl pb-4">
-                        No course available for {rooms[0].category.name}
+                        No course available.
                     </h1>
                 </div>
             )}
