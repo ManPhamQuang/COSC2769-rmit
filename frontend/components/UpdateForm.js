@@ -245,7 +245,7 @@ export default function UpdateForm({ roomDetail }) {
                                 )}
 
                                 <div className="leading-snug mt-2">
-                                    <h1 className="font-bold">{title}</h1>
+                                    <h1 className="font-bold break-words">{title}</h1>
                                     <p className="text-sm font-normal text-gray-500 truncate">
                                         {roomDetail.createdBy.name}
                                     </p>
