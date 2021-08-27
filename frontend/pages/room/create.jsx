@@ -6,6 +6,7 @@ import CategoryDropDown from "../../components/CategoryDropDown";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../context/authContext/AuthContext";
+import { toast } from 'react-toastify';
 
 const INIT_CATEGORY = [{ name: "Select Category" }];
 
@@ -125,6 +126,7 @@ const Create = () => {
                     type: "ROOM_CREATE_FAILURE",
                     payload: error.response.data,
                 });
+                toast.error(error.response.data.message);
             });
         event.preventDefault();
     };
@@ -304,7 +306,7 @@ const Create = () => {
                         </form>
                     </div>
                 </div>
-                {room.error && (
+                {/* {room.error && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-5">
                         <span className="inline-block align-middle mr-8">
                             <b className="font-bold">Error!</b>{" "}
@@ -319,7 +321,7 @@ const Create = () => {
                             <span>×</span>
                         </button>
                     </div>
-                )}
+                )} */}
             </div>
         </div>
     );
