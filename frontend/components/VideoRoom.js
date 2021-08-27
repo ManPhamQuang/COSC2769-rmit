@@ -33,7 +33,7 @@ const Room = ({ username, roomName, room, handleLogout, token }) => {
     }, [room]);
 
     return (
-        <div className="room relative h-screen overflow-hidden">
+        <div className="room relative h-screen overflow-hidden -mt-20">
             <div className="flex">
                 <div className="local-participant w-full">
                     {room ? (
