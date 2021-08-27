@@ -147,7 +147,7 @@ const Create = () => {
                         </p>
                     </div>
                 )}
-                <div className="md:grid md:grid-cols-3 md:gap-6 mt-32">
+                <div className="md:grid md:grid-cols-3 md:gap-6">
                     <div className="col-span-3 lg:col-span-1">
                         <div className="px-4 sm:px-0">
                             <h3 className="text-lg font-medium leading-6 text-gray-900">

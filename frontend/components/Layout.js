@@ -9,7 +9,7 @@ export default function Layout({ children }) {
     return (
         <div>
             {showNavBar && <NavBar />}
-            {children}
+            <div className="mt-20">{children}</div>
         </div>
     );
 }

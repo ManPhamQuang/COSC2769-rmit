@@ -42,7 +42,7 @@ const SearchResult = ({ term }) => {
     if (data.length === 0) {
         return (
             <div className="container mx-auto h-full p-5 lg:p-14">
-                <h1 className="mt-24 text-2xl font-semibold">
+                <h1 className="mt-6 text-2xl font-semibold">
                     No results found for "{term}"
                 </h1>
             </div>
@@ -52,11 +52,11 @@ const SearchResult = ({ term }) => {
     return (
         <div className="container mx-auto h-full p-5 lg:p-14">
             {data.length === 1 ? (
-                <h1 className="mt-24 text-2xl font-semibold">
+                <h1 className="mt-6 text-2xl font-semibold">
                     {data.length} result for "{term}"
                 </h1>
             ) : (
-                <h1 className="mt-24 text-2xl font-semibold">
+                <h1 className="mt-6 text-2xl font-semibold">
                     {data.length} results for "{term}"
                 </h1>
             )}

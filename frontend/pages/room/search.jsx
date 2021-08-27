@@ -8,7 +8,6 @@ const Search = () => {
 
     return (
         <div>
-            <NavBar />
             <SearchResult term={term} />
         </div>
     );

@@ -39,7 +39,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <div className="fixed w-full z-40">
+            <div className="fixed w-full z-40 top-0">
                 {state.user ? (
                     <NavAuth
                         categories={categories}
