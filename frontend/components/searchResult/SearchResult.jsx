@@ -11,6 +11,7 @@ const fetcher = (url, term) =>
             params: {
                 sort: "-startedAt",
                 title: term,
+                limit: 1000
             },
         })
         .then((res) => res.data)
