@@ -29,7 +29,7 @@ export default function Home() {
                 setCategories(getRandom(res.data.data.categories, 6))
             )
             .catch((error) => {
-                toast.error(error.response.data.message);
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
             });
     }, []);
 

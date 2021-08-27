@@ -59,7 +59,7 @@ const VideoChat = ({ props }) => {
                     videoTrack?.stop();
                     audioTrack?.stop();
                     setConnecting(false);
-                    toast.error(err.response.data.message);
+                    toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
                 });
         },
         [roomName, username]

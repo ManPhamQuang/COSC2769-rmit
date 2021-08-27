@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import DefaultLayout from "../components/Layout";
 import DashboardLayout from "../components/DashboardLayout";
 
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
@@ -25,13 +25,13 @@ function MyApp({ Component, pageProps }) {
                 <Component {...pageProps} />
             </LayoutWrapper>
             <ToastContainer
-            position="bottom-right"
-            autoClose={8000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnHover
+                position="top-right"
+                autoClose={8000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnHover
             />
         </AuthContextProvider>
     );

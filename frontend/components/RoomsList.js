@@ -29,7 +29,7 @@ const fetcher = (url, token) =>
             return result;
         })
         .catch((error) => {
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
         });
 
 export default function RoomsList({ token }) {

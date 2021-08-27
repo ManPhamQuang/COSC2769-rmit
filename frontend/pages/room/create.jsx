@@ -82,7 +82,7 @@ const Create = () => {
             })
             .catch((error) => {
                 console.log(error);
-                toast.error(error.response.data.message);
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
             });
     }, []);
 
@@ -127,7 +127,7 @@ const Create = () => {
                     type: "ROOM_CREATE_FAILURE",
                     payload: error.response.data,
                 });
-                toast.error(error.response.data.message);
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
             });
         event.preventDefault();
     };

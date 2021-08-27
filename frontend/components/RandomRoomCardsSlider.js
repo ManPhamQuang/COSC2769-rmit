@@ -19,7 +19,7 @@ export default function RandomRoomCardsSlider({ category }) {
                 setData(res.data.data.rooms);
             })
             .catch((error) => {
-                toast.error(error.response.data.message);
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
             });
     }, []);
 

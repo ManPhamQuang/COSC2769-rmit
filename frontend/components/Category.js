@@ -9,7 +9,7 @@ export default function Category() {
             .get("/categories")
             .then((res) => setCategories(res.data.data.categories))
             .catch((error) => {
-                toast.error(error.response.data.message);
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
             });
     }, []);
 

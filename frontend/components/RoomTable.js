@@ -15,7 +15,7 @@ const fetcher = (url, token) =>
         })
         .then((res) => res.data.data.rooms)
         .catch((error) => {
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
         });
 
 export default function RoomTable({ user }) {

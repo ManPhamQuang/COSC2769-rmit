@@ -15,7 +15,7 @@ const fetcher = (url, term) =>
         })
         .then((res) => res.data)
         .catch((error) => {
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
         });
 
 const SearchResult = ({ term }) => {

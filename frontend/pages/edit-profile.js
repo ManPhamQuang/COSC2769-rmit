@@ -39,7 +39,7 @@ export default function Profile() {
                 avatar = response.data.secure_url;
             } catch (error) {
                 // alert("error.message");
-                toast.error(error.response.data.message);
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
             }
         }
         const body = {
@@ -60,7 +60,7 @@ export default function Profile() {
             setIsLoading(false);
             console.log(error);
             // alert(error.message);
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
         }
     };
 
