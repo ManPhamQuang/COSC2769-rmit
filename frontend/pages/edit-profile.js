@@ -5,6 +5,7 @@ import { AuthContext } from "../context/authContext/AuthContext";
 import axios from "../components/axios";
 import ImageUpload from "../components/ImageUpload";
 import { getMe } from "../context/authContext/apiCalls";
+import { toast } from 'react-toastify';
 
 const Breaker = () => (
     <div className="hidden sm:block" aria-hidden="true">
@@ -37,7 +38,8 @@ export default function Profile() {
                 );
                 avatar = response.data.secure_url;
             } catch (error) {
-                alert("error.message");
+                // alert("error.message");
+                toast.error(error.response.data.message);
             }
         }
         const body = {
@@ -57,7 +59,8 @@ export default function Profile() {
         } catch (error) {
             setIsLoading(false);
             console.log(error);
-            alert(error.message);
+            // alert(error.message);
+            toast.error(error.response.data.message);
         }
     };
 

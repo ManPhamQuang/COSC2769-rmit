@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
+import { toast } from 'react-toastify';
 
 export default function Category() {
     const [categories, setCategories] = useState([]);
@@ -7,7 +8,9 @@ export default function Category() {
         axios
             .get("/categories")
             .then((res) => setCategories(res.data.data.categories))
-            .catch((err) => console.log(err));
+            .catch((error) => {
+                toast.error(error.response.data.message);
+            });
     }, []);
 
     return (

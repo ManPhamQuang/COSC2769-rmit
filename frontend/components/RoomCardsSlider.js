@@ -4,13 +4,17 @@ import axios from "./axios";
 import useSWR from "swr";
 import SkeletonCard from "./SkeletonCard";
 import Carousel from "react-grid-carousel";
+import { toast } from 'react-toastify';
 
 const fetcher = (url, params) =>
     axios
         .get(url, {
             params: params,
         })
-        .then((res) => res.data);
+        .then((res) => res.data)
+        .catch((error) => {
+            toast.error(error.response.data.message);
+        });
 
 export default function RoomCardsSlider({ params }) {
     const { data, error } = useSWR(["/rooms", params], fetcher);

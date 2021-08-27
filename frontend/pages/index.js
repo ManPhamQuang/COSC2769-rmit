@@ -4,6 +4,7 @@ import Category from "../components/Category";
 import { useEffect, useState } from "react";
 import axios from "../components/axios";
 import RandomRoomCardsSlider from "../components/RandomRoomCardsSlider";
+import { toast } from 'react-toastify';
 
 function getRandom(arr, n) {
     var result = new Array(n),
@@ -27,7 +28,9 @@ export default function Home() {
             .then((res) =>
                 setCategories(getRandom(res.data.data.categories, 6))
             )
-            .catch((err) => console.log(err));
+            .catch((error) => {
+                toast.error(error.response.data.message);
+            });
     }, []);
 
     return (

@@ -5,13 +5,17 @@ import axios from "../../components/axios";
 import useSWR from "swr";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/authContext/AuthContext";
+import { toast } from 'react-toastify';
 
 const fetcher = (url, token) =>
     axios
         .get(url, {
             headers: { Authorization: `Bearer ${token}` },
         })
-        .then((res) => res.data.data);
+        .then((res) => res.data.data)
+        .catch((error) => {
+            toast.error(error.response.data.message);
+        })
 
 export default function Join() {
     const router = useRouter();
@@ -28,7 +32,7 @@ export default function Join() {
     }, []);
 
     // Call /join Endpoint (NOTE: Fix bug SWR with query undefined)
-    const { data, roomErr } = useSWR(
+    const { data, error } = useSWR(
         roomID ? [url, state.token] : null,
         roomID ? fetcher : null
     );

@@ -3,6 +3,7 @@ import useSWR from "swr";
 import SkeletonCard from "../SkeletonCard";
 import Pagination from "./Pagination";
 import SearchCard from "./SearchCard";
+import { toast } from 'react-toastify';
 
 const fetcher = (url, term) =>
     axios
@@ -12,7 +13,10 @@ const fetcher = (url, term) =>
                 title: term,
             },
         })
-        .then((res) => res.data);
+        .then((res) => res.data)
+        .catch((error) => {
+            toast.error(error.response.data.message);
+        });
 
 const SearchResult = ({ term }) => {
     const { data, error } = useSWR(["/rooms", term], fetcher);
@@ -32,7 +36,7 @@ const SearchResult = ({ term }) => {
         );
     }
 
-    if (error) return <h1 className="mt-24">error!</h1>;
+    // if (error) return <h1 className="mt-24">error!</h1>;
 
     if (data.length === 0) {
         return (
