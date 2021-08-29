@@ -10,6 +10,7 @@ import {
 } from "./AuthActions";
 import router from "next/router";
 import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
 
 const saveLocalStorageAndSetTimeOut = (responseData, dispatch) => {
     const { user, token } = responseData;
@@ -24,7 +25,10 @@ const saveLocalStorageAndSetTimeOut = (responseData, dispatch) => {
         localStorage.removeItem("user");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("expiredAt");
-        alert("Session expired. Please login again !!!");
+        // alert("Session expired. Please login again !!!");
+        toast.error("Session expired. Please login again !!!", {
+            position: toast.POSITION.TOP_RIGHT,
+        });
         clearInterval(id);
         router.push("/");
     }, exp * 1000 - Date.now());

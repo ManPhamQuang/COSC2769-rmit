@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 import DefaultLayout from "../components/Layout";
 import DashboardLayout from "../components/DashboardLayout";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function MyApp({ Component, pageProps }) {
     const { pathname } = useRouter();
     const isDashboard = pathname.includes("/dashboard");
@@ -21,6 +24,15 @@ function MyApp({ Component, pageProps }) {
             <LayoutWrapper>
                 <Component {...pageProps} />
             </LayoutWrapper>
+            <ToastContainer
+                position="top-right"
+                autoClose={8000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnHover
+            />
         </AuthContextProvider>
     );
 }

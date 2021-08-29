@@ -4,13 +4,17 @@ import Head from "next/head";
 import axios from "../../components/axios";
 import useSWR from "swr";
 import { AuthContextProvider } from "../../context/authContext/AuthContext";
+import { toast } from 'react-toastify';
 
 const fetcher = (url, token) =>
     axios
         .get(url, {
             headers: { Authorization: `Bearer ${token}` },
         })
-        .then((res) => res.data.data);
+        .then((res) => res.data.data)
+        .catch((error) => {
+            toast.error(error.response.data.message);
+        });
 
 export default function ExpertDashboard() {
     const token = localStorage.getItem("accessToken");
