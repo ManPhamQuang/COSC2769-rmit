@@ -70,3 +70,16 @@ export const signup = async (userCredentials, dispatch) => {
         dispatch(authenFailure(err.response.data.message));
     }
 };
+
+export const loginWithGoogle = async (userCredentials, dispatch) => {
+    dispatch(authenStart());
+    try {
+        const res = await axios.post("/users/loginWithGoogle", userCredentials);
+        console.log(res.data.data);
+        dispatch(authenSuccess(res.data.data));
+        saveLocalStorageAndSetTimeOut(res.data.data, dispatch);
+        router.push("/");
+    } catch (err) {
+        dispatch(authenFailure(err.response.data.message));
+    }
+};
