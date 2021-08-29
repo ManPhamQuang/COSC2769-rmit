@@ -3,6 +3,7 @@ import Video from "twilio-video";
 import Lobby from "./Lobby";
 import { getTwilioToken } from "../utils/API";
 import VideoRoom from "./VideoRoom";
+import { toast } from 'react-toastify';
 
 const VideoChat = ({ props }) => {
     const { title } = props;
@@ -58,6 +59,7 @@ const VideoChat = ({ props }) => {
                     videoTrack?.stop();
                     audioTrack?.stop();
                     setConnecting(false);
+                    toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
                 });
         },
         [roomName, username]

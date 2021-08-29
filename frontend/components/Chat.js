@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 const ChatAPI = require("twilio-chat");
 import { getTwilioToken } from "../utils/API";
+import { toast } from 'react-toastify';
 
 function Chat({ username, roomName, token, isHidden, closeChat }) {
     const [loading, setLoading] = useState(false);
@@ -50,9 +51,10 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
                 });
                 joinChannel(channel);
             } catch {
-                throw new Error(
-                    "Unable to create channel, please reload this page"
-                );
+                // throw new Error(
+                //     "Unable to create channel, please reload this page"
+                // );
+                toast.error("Unable to create channel, please reload this page");
             }
         }
         // useEffect should return a clean up function if components ever unmount

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import axios from "./axios";
 import Carousel from "react-grid-carousel";
+import { toast } from 'react-toastify';
 
 export default function RandomRoomCardsSlider({ category }) {
     const [data, setData] = useState([]);
@@ -17,7 +18,9 @@ export default function RandomRoomCardsSlider({ category }) {
             .then((res) => {
                 setData(res.data.data.rooms);
             })
-            .catch((err) => console.log(err));
+            .catch((error) => {
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+            });
     }, []);
 
     if (data.length > 0) {

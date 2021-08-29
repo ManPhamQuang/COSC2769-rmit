@@ -4,6 +4,7 @@ import { Tab } from "@headlessui/react";
 import axios from "./axios";
 import SkeletonCard from "./SkeletonCard";
 import Card from "./Card";
+import { toast } from 'react-toastify';
 
 const fetcher = (url, token) =>
     axios
@@ -26,6 +27,9 @@ const fetcher = (url, token) =>
                 Over: overRooms,
             };
             return result;
+        })
+        .catch((error) => {
+            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
         });
 
 export default function RoomsList({ token }) {

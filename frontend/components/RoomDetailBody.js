@@ -10,6 +10,7 @@ import ReadMore from "./ReadMore";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
 import { useRouter } from "next/router";
+import { toast } from 'react-toastify';
 
 const courseInfor = {
     id: 1,
@@ -72,6 +73,7 @@ export default function RoomDetailBody({ room }) {
             router.push(url);
         } catch (error) {
             console.log(error);
+            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
         }
     };
 
