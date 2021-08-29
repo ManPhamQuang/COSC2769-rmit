@@ -82,14 +82,15 @@ exports.limitToOnly = (...roles) => {
 
 exports.loginWithGoogle = catchAsync(async (req, res, next) => {
   let user = await User.findOne({ email: req.body.email, gId: req.body.id });
+  const generatedPw = uuidv4();
   if (!user) {
     user = await User.create({
       email: req.body.email,
       gId: req.body.id,
       name: req.body.name,
       avatar: req.body.avatar,
-      password: uuidv4(),
-      passwordConfirm: uuidv4(),
+      password: generatedPw,
+      passwordConfirm: generatedPw,
     });
   }
   const token = await createToken(user.id);
