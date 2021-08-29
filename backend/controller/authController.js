@@ -3,7 +3,7 @@ const { promisify } = require("util");
 const User = require("../model/User");
 const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
-
+const { v4: uuidv4 } = require("uuid");
 const createToken = async id =>
   await promisify(jwt.sign)({ id }, process.env.SECRET, {
     expiresIn: process.env.EXPIRES_IN,
@@ -79,3 +79,26 @@ exports.limitToOnly = (...roles) => {
     next();
   };
 };
+
+exports.loginWithGoogle = catchAsync(async (req, res, next) => {
+  let user = await User.findOne({ email: req.body.email, gId: req.body.id });
+  if (!user) {
+    user = await User.create({
+      email: req.body.email,
+      gId: req.body.id,
+      name: req.body.name,
+      avatar: req.body.avatar,
+      password: uuidv4(),
+      passwordConfirm: uuidv4(),
+    });
+  }
+  const token = await createToken(user.id);
+  const data = extractUserData(user);
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: data,
+      token,
+    },
+  });
+});

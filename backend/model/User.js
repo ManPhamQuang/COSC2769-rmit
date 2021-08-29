@@ -60,6 +60,7 @@ const userSchema = new mongoose.Schema({
   },
   ratingsQuantity: Number,
   description: String,
+  gId: String,
 });
 
 userSchema.methods.comparePassword = async function (

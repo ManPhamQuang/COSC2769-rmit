@@ -4,11 +4,13 @@ const {
   createUser,
   login,
   isAuthenticated,
+  loginWithGoogle,
 } = require("../controller/authController");
 const { getMe, updateMe } = require("../controller/userController");
 const reviewRoute = require("./reviewRoute");
 // Create merge params for this resource => Route: /api/v1/users/:teacherId/reviews
 router.use("/:teacherId/reviews", reviewRoute);
+router.post("/loginWithGoogle", loginWithGoogle);
 router.post("/signup", createUser);
 router.post("/login", login);
 router.use(isAuthenticated);
