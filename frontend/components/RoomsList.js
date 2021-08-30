@@ -1,7 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import { Tab } from "@headlessui/react";
-import axios from "axios";
+import axios from "./axios";
 import SkeletonCard from "./SkeletonCard";
 import Card from "./Card";
 
@@ -29,10 +29,7 @@ const fetcher = (url, token) =>
         });
 
 export default function RoomsList({ token }) {
-    const { data, error } = useSWR(
-        ["http://localhost:5000/api/v1/transactions", token],
-        fetcher
-    );
+    const { data, error } = useSWR(["/transactions", token], fetcher);
     if (!data)
         // Renders a row of skeleton card to indicate loading
         return (

@@ -7,6 +7,8 @@ const RemoteParticipant = ({ participant }) => {
   const videoRef = useRef();
   const audioRef = useRef();
 
+  const [isVideoEnable, setIsVideoEnable] = useState(true);
+
   const trackpubsToTracks = (trackMap) =>
     Array.from(trackMap.values())
       .map((publication) => publication.track)
@@ -19,6 +21,12 @@ const RemoteParticipant = ({ participant }) => {
     const trackSubscribed = (track) => {
       if (track.kind === "video") {
         setVideoTracks((videoTracks) => [...videoTracks, track]);
+        track.on('disabled', () => {
+          setIsVideoEnable(false);
+        });
+        track.on('enabled', () => {
+          setIsVideoEnable(true);
+        });
       } else if (track.kind === "audio") {
         setAudioTracks((audioTracks) => [...audioTracks, track]);
       }
@@ -63,11 +71,13 @@ const RemoteParticipant = ({ participant }) => {
   }, [audioTracks]);
 
   return (
-    <div className="participant border relative ml-2">
+    <div className="participant relative ml-2 w-60 h-36 bg-black border">
       <audio ref={audioRef} autoPlay={true} muted={false} />
-      <video className="w-60 h-36 object-cover" ref={videoRef} autoPlay={true} />
+      <div className="">
+        <video className={isVideoEnable ? "object-cover" : "object-cover hidden"} ref={videoRef} autoPlay={true}/>
+      </div>
       <div className="absolute inset-x-0 top-2 text-white">
-          <span className="text-sm font-base bg-black opacity-30 px-3 pt-3 pb-2">
+          <span className="text-sm font-base bg-black opacity-50 px-3 pt-3 pb-2">
             {participant.identity}
           </span>
       </div>

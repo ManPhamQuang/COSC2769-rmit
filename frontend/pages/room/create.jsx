@@ -1,11 +1,10 @@
 import { useState, useReducer, useEffect, useContext } from "react";
-import axios from "axios";
+import axios from "../../components/axios";
 import router from "next/router";
 import CategoryDropDown from "../../components/CategoryDropDown";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../context/authContext/AuthContext";
-import NavBar from "../../components/navbar/NavBar";
 
 const INIT_CATEGORY = [{ name: "Select Category" }];
 
@@ -73,7 +72,7 @@ const Create = () => {
 
         // Fetch all available categories
         axios
-            .get("http://localhost:5000/api/v1/categories", {
+            .get("/categories", {
                 headers: { Authorization: `Bearer ${state.token}` },
             })
             .then((response) => {
@@ -110,7 +109,7 @@ const Create = () => {
 
         dispatchRoom({ type: "ROOM_LOADING" });
         axios
-            .post("http://localhost:5000/api/v1/rooms", data, {
+            .post("/rooms", data, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((response) => {
@@ -131,7 +130,6 @@ const Create = () => {
 
     return (
         <div>
-            <NavBar />
             <div className="container mx-auto p-4 h-full">
                 {room.isLoading && (
                     <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">

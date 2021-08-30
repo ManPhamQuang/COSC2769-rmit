@@ -11,6 +11,7 @@ const UserDropdown = ({ user }) => {
     const handleLogout = (e) => {
         localStorage.removeItem("user");
         localStorage.removeItem("accessToken");
+        localStorage.removeItem("expiredAt");
         dispatch(logout());
         router.push("/login");
         e.preventDefault();
@@ -24,18 +25,10 @@ const UserDropdown = ({ user }) => {
                         <span className="mr-2 text-base hidden md:inline-flex">
                             Hi {user.name}!
                         </span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-7 w-7 text-gray-500"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
+                        <img
+                            src={user.avatar}
+                            className="h-8 w-8 rounded-full"
+                        />
                     </Menu.Button>
                 </div>
                 <Transition
@@ -61,11 +54,6 @@ const UserDropdown = ({ user }) => {
                         </div>
                         <div className="text-left">
                             <Menu.Item>
-                                {/* <Link href="/my-rooms">
-                                <button className="hidden md:inline-block min-w-[80px] cusor-pointer hover:text-indigo-600">
-                                    My Rooms
-                                </button>
-                            </Link> */}
                                 {({ active }) => (
                                     <button
                                         onClick={() => router.push("/my-rooms")}
@@ -82,6 +70,15 @@ const UserDropdown = ({ user }) => {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
+                                        onClick={() => {
+                                            if (state.user.role === "expert") {
+                                                router.push(
+                                                    "/dashboard/profile"
+                                                );
+                                            } else {
+                                                router.push("/edit-profile");
+                                            }
+                                        }}
                                         className={`${
                                             active
                                                 ? "text-indigo-600 bg-gray-100"

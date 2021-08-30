@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import axios from "axios";
+import axios from "./axios";
 import useSWR from "swr";
 import SkeletonCard from "./SkeletonCard";
 import Carousel from "react-grid-carousel";
@@ -13,10 +13,7 @@ const fetcher = (url, params) =>
         .then((res) => res.data);
 
 export default function RoomCardsSlider({ params }) {
-    const { data, error } = useSWR(
-        ["http://localhost:5000/api/v1/rooms", params],
-        fetcher
-    );
+    const { data, error } = useSWR(["/rooms", params], fetcher);
 
     if (!data)
         // Renders a row of skeleton card to indicate loading

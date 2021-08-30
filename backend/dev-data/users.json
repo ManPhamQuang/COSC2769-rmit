@@ -1,6 +1,6 @@
 [
   {
-    "id": "60f6ce0e02f5102cea240400",
+    "_id": "60f6ce0e02f5102cea240400",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "user",
     "name": "minh",
@@ -8,17 +8,19 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
-    "id": "60f6ce0e02f5102cea240401",
+    "_id": "60f6ce0e02f5102cea240401",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "expert1",
-    "email": "expert1@gmail.com",
+    "role": "expert",
+    "name": "Chanie Tran",
+    "email": "chanie@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 0,
-    "ratingsAverage": null
+    "ratingsAverage": null,
+    "description": "Chanie Tran has a BS and MS in Mechanical Engineering from Santa Clara University and years of experience as a professional instructor and trainer for Data Science and programming. He has publications and patents in various fields such as microflu_idics, materials science, and data science technologies. Over the course of his career he has developed a skill set in analyzing data and he hopes to use his experience in teaching and data science to help other people learn the power of programming the ability to analyze data, as well as present the data in clear and beautiful visualizations. Currently he works as the Head of Data Science for Pierian Data Inc. and prov_ides in-person data science and python programming training courses to employees working at top companies, including General Electric, Cigna, The New York Times, Credit Suisse, McKinsey and many more. Feel free to contact him on LinkedIn for more information on in-person training sessions or group training sessions in Las Vegas, NV.",
+    "job": "Head of Data Science, Pierian Data Inc."
   },
   {
-    "id": "60f6ce0e02f5102cea240412",
+    "_id": "60f6ce0e02f5102cea240412",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "user",
     "name": "Bao Ngoc",
@@ -26,15 +28,7 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
-    "id": "60f6ce0e02f5102cea240413",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Huu Luan",
-    "email": "huuluan@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
-    "id": "60f6ce0e02f5102cea240414",
+    "_id": "60f6ce0e02f5102cea240414",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "user",
     "name": "Quang Man",
@@ -42,15 +36,7 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
-    "id": "60f6ce0e02f5102cea240415",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Lam Phuong",
-    "email": "lamphuong@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
-    "id": "60f6ce0e02f5102cea240416",
+    "_id": "60f6ce0e02f5102cea240416",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "user",
     "name": "Tan Thien",
@@ -58,67 +44,79 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
-    "id": "60f6ce0e02f5102cea240417",
+    "_id": "60f6ce0e02f5102cea240417",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Mark Zuckerberg",
     "email": "markzuckerberg@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 0,
-    "ratingsAverage": null
+    "ratingsAverage": null,
+    "description": " Jose Marcial Portilla has a BS and MS in Mechanical Engineering from Santa Clara University and years of experience as a professional instructor and trainer for Data Science and programming. He has publications and patents in various fields such as microflu_idics, materials science, and data science technologies. Over the course of his career he has developed a skill set in analyzing data and he hopes to use his experience in teaching and data science to help other people learn the power of programming the ability to analyze data, as well as present the data in clear and beautiful visualizations. Currently he works as the Head of Data Science for Pierian Data Inc. and prov_ides in-person data science and python programming training courses to employees working at top companies, including General Electric, Cigna, The New York Times, Credit Suisse, McKinsey and many more. Feel free to contact him on LinkedIn for more information on in-person training sessions or group training sessions in Las Vegas, NV.",
+    "job": "Head of Data Science, Pierian Data Inc."
   },
   {
-    "id": "60f6ce0e02f5102cea240418",
+    "_id": "60f6ce0e02f5102cea240418",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Bill Gate",
     "email": "billgate@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 0,
-    "ratingsAverage": null
+    "ratingsAverage": null,
+    "description": "Andrei is the instructor of some of the highest rated programming and technical courses online and is the founder of ZTM academy. His graduates have moved on to work for some of the biggest tech companies around the world like Apple, Google, Tesla, Amazon, JP Morgan, IBM, UNIQLO etc... He has been working as a senior software developer in Silicon Valley and Toronto for many years, and is now taking all that he has learned, to teach programming skills and to help you discover the amazing career opportunities that being a developer allows in life. Having been a self taught programmer, he understands that there is an overwhelming number of online courses, tutorials and books that are overly verbose and inadequate at teaching proper skills. Most people feel paralyzed and don't know where to start when learning a complex subject matter, or even worse, most people don't have $20,000 to spend on a coding bootcamp. Programming skills should be affordable and open to all. An education material should teach real life skills that are current and they should not waste a student's valuable time.  Having learned important lessons from working for Fortune 500 companies, tech startups, to even founding his own business, he is now dedicating 100% of his time to teaching others valuable software development skills in order to take control of their life and work in an exciting industry with infinite possibilities. ",
+    "job": "Entrepreneur & Designer • Founder of ShiftR_ide"
   },
   {
-    "id": "60f6ce0e02f5102cea240419",
+    "_id": "60f6ce0e02f5102cea240419",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Elon Musk",
     "email": "elonmusk@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 0,
-    "ratingsAverage": null
+    "ratingsAverage": null,
+    "description": "I'm an entrepreneur & designer with a high passion for building products of all sorts and seeing _ideas come to life. As a serial entrepreneur, I've designed and built projects in fields ranging from fashion to technology. I have over 10 years of experience in both designing and developing dozens of mobile & web apps for clients, through ClevrDesign and my own startups.Ive also designed and developed an open-source iPhone development library by the name of FCAlertView, helping 350,000+ app developers use beautiful customizable alert prompts within their applications.Ultimately, my goal is to create beautiful and useful products, while teaching and inspiring others to become the best designers they can be.",
+    "job": "Senior Software Developer / Founder of zerotomastery.io"
   },
   {
-    "id": "60f6ce0e02f5102cea240420",
+    "_id": "60f6ce0e02f5102cea240420",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Warren Buffett",
     "email": "warrenbuffett@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 0,
-    "ratingsAverage": null
+    "ratingsAverage": null,
+    "description": "Andrei is the instructor of some of the highest rated programming and technical courses online and is the founder of ZTM academy. His graduates have moved on to work for some of the biggest tech companies around the world like Apple, Google, Tesla, Amazon, JP Morgan, IBM, UNIQLO etc... He has been working as a senior software developer in Silicon Valley and Toronto for many years, and is now taking all that he has learned, to teach programming skills and to help you discover the amazing career opportunities that being a developer allows in life. Having been a self taught programmer, he understands that there is an overwhelming number of online courses, tutorials and books that are overly verbose and inadequate at teaching proper skills. Most people feel paralyzed and don't know where to start when learning a complex subject matter, or even worse, most people don't have $20,000 to spend on a coding bootcamp. Programming skills should be affordable and open to all. An education material should teach real life skills that are current and they should not waste a student's valuable time.  Having learned important lessons from working for Fortune 500 companies, tech startups, to even founding his own business, he is now dedicating 100% of his time to teaching others valuable software development skills in order to take control of their life and work in an exciting industry with infinite possibilities. Andrei promises you that there are no other courses out there as comprehensive and as well explained. He believes that in order to learn anything of value, you need to start with the foundation and develop the roots of the tree. Only from there will you be able to learn concepts and specific skills(leaves) that connect to the foundation. Learning becomes exponential when structured in this way. ",
+    "job": "Senior Software Developer / Founder of zerotomastery.io"
   },
   {
-    "id": "60f6ce0e02f5102cea240421",
+    "_id": "60f6ce0e02f5102cea240421",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Bernard Arnault",
     "email": "bernardarnault@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 0,
-    "ratingsAverage": null
+    "ratingsAverage": null,
+    "description": "Hi! I'm Colt. I'm a developer with a serious love for teaching. I've spent the last few years teaching people to program at 2 different immersive bootcamps where I've helped hundreds of people become web developers and change their lives. My graduates work at companies like Google, Salesforce, and Square.Most recently, I led Galvanize's SF's 6 month immersive program as Lead Instructor and Curriculum Director. After graduating from my class, 94% of my students went on to receive full-time developer roles. I also worked at Udacity as a Senior Course Developer on the web development team where I got to reach thousands of students daily.I’ve since focused my time on bringing my classroom teaching experience to an online environment. In 2016 I launched my Web Developer Bootcamp course, which has since gone on to become one of the best selling and top rated courses on Udemy. I was also voted Udemy’s Best New Instructor of 2016.",
+    "job": "Developer and Bootcamp Instructor"
   },
   {
-    "id": "60f6ce0e02f5102cea240402",
+    "_id": "60f6ce0e02f5102cea240402",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "John",
     "email": "expert2@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 10,
-    "ratingsAverage": 3
+    "ratingsAverage": 3,
+    "description": "I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.My first foray into programming was when I was just 12 years old, wanting to build my own Space Invader game. Since then, I've made hundred of websites, apps and games. But most importantly, I realised that my greatest passion is teaching.I spend most of my time researching how to make learning to code fun and make hard concepts easy to understand. I apply everything I discover into my bootcamp courses. In my courses, you'll find lots of geeky humour but also lots of explanations and animations to make sure everything is easy to understand.I'll be there for you every step of the way.",
+    "job": "Developer and Lead Instructor"
   },
   {
-    "id": "60f6ce0e02f5102cea240403",
+    "_id": "60f6ce0e02f5102cea240403",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "user",
     "name": "Steph Ray",
@@ -126,17 +124,19 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
-    "id": "60f6ce0e02f5102cea240404",
+    "_id": "60f6ce0e02f5102cea240404",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "John Biden",
     "email": "JohnBiden@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 20,
-    "ratingsAverage": 5
+    "ratingsAverage": 5,
+    "description": "**My courses have been featured in Forbes, CNN, Entrepreneur Magazine, BusinessIns_ider, BuzzFeed, Mashable, TheNextWeb, The Daily Beast, & Techcrunch**Currently, I'm the Founder and Director of Sprintkick, a full-service, referral-only digital agency based out of San Francisco. Over the past four years I've overseen the development and launch of over 100 web and mobile apps. Clients range from two-man bootstrapping startups to multibillion dollar Fortune 100s like Wal-Mart, Dick's Sporting Goods, and GNC. Prior to Sprintkick I worked as a VC for a new firm called Juvo Capital, based out of L.A. I spearheaded the firm's expansion into Silicon Valley and into the Consumer Web tech category. In the long long ago, I was a co-founder for an educational software startup called ScholarPRO that raised a ton of money and then spectacularly blew up (in the bad way). Before it exploded like the Death Star, I went through five tech incubators (yes, five): Tech Stars, Excelerate Labs, MassChallenge, Babson Venture Program, and Sparkseed. Hope you enjoy my courses!",
+    "job": "Award Winning Digital Marketing Agency Owner"
   },
   {
-    "id": "60f6ce0e02f5102cea240405",
+    "_id": "60f6ce0e02f5102cea240405",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "user",
     "name": "Lisa Nguyen",
@@ -144,17 +144,19 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
-    "id": "60f6ce0e02f5102cea240406",
+    "_id": "60f6ce0e02f5102cea240406",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Long Pham",
     "email": "LongPham@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 30,
-    "ratingsAverage": 4.2
+    "ratingsAverage": 4.2,
+    "description": "I'm a creative entrepreneur. I earned my first 1000$ online at age 15 by flipping clothes on eBay. What I noticed was, that t-shirt with low quality pictures were sold much cheaper than same t-shirt with glossy images. So I started buying these underpriced products, taking new pictures and reselling them for profits. That was the first time I realised, that people really judge book by its cover.After graduating from Business School (Poland&Australia) I started my career as a marketing manager of newly created precious metal company - Bessergold - and took it from scratch to 7 figures business within less than one year.I d_idn’t like the _idea of trading metals for the rest of my life, so I dec_ided to pursue my real passion - building new brands. I started with my family casket manufacturing business (yes, these caskets) - Piechota Coffins - and turned it into No. 1 premium brand on the local market - see my portfolio for details.Currently, I work as a freelance brand consultant for companies across Europe with strong focus on small businesses and startups. If not working, I travel the world with backpack and my lovely girlfriend. So, nice to meet you!",
+    "job": "Creative Entrepreneur, Brand Consultant"
   },
   {
-    "id": "60f6ce0e02f5102cea240407",
+    "_id": "60f6ce0e02f5102cea240407",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "user",
     "name": "Phuong Nguyen",
@@ -162,27 +164,31 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
-    "id": "60f6ce0e02f5102cea240408",
+    "_id": "60f6ce0e02f5102cea240408",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Long Nguyen",
     "email": "LongNguyen@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 20,
-    "ratingsAverage": 4
+    "ratingsAverage": 4,
+    "description": "Starting out at the age of 13 I never stopped learning new programming skills and languages. Early I started creating websites for friends and just for fun as well. Bes_ides web development I also explored Python and other non-web-only languages. This passion has since lasted and lead to my decision of working as a freelance web developer and consultant. The success and fun I have in this job is immense and really keeps that passion burningly alive.Starting web development on the backend (PHP with Laravel, NodeJS, Python) I also became more and more of a frontend developer using modern frameworks like React, Angular or VueJS in a lot of projects. I love both worlds nowadays!As a self-taught developer I had the chance to broaden my horizon by studying Business Administration where I hold a Master's degree. That enabled me to work in a major strategy consultancy as well as a bank. While learning, that I enjoy development more than these fields, the time in this sector greatly improved my overall experience and skills.",
+    "job": "Professional Web Developer and Instructor"
   },
   {
-    "id": "60f6ce0e02f5102cea240409",
+    "_id": "60f6ce0e02f5102cea240409",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Lina Do",
     "email": "LinaDo@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 30,
-    "ratingsAverage": 4.2
+    "ratingsAverage": 4.2,
+    "description": "The Learn Programming Academy was created by Tim Buchalka, a software developer with 35 years experience, who is also an instructor on Udemy, with over 1.24M+ students in his courses on Java, Python, Andro_id, C#  and the Spring framework. The Academy’s goal in the next three years, is to teach one million people to learn how to program.Apart from Tim’s own courses, which are all available here, we are working with the very best teachers, creating courses to teach the essential skills required by developers, at all levels.One other important philosophy is that our courses are taught by real professionals; software developers with real and substantial experience in the industry, who are also great teachers.  All our instructors are experienced, software developers!Our team is busy creating new courses right nowWhether you are a beginner, looking to learn how to program for the very first time, or to brush up on your existing skills, or to learn new languages and frameworks, the Academy has you covered. ",
+    "job": "Professional Programmers and Teachers"
   },
   {
-    "id": "60f6ce0e02f5102cea240410",
+    "_id": "60f6ce0e02f5102cea240410",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "user",
     "name": "Phat Nguyen",
@@ -190,68 +196,39 @@
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
   },
   {
-    "id": "60f6ce0e02f5102cea240411",
+    "_id": "60f6ce0e02f5102cea240411",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Mai Hoang",
     "email": "MaiHoang@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 25,
-    "ratingsAverage": 4.2
+    "ratingsAverage": 4.2,
+    "description": "I am a Software Engineer and Xamarin-Certified Mobile Developer.I have been developing mobile apps for 7 years now, I started when iOS 5 had just been released!During this years I have created apps for clients, both for private use and for public use. I have created some apps that I wanted to release to the app stores, and have created a lot of apps just for fun. The main platform I use is Xamarin, so I can code Andro_id, Windows, iOS and macOS apps using my favorite language: C#.I have helped literally thousands of students to learn how to code, both online and in-person, and it has become my passion.I also love to design apps, whenever I get a little bit (or a lot) stressed when coding, I design apps, either out-of-the-blue concepts, or the next app that I have to code, or a design for a client.I like to think of myself as an entrepreneur, I am the co-founder of a startup, AlphaBeta, focused on helping Mexicans to adopt digital technologies in their lives, so they become more efficient, and live better lives.In AlphaBeta I have learned (and taught) how to use tools like Google Classroom, Power BI (super popular with SMEs) and Adobe Experience Design, and some of those courses, have been brought here as well.My students usually say that I know how to make difficult subjects easy to understand and that I help them learn in the best way possible: by doing.",
+    "job": "Xamarin-Certified Mobile Developer, Software Engineer"
   },
   {
-    "id": "60f6ce0e02f5102cea240412",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Phuc Phan",
-    "email": "PhucPhan@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
-    "id": "60f6ce0e02f5102cea240413",
+    "_id": "60f6ce0e02f5102cea240413",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Lucia Lam",
     "email": "LuciaLam@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 15,
-    "ratingsAverage": 4
+    "ratingsAverage": 4,
+    "description": "I am a programmer with over 30 years' experience gained in a range of industries, the last 16 with IBM.I am now self employed developing apps for Andro_id; programming in a range of languages including Java, Javascript and Python; and helping the next generation of programmers gain the skills that I have acquired over the years.The first program I sold controlled stock movement in a warehouse, and ran on a CP/M computer - both the program and operating system lived in the 64 kb (yes, kilobytes) that was all CP/M systems had in those days.I have gained experience in a w_ide range of industries including Utilities, Retail, Insurance and the Motor Manufacturing industry. My clients and employers have included Northumbrian Water, Arcadia, Royal Sun Alliance, Nissan and Jaguar Landrover. I also worked for Sunderland University for 3 years preparing and delivering training courses in computing.Times have changed, the challenges are very different to what they were, but programming remains fun!When not at my computer, I am often r_iding my motorbike through the wonderful countrys_ide of the UK and Europe.",
+    "job": "Computer programmer, analyst and teacher"
   },
   {
-    "id": "60f6ce0e02f5102cea240414",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Christina Le",
-    "email": "ChristinaLe@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
-    "id": "60f6ce0e02f5102cea240415",
+    "_id": "60f6ce0e02f5102cea240415",
     "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
     "role": "expert",
     "name": "Chloe Nguyen",
     "email": "ChloeNguyen@gmail.com",
     "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
     "ratingsQuantity": 28,
-    "ratingsAverage": 4.2
-  },
-  {
-    "id": "60f6ce0e02f5102cea240416",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "user",
-    "name": "Kayle Tran",
-    "email": "KayleTran@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS"
-  },
-  {
-    "id": "60f6ce0e02f5102cea240417",
-    "avatar": "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
-    "role": "expert",
-    "name": "Mike Nguyen",
-    "email": "MikeNguyen@gmail.com",
-    "password": "$2b$12$E9s1jn9k8VUMgFvhQvApHeb2tXDfzAs.KEe/SsUhdm7R716T4JHMS",
-    "ratingsQuantity": 29,
-    "ratingsAverage": 4.2
+    "ratingsAverage": 4.2,
+    "description": "The Learn Programming Academy was created by Tim Buchalka, a software developer with 35 years experience, who is also an instructor on Udemy, with over 1.24M+ students in his courses on Java, Python, Andro_id, C#  and the Spring framework. The Academy’s goal in the next three years, is to teach one million people to learn how to program.Apart from Tim’s own courses, which are all available here, we are working with the very best teachers, creating courses to teach the essential skills required by developers, at all levels.One other important philosophy is that our courses are taught by real professionals; software developers with real and substantial experience in the industry, who are also great teachers.  All our instructors are experienced, software developers!Our team is busy creating new courses right now.Whether you are a beginner, looking to learn how to program for the very first time, or to brush up on your existing skills, or to learn new languages and frameworks, the Academy has you covered.",
+    "job": "Professional Programmers and Teachers"
   }
-  
 ]

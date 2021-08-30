@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "./axios";
 
 export default function Category() {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/v1/categories")
+            .get("/categories")
             .then((res) => setCategories(res.data.data.categories))
             .catch((err) => console.log(err));
     }, []);

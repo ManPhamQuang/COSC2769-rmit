@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useSWR from "swr";
-import axios from "axios";
+import axios from "./axios";
 import DateFormatter from "../utils/DateFormat";
 import Link from "next/link";
 import router from "next/router";
@@ -17,7 +17,7 @@ const fetcher = (url, token) =>
 export default function RoomTable({ user }) {
     const token = localStorage.getItem("accessToken");
     const { data: rooms, error } = useSWR(
-        [`http://localhost:5000/api/v1/rooms?createdBy=${user._id}`, token],
+        [`/rooms?createdBy=${user._id}&limit=1000`, token],
         fetcher
     );
 
@@ -85,14 +85,14 @@ export default function RoomTable({ user }) {
                 <h3 className="text-lg font-medium leading-6 text-gray-900">
                     Your Rooms
                 </h3>
-                <div className="lg:flex justify-between items-center block">
+                <div className="laptop:flex justify-between items-center block">
                     <p className="mt-1 text-sm text-gray-600">
                         This list contains all rooms created by you. You can
                         edit any room's detail by clicking on the row or the
                         Edit button.
                     </p>
                     <Link href="/room/create">
-                        <button className="flex items-center hover:bg-indigo-600 p-2 rounded-md bg-indigo-500 text-white mt-2">
+                        <button className="flex whitespace-nowrap items-center hover:bg-indigo-600 p-2 rounded-md bg-indigo-500 text-white mt-2">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-4 w-4 mr-1"
