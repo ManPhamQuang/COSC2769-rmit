@@ -2,7 +2,6 @@ import { useState, useReducer, useEffect, useContext } from "react";
 import axios from "../../components/axios";
 import router from "next/router";
 import CategoryDropDown from "../../components/CategoryDropDown";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../context/authContext/AuthContext";
