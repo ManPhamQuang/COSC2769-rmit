@@ -260,12 +260,13 @@ export default function RoomTable({ user }) {
                                                         />
                                                     </td>
                                                     <td className="px-3 py-2 whitespace-nowrap  text-sm font-medium ">
-                                                        <a
-                                                            href="#"
-                                                            className="text-indigo-600 hover:text-indigo-900"
+                                                        <Link
+                                                            href={`/room/update/${room._id}`}
                                                         >
-                                                            Edit
-                                                        </a>
+                                                            <p className="text-indigo-600 hover:text-indigo-900">
+                                                                Edit
+                                                            </p>
+                                                        </Link>
                                                     </td>
                                                 </tr>
                                             );
