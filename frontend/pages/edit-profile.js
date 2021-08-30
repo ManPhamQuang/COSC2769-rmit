@@ -5,7 +5,7 @@ import { AuthContext } from "../context/authContext/AuthContext";
 import axios from "../components/axios";
 import ImageUpload from "../components/ImageUpload";
 import { getMe } from "../context/authContext/apiCalls";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const Breaker = () => (
     <div className="hidden sm:block" aria-hidden="true">
@@ -39,7 +39,10 @@ export default function Profile() {
                 avatar = response.data.secure_url;
             } catch (error) {
                 // alert("error.message");
-                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+                toast.error(
+                    error.response?.data?.message ??
+                        "Server Error! Please try again later"
+                );
             }
         }
         const body = {
@@ -60,7 +63,10 @@ export default function Profile() {
             setIsLoading(false);
             console.log(error);
             // alert(error.message);
-            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+            toast.error(
+                error.response?.data?.message ??
+                    "Server Error! Please try again later"
+            );
         }
     };
 
@@ -136,7 +142,7 @@ export default function Profile() {
                                                 }
                                             />
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             <label
                                                 htmlFor="description"
                                                 className="block text-sm font-medium text-gray-700"
@@ -162,7 +168,7 @@ export default function Profile() {
                                                 Brief description for your
                                                 profile.
                                             </p>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                         {isLoading ? (
