@@ -1,38 +1,9 @@
 import Head from "next/head";
 import RoomCardsSlider from "../components/RoomCardsSlider";
 import Category from "../components/Category";
-import { useEffect, useState } from "react";
-import axios from "../components/axios";
-import RandomRoomCardsSlider from "../components/RandomRoomCardsSlider";
-import { toast } from 'react-toastify';
-
-function getRandom(arr, n) {
-    var result = new Array(n),
-        len = arr.length,
-        taken = new Array(len);
-    if (n > len)
-        throw new RangeError("getRandom: more elements taken than available");
-    while (n--) {
-        var x = Math.floor(Math.random() * len);
-        result[n] = arr[x in taken ? taken[x] : x];
-        taken[x] = --len in taken ? taken[len] : len;
-    }
-    return result;
-}
+import RandomRoomsLists from "../components/RandomRoomsLists";
 
 export default function Home() {
-    const [categories, setCategories] = useState([]);
-    useEffect(() => {
-        axios
-            .get("/categories")
-            .then((res) =>
-                setCategories(getRandom(res.data.data.categories, 6))
-            )
-            .catch((error) => {
-                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
-            });
-    }, []);
-
     return (
         <>
             <Head>
@@ -82,12 +53,7 @@ export default function Home() {
                     />
                 </div>
 
-                {categories.map((category) => (
-                    <RandomRoomCardsSlider
-                        category={category}
-                        key={category._id}
-                    />
-                ))}
+                <RandomRoomsLists />
 
                 <Category />
             </div>
