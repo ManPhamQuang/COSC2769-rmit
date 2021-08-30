@@ -6,18 +6,22 @@ import Link from "next/link";
 import router from "next/router";
 
 import CopyLink from "./CopyLink";
+import { toast } from 'react-toastify';
 
 const fetcher = (url, token) =>
     axios
         .get(url, {
             headers: { Authorization: `Bearer ${token}` },
         })
-        .then((res) => res.data.data.rooms);
+        .then((res) => res.data.data.rooms)
+        .catch((error) => {
+            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+        });
 
 export default function RoomTable({ user }) {
     const token = localStorage.getItem("accessToken");
     const { data: rooms, error } = useSWR(
-        [`/rooms?createdBy=${user._id}`, token],
+        [`/rooms?createdBy=${user._id}&limit=1000`, token],
         fetcher
     );
 

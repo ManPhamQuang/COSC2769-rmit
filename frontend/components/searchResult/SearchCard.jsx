@@ -9,7 +9,7 @@ const SearchCard = ({ room }) => {
                     <div>
                         <div className="h-48 md:h-44 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
                             <img
-                                src={room.thumbnail !== "default.png" && room.thumbnail !== "room.png" ? `${room.thumbnail}` : "/default.png"}
+                                src={room.thumbnail !== "default.png" ? `${room.thumbnail}` : "/default.png"}
                                 className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:bg-red-400 mix-blend-multiply"
                             />
                         </div>

@@ -4,6 +4,7 @@ import Category from "../components/Category";
 import { useEffect, useState } from "react";
 import axios from "../components/axios";
 import RandomRoomCardsSlider from "../components/RandomRoomCardsSlider";
+import { toast } from 'react-toastify';
 
 function getRandom(arr, n) {
     var result = new Array(n),
@@ -27,7 +28,9 @@ export default function Home() {
             .then((res) =>
                 setCategories(getRandom(res.data.data.categories, 6))
             )
-            .catch((err) => console.log(err));
+            .catch((error) => {
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+            });
     }, []);
 
     return (
@@ -40,7 +43,7 @@ export default function Home() {
                 />
             </Head>
             <div className="container mx-auto p-5 lg:p-14">
-                <h1 className="font-bold text-4xl mt-24">What to learn next</h1>
+                <h1 className="font-bold text-4xl">What to learn next</h1>
                 <div className="mt-10">
                     <h1 className="font-bold text-2xl m-4 mt-0">
                         Upcoming rooms
