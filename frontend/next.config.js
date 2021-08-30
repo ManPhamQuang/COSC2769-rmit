@@ -18,7 +18,7 @@ module.exports = (phase, { defaultConfig }) => {
     return {
         /* config options for all phases except development here */
         env: {
-            baseApiUrl: "http://localhost:5000/api/v1",
+            baseApiUrl: "https://the-lab-app.herokuapp.com/api/v1",
             baseUrl: "http://localhost:3000",
         },
     };
