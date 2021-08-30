@@ -90,7 +90,9 @@ exports.loginWithGoogle = catchAsync(async (req, res, next) => {
       email: decodedToken.payload.email,
       gId: decodedToken.payload.sub,
       name: decodedToken.payload.name,
-      avatar: decodedToken.payload.picture,
+      avatar:
+        decodedToken.payload.picture ||
+        "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
       password: generatedPw,
       passwordConfirm: generatedPw,
     });
