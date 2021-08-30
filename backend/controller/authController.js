@@ -4,6 +4,7 @@ const User = require("../model/User");
 const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
 const { v4: uuidv4 } = require("uuid");
+const client = require("../util/oAuthClient2");
 const createToken = async id =>
   await promisify(jwt.sign)({ id }, process.env.SECRET, {
     expiresIn: process.env.EXPIRES_IN,
@@ -81,14 +82,15 @@ exports.limitToOnly = (...roles) => {
 };
 
 exports.loginWithGoogle = catchAsync(async (req, res, next) => {
-  let user = await User.findOne({ email: req.body.email, gId: req.body.id });
+  const decodedToken = await client.verifyIdToken({ idToken: req.body.id });
+  let user = await User.findOne({ gId: decodedToken.payload.sub });
   const generatedPw = uuidv4();
   if (!user) {
     user = await User.create({
-      email: req.body.email,
-      gId: req.body.id,
-      name: req.body.name,
-      avatar: req.body.avatar,
+      email: decodedToken.payload.email,
+      gId: decodedToken.payload.sub,
+      name: decodedToken.payload.name,
+      avatar: decodedToken.payload.picture,
       password: generatedPw,
       passwordConfirm: generatedPw,
     });
