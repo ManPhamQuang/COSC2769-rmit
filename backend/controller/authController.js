@@ -82,7 +82,12 @@ exports.limitToOnly = (...roles) => {
 };
 
 exports.loginWithGoogle = catchAsync(async (req, res, next) => {
-  const decodedToken = await client.verifyIdToken({ idToken: req.body.id });
+  let decodedToken;
+  try {
+    decodedToken = await client.verifyIdToken({ idToken: req.body.id });
+  } catch (error) {
+    return next(new AppError("Invalid or missing token from body", 400));
+  }
   let user = await User.findOne({ gId: decodedToken.payload.sub });
   const generatedPw = uuidv4();
   if (!user) {
