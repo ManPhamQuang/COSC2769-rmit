@@ -32,3 +32,18 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.getExpertInfo = catchAsync(async (req, res, next) => {
+  const expert = await User.findById(req.params.expertId).populate({
+    path: "rooms",
+    populate: "category",
+  });
+  if (!expert)
+    return next(new AppError("No expert found with a given id", 404));
+  res.status(200).json({
+    status: "success",
+    data: {
+      expert,
+    },
+  });
+});
