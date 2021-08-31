@@ -1,38 +1,53 @@
-import RoomTable from "../../components/RoomTable";
-import DashboardLayout from "../../components/DashboardLayout";
-import Head from "next/head";
-import NavBar from "../../components/navbar/NavBar";
-import TeacherSelfIntroduction from "../../components/TeacherSelfIntroduction";
-import axios from "axios";
-import useSWR from "swr";
-import { AuthContextProvider } from "../../context/authContext/AuthContext";
-import { StarIcon } from "@heroicons/react/solid";
-import { data } from "autoprefixer";
+import React from "react";
+import {
+    CheckIcon,
+    ThumbUpIcon,
+    DeviceMobileIcon,
+} from "@heroicons/react/outline";
+import TeacherSelfIntroduction from "./TeacherSelfIntroduction";
+import axios from "./axios";
+import ReadMore from "./ReadMore";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext/AuthContext";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-const fetcher = (url, token) =>
-  axios
-    .get(url, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then((res) => res.data.data);
 
-export default function ExpertProfile() {
-    //   const token = localStorage.getItem("accessToken");
-    //   const { data, error } = useSWR(
-    //     ["http://localhost:5000/api/v1/users/getMe", token],
-    //     fetcher
-    //   );
+export default function RoomDetailBody({ props }) {
+    const router = useRouter();
+    const _id = router.query._id;
+    const { state, dispatch } = useContext(AuthContext);
+    const handleJoinRoom = (e) => {
+        // Navigate to Log In page if can not find access Token
+        if (!state.token) {
+            router.push("/login");
+        }
+        router.push({
+            pathname: "/room/join",
+            query: { roomID: _id },
+        });
+        e.preventDefault();
+    };
+
+    const handleCheckout = async (e) => {
+        if (!state.token) {
+            router.push("/login");
+        }
+        try {
+            const request = await axios.get(`/checkouts/${_id}`, {
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                },
+            });
+            const { url } = request.data.data;
+            router.push(url);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
-        <>
-            <Head>
-                <title>Expert Profile</title>
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
-            </Head>
-            <NavBar />
+        <div>
             <div className="w-full grid grid-cols-1  md:px-20 pt-20 ">
                 <div className="col-span-1 px-4 py-2 xl:px-40 py-6 lg:col-span-2 space-y-8 ">
                     <div className="space-y-2 px-2 py-2 lg:space-y-4 lg:px-12 lg:py-4 ">
@@ -42,7 +57,7 @@ export default function ExpertProfile() {
                                     Instructor
                                 </p>
                                 <p className="py-5 font-bold uppercase tracking-wide sm:text-2xl text-3xl text-indigo-500 lg:text-4xl">
-                                Kirill Eremenko
+                                    ${props.name}
                                 </p>
                                 <p className="pb-5 font-bold tracking-wide text-sm text-gray-600 lg:text-base">
                                 Data Scientist
@@ -62,7 +77,7 @@ export default function ExpertProfile() {
                                             <div className="inline">
                                                 <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1 lg:h-5 lg:w-5" />
                                                 <p className="text-gray-600 inline text-sm lg:text-base">
-                                                    5
+                                                    {props.ratingsAverage}
                                                 </p>
                                                 <p className="text-gray-600 inline text-sm sm:text-base">
                                                     &nbsp;Instructor Rating
@@ -84,7 +99,7 @@ export default function ExpertProfile() {
                                                     />
                                                 </svg>
                                                 <p className="text-gray-600 inline text-sm lg:text-base">
-                                                    &nbsp;9,952&nbsp;rooms
+                                                    &nbsp;{props.roomAmount}&nbsp;rooms
                                                 </p>
                                             </div>
                                             <div>
@@ -103,7 +118,7 @@ export default function ExpertProfile() {
                                                     />
                                                 </svg>
                                                 <p className="text-gray-600 inline text-sm lg:text-base">
-                                                    &nbsp;9,952&nbsp;reviews
+                                                    &nbsp;{props.reviewerAmount}&nbsp;reviews
                                                 </p>
                                             </div>
                                         </div>
@@ -141,12 +156,7 @@ export default function ExpertProfile() {
                     </div>
                 </div>
             </div>
-        </>
+        
+        </div>
     );
 }
-
-// ExpertProfile.getLayout = (page) => (
-//   <AuthContextProvider>
-//     <DashboardLayout>{page}</DashboardLayout>
-//   </AuthContextProvider>
-// );

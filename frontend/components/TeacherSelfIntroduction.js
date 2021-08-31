@@ -1,19 +1,24 @@
 import React from "react";
 import { StarIcon } from "@heroicons/react/solid";
+import { Link } from 'react-router';
 
 export default function teacherSelfIntroduction({ props }) {
-    // const { id, name, rating, seftIntroduction} = props;
+    const { _id,name,job,avatar,ratingsAverage,roomAmount,reviewerAmount,description} = props;
     return (
         <div className="mt-2">
-            <div>
+             {/* <Link href={`/expertprofile/${_id}`}>  */}
+             <div>
                 <p className="font-bold text-1xl mb-2 lg:text-3xl">
                     Instructor
                 </p>
+                {/* <Link href={`/expertprofile/${_id}`}>  */}
                 <p className="font-bold uppercase tracking-wide text-sm text-indigo-500 lg:text-lg">
-                    {props.name}
+                    {name}
                 </p>
+                {/* </Link> */}
+               
                 <p className="font-bold tracking-wide text-sm text-gray-600 lg:text-base">
-                    {props.job}
+                    {job}
                 </p>
             </div>
             <div>
@@ -21,7 +26,7 @@ export default function teacherSelfIntroduction({ props }) {
                     <div className="flex justify-center">
                         <img
                             alt="Expert Avatar"
-                            src={props.avatar}
+                            src={avatar}
                             className="inline object-cover rounded-full h-26 w-26 md:h-40 w-40"
                         />
                     </div>
@@ -30,7 +35,7 @@ export default function teacherSelfIntroduction({ props }) {
                             <div className="inline">
                                 <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1 lg:h-5 lg:w-5" />
                                 <p className="text-gray-600 inline text-sm lg:text-base">
-                                    {props.ratingsAverage}
+                                    {ratingsAverage}
                                 </p>
                                 <p className="text-gray-600 inline text-sm lg:text-base">
                                     &nbsp;Instructor Rating
@@ -52,7 +57,7 @@ export default function teacherSelfIntroduction({ props }) {
                                     />
                                 </svg>
                                 <p className="text-gray-600 inline text-sm lg:text-base">
-                                    &nbsp;{props.roomAmount}&nbsp;rooms
+                                    &nbsp;{roomAmount}&nbsp;rooms
                                 </p>
                             </div>
                             <div>
@@ -71,7 +76,7 @@ export default function teacherSelfIntroduction({ props }) {
                                     />
                                 </svg>
                                 <p className="text-gray-600 inline text-sm lg:text-base">
-                                    &nbsp;{props.reviewerAmount}&nbsp;reviews
+                                    &nbsp;{reviewerAmount}&nbsp;reviews
                                 </p>
                             </div>
                         </div>
@@ -80,9 +85,12 @@ export default function teacherSelfIntroduction({ props }) {
             </div>
             <div className="mt-3">
                 <p className="mt-1 text-sm text-justify mb-20 lg:text-base">
-                    {props.description}
+                    {description}
                 </p>
             </div>
+             
+             {/* </Link> */}
+           
         </div>
     );
 }

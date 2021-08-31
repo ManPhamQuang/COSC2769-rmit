@@ -99,13 +99,10 @@ export default function RoomDetailBody({ room }) {
                     {/* <ReadMore /> */}
                 </div>
                 <div>
-                    {/* <Link href={`/expertprofile/${room.createdBy._id}`}> */}
                         <TeacherSelfIntroduction
                             key={room.createdBy}
                             props={room.createdBy}
                         />
-                    {/* </Link> */}
-                    
                 </div>
             </div>
             <div className="hidden xl:block px-20 py-6">
