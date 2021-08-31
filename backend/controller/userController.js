@@ -40,6 +40,8 @@ exports.getExpertInfo = catchAsync(async (req, res, next) => {
   });
   if (!expert)
     return next(new AppError("No expert found with a given id", 404));
+  if (expert.role !== "expert")
+    return next(new AppError("Only expert info is public", 404));
   res.status(200).json({
     status: "success",
     data: {
