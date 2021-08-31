@@ -38,10 +38,6 @@ module.exports = (error, req, res, next) => {
     errorMsgObj = new AppError(`Invalid JSON body`, 400);
   }
 
-  if (error.message.substring(4, 17) === "verifyIdToken") {
-    errorMsgObj = new AppError(`Invalid or missing token from body`, 400);
-  }
-
   if (errorMsgObj)
     res.status(errorMsgObj.statusCode).json({
       status: errorMsgObj.status,
