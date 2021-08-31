@@ -6,14 +6,18 @@ const {
   isAuthenticated,
   loginWithGoogle,
 } = require("../controller/authController");
-const { getMe, updateMe } = require("../controller/userController");
+const {
+  getMe,
+  updateMe,
+  getExpertInfo,
+} = require("../controller/userController");
 const reviewRoute = require("./reviewRoute");
 // Create merge params for this resource => Route: /api/v1/users/:teacherId/reviews
 router.use("/:teacherId/reviews", reviewRoute);
+router.get("/getMe", isAuthenticated, getMe);
+router.patch("/updateMe", isAuthenticated, updateMe);
+router.get("/:expertId", getExpertInfo);
 router.post("/loginWithGoogle", loginWithGoogle);
 router.post("/signup", createUser);
 router.post("/login", login);
-router.use(isAuthenticated);
-router.get("/getMe", getMe);
-router.patch("/updateMe", updateMe);
 module.exports = router;
