@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
-import { login } from "../context/authContext/apiCalls";
+import { login, loginWithGoogle } from "../context/authContext/apiCalls";
 import router from "next/router";
 import { AuthContext } from "../context/authContext/AuthContext";
+import LoginGoogle from "../components/LoginGoogle";
+import axios from "../components/axios/index";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -26,7 +28,7 @@ const Login = () => {
     return (
         <div>
             <div className="container mx-auto p-4 h-full">
-                <div className="flex content-center items-center justify-center h-full mt-32">
+                <div className="flex content-center items-center justify-center h-full mt-20">
                     <div className="w-full lg:w-4/12 px-4">
                         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-indigo-50 border-0 ">
                             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
@@ -108,34 +110,13 @@ const Login = () => {
                                     )}
                                 </form>
                             </div>
-                            <div className="rounded-t mb-0 px-6 pb-6">
+                            <div className="rounded-t mb-0 px-10 pb-6">
                                 <hr className="mb-6 border-b-1 border-gray-400 w-4/5 mx-auto" />
                                 <div className="text-gray-500 text-center mb-3 font-bold">
                                     <small>Or log in with</small>
                                 </div>
                                 <div className="btn-wrapper text-center">
-                                    <button
-                                        className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                                        type="button"
-                                    >
-                                        <img
-                                            alt="LinkedIn icon"
-                                            className="w-5 mr-1"
-                                            src="/linkedin-icon.svg"
-                                        />
-                                        LinkedIn
-                                    </button>
-                                    <button
-                                        className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                                        type="button"
-                                    >
-                                        <img
-                                            alt="Google icon"
-                                            className="w-5 mr-1"
-                                            src="/google-icon.svg"
-                                        />
-                                        Google
-                                    </button>
+                                    <LoginGoogle />
                                 </div>
                             </div>
                         </div>

@@ -2,10 +2,10 @@ import { useState, useReducer, useEffect, useContext } from "react";
 import axios from "../../components/axios";
 import router from "next/router";
 import CategoryDropDown from "../../components/CategoryDropDown";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../context/authContext/AuthContext";
+import { toast } from 'react-toastify';
 
 const INIT_CATEGORY = [{ name: "Select Category" }];
 
@@ -81,6 +81,7 @@ const Create = () => {
             })
             .catch((error) => {
                 console.log(error);
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
             });
     }, []);
 
@@ -125,6 +126,7 @@ const Create = () => {
                     type: "ROOM_CREATE_FAILURE",
                     payload: error.response.data,
                 });
+                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
             });
         event.preventDefault();
     };
@@ -144,7 +146,7 @@ const Create = () => {
                         </p>
                     </div>
                 )}
-                <div className="md:grid md:grid-cols-3 md:gap-6 mt-32">
+                <div className="md:grid md:grid-cols-3 md:gap-6">
                     <div className="col-span-3 lg:col-span-1">
                         <div className="px-4 sm:px-0">
                             <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -304,7 +306,7 @@ const Create = () => {
                         </form>
                     </div>
                 </div>
-                {room.error && (
+                {/* {room.error && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-5">
                         <span className="inline-block align-middle mr-8">
                             <b className="font-bold">Error!</b>{" "}
@@ -319,7 +321,7 @@ const Create = () => {
                             <span>×</span>
                         </button>
                     </div>
-                )}
+                )} */}
             </div>
         </div>
     );

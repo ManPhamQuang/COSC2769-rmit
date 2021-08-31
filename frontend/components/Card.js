@@ -21,60 +21,62 @@ export default function Card({ props }) {
 
     return (
         <div>
-            
-                <Tippy
-                    placement="right"
-                    interactive={true}
-                    render={(attrs) => (
-                        // Tooltip
-                        <div tabIndex="-1" {...attrs}>
-                            <div
-                                className={`bg-white mb-28 block z-50 font-normal border-2 shadow-lg leading-normal  max-w-xs text-left no-underline break-words rounded-lg`}
-                            >
-                                <div className="p-4 leading-snug">
-                                    <h1 className="font-bold">{title}</h1>
-                                    <p className="text-sm font-normal text-gray-500">
-                                        Status:{" "}
-                                        <span className="font-semibold">
-                                            {status}
-                                        </span>
-                                    </p>
-                                    <p className="text-sm font-normal text-green-700">
-                                        Starts at{" "}
-                                        <span className="font-semibold">
-                                            {DateTimeFormatter(startedAt)}
-                                        </span>
-                                    </p>
-                                    {category && (
-                                        <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
-                                            <p className="text-xs font-semibold mx-auto text-center">
-                                                {category?.name}
-                                            </p>
-                                        </div>
-                                    )}
-                                    <div className="line-clamp-5">
-                                        {description}
+            <Tippy
+                placement="right"
+                interactive={true}
+                render={(attrs) => (
+                    // Tooltip
+                    <div tabIndex="-1" {...attrs}>
+                        <div
+                            className={`bg-white mb-28 block z-50 font-normal border-2 shadow-lg leading-normal  max-w-xs text-left no-underline break-words rounded-lg`}
+                        >
+                            <div className="p-4 leading-snug">
+                                <h1 className="font-bold">{title}</h1>
+                                <p className="text-sm font-normal text-gray-500">
+                                    Status:{" "}
+                                    <span className="font-semibold">
+                                        {status}
+                                    </span>
+                                </p>
+                                <p className="text-sm font-normal text-green-700">
+                                    Starts at{" "}
+                                    <span className="font-semibold">
+                                        {DateTimeFormatter(startedAt)}
+                                    </span>
+                                </p>
+                                {category && (
+                                    <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
+                                        <p className="text-xs font-semibold mx-auto text-center">
+                                            {category?.name}
+                                        </p>
                                     </div>
-                                    <button
-                                        className="bg-indigo-600 mt-3 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full disabled:bg-indigo-200 disabled:cursor-not-allowed"
-                                        type="button"
-                                    >
-                                        Add to Cart
-                                    </button>
+                                )}
+                                <div className="line-clamp-5">
+                                    {description}
                                 </div>
+                                <button
+                                    className="bg-indigo-600 mt-3 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full disabled:bg-indigo-200 disabled:cursor-not-allowed"
+                                    type="button"
+                                >
+                                    Add to Cart
+                                </button>
                             </div>
                         </div>
-                    )}
-                >
-                    <Link href={`/room/${_id}`}>
+                    </div>
+                )}
+            >
+                <Link href={`/room/${_id}`}>
                     <div className=" group cursor-pointer">
                         <div>
                             <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
                                 <img
                                     src={
-                                        thumbnail && thumbnail !== ""
+                                        thumbnail &&
+                                        thumbnail !== "" &&
+                                        thumbnail !== "default.png" && // TODO: CLEAN DATA REMOVE ALL default.png or room.png
+                                        thumbnail !== "room.png"
                                             ? thumbnail
-                                            : "/Python-language.png"
+                                            : "/default.png"
                                     }
                                     className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:bg-red-400 mix-blend-multiply"
                                 />
@@ -107,12 +109,8 @@ export default function Card({ props }) {
                             </div>
                         </div>
                     </div>
-                                    
-                    </Link>
-                 
-                </Tippy>
-            
-         
-            </div>
+                </Link>
+            </Tippy>
+        </div>
     );
 }

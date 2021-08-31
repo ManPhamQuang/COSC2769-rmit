@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 const ChatAPI = require("twilio-chat");
 import { getTwilioToken } from "../utils/API";
+import { toast } from 'react-toastify';
 
 function Chat({ username, roomName, token, isHidden, closeChat }) {
     const [loading, setLoading] = useState(false);
@@ -26,6 +27,13 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
         });
 
         client.on("channelJoined", async (channel) => {
+            
+            // Twilio Chat allows multiple channels
+            // We have to find a channel, which matches the current room.
+            if (channel.uniqueName !== roomName) {
+                return;
+            }
+
             // getting list of all messages since this is an existing channel
             const newMessages = await channel.getMessages();
             setMessages(newMessages.items || []);
@@ -35,7 +43,6 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
         try {
             const channel = await client.getChannelByUniqueName(roomName);
             joinChannel(channel);
-            setChannel(channel);
         } catch (err) {
             try {
                 const channel = await client.createChannel({
@@ -44,9 +51,10 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
                 });
                 joinChannel(channel);
             } catch {
-                throw new Error(
-                    "Unable to create channel, please reload this page"
-                );
+                // throw new Error(
+                //     "Unable to create channel, please reload this page"
+                // );
+                toast.error("Unable to create channel, please reload this page");
             }
         }
         // useEffect should return a clean up function if components ever unmount
@@ -61,7 +69,6 @@ function Chat({ username, roomName, token, isHidden, closeChat }) {
 
         setChannel(channel);
         setLoading(false);
-
         channel.on("messageAdded", function (message) {
             handleMessageAdded(message);
         });

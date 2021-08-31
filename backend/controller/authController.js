@@ -3,7 +3,8 @@ const { promisify } = require("util");
 const User = require("../model/User");
 const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
-
+const { v4: uuidv4 } = require("uuid");
+const client = require("../util/oAuthClient2");
 const createToken = async id =>
   await promisify(jwt.sign)({ id }, process.env.SECRET, {
     expiresIn: process.env.EXPIRES_IN,
@@ -79,3 +80,30 @@ exports.limitToOnly = (...roles) => {
     next();
   };
 };
+
+exports.loginWithGoogle = catchAsync(async (req, res, next) => {
+  const decodedToken = await client.verifyIdToken({ idToken: req.body.id });
+  let user = await User.findOne({ gId: decodedToken.payload.sub });
+  const generatedPw = uuidv4();
+  if (!user) {
+    user = await User.create({
+      email: decodedToken.payload.email,
+      gId: decodedToken.payload.sub,
+      name: decodedToken.payload.name,
+      avatar:
+        decodedToken.payload.picture ||
+        "https://res.cloudinary.com/dybygufkr/image/upload/c_thumb,w_200,g_face/v1593000869/avatar_q2ysxd.jpg",
+      password: generatedPw,
+      passwordConfirm: generatedPw,
+    });
+  }
+  const token = await createToken(user.id);
+  const data = extractUserData(user);
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: data,
+      token,
+    },
+  });
+});

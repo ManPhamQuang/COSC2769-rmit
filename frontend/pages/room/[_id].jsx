@@ -3,8 +3,15 @@ import axios from "../../components/axios";
 import useSWR from "swr";
 import RoomDetailBody from "../../components/RoomDetailBody";
 import RoomDetailHeader from "../../components/RoomDetailHeader";
+import { toast } from 'react-toastify';
 
-const roomFetcher = (url) => axios.get(url).then((res) => res.data.data);
+const roomFetcher = (url) =>
+    axios
+        .get(url)
+        .then((res) => res.data.data)
+        .catch((error) => {
+            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+        });
 
 export default function RoomDetail() {
     const router = useRouter();
