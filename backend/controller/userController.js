@@ -1,6 +1,8 @@
 const User = require("../model/User");
 const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
+const crypto = require("crypto");
+const { sendEmail } = require("../util/utils");
 
 exports.getMe = catchAsync(async (req, res, next) => {
   const user = req.user;
@@ -48,4 +50,25 @@ exports.getExpertInfo = catchAsync(async (req, res, next) => {
       expert,
     },
   });
+});
+
+exports.resetPassword = catchAsync(async (req, res, next) => {
+  if (!req.body.email) {
+    return next(
+      new AppError("Please provide email to reset your password", 400)
+    );
+  }
+
+  // Find user by email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return next(new AppError("Could not found any user, which is associated with this email.", 400));
+  }
+
+  // Create token
+  const token = crypto.randomBytes(32).toString("hex");
+  
+  // Sent a reset password to user email
+  const link = `${process.env.BASE_URL}/api/v1/users/reset-password/${user._id}/${token}`;
+  await sendEmail(user.email, "Password reset", link);
 });

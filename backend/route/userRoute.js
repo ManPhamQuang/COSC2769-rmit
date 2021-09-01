@@ -10,6 +10,7 @@ const {
   getMe,
   updateMe,
   getExpertInfo,
+  resetPassword
 } = require("../controller/userController");
 const reviewRoute = require("./reviewRoute");
 // Create merge params for this resource => Route: /api/v1/users/:teacherId/reviews
@@ -20,4 +21,5 @@ router.get("/:expertId", getExpertInfo);
 router.post("/loginWithGoogle", loginWithGoogle);
 router.post("/signup", createUser);
 router.post("/login", login);
+router.post("/reset-password", resetPassword);
 module.exports = router;
