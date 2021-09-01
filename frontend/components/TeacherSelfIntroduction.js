@@ -1,15 +1,15 @@
 import React from "react";
 import { StarIcon } from "@heroicons/react/solid";
-import { Link } from 'react-router';
+import  Link  from "next/link";
+
 
 export default function teacherSelfIntroduction({ props }) {
     const { _id,name,job,avatar,ratingsAverage,roomAmount,reviewerAmount,description} = props;
     console.log(_id)
     return (
         <div className="mt-2">
-             {/* <Link href={`/expertprofile/${_id}`}>  */}
-             <h1>helllo hihhihidhsvh</h1>
-             
+             <Link href={`/expertprofile/${_id}`}> 
+            
             <div>
                 <div>
                     <p className="font-bold text-1xl mb-2 lg:text-3xl">
@@ -19,7 +19,6 @@ export default function teacherSelfIntroduction({ props }) {
                     <p className="font-bold uppercase tracking-wide text-sm text-indigo-500 lg:text-lg">
                         {name}
                     </p>
-                
                 
                     <p className="font-bold tracking-wide text-sm text-gray-600 lg:text-base">
                         {job}
@@ -94,7 +93,7 @@ export default function teacherSelfIntroduction({ props }) {
                 </div>
             </div>
     
-             {/* </Link> */}
+             </Link>
            
         </div>
     );

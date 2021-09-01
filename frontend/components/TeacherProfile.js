@@ -1,33 +1,19 @@
 import React from "react";
-import {
-    CheckIcon,
-    ThumbUpIcon,
-    DeviceMobileIcon,
-} from "@heroicons/react/outline";
-import TeacherSelfIntroduction from "./TeacherSelfIntroduction";
 import axios from "./axios";
 import ReadMore from "./ReadMore";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { StarIcon } from "@heroicons/react/solid";
+import Carousel from "react-grid-carousel";
+import Card from "./Card";
 
 
 export default function RoomDetailBody({ props }) {
     const router = useRouter();
     const _id = router.query._id;
     const { state, dispatch } = useContext(AuthContext);
-    const handleJoinRoom = (e) => {
-        // Navigate to Log In page if can not find access Token
-        if (!state.token) {
-            router.push("/login");
-        }
-        router.push({
-            pathname: "/room/join",
-            query: { roomID: _id },
-        });
-        e.preventDefault();
-    };
 
     const handleCheckout = async (e) => {
         if (!state.token) {
@@ -48,7 +34,7 @@ export default function RoomDetailBody({ props }) {
 
     return (
         <div>
-            <div className="w-full grid grid-cols-1  md:px-20 pt-20 ">
+            <div className="w-full grid grid-cols-1  md:px-20 ">
                 <div className="col-span-1 px-4 py-2 xl:px-40 py-6 lg:col-span-2 space-y-8 ">
                     <div className="space-y-2 px-2 py-2 lg:space-y-4 lg:px-12 lg:py-4 ">
                         <div className="">
@@ -57,7 +43,7 @@ export default function RoomDetailBody({ props }) {
                                     Instructor
                                 </p>
                                 <p className="py-5 font-bold uppercase tracking-wide sm:text-2xl text-3xl text-indigo-500 lg:text-4xl">
-                                    ${props.name}
+                                    {props.name}
                                 </p>
                                 <p className="pb-5 font-bold tracking-wide text-sm text-gray-600 lg:text-base">
                                 Data Scientist
@@ -152,6 +138,46 @@ export default function RoomDetailBody({ props }) {
                                 <p className="font-bold text-smg mb-2  sm:text-2xl">My rooms:</p>
                                
                             </div>
+                            <Carousel
+                                cols={5}
+                                responsiveLayout={[
+                                    {
+                                        breakpoint: 1600,
+                                        cols: 5,
+                                        rows: 1,
+                                        gap: 10,
+                                        loop: true,
+                                    },
+                                    {
+                                        breakpoint: 1280,
+                                        cols: 4,
+                                        rows: 1,
+                                        gap: 10,
+                                        loop: true,
+                                    },
+                                    {
+                                        breakpoint: 1100,
+                                        cols: 3,
+                                        rows: 1,
+                                        gap: 10,
+                                        loop: true,
+                                    },
+                                    {
+                                        breakpoint: 768,
+                                        cols: 2,
+                                        rows: 1,
+                                        gap: 10,
+                                        loop: true,
+                                    },
+                                ]}
+                            >
+                                {props.rooms.map((room) => (
+                                    <Carousel.Item key={room._id}>
+                                    <Card key={room._id} props={room} />
+                                    </Carousel.Item>
+                                    ))}
+                            </Carousel>
+                           
                         </div>
                     </div>
                 </div>
