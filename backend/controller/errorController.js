@@ -29,17 +29,13 @@ module.exports = (error, req, res, next) => {
     error.name === "JsonWebTokenError"
   ) {
     errorMsgObj = new AppError(
-      "Invalid token or expired token. Please login again",
+      "Invalid or expired token. Please login again",
       401
     );
   }
 
   if (error.type === "entity.parse.failed") {
-    errorMsgObj = new AppError(`Invalid JSON body`, 404);
-  }
-
-  if (error.name === "Error") {
-    errorMsgObj = new AppError(`Invalid or missing token from body`, 404);
+    errorMsgObj = new AppError(`Invalid JSON body`, 400);
   }
 
   if (errorMsgObj)
