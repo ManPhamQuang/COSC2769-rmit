@@ -10,7 +10,6 @@ const transactionSchema = new mongoose.Schema({
     ref: "User",
   },
   amount: Number,
-  price: Number,
   createdAt: {
     type: Date,
     default: Date.now,
