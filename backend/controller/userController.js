@@ -3,6 +3,7 @@ const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/appError");
 const crypto = require("crypto");
 const { sendEmail } = require("../util/utils");
+const bcrypt = require("bcrypt");
 
 exports.getMe = catchAsync(async (req, res, next) => {
   const user = req.user;
@@ -69,7 +70,7 @@ exports.sendResetPasswordEmail = catchAsync(async (req, res, next) => {
   const token = crypto.randomBytes(32).toString("hex");
 
   // Sent a reset password to user email
-  const link = `${process.env.BASE_URL}/api/v1/users/reset-password/${user._id}/${token}`;
+  const link = `${process.env.BASE_URL}/reset-password?id=${user._id}&token=${token}`;
   await sendEmail(user.email, "Password reset", link);
 
   // After sending email success, we save the token
@@ -88,15 +89,23 @@ exports.sendResetPasswordEmail = catchAsync(async (req, res, next) => {
 
 exports.resetPassword = catchAsync(async (req, res, next) => {
   // Find a user by given id and reset-password token
-  const user = await User.findOne({ id: req.body.userId, resetPasswordToken: req.body.token});
+  const user = await User.findOne({ _id: req.body.userId, resetPasswordToken: req.body.token});
   if (!user) {
     return next(new AppError("Invalid reset password link", 400));
   }
 
+  // Verify password is exist
+  if (!req.body.password) {
+    return next(
+      new AppError("Please provide new password", 400)
+    );
+  }
+
   // Update new password
-  user.password = req.body.password;
-  user.resetPasswordToken = null;
-  await user.save();
+  await user.update({
+    password: await bcrypt.hash(req.body.password, 12),
+    resetPasswordToken: null
+  });
 
   // Done
   res.status(200).json({

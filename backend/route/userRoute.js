@@ -22,6 +22,6 @@ router.get("/:expertId", getExpertInfo);
 router.post("/loginWithGoogle", loginWithGoogle);
 router.post("/signup", createUser);
 router.post("/login", login);
-router.post("/reset-password", sendResetPasswordEmail);
-router.post("/reset-password/:userId/:token", resetPassword);
+router.post("/request-reset-password", sendResetPasswordEmail);
+router.post("/reset-password", resetPassword);
 module.exports = router;
