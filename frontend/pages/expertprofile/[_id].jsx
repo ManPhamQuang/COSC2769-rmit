@@ -6,8 +6,17 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import NavBar from "../../components/navbar/NavBar";
 import TeacherProfile from "../../components/TeacherProfile";
+import { toast } from 'react-toastify';
 
-const roomFetcher = (url) => axios.get(url).then((res) => res.data.data);
+
+const roomFetcher = (url) =>
+    axios
+        .get(url)
+        .then((res) => res.data.data)
+        .catch((error) => {
+            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+        });
+
 
 export default function ExpertProfile() {
  
@@ -20,14 +29,6 @@ export default function ExpertProfile() {
         _id ? url : null,
         _id ? roomFetcher : null
     );
-    // const router = useRouter();
-    // const _id = router.query._id;
-    // const url = `/expertprofile/${_id}`;
-    // const { data, roomErr } = useSWR(
-    //     _id ? url : null,
-    //     _id ? roomFetcher : null
-    // );
-
 
     return (
         <div>
