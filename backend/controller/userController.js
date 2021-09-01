@@ -73,7 +73,7 @@ exports.sendResetPasswordEmail = catchAsync(async (req, res, next) => {
   await sendEmail(user.email, "Password reset", link);
 
   // When sending email success, we save the token
-  user.token = token;
+  user.resetPasswordToken = token;
   await user.save();
 
   // Done
@@ -101,7 +101,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     data: {
-      message: "Reset Done"
+      message: "Reset Done."
     },
   });
 });
