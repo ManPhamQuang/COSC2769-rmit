@@ -54,7 +54,7 @@ export default function RoomDetailBody({ props }) {
                                     <div className=" ">
                                         <img
                                             alt="Expert Avatar"
-                                            src="https://img-c.udemycdn.com/user/200_H/15722848_5948_3.jpg"
+                                            src={props.avatar}
                                             className="inline object-cover rounded-full h-25 w-25 sm:h-60 sm:w-60 ml-15 sm:place-self-center "
                                         />
                                     </div>
@@ -114,24 +114,7 @@ export default function RoomDetailBody({ props }) {
                             <div className="mt-3">
                                 <p className="font-bold text-sm mb-2  sm:text-2xl">About me</p>
                                 <p className="mt-1 text-sm text-justify lg:text-base">
-                                    Hey! I'm Zachary Reece, a startup founder
-                                    from Wichita, Kansas. I started building
-                                    websites when I was just 9 years old,
-                                    teaching myself about HTML and the Internet
-                                    from library books. Ever since then I've
-                                    spent all of my time studying UI/UX/graphic
-                                    design, mathematics, philosophy, and of
-                                    course computer science. Right now I'm
-                                    continuing to study JavaScript at a low
-                                    level to optimize the web and mobile
-                                    applications I create, as well as beginning
-                                    work on my first machine learning-based
-                                    application. I started a custom software
-                                    company, Arc Development, when I was 21
-                                    years old to bring fast, affordable, and
-                                    aesthetic software to the Midwest. I hope to
-                                    teach the skills I've learned throughout
-                                    that process to my students here on Udemy!
+                                    {props.description}
                                 </p>
                             </div>
                             <div className="mt-10">
@@ -176,8 +159,7 @@ export default function RoomDetailBody({ props }) {
                                     <Card key={room._id} props={room} />
                                     </Carousel.Item>
                                     ))}
-                            </Carousel>
-                           
+                            </Carousel>                          
                         </div>
                     </div>
                 </div>
