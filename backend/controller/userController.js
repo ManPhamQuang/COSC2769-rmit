@@ -52,7 +52,7 @@ exports.getExpertInfo = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.resetPassword = catchAsync(async (req, res, next) => {
+exports.sendResetPasswordEmail = catchAsync(async (req, res, next) => {
   if (!req.body.email) {
     return next(
       new AppError("Please provide email to reset your password", 400)
@@ -81,6 +81,27 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     status: "success",
     data: {
       message: "Reset password is sent."
+    },
+  });
+});
+
+exports.resetPassword = catchAsync(async (req, res, next) => {
+  // Find a user by given id and reset-password token
+  const user = await User.findOne({ id: req.body.userId, resetPasswordToken: req.body.token});
+  if (!user) {
+    return next(new AppError("Invalid reset password link", 400));
+  }
+
+  // Update new password
+  user.password = req.body.password;
+  user.resetPasswordToken = null;
+  await user.save();
+
+  // Done
+  res.status(200).json({
+    status: "success",
+    data: {
+      message: "Reset Done"
     },
   });
 });

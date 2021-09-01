@@ -10,6 +10,7 @@ const {
   getMe,
   updateMe,
   getExpertInfo,
+  sendResetPasswordEmail,
   resetPassword
 } = require("../controller/userController");
 const reviewRoute = require("./reviewRoute");
@@ -21,5 +22,6 @@ router.get("/:expertId", getExpertInfo);
 router.post("/loginWithGoogle", loginWithGoogle);
 router.post("/signup", createUser);
 router.post("/login", login);
-router.post("/reset-password", resetPassword);
+router.post("/reset-password", sendResetPasswordEmail);
+router.post("/reset-password/:userId/:token", resetPassword);
 module.exports = router;
