@@ -71,4 +71,16 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // Sent a reset password to user email
   const link = `${process.env.BASE_URL}/api/v1/users/reset-password/${user._id}/${token}`;
   await sendEmail(user.email, "Password reset", link);
+
+  // When sending email success, we save the token
+  user.token = token;
+  await user.save();
+
+  // Done
+  res.status(200).json({
+    status: "success",
+    data: {
+      message: "Reset password is sent."
+    },
+  });
 });
