@@ -22,7 +22,7 @@ export default function ExpertProfile() {
  
     const router = useRouter();
     const _id = router.query._id;
-    const url = `/rooms/${_id}`;
+    const url = `/users/${_id}`;
 
     //Fetch room detail from server. (NOTE: Check _id to fix bug SWR with query undefined)
     const { data, roomErr } = useSWR(
@@ -35,8 +35,8 @@ export default function ExpertProfile() {
         <div>
             {data && (
                 <div>
-                    <TeacherProfile key={data.room.createdBy}
-                            props={data.room.createdBy} />
+                    <TeacherProfile key={data}
+                            props={data} />
                   
                 </div>
             )}

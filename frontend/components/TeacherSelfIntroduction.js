@@ -10,7 +10,7 @@ export default function teacherSelfIntroduction({ props }) {
              {/* <Link href={`/expertprofile/${_id}`}>  */}
              <h1>helllo hihhihidhsvh</h1>
              
-            {/* <div>
+            <div>
                 <div>
                     <p className="font-bold text-1xl mb-2 lg:text-3xl">
                         Instructor
@@ -93,7 +93,7 @@ export default function teacherSelfIntroduction({ props }) {
                     </p>
                 </div>
             </div>
-     */}
+    
              {/* </Link> */}
            
         </div>
