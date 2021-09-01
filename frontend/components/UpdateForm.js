@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/authContext/AuthContext";
 import CategoryDropDown from "./CategoryDropDown";
-import axios from "axios";
+import axios from "./axios";
 import { useDropzone } from "react-dropzone";
 import router from "next/router";
 import { StarIcon } from "@heroicons/react/solid";
@@ -88,7 +88,7 @@ export default function UpdateForm({ roomDetail }) {
 
         // Fetch all available categories
         axios
-            .get("http://localhost:5000/api/v1/categories", {
+            .get("/categories", {
                 headers: { Authorization: `Bearer ${state.token}` },
             })
             .then((response) => {
@@ -173,13 +173,9 @@ export default function UpdateForm({ roomDetail }) {
             startedAt: startDate,
         };
         axios
-            .patch(
-                `http://localhost:5000/api/v1/rooms/${roomDetail._id}`,
-                data,
-                {
-                    headers: { Authorization: `Bearer ${token}` },
-                }
-            )
+            .patch(`/rooms/${roomDetail._id}`, data, {
+                headers: { Authorization: `Bearer ${token}` },
+            })
             .then((response) => {
                 dispatchRoom({
                     type: "ROOM_CREATE_SUCCESS",
@@ -245,7 +241,9 @@ export default function UpdateForm({ roomDetail }) {
                                 )}
 
                                 <div className="leading-snug mt-2">
-                                    <h1 className="font-bold break-words">{title}</h1>
+                                    <h1 className="font-bold break-words">
+                                        {title}
+                                    </h1>
                                     <p className="text-sm font-normal text-gray-500 truncate">
                                         {roomDetail.createdBy.name}
                                     </p>

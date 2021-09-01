@@ -19,7 +19,7 @@ module.exports = (phase, { defaultConfig }) => {
         /* config options for all phases except development here */
         env: {
             baseApiUrl: "https://the-lab-app.herokuapp.com/api/v1",
-            baseUrl: "http://localhost:3000",
+            baseUrl: "https://cosc-2769-rmit.vercel.app",
         },
     };
 };
