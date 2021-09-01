@@ -6,14 +6,17 @@ exports.escapeRegExp = (string) => {
 };
 
 exports.sendEmail = async (email, subject, text) => {
+  // temporary email
+  const account = await nodemailer.createTestAccount();
+
+  // Create and send a email
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
-    service: process.env.EMAIL_SERVICE,
     port: 587,
-    secure: true,
+    secure: false,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: account.user,
+      pass: account.pass
     },
   });
 

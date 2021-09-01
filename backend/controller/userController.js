@@ -67,14 +67,15 @@ exports.sendResetPasswordEmail = catchAsync(async (req, res, next) => {
 
   // Create token
   const token = crypto.randomBytes(32).toString("hex");
-  
+
   // Sent a reset password to user email
   const link = `${process.env.BASE_URL}/api/v1/users/reset-password/${user._id}/${token}`;
   await sendEmail(user.email, "Password reset", link);
 
-  // When sending email success, we save the token
-  user.resetPasswordToken = token;
-  await user.save();
+  // After sending email success, we save the token
+  await user.update({
+    resetPasswordToken: token
+  });
 
   // Done
   res.status(200).json({
