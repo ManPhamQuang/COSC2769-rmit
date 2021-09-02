@@ -71,7 +71,7 @@ exports.sendResetPasswordEmail = catchAsync(async (req, res, next) => {
 
   // Sent a reset password to user email
   const link = `${process.env.BASE_URL}/reset-password?id=${user._id}&token=${token}`;
-  await sendEmail(user.email, "Password reset", link);
+  await sendEmail(user.email, link);
 
   // After sending email success, we save the token
   await user.update({

@@ -1,29 +1,23 @@
-const nodemailer = require("nodemailer");
+var nodeoutlook = require("nodejs-nodemailer-outlook");
 
 // Function to format input to ensure that it is in correct format
 exports.escapeRegExp = (string) => {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 };
 
-exports.sendEmail = async (email, subject, text) => {
-  // temporary email
-  const account = await nodemailer.createTestAccount();
-
-  // Create and send a email
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: 587,
-    secure: false,
+exports.sendEmail = async (email, link) => {
+  const html = `
+  <h2>Reset password from The Lab 🔑</h2>
+  <a href="${link}">Click here to reset password</a>
+  `;
+  await nodeoutlook.sendEmail({
     auth: {
-      user: account.user,
-      pass: account.pass
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIl_PASSWORD,
     },
-  });
-
-  await transporter.sendMail({
+    subject: "Reset Password from The Lab 🔑",
     from: process.env.EMAIL_USER,
     to: email,
-    subject: subject,
-    text: text,
+    html: html,
   });
 };
