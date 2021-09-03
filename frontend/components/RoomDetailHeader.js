@@ -74,9 +74,6 @@ export default function RoomDetailHeader({ room }) {
                         </button>
                     </div>
                     <div className="block mt-4 space-y-3 pb-4 xl:hidden">
-                        <button className="text-base text-white font-bold bg-purple-600 p-2 w-full hover:bg-purple-800">
-                            Add to cart
-                        </button>
                         <p className="text-xs text-center text-white">
                             30-Day Money-Back Guarantee
                         </p>
