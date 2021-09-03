@@ -50,21 +50,21 @@ const AuthReducer = (state, action) => {
                 ...state,
                 isLoading: true,
                 isSuccess: false,
-                error: false
+                resetError: false
             };
         case "RESET_SUCCESS":
             return {
                 ...state,
                 isLoading: false,
                 isSuccess: true,
-                error: false
+                resetError: false
             };
         case "RESET_FAILURE":
             return {
                 ...state,
                 isLoading: false,
                 isSuccess: false,
-                error: action.payload,
+                resetError: action.payload,
             };
         default:
             return { ...state };

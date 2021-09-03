@@ -91,11 +91,21 @@ export const loginWithGoogle = async (userCredentials, dispatch) => {
     }
 };
 
-export const forgotPass = (dispatch) => {
+export const forgotPass = async (userCredentials, dispatch) => {
     dispatch(resetStart());
-    // dispatch(resetFailure("Something went wrong!"));
-}
+    try {
+        const res = await axios.post("/users/request-reset-password", userCredentials);
+        console.log(res.data);
+        dispatch(resetSuccess());
+        toast.success("We've sent an email allowing you to reset your password.", {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+    } catch (err) {
+        dispatch(resetFailure(err.response.data.message));
+    }
+};
 
 export const resetPass = (dispatch) => {
-    dispatch(resetFailure("Something went wrong!"));
+    dispatch(resetStart());
+
 }

@@ -3,6 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { forgotPass } from "../../context/authContext/apiCalls";
+import { resetStart } from "../../context/authContext/AuthActions";
+import router from "next/router";
 
 const forgotPassword = () => {
     const { state, dispatch } = useContext(AuthContext);
@@ -10,16 +12,17 @@ const forgotPassword = () => {
     const isInvalid = email === "";
 
     const handleForgotSubmit = (e) => {
-      forgotPass(dispatch);
-      // toast.success("We've sent an email allowing you to reset your password.", {
-      //   position: toast.POSITION.BOTTOM_RIGHT,
-      // });
-      toast.error(state.error, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
+      forgotPass({ email }, dispatch);
       console.log(state);
       e.preventDefault();
     };
+
+    useEffect(() => {
+      // Navigate user to Homepage if find token
+      if (state.token) {
+          router.push("/");
+      }
+    }, []);
 
     return (
         <div>
@@ -86,6 +89,11 @@ const forgotPassword = () => {
                                             </button>
                                         )}
                                     </div>
+                                    {state.resetError && (
+                                        <div className="text-red-500 text-sm mt-2">
+                                            {state.resetError}
+                                        </div>
+                                    )}
                                 </form>
                             </div>
                         </div>
