@@ -133,7 +133,7 @@ const Login = () => {
                             <div className="mt-4 w-full text-center">
                                 <small>
                                     <Link href="/signup">
-                                        <a className="text-gray-400 hover:text-gray-600">
+                                        <a className="text-gray-400 hover:text-indigo-600">
                                             Have not registered any account?
                                             Sign up instead{" "}
                                         </a>
