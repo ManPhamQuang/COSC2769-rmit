@@ -5,7 +5,7 @@ import {
     DeviceMobileIcon,
 } from "@heroicons/react/outline";
 import TeacherSelfIntroduction from "./TeacherSelfIntroduction";
-import axios from "./axios";
+import axios from "./axios/index";
 import ReadMore from "./ReadMore";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
@@ -46,7 +46,7 @@ const teacherSelfIntroduction = [
 export default function RoomDetailBody({ room, hasPaid }) {
     const router = useRouter();
     const _id = router.query._id;
-    const { state, dispatch } = useContext(AuthContext);
+    const { state } = useContext(AuthContext);
     const handleJoinRoom = (e) => {
         // Navigate to Log In page if can not find access Token
         if (!state.token) {

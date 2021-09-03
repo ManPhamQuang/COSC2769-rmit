@@ -58,7 +58,7 @@ export default function RoomDetail() {
             <div>
                 {data && (
                     <div>
-                        <RoomDetailHeader room={data.room} />
+                        <RoomDetailHeader room={data.room} hasPaid={hasPaid} />
                         <RoomDetailBody room={data.room} hasPaid={hasPaid} />
                     </div>
                 )}
