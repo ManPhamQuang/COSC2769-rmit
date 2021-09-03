@@ -62,6 +62,7 @@ export default function RoomDetailBody({ room, hasPaid }) {
     const handleCheckout = async (e) => {
         if (!state.token) {
             router.push("/login");
+            return;
         }
         try {
             const request = await axios.get(`/checkouts/${_id}`, {
