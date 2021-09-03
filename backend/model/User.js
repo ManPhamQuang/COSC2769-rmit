@@ -62,6 +62,8 @@ const userSchema = new mongoose.Schema(
     ratingsQuantity: Number,
     description: String,
     gId: String,
+    resetPasswordToken: String,
+    expiredTokenAt: Date
   },
   {
     toJSON: { virtuals: true },
