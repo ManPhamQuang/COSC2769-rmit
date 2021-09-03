@@ -7,6 +7,9 @@ import {
     getMeSuccess,
     getMeFailure,
     logout,
+    resetStart,
+    resetSuccess,
+    resetFailure
 } from "./AuthActions";
 import router from "next/router";
 import jwt_decode from "jwt-decode";
@@ -87,3 +90,12 @@ export const loginWithGoogle = async (userCredentials, dispatch) => {
         dispatch(authenFailure(err.response.data.message));
     }
 };
+
+export const forgotPass = (dispatch) => {
+    dispatch(resetStart());
+    // dispatch(resetFailure("Something went wrong!"));
+}
+
+export const resetPass = (dispatch) => {
+    dispatch(resetFailure("Something went wrong!"));
+}

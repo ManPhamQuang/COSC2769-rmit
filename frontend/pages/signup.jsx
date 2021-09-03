@@ -174,10 +174,19 @@ const Signup = () => {
                         <div className="flex flex-wrap mt-6">
                             <div className="w-full text-center">
                                 <small>
-                                    <Link href="/login">
-                                        <a className="text-gray-300 hover:text-indigo-400">
-                                            Already have an account? Log in
-                                            instead
+                                    <Link href="/user/forgot-password">
+                                        <a className="text-indigo-400 hover:text-indigo-600">
+                                            Forgot your password?
+                                        </a>
+                                    </Link>
+                                </small>
+                            </div>
+                            <div className="mt-4 w-full text-center">
+                                <small>
+                                    <Link href="/signup">
+                                        <a className="text-gray-400 hover:text-gray-600">
+                                            Have not registered any account?
+                                            Sign up instead{" "}
                                         </a>
                                     </Link>
                                 </small>
