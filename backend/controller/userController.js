@@ -75,7 +75,8 @@ exports.sendResetPasswordEmail = catchAsync(async (req, res, next) => {
 
   // After sending email success, we save the token
   await user.update({
-    resetPasswordToken: token
+    resetPasswordToken: token,
+    expiredTokenAt: Date.now() + 1000 * 60 * 15 // 15 min expiry
   });
 
   // Done
@@ -104,7 +105,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // Update new password
   await user.update({
     password: await bcrypt.hash(req.body.password, 12),
-    resetPasswordToken: null
+    resetPasswordToken: undefined
   });
 
   // Done
