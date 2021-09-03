@@ -70,7 +70,7 @@ exports.sendResetPasswordEmail = catchAsync(async (req, res, next) => {
   const token = crypto.randomBytes(32).toString("hex");
 
   // Sent a reset password to user email
-  const link = `${process.env.BASE_URL}/reset-password?id=${user._id}&token=${token}`;
+  const link = `${process.env.BASE_URL}/user/reset-password?id=${user._id}&token=${token}`;
   await sendEmail(user.email, link);
 
   // After sending email success, we save the token
@@ -95,6 +95,12 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     return next(new AppError("Invalid reset password link", 400));
   }
 
+  // Verify token expiry
+  const now = new Date();
+  if (now.getTime() >= user.expiredTokenAt.getTime()) {
+    return next(new AppError("Your reset password token is expired", 400));
+  }
+
   // Verify password is exist
   if (!req.body.password) {
     return next(
@@ -105,7 +111,8 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // Update new password
   await user.update({
     password: await bcrypt.hash(req.body.password, 12),
-    resetPasswordToken: undefined
+    resetPasswordToken: undefined,
+    expiredTokenAt: undefined
   });
 
   // Done
