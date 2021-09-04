@@ -127,7 +127,7 @@ const Login = () => {
                                         <a className="text-indigo-400 hover:text-indigo-600">
                                             Forgot your password?
                                         </a>
-                                    </Link>
+                                    </Link> 
                                 </small>
                             </div>
                             <div className="mt-4 w-full text-center">

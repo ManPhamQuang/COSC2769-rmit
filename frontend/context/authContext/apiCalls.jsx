@@ -105,7 +105,20 @@ export const forgotPass = async (userCredentials, dispatch) => {
     }
 };
 
-export const resetPass = (dispatch) => {
+export const resetPass = async (userCredentials, dispatch) => {
     dispatch(resetStart());
-
-}
+    try {
+        const res = await axios.post("/users/reset-password", userCredentials);
+        console.log(res.data);
+        dispatch(resetSuccess());
+        toast.success("Your password has been reset successfully. Log in again to start joining chatrooms.", {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+        router.push("/login");
+    } catch (err) {
+        dispatch(resetFailure(err.response.data.message));
+        toast.error(err.response.data.message, {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+    }
+};

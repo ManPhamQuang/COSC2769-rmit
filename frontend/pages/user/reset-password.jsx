@@ -1,26 +1,30 @@
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
-import { toast } from "react-toastify";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { resetPass } from "../../context/authContext/apiCalls";
+import { useRouter } from "next/router";
 
 const resetPassword = () => {
     const { state, dispatch } = useContext(AuthContext);
-    const [newPassword, setNewPassword] = useState("");
+    const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const isInvalid = newPassword === "" || newPassword !== confirmPassword;
+    const isInvalid = password === "" || password !== confirmPassword;
+
+    const router = useRouter();
+    const userId = router.query.id;
+    const token = router.query.token;
 
     const handleResetSubmit = (e) => {
-      resetPass(dispatch);
-      // toast.success("We've sent an email allowing you to reset your password.", {
-      //   position: toast.POSITION.BOTTOM_RIGHT,
-      // });
-      toast.error(state.error, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      console.log(state);
-      e.preventDefault();
+        resetPass({ userId, token, password }, dispatch);
+        e.preventDefault();
     };
+
+    useEffect(() => {
+        // Navigate user to Homepage if find token
+        if (state.token) {
+            router.push("/");
+        }
+    }, []);
 
     return (
         <div>
@@ -44,7 +48,7 @@ const resetPassword = () => {
                                             className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                                             placeholder="********"
                                             onChange={(e) =>
-                                              setNewPassword(e.target.value)
+                                                setPassword(e.target.value)
                                             }
                                         />
                                     </div>
