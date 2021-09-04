@@ -4,9 +4,9 @@ import Head from "next/head";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
 import { Tab } from "@headlessui/react";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import RoomsList from "../components/RoomsList";
-
+import { toast } from "react-toastify";
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
@@ -21,6 +21,13 @@ export default function MyRooms() {
             router.push("/login");
         }
     }, []);
+
+    useEffect(() => {
+        const { purchase, user } = router.query;
+        if (state?.user?.email === user && purchase === "succeed") {
+            toast.success("Successfully purchase item");
+        }
+    }, [state.user]);
 
     return (
         <>

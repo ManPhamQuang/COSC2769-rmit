@@ -8,16 +8,13 @@ const checkoutRoute = require("./route/checkoutRoute");
 const transactionRoute = require("./route/transactionRoute");
 const AppError = require("./util/appError");
 const GlobalErrorController = require("./controller/errorController");
+const { handleWebHook } = require("./controller/checkoutController");
 
 const app = express();
-app.use(express.json());
-app.use(cors());
 
-app.use("/helloworld", (req, res) => {
-  res.status(200).json({
-    message: "Test successfully",
-  });
-});
+app.use(cors());
+app.post("/webhook", express.raw({ type: "application/json" }), handleWebHook);
+app.use(express.json());
 
 app.use("/api/v1/rooms", roomRoute);
 app.use("/api/v1/users", userRoute);

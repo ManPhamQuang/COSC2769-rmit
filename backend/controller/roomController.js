@@ -54,40 +54,26 @@ exports.createRoom = catchAsync(async (req, res, next) => {
 });
 
 exports.joinRoom = catchAsync(async (req, res, next) => {
-  console.log("----------------")
   // Find the room
-  const room = await Room.findById(req.query.id)
-    .populate("category")
-    .populate("createdBy");
+  const room = await Room.findById(req.query.id);
   if (!room) {
-    return res.status(404).json({
-      status: "error",
-      message: "Room not found",
-    });
+    return next(new AppError("No room found with a given Id", 400));
   }
 
-  var isAbleToJoin = false;
-  const createdByUser = room.createdBy;
+  let isAbleToJoin = false;
 
-  // check if this room is created by expert
-
-  // Comment this function because we haven't implemented the Transaction yet
-  // Enable all for testing
-  isAbleToJoin = true;
-
-  // const user = req.user;
-  // if (user.role == "expert") {
-  //   isAbleToJoin = createdByUser.id == user.id;
-  // }
-  // // check if this room is paied by normal use
-  // else if (user.role == "user") {
-  //   const transaction = await Transaction.findOne({
-  //     from: user,
-  //     to: createdByUser,
-  //     room: room,
-  //   });
-  //   isAbleToJoin = transaction != null;
-  // }
+  const user = req.user;
+  // Creator join room
+  if (room.createdBy.toString() === user.id) {
+    isAbleToJoin = true;
+  } else {
+    // check case whether curernt logged-in user has paid including another expert also purchase room
+    const transaction = await Transaction.findOne({
+      from: req.user.id,
+      room: req.query.id,
+    });
+    isAbleToJoin = !!transaction;
+  }
 
   if (isAbleToJoin) {
     return res.status(200).json({
@@ -98,7 +84,7 @@ exports.joinRoom = catchAsync(async (req, res, next) => {
     });
   } else {
     return res.status(404).json({
-      status: "error",
+      status: "fail",
       message: "Do not allow to join this room.",
     });
   }

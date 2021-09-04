@@ -5,12 +5,12 @@ import {
     DeviceMobileIcon,
 } from "@heroicons/react/outline";
 import TeacherSelfIntroduction from "./TeacherSelfIntroduction";
-import axios from "./axios";
+import axios from "./axios/index";
 import ReadMore from "./ReadMore";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
 import { useRouter } from "next/router";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const courseInfor = {
     id: 1,
@@ -43,10 +43,10 @@ const teacherSelfIntroduction = [
     },
 ];
 
-export default function RoomDetailBody({ room }) {
+export default function RoomDetailBody({ room, hasPaid }) {
     const router = useRouter();
     const _id = router.query._id;
-    const { state, dispatch } = useContext(AuthContext);
+    const { state } = useContext(AuthContext);
     const handleJoinRoom = (e) => {
         // Navigate to Log In page if can not find access Token
         if (!state.token) {
@@ -62,6 +62,7 @@ export default function RoomDetailBody({ room }) {
     const handleCheckout = async (e) => {
         if (!state.token) {
             router.push("/login");
+            return;
         }
         try {
             const request = await axios.get(`/checkouts/${_id}`, {
@@ -73,7 +74,10 @@ export default function RoomDetailBody({ room }) {
             router.push(url);
         } catch (error) {
             console.log(error);
-            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+            toast.error(
+                error.response?.data?.message ??
+                    "Server Error! Please try again later"
+            );
         }
     };
 
@@ -117,21 +121,21 @@ export default function RoomDetailBody({ room }) {
                         <p className="text-4xl subpixel-antialiased font-bold">
                             ${room.price}
                         </p>
-                        <button className="text-1xl text-white font-bold bg-purple-600 py-3 w-full hover:bg-purple-800">
-                            Add to cart
-                        </button>
-                        <button
-                            className="text-1xl font-bold py-3 w-full hover:bg-gray-300 border border-black"
-                            onClick={handleCheckout}
-                        >
-                            Buy now
-                        </button>
-                        <button
-                            className="text-1xl text-white font-bold bg-purple-600 py-3 w-full hover:bg-purple-800 "
-                            onClick={handleJoinRoom}
-                        >
-                            Join Room
-                        </button>
+                        {hasPaid ? (
+                            <button
+                                className="text-1xl text-white font-bold bg-purple-600 py-3 w-full hover:bg-purple-800 "
+                                onClick={handleJoinRoom}
+                            >
+                                Join Room
+                            </button>
+                        ) : (
+                            <button
+                                className="text-1xl font-bold py-3 w-full hover:bg-gray-300 border border-black"
+                                onClick={handleCheckout}
+                            >
+                                Buy now
+                            </button>
+                        )}
                         <p className="text-sm text-center">
                             30-Day Money-Back Guarantee
                         </p>
