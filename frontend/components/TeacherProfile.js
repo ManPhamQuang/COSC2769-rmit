@@ -50,18 +50,18 @@ export default function RoomDetailBody({ props }) {
                                 </p>
                             </div>
                             <div>
-                                <div className="sm:grid sm:grid-cols-4 sm:py-2 sm:pb-10 flex flex-col">
+                                <div className="sm:grid sm:grid-cols-4 py-2 pb-10 flex flex-col">
                                     <div className=" ">
                                         <img
                                             alt="Expert Avatar"
                                             src={props.avatar}
-                                            className="inline object-cover rounded-full h-25 w-25 sm:h-60 sm:w-60 ml-15 sm:place-self-center "
+                                            className="inline rounded-full h-30 w-30 ml-15 sm:place-self-center "
                                         />
                                     </div>
                                     <div className="w-50 col-span-3 pl-10 flex items-center">
                                         <div className="space-y-4">
                                             <div className="inline">
-                                                <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1 lg:h-5 lg:w-5" />
+                                                <StarIcon className="h-5 w-5 text-yellow-500 inline mb-1 lg:h-5 lg:w-5" />
                                                 <p className="text-gray-600 inline text-sm lg:text-base">
                                                     {props.ratingsAverage}
                                                 </p>
