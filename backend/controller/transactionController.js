@@ -42,3 +42,19 @@ exports.createTransaction = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.checkIfPaid = catchAsync(async (req, res, next) => {
+  const { roomId } = req.body;
+  if (!roomId) return next(new AppError("roomId is required in the body", 400));
+  const transaction = await Transaction.findOne({
+    from: req.user.id,
+    room: roomId,
+  });
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      hasPaid: !!transaction,
+    },
+  });
+});

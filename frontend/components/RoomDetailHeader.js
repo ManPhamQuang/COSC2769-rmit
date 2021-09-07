@@ -9,8 +9,49 @@ import {
     GiftIcon,
     CheckIcon,
 } from "@heroicons/react/solid";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext/AuthContext";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import axios from "./axios/index";
 
-export default function RoomDetailHeader({ room }) {
+export default function RoomDetailHeader({ room, hasPaid }) {
+    const router = useRouter();
+    const _id = router.query._id;
+    const { state } = useContext(AuthContext);
+    const handleJoinRoom = (e) => {
+        // Navigate to Log In page if can not find access Token
+        if (!state.token) {
+            router.push("/login");
+        }
+        router.push({
+            pathname: "/room/join",
+            query: { roomID: _id },
+        });
+        e.preventDefault();
+    };
+
+    const handleCheckout = async (e) => {
+        if (!state.token) {
+            router.push("/login");
+            return;
+        }
+        try {
+            const request = await axios.get(`/checkouts/${_id}`, {
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                },
+            });
+            const { url } = request.data.data;
+            router.push(url);
+        } catch (error) {
+            console.log(error);
+            toast.error(
+                error.response?.data?.message ??
+                    "Server Error! Please try again later"
+            );
+        }
+    };
     return (
         <div>
             <div className="bg-black z-0 w-full">
@@ -74,9 +115,6 @@ export default function RoomDetailHeader({ room }) {
                         </button>
                     </div>
                     <div className="block mt-4 space-y-3 pb-4 xl:hidden">
-                        <button className="text-base text-white font-bold bg-purple-600 p-2 w-full hover:bg-purple-800">
-                            Add to cart
-                        </button>
                         <p className="text-xs text-center text-white">
                             30-Day Money-Back Guarantee
                         </p>
@@ -104,9 +142,21 @@ export default function RoomDetailHeader({ room }) {
                         ${room.price}
                     </p>
                 </div>
-                <button className="inline w-9/12 bg-black text-white p-2">
-                    Buy now
-                </button>
+                {hasPaid ? (
+                    <button
+                        className="inline w-9/12 bg-black text-white p-2"
+                        onClick={handleJoinRoom}
+                    >
+                        Join Room
+                    </button>
+                ) : (
+                    <button
+                        className="inline w-9/12 bg-black text-white p-2"
+                        onClick={handleCheckout}
+                    >
+                        Buy now
+                    </button>
+                )}
             </div>
         </div>
     );
