@@ -5,7 +5,9 @@ import CategoryDropDown from "../../components/CategoryDropDown";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../context/authContext/AuthContext";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import { useDropzone } from "react-dropzone";
+import { StarIcon } from "@heroicons/react/solid";
 
 const INIT_CATEGORY = [{ name: "Select Category" }];
 
@@ -52,6 +54,7 @@ const Create = () => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [startDate, setStartDate] = useState(new Date());
+    const [files, setFiles] = useState([]);
 
     const { state, dispatch } = useContext(AuthContext);
 
@@ -81,7 +84,10 @@ const Create = () => {
             })
             .catch((error) => {
                 console.log(error);
-                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+                toast.error(
+                    error.response?.data?.message ??
+                        "Server Error! Please try again later"
+                );
             });
     }, []);
 
@@ -98,18 +104,33 @@ const Create = () => {
         return accessToken;
     };
 
-    const handleCreateButtonClick = (event) => {
+    const handleCreateButtonClick = async (event) => {
+        event.preventDefault();
         const token = getAccessToken();
-
+        let thumbnail;
+        dispatchRoom({ type: "ROOM_LOADING" });
+        if (files.length == 1) {
+            const formData = new FormData();
+            formData.append("file", files[0]);
+            formData.append("upload_preset", "iiyg1094");
+            try {
+                const response = await axios.post(
+                    "https://api.cloudinary.com/v1_1/dybygufkr/image/upload",
+                    formData
+                );
+                thumbnail = response.data.secure_url;
+            } catch (error) {
+                console.log(error);
+            }
+        }
         let data = {
+            thumbnail: thumbnail,
             title: title,
             description: description,
             price: price,
             category: categoryID,
             startedAt: startDate,
         };
-
-        dispatchRoom({ type: "ROOM_LOADING" });
         axios
             .post("/rooms", data, {
                 headers: { Authorization: `Bearer ${token}` },
@@ -126,10 +147,58 @@ const Create = () => {
                     type: "ROOM_CREATE_FAILURE",
                     payload: error.response.data,
                 });
-                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+                toast.error(
+                    error.response?.data?.message ??
+                        "Server Error! Please try again later"
+                );
             });
-        event.preventDefault();
     };
+
+    const { getRootProps, getInputProps } = useDropzone({
+        accept: "image/*",
+        maxSize: "10485760",
+        maxFiles: 1,
+        multiple: false,
+        onDrop: (acceptedFiles, fileRejections) => {
+            setFiles(
+                acceptedFiles.map((file) =>
+                    Object.assign(file, {
+                        preview: URL.createObjectURL(file),
+                    })
+                )
+            );
+            fileRejections.forEach((file) => {
+                file.errors.forEach((err) => {
+                    if (err.code === "file-too-large") {
+                        setErrors("Error: File must not exceed 10MB limit!");
+                    }
+
+                    if (err.code === "file-invalid-type") {
+                        setErrors("Error: File must be an image!");
+                    }
+                });
+            });
+        },
+    });
+
+    const thumbs = files.map((file) => (
+        <div key={file.name}>
+            <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
+                <img
+                    src={file.preview}
+                    className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:mix-blend-multiply"
+                />
+            </div>
+        </div>
+    ));
+
+    useEffect(
+        () => () => {
+            // Make sure to revoke the data uris to avoid memory leaks
+            files.forEach((file) => URL.revokeObjectURL(file.preview));
+        },
+        [files]
+    );
 
     return (
         <div>
@@ -147,7 +216,7 @@ const Create = () => {
                     </div>
                 )}
                 <div className="md:grid md:grid-cols-3 md:gap-6">
-                    <div className="col-span-3 lg:col-span-1">
+                    <div className="col-span-3 lg:col-span-1 space-y-2">
                         <div className="px-4 sm:px-0">
                             <h3 className="text-lg font-medium leading-6 text-gray-900">
                                 Create New Chatroom
@@ -157,11 +226,62 @@ const Create = () => {
                                 be careful what you share.
                             </p>
                         </div>
+                        <div className="mt-4 px-4 sm:px-0">
+                            <h3 className="text-lg font-medium leading-6 text-gray-900">
+                                Preview
+                            </h3>
+                            <div className="group cursor-pointer px-16 mt-4">
+                                <div className="border px-8 py-6 border-2 border-gray-500 rounded-lg">
+                                    {files.length > 0 && <div>{thumbs}</div>}
+                                    {files.length == 0 && (
+                                        <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
+                                            <img
+                                                src={"/default.png"}
+                                                className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:mix-blend-multiply"
+                                            />
+                                        </div>
+                                    )}
+
+                                    <div className="leading-snug mt-2">
+                                        <h1 className="font-bold break-words">
+                                            {title}
+                                        </h1>
+                                        <p className="text-sm font-normal text-gray-500 truncate">
+                                            Created by you
+                                        </p>
+                                        <p className="text-yellow-700 font-semibold inline">
+                                            4.7
+                                        </p>
+                                        <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                        <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                        <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                        <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                        <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1" />
+                                        <p className="inline text-sm font-normal text-gray-500">
+                                            (630,406)
+                                        </p>
+                                        <h1 className="font-bold">${price}</h1>
+                                        <div className="py-1 px-2 bg-yellow-200 inline-block rounded-sm">
+                                            <p className="text-xs font-semibold mx-auto text-center">
+                                                {selectedCategory.name}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="mt-5 md:mt-0 col-span-3 lg:col-span-2">
                         <form onSubmit={handleCreateButtonClick}>
                             <div className="shadow sm:rounded-md sm:overflow-hidden">
                                 <div className="px-4 py-5 bg-white space-y-4 sm:p-6">
+                                    {isInvalid && (
+                                        <span>
+                                            <h3 className="font-bold text-red-500">
+                                                All fields must not be empty!
+                                            </h3>
+                                        </span>
+                                    )}
                                     <div className="grid grid-cols-3 gap-6">
                                         <div className="col-span-3 sm:col-span-3 md:col-span-2 lg:col-span-2">
                                             <div className="flex items-center justify-center">
@@ -239,41 +359,52 @@ const Create = () => {
                                         <label className="block text-sm font-medium text-gray-700">
                                             Thumbnail
                                         </label>
-                                        <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                            <div className="space-y-1 text-center">
-                                                <svg
-                                                    className="mx-auto h-12 w-12 text-gray-400"
-                                                    stroke="currentColor"
-                                                    fill="none"
-                                                    viewBox="0 0 48 48"
-                                                    aria-hidden="true"
+                                        <div className="mt-1 flex justify-center px-4 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                            <div className="space-y-4 text-center">
+                                                <div
+                                                    {...getRootProps({
+                                                        className: "dropzone",
+                                                    })}
                                                 >
-                                                    <path
-                                                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                        strokeWidth="2"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-                                                </svg>
-                                                <div className="flex text-sm text-gray-600">
-                                                    <label className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                        <span>
-                                                            Upload a file
-                                                        </span>
-                                                        <input
-                                                            id="file-upload"
-                                                            name="file-upload"
-                                                            type="file"
-                                                            className="sr-only"
+                                                    <svg
+                                                        className="mx-auto h-12 w-12 text-gray-400"
+                                                        stroke="currentColor"
+                                                        fill="none"
+                                                        viewBox="0 0 48 48"
+                                                        aria-hidden="true"
+                                                    >
+                                                        <path
+                                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                            strokeWidth="2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
                                                         />
-                                                    </label>
-                                                    <p className="pl-1">
-                                                        or drag and drop
+                                                    </svg>
+                                                    <input
+                                                        {...getInputProps()}
+                                                    />
+                                                    <p className="text-xs text-gray-500">
+                                                        PNG, JPG, GIF up to 10MB
+                                                    </p>
+                                                    <p className="text-xs text-gray-500">
+                                                        Click to select image or
+                                                        drag an image in.
                                                     </p>
                                                 </div>
-                                                <p className="text-xs text-gray-500">
-                                                    PNG, JPG, GIF up to 10MB
-                                                </p>
+                                                <div>
+                                                    {thumbs}
+                                                    {files.length > 0 && (
+                                                        <button
+                                                            type="button"
+                                                            className="justify-center mt-4 py-2 px-4 bg-red-600 text-white active:bg-red-700 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                                                            onClick={() =>
+                                                                setFiles([])
+                                                            }
+                                                        >
+                                                            Remove
+                                                        </button>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
