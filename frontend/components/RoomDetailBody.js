@@ -29,19 +29,6 @@ const courseInfor = {
         "Software Design: How to organise and format code",
     ],
 };
-const teacherSelfIntroduction = [
-    {
-        id: 1,
-        avatar: "https://img-c.udemycdn.com/user/200_H/15722848_5948_3.jpg",
-        name: "Angela",
-        job: "Developer and Lead Instructor",
-        rating: 5,
-        roomAmount: 80,
-        reviewerAmount: "314,629",
-        seftIntroduction:
-            "I'm Angela, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
-    },
-];
 
 export default function RoomDetailBody({ room, hasPaid }) {
     const router = useRouter();
@@ -103,10 +90,10 @@ export default function RoomDetailBody({ room, hasPaid }) {
                     </p>
                 </div>
                 <div>
-                        <TeacherSelfIntroduction
-                            key={room.createdBy}
-                            props={room.createdBy}
-                        />
+                    <TeacherSelfIntroduction
+                        key={room.createdBy}
+                        props={room.createdBy}
+                    />
                 </div>
             </div>
             <div className="hidden xl:block px-20 py-6">
