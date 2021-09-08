@@ -206,7 +206,7 @@ export default function UpdateForm({ roomDetail }) {
                 </div>
             )}
             <div className="md:grid md:grid-cols-3 md:gap-6 mt-32">
-                <div className="col-span-3 lg:col-span-1 space-y-">
+                <div className="col-span-3 lg:col-span-1 space-y-2">
                     <div className="px-4 sm:px-0">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">
                             Update Chatroom
