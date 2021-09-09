@@ -23,3 +23,13 @@ export const getMeFailure = (error) => ({
 export const logout = () => ({
     type: "LOGOUT",
 });
+export const resetStart = () => ({
+    type: "RESET_START",
+});
+export const resetSuccess = () => ({
+    type: "RESET_SUCCESS",
+});
+export const resetFailure = (error) => ({
+    type: "RESET_FAILURE",
+    payload: error,
+});

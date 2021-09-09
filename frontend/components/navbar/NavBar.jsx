@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/authContext/AuthContext";
 import axios from "../axios";
 import dynamic from "next/dynamic";
 import router from "next/router";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 // Use dynamic import NextJS
 const NavNonAuth = dynamic(() => import("./NavNonAuth"), { ssr: false });
@@ -16,12 +16,27 @@ const NavBar = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        axios
-            .get("/categories")
-            .then((res) => setCategories(res.data.data.categories))
-            .catch((error) => {
-                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
-            });
+        let mounted = true;
+
+        const fetchCategories = () => {
+            axios
+                .get("/categories")
+                .then((res) => {
+                    if (mounted) {
+                        setCategories(res.data.data.categories);
+                    }
+                })
+                .catch((error) => {
+                    toast.error(
+                        error.response?.data?.message ??
+                            "Server Error! Please try again later"
+                    );
+                });
+        };
+        fetchCategories();
+        return () => {
+            mounted = false;
+        };
     }, []);
 
     const handleSearchInputChange = (e) => {

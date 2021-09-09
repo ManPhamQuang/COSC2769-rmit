@@ -7,6 +7,9 @@ import {
     getMeSuccess,
     getMeFailure,
     logout,
+    resetStart,
+    resetSuccess,
+    resetFailure
 } from "./AuthActions";
 import router from "next/router";
 import jwt_decode from "jwt-decode";
@@ -85,5 +88,37 @@ export const loginWithGoogle = async (userCredentials, dispatch) => {
         router.push("/");
     } catch (err) {
         dispatch(authenFailure(err.response.data.message));
+    }
+};
+
+export const forgotPass = async (userCredentials, dispatch) => {
+    dispatch(resetStart());
+    try {
+        const res = await axios.post("/users/request-reset-password", userCredentials);
+        console.log(res.data);
+        dispatch(resetSuccess());
+        toast.success("We've sent an email allowing you to reset your password.", {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+    } catch (err) {
+        dispatch(resetFailure(err.response.data.message));
+    }
+};
+
+export const resetPass = async (userCredentials, dispatch) => {
+    dispatch(resetStart());
+    try {
+        const res = await axios.post("/users/reset-password", userCredentials);
+        console.log(res.data);
+        dispatch(resetSuccess());
+        toast.success("Your password has been reset successfully. Log in again to start joining chatrooms.", {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+        router.push("/login");
+    } catch (err) {
+        dispatch(resetFailure(err.response.data.message));
+        toast.error(err.response.data.message, {
+            position: toast.POSITION.TOP_RIGHT,
+        });
     }
 };
