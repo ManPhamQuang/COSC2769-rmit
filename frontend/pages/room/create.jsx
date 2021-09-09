@@ -236,7 +236,7 @@ const Create = () => {
                                     {files.length == 0 && (
                                         <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
                                             <img
-                                                src={"/default.png"}
+                                                src="/default.png"
                                                 className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:mix-blend-multiply"
                                             />
                                         </div>
