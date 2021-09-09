@@ -42,6 +42,7 @@ const roomReducer = (state, action) => {
 };
 
 export default function UpdateForm({ roomDetail }) {
+    console.log(roomDetail);
     const { state, dispatch } = useContext(AuthContext);
     const INIT_CATEGORY = [{ name: roomDetail.category.name }];
     const [files, setFiles] = useState([]);
@@ -56,9 +57,9 @@ export default function UpdateForm({ roomDetail }) {
     const [title, setTitle] = useState(roomDetail.title);
     const [description, setDescription] = useState(roomDetail.description);
     const [price, setPrice] = useState(roomDetail.price);
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date(roomDetail.startedAt));
     const [oldThumb, setOldThumb] = useState(roomDetail.thumbnail);
-
+    const [status, setStatus] = useState(roomDetail.status);
     const isInvalid =
         title === "" || description === "" || price === "" || categoryID === "";
 
@@ -171,6 +172,7 @@ export default function UpdateForm({ roomDetail }) {
             price: price,
             category: categoryID,
             startedAt: startDate,
+            status: status,
         };
         axios
             .patch(`/rooms/${roomDetail._id}`, data, {
@@ -319,7 +321,22 @@ export default function UpdateForm({ roomDetail }) {
                                         </div>
                                     </div>
                                 </div>
-
+                                <div className="col-span-6 sm:col-span-4">
+                                    <CategoryDropDown
+                                        categories={[
+                                            { name: "pending" },
+                                            { name: "active" },
+                                            { name: "end" },
+                                        ]}
+                                        selectedCategory={{
+                                            name: status,
+                                            id: status,
+                                        }}
+                                        categoryDropdownOnChange={(e) =>
+                                            setStatus(e.name)
+                                        }
+                                    />
+                                </div>
                                 <div className="col-span-6 sm:col-span-4">
                                     <label className="block text-sm font-medium text-gray-700">
                                         Title
