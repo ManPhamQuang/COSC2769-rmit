@@ -39,7 +39,7 @@ export default function MyRooms() {
                 />
             </Head>
             <NavBar />
-            <Tab.Group>
+            <Tab.Group defaultIndex={1}>
                 <header className="bg-gray-500 min-w-full">
                     <div className="container mx-auto px-10 laptop:px-24 3xl:px-0 pt-10  text-white">
                         <h2 className="text-3xl font-semibold">My Rooms</h2>

@@ -55,12 +55,6 @@ export default function Card({ props }) {
                                 <div className="line-clamp-5">
                                     {description}
                                 </div>
-                                <button
-                                    className="bg-indigo-600 mt-3 text-white active:bg-indigo-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full disabled:bg-indigo-200 disabled:cursor-not-allowed"
-                                    type="button"
-                                >
-                                    Add to Cart
-                                </button>
                             </div>
                         </div>
                     </div>
