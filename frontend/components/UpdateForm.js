@@ -8,6 +8,7 @@ import { useDropzone } from "react-dropzone";
 import router from "next/router";
 import { StarIcon } from "@heroicons/react/solid";
 import MinDateTimeFormatter from "../utils/MinDateTimeFormat";
+import dayjs from "dayjs";
 
 const roomReducer = (state, action) => {
     switch (action.type) {
@@ -56,7 +57,7 @@ export default function UpdateForm({ roomDetail }) {
     const [title, setTitle] = useState(roomDetail.title);
     const [description, setDescription] = useState(roomDetail.description);
     const [price, setPrice] = useState(roomDetail.price);
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(roomDetail.startedAt);
     const [oldThumb, setOldThumb] = useState(roomDetail.thumbnail);
 
     const isInvalid =
@@ -428,6 +429,9 @@ export default function UpdateForm({ roomDetail }) {
                                                     setStartDate(e.target.value)
                                                 }
                                                 min={minDate}
+                                                value={dayjs(startDate).format(
+                                                    "YYYY-MM-DDThh:mm"
+                                                )}
                                             />
                                         </div>
                                     </div>
