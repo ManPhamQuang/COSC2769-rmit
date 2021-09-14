@@ -8,9 +8,8 @@ export default function teacherSelfIntroduction({ props }) {
     console.log(_id)
     return (
         <div className="mt-2">
-             <Link href={`/expertprofile/${_id}`}> 
-            
-            <div>
+            <Link href={`/expertprofile/${_id}`} > 
+            <div class="cursor-pointer ...">
                 <div>
                     <p className="font-bold text-1xl mb-2 lg:text-3xl">
                         Instructor
