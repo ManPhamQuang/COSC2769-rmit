@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/authContext/AuthContext";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 import { StarIcon } from "@heroicons/react/solid";
+import MinDateTimeFormatter from "../../utils/MinDateTimeFormat";
 
 const INIT_CATEGORY = [{ name: "Select Category" }];
 
@@ -198,6 +199,9 @@ const Create = () => {
         },
         [files]
     );
+
+    const minDate = MinDateTimeFormatter(new Date());
+    console.log(minDate);
 
     return (
         <div>
@@ -419,6 +423,7 @@ const Create = () => {
                                                     onChange={(e) =>
                                                         setStartDate(e.target.value)
                                                     }
+                                                    min={minDate}
                                                 />
                                             </div>
                                         </div>
