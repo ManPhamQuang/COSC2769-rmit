@@ -2,12 +2,12 @@ import { useState, useReducer, useEffect, useContext } from "react";
 import axios from "../../components/axios";
 import router from "next/router";
 import CategoryDropDown from "../../components/CategoryDropDown";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 import { StarIcon } from "@heroicons/react/solid";
+import MinDateTimeFormatter from "../../utils/MinDateTimeFormat";
 
 const INIT_CATEGORY = [{ name: "Select Category" }];
 
@@ -199,6 +199,9 @@ const Create = () => {
         },
         [files]
     );
+
+    const minDate = MinDateTimeFormatter(new Date());
+    console.log(minDate);
 
     return (
         <div>
@@ -411,14 +414,16 @@ const Create = () => {
                                     <div className="grid grid-cols-4 gap-6">
                                         <div className="col-span-4 lg:col-span-2">
                                             <label className="block text-sm font-medium text-gray-700">
-                                                Started date
+                                                Started date time
                                             </label>
                                             <div className="mt-1 relative rounded-md shadow-sm">
-                                                <DatePicker
-                                                    selected={startDate}
-                                                    onChange={(date) =>
-                                                        setStartDate(date)
+                                                <input
+                                                    type="datetime-local"
+                                                    className="rounded-md text-gray-800"
+                                                    onChange={(e) =>
+                                                        setStartDate(e.target.value)
                                                     }
+                                                    min={minDate}
                                                 />
                                             </div>
                                         </div>
@@ -437,22 +442,6 @@ const Create = () => {
                         </form>
                     </div>
                 </div>
-                {/* {room.error && (
-                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-5">
-                        <span className="inline-block align-middle mr-8">
-                            <b className="font-bold">Error!</b>{" "}
-                            {room.error.message}
-                        </span>
-                        <button
-                            className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
-                            onClick={() => {
-                                dispatchRoom({ type: "ROOM_INIT" });
-                            }}
-                        >
-                            <span>×</span>
-                        </button>
-                    </div>
-                )} */}
             </div>
         </div>
     );
