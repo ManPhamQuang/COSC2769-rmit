@@ -39,7 +39,7 @@
         "subtitle": "English"
     },
     {
-        "status": "active",
+        "status": "pending",
         "thumbnail": "https://img-c.udemycdn.com/course/240x135/756150_c033_2.jpg",
         "title": "Angular - The Complete Guide (2021 Edition)",
         "description": "From Setup to Deployment, this course covers it all! You'll learn all about Components, Directives, Services, Forms, Http Access, Authentication, Optimizing an Angular App with Modules and Offline Compilation and much more - and in the end: You'll learn how to deploy an application!",
@@ -52,7 +52,7 @@
         "subtitle": "English"
     },
     {
-        "status": "active",
+        "status": "pending",
         "thumbnail": "https://img-c.udemycdn.com/course/240x135/950390_270f_3.jpg",
         "title": "Machine Learning A-Z™: Hands-On Python & R In Data Science",
         "description": "Learn to create Machine Learning Algorithms in Python and R from two Data Science experts. Code templates included.",
@@ -65,7 +65,7 @@
         "subtitle": "English"
     },
     {
-        "status": "active",
+        "status": "pending",
         "thumbnail": "https://img-c.udemycdn.com/course/240x135/903744_8eb2.jpg",
         "title": "Python for Data Science and Machine Learning Bootcamp",
         "description": "Python for Data Science and Machine Learning Bootcamp",
@@ -78,7 +78,7 @@
         "subtitle": "English"
     },
     {
-        "status": "active",
+        "status": "pending",
         "thumbnail": "https://img-c.udemycdn.com/course/240x135/1754098_e0df_3.jpg",
         "title": "The Data Science Course 2021: Complete Data Science Bootcamp",
         "description": "Complete Data Science Training: Mathematics, Statistics, Python, Advanced Statistics in Python, Machine & Deep Learning",
@@ -117,7 +117,7 @@
         "subtitle": "English"
     },
     {
-        "status": "active",
+        "status": "pending",
         "thumbnail": "https://img-c.udemycdn.com/course/240x135/951618_0839_2.jpg",
         "title": "The Complete Android N Developer Course",
         "description": "Learn Android App Development with Android 7 Nougat by building real apps including Uber, Whatsapp and Instagram!",
@@ -130,7 +130,7 @@
         "subtitle": "English"
     },
     {
-        "status": "active",
+        "status": "pending",
         "thumbnail": "https://img-c.udemycdn.com/course/240x135/959700_8bd2_11.jpg",
         "title": "The Complete React Native + Hooks Course",
         "description": "Understand React Native with Hooks, Context, and React Navigation.",
@@ -169,7 +169,7 @@
         "subtitle": "English"
     },
     {
-        "status": "active",
+        "status": "pending",
         "thumbnail": "https://img-c.udemycdn.com/course/240x135/258316_55e9_9.jpg",
         "title": "Complete C# Unity Game Developer 2D",
         "description": "Learn Unity in C# & Code Your First Seven 2D Video Games for Web, Mac & PC. The Tutorials Cover Tilemap (35 hours)",
@@ -195,7 +195,7 @@
         "subtitle": "English"
     },
     {
-        "status": "active",
+        "status": "pending",
         "thumbnail": "https://img-c.udemycdn.com/course/240x135/1178124_76bb_10.jpg",
         "title": "Complete C# Unity Game Developer 3D",
         "description": "Design & Develop Video Games. Learn C# in Unity Engine. Code Your first 3D Unity games for web, Mac & PC.",
@@ -267,6 +267,214 @@
         "price": 59.99,
         "category": "60f5389f6799c21940d0c104",
         "createdBy": "60f6ce0e02f5102cea240421",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/1462428_639f_7.jpg",
+        "title": "Photography Masterclass: A Complete Guide to Photography",
+        "description": "The Best Online Professional Photography Class: How to Take Amazing Photos for Beginners & Advanced Photographers",
+        "price": 59.99,
+        "category": "60f538be6799c21940d0c109",
+        "createdBy": "60f6ce0e02f5102cea240418",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/794572_ac1d.jpg",
+        "title": "Affinity Photo: Solid Foundations",
+        "description": "The best selling beginners guide to Affinity Photo - complete with a 50 page PDF to aid your study!",
+        "price": 59.99,
+        "category": "60f538be6799c21940d0c109",
+        "createdBy": "60f6ce0e02f5102cea240421",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "pending",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/15392_15b9_30.jpg",
+        "title": "Photography - Become a Better Photographer - Part I",
+        "description": "See results today! 50 photography tips for taking amazing photos with your DSLR, Mirrorless or compact camera.",
+        "price": 59.99,
+        "category": "60f538be6799c21940d0c109",
+        "createdBy": "60f6ce0e02f5102cea240418",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/410068_fea4_2.jpg",
+        "title": "Photography Beginners: DSLR Photography Camera Settings",
+        "description": "Photography settings - learn how to get the most from your DSLR camera and improve your photography!",
+        "price": 59.99,
+        "category": "60f538be6799c21940d0c109",
+        "createdBy": "60f6ce0e02f5102cea240403",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/762616_7693_3.jpg",
+        "title": "The Complete SQL Bootcamp 2021: Go from Zero to Hero",
+        "description": "Become an expert at SQL!",
+        "price": 59.99,
+        "category": "60f538be6799c21940d0c110",
+        "createdBy": "60f6ce0e02f5102cea240421",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "pending",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/637930_9a22_19.jpg",
+        "title": "An Entire MBA in 1 Course:Award Winning Business School Prof",
+        "description": "Everything You Need to Know About Business from Start-up to IPO!",
+        "price": 59.99,
+        "category": "60f538be6799c21940d0c110",
+        "createdBy": "60f6ce0e02f5102cea240421",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/1361790_2eb7.jpg",
+        "title": "PMP Exam Prep Seminar - 2021 Exam Content with 35 PDUs",
+        "description": "PMP Exam Prep Seminar - Earn 35 PDUs by completing the entire PMP course",
+        "price": 59.99,
+        "category": "60f538be6799c21940d0c110",
+        "createdBy": "60f6ce0e02f5102cea240421",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/937678_abd2_3.jpg",
+        "title": "Tableau 2020 A-Z: Hands-On Tableau Training for Data Science",
+        "description": "Learn Tableau 2020 for data science step by step. Real-life data analytics exercises & quizzes included. Learn by doing!",
+        "price": 59.99,
+        "category": "60f538be6799c21940d0c110",
+        "createdBy": "60f6ce0e02f5102cea240403",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "pending",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/926512_6fdf_7.jpg",
+        "title": "Premiere Pro CC for Beginners: Video Editing in Premiere",
+        "description": "Learn how to edit videos in Adobe Premiere Pro with these easy-to-follow Premiere Pro video editing tutorials.",
+        "price": 89.99,
+        "category": "60f538be6799c21940d0c111",
+        "createdBy": "60f6ce0e02f5102cea240403",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/1027180_475e_5.jpg",
+        "title": "The Complete Video Production Bootcamp",
+        "description": "Make better videos with the ultimate course on video production, planning, cinematography, editing & distribution.",
+        "price": 19.99,
+        "category": "60f538be6799c21940d0c111",
+        "createdBy": "60f6ce0e02f5102cea240403",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "pending",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/1110904_66f5_8.jpg",
+        "title": "The Complete Video Production Bootcamp",
+        "description": "Get 7 Years of Filmmaking Experience - Everything from Pre-Production to Editing - in 5 Hours",
+        "price": 29.99,
+        "category": "60f538be6799c21940d0c111",
+        "createdBy": "60f6ce0e02f5102cea240405",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/1390206_97cb_10.jpg",
+        "title": "Video Editing in DaVinci Resolve 17: Beginner to Advanced",
+        "description": "Learn Video Editing in DaVinci Resolve with Color Correction & Color Grading & Visual Effects in DaVinci Resolve 17",
+        "price": 29.99,
+        "category": "60f538be6799c21940d0c111",
+        "createdBy": "60f6ce0e02f5102cea240403",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/857010_8239_2.jpg",
+        "title": "Learn Ethical Hacking From Scratch",
+        "description": "Become an ethical hacker that can hack computer systems like black hat hackers and secure them like security experts.",
+        "price": 29.99,
+        "category": "60f538be6799c21940d0c112",
+        "createdBy": "60f6ce0e02f5102cea240403",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "pending",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/2196488_8fc7_7.jpg",
+        "title": "Ultimate AWS Certified Solutions Architect Associate 2021",
+        "description": "Pass the AWS Certified Solutions Architect Associate Certification SAA-C02. Complete Amazon Web Services Cloud training!",
+        "price": 29.99,
+        "category": "60f538be6799c21940d0c112",
+        "createdBy": "60f6ce0e02f5102cea240421",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "active",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/614772_233b_9.jpg",
+        "title": "The Complete Cyber Security Course : Hackers Exposed!",
+        "description": "Volume 1 : Become a Cyber Security Specialist, Learn How to Stop Hackers, Prevent Hacking, Learn IT Security & INFOSEC",
+        "price": 29.99,
+        "category": "60f538be6799c21940d0c112",
+        "createdBy": "60f6ce0e02f5102cea240413",
+        "createdAt": "1627196863542",
+        "endedAt": "1627200463542",
+        "language": "English",
+        "subtitle": "English"
+    },
+    {
+        "status": "pending",
+        "thumbnail": "https://img-c.udemycdn.com/course/240x135/751094_fb27_2.jpg",
+        "title": "The Complete Networking Fundamentals Course. Your CCNA start",
+        "description": "Learn about networking and start your journey to Cisco 200-301 Certification.",
+        "price": 29.99,
+        "category": "60f538be6799c21940d0c112",
+        "createdBy": "60f6ce0e02f5102cea240413",
         "createdAt": "1627196863542",
         "endedAt": "1627200463542",
         "language": "English",
