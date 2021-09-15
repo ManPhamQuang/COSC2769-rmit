@@ -9,16 +9,19 @@ import {
     GiftIcon,
     CheckIcon,
 } from "@heroicons/react/solid";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import axios from "./axios/index";
+import DateTimeFormatter from "../utils/DateTimeFormat";
 
 export default function RoomDetailHeader({ room, hasPaid }) {
     const router = useRouter();
     const _id = router.query._id;
     const { state } = useContext(AuthContext);
+    const [color, setColor] = useState("");
+    const [text, setText] = useState("");
     const handleJoinRoom = (e) => {
         // Navigate to Log In page if can not find access Token
         if (!state.token) {
@@ -30,6 +33,31 @@ export default function RoomDetailHeader({ room, hasPaid }) {
         });
         e.preventDefault();
     };
+
+    // function roomColor(room) {
+    //     if (room.status == "pending") {
+    //         setColor("bg-yellow-500");
+    //         setText("This room will start at");
+    //     } else if (room.status == "active") {
+    //         setColor("bg-green-500");
+    //         setText("This room is currently active");
+    //     } else {
+    //         setColor("bg-red-500");
+    //         setText("This room has finished.");
+    //     }
+    // }
+    useEffect(() => {
+        if (room.status == "pending") {
+            setColor("bg-yellow-500");
+            setText("This room will start at");
+        } else if (room.status == "active") {
+            setColor("bg-green-500");
+            setText("This room is currently active");
+        } else {
+            setColor("bg-red-500");
+            setText("This room has finished.");
+        }
+    }, []);
 
     const handleCheckout = async (e) => {
         if (!state.token) {
@@ -72,7 +100,7 @@ export default function RoomDetailHeader({ room, hasPaid }) {
                         &nbsp;(91 ratings) &nbsp;30,000 students
                     </p>
                     <p className="text-white text-xs lg:text-base">
-                        Created by Thien An
+                        Created by {room.createdBy.name}
                     </p>
                     <div className="w-full mx-auto flex justify-center">
                         <div className="items-center mt-1 block lg:flex ">
@@ -96,6 +124,16 @@ export default function RoomDetailHeader({ room, hasPaid }) {
                             </div>
                         </div>
                     </div>
+                    <div className="w-full mx-auto flex justify-center">
+                        <div className="mt-2 w-max">
+                            <div className={`${color} px-4 py-2`}>
+                                <p className="font-bold text-base lg:text-xl">
+                                    Status: {room.status}. {text}&nbsp;
+                                    {DateTimeFormatter(room.startedAt)}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="text-white text-2xl font-bold mt-2 xl:hidden">
                         <p>${room.price}</p>
@@ -110,7 +148,7 @@ export default function RoomDetailHeader({ room, hasPaid }) {
                             <ShareIcon className="text-white h-5 w-5 inline" />
                         </button>
                         <button className="inline text-base text-white font-semibold border p-2 flex items-center hover:bg-gray-800">
-                            Gift this course&nbsp;
+                            Gift this workshop&nbsp;
                             <GiftIcon className="text-white h-5 w-5 inline" />
                         </button>
                     </div>
@@ -127,7 +165,7 @@ export default function RoomDetailHeader({ room, hasPaid }) {
                             <ShareIcon className="text-white h-4 w-4 inline" />
                         </button>
                         <button className="w-full text-base text-white font-semibold border p-2 flex items-center justify-center hover:bg-gray-800">
-                            Gift this course&nbsp;
+                            Gift this workshop&nbsp;
                             <GiftIcon className="text-white h-4 w-4 inline" />
                         </button>
                         <button className="w-full text-base text-white font-semibold border p-2 flex items-center justify-center hover:bg-gray-800">

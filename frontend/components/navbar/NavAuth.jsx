@@ -113,7 +113,7 @@ export default function NavAuth({
                             {categories.map((item) => (
                                 <a
                                     key={item.name}
-                                    // href={item.href}
+                                    href={`/room/filter/${item._id}`}
                                     className={classNames(
                                         item.current
                                             ? "bg-white text-gray-800"

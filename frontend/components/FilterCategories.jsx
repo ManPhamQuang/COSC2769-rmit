@@ -2,7 +2,7 @@ import React from "react";
 import SearchCard from "./searchResult/SearchCard";
 
 export default function FilterCategories({ rooms }) {
-    console.log(rooms.length);
+    // console.log(rooms.length);
     return (
         <div>
             {rooms.length > 0 && (

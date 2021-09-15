@@ -69,9 +69,9 @@ export default function RoomDetailBody({ room, hasPaid }) {
     };
 
     return (
-        <div className="w-full grid grid-cols-1 lg:grid-cols-3 lg:px-56">
-            <div className="col-span-1 px-4 py-2 lg:px-24 py-6 lg:col-span-2 space-y-8 ">
-                <div className="border border-gray-300 space-y-2 px-2 py-2 lg:space-y-4 lg:px-12 lg:py-4 ">
+        <div className="container mx-auto w-full grid grid-cols-1 xl:grid-cols-3 xl:px-56">
+            <div className="col-span-1 px-4 py-2 xl:px-18 py-6 xl:col-span-2 space-y-8 ">
+                <div className="border border-gray-300 space-y-2 px-2 py-2 xl:space-y-4 xl:px-12 xl:py-4 ">
                     <p className="font-bold text-1xl lg:text-3xl">
                         What you'll learn
                     </p>
@@ -96,14 +96,14 @@ export default function RoomDetailBody({ room, hasPaid }) {
                     />
                 </div>
             </div>
-            <div className="hidden xl:block px-20 py-6">
+            <div className="hidden xl:block px-6 py-6">
                 <div className="border border-gray-300">
                     <img
-                        src="/default.png"
+                        src={room.thumbnail}
                         alt="Room thumbnail"
                         className="w-full h-auto border-b-2 border-gray-300"
                     />
-                    <div className="px-5 py-4 space-y-3 ">
+                    <div className="px-2 py-4 space-y-3 ">
                         <p className="text-4xl subpixel-antialiased font-bold">
                             ${room.price}
                         </p>

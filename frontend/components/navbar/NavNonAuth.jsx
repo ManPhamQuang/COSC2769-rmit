@@ -62,7 +62,9 @@ export default function NavNonAuth({
                             </div>
                             <div className="flex-shrink items-center hidden md:justify-start md:flex md:w-2/5 lg:w-3/5 px-2">
                                 <SearchBar
-                                    handleSearchInputChange={handleSearchInputChange}
+                                    handleSearchInputChange={
+                                        handleSearchInputChange
+                                    }
                                     handleSearchSubmit={handleSearchSubmit}
                                 />
                             </div>
@@ -128,7 +130,7 @@ export default function NavNonAuth({
                             {categories.map((item) => (
                                 <a
                                     key={item.name}
-                                    // href={item.href}
+                                    href={`/room/filter/${item._id}`}
                                     className={classNames(
                                         item.current
                                             ? "bg-white text-gray-800"

@@ -191,6 +191,10 @@ export default function UpdateForm({ roomDetail }) {
             });
     };
 
+    console.log(oldThumb.length);
+    console.log(files.length);
+    console.log(oldThumb);
+
     return (
         <div>
             {room.isLoading && (
@@ -206,7 +210,7 @@ export default function UpdateForm({ roomDetail }) {
                 </div>
             )}
             <div className="md:grid md:grid-cols-3 md:gap-6 mt-32">
-                <div className="col-span-3 lg:col-span-1 space-y-">
+                <div className="col-span-3 lg:col-span-1 space-y-2">
                     <div className="px-4 sm:px-0">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">
                             Update Chatroom
@@ -223,15 +227,15 @@ export default function UpdateForm({ roomDetail }) {
                         <div className="group cursor-pointer px-16 mt-4">
                             <div className="border px-8 py-6 border-2 border-gray-500 rounded-lg">
                                 {files.length > 0 && <div>{thumbs}</div>}
-                                {files.length == 0 && oldThumb.length == 0 && (
+                                {files.length == 0 && oldThumb == "room.png" && (
                                     <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
                                         <img
-                                            src={"/default.png"}
+                                            src="/default.png"
                                             className="object-cover border-gray-300 border rounded-md h-full w-full group-hover:mix-blend-multiply"
                                         />
                                     </div>
                                 )}
-                                {files.length == 0 && oldThumb.length > 0 && (
+                                {files.length == 0 && oldThumb != "room.png" && (
                                     <div className="h-36 w-full group-hover:bg-gray-50 group-hover:border-gray-50 rounded-md">
                                         <img
                                             src={oldThumb}
