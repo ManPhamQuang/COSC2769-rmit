@@ -45,7 +45,7 @@ export default function teacherSelfIntroduction({ props }) {
                                     <div className="inline">
                                         <StarIcon className="h-4 w-4 text-yellow-500 inline mb-1 lg:h-5 lg:w-5" />
                                         <p className="text-gray-600 inline text-sm lg:text-base">
-                                            {ratingsAverage}
+                                            1,578
                                         </p>
                                         <p className="text-gray-600 inline text-sm lg:text-base">
                                             &nbsp;Instructor Rating
@@ -67,7 +67,7 @@ export default function teacherSelfIntroduction({ props }) {
                                             />
                                         </svg>
                                         <p className="text-gray-600 inline text-sm lg:text-base">
-                                            &nbsp;{roomAmount}&nbsp;rooms
+                                            5 rooms
                                         </p>
                                     </div>
                                     <div>
@@ -86,7 +86,7 @@ export default function teacherSelfIntroduction({ props }) {
                                             />
                                         </svg>
                                         <p className="text-gray-600 inline text-sm lg:text-base">
-                                            &nbsp;{reviewerAmount}&nbsp;reviews
+                                            &nbsp;123&nbsp;reviews
                                         </p>
                                     </div>
                                 </div>
