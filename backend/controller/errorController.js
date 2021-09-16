@@ -48,10 +48,10 @@ module.exports = (error, req, res, next) => {
     res.status(500).json({
       status: "error",
       message: "Something went wrong with a server. Please try again later",
-      note: "Remove this message when deploy",
-      error,
-      stack: error.stack,
-      name: error.name,
+      // note: "Remove this message when deploy",
+      // error,
+      // stack: error.stack,
+      // name: error.name,
     });
   }
 };
