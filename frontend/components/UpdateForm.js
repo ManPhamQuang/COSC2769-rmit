@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useReducer, useEffect, useContext } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/authContext/AuthContext";
 import CategoryDropDown from "./CategoryDropDown";
@@ -8,6 +7,8 @@ import axios from "./axios";
 import { useDropzone } from "react-dropzone";
 import router from "next/router";
 import { StarIcon } from "@heroicons/react/solid";
+import MinDateTimeFormatter from "../utils/MinDateTimeFormat";
+import dayjs from "dayjs";
 
 const roomReducer = (state, action) => {
     switch (action.type) {
@@ -56,7 +57,7 @@ export default function UpdateForm({ roomDetail }) {
     const [title, setTitle] = useState(roomDetail.title);
     const [description, setDescription] = useState(roomDetail.description);
     const [price, setPrice] = useState(roomDetail.price);
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(roomDetail.startedAt);
     const [oldThumb, setOldThumb] = useState(roomDetail.thumbnail);
 
     const isInvalid =
@@ -191,6 +192,9 @@ export default function UpdateForm({ roomDetail }) {
             });
     };
 
+    // const currentDate = new Date();
+    const minDate = MinDateTimeFormatter(new Date());
+    console.log(minDate);
     console.log(oldThumb.length);
     console.log(files.length);
     console.log(oldThumb);
@@ -418,11 +422,16 @@ export default function UpdateForm({ roomDetail }) {
                                             Started date
                                         </label>
                                         <div className="mt-1 relative rounded-md shadow-sm">
-                                            <DatePicker
-                                                selected={startDate}
-                                                onChange={(date) =>
-                                                    setStartDate(date)
+                                            <input
+                                                type="datetime-local"
+                                                className="rounded-md text-gray-800"
+                                                onChange={(e) =>
+                                                    setStartDate(e.target.value)
                                                 }
+                                                min={minDate}
+                                                value={dayjs(startDate).format(
+                                                    "YYYY-MM-DDThh:mm"
+                                                )}
                                             />
                                         </div>
                                     </div>
