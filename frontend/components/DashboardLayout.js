@@ -149,7 +149,7 @@ function DashboardLayout({ children }) {
                                 <Link href="/">
                                     <img
                                         className="h-6 mr-8 cursor-pointer"
-                                        src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
+                                        src="/thelab-logo.png"
                                         alt=""
                                     />
                                 </Link>
