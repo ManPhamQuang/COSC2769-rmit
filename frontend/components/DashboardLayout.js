@@ -148,7 +148,7 @@ function DashboardLayout({ children }) {
                             <div>
                                 <Link href="/">
                                     <img
-                                        className="h-8 mr-8 cursor-pointer"
+                                        className="h-6 mr-8 cursor-pointer"
                                         src="/thelab-logo.png"
                                         alt=""
                                     />
