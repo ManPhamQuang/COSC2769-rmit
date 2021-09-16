@@ -40,18 +40,18 @@ export default function NavNonAuth({
                                 </Disclosure.Button>
                             </div>
                             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                                <div className="flex-shrink-0 flex items-center lg:w-1/5">
+                                <div className="flex-shrink-0 flex items-center ">
                                     <Link href="/">
                                         <img
-                                            className="block lg:hidden h-8 w-auto cursor-pointer"
-                                            src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
+                                            className="block lg:hidden h-10 w-auto cursor-pointer"
+                                            src="/thelab-logo.png"
                                             alt=""
                                         />
                                     </Link>
                                     <Link href="/">
                                         <img
-                                            className="hidden lg:block h-8 w-auto cursor-pointer"
-                                            src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
+                                            className="hidden lg:block h-10 w-auto cursor-pointer"
+                                            src="/thelab-logo.png"
                                             alt=""
                                         />
                                     </Link>
