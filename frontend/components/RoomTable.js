@@ -6,7 +6,7 @@ import Link from "next/link";
 import router from "next/router";
 
 import CopyLink from "./CopyLink";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const fetcher = (url, token) =>
     axios
@@ -15,7 +15,10 @@ const fetcher = (url, token) =>
         })
         .then((res) => res.data.data.rooms)
         .catch((error) => {
-            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+            toast.error(
+                error.response?.data?.message ??
+                    "Server Error! Please try again later"
+            );
         });
 
 export default function RoomTable({ user }) {
@@ -33,7 +36,6 @@ export default function RoomTable({ user }) {
         });
     };
     const handleCopyButtonClick = (shareURL) => {
-        console.log(shareURL);
         setCopied(true);
     };
 

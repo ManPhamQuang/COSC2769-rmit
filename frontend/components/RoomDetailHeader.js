@@ -73,7 +73,6 @@ export default function RoomDetailHeader({ room, hasPaid }) {
             const { url } = request.data.data;
             router.push(url);
         } catch (error) {
-            console.log(error);
             toast.error(
                 error.response?.data?.message ??
                     "Server Error! Please try again later"

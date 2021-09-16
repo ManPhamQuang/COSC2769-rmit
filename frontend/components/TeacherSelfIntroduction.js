@@ -13,7 +13,6 @@ export default function teacherSelfIntroduction({ props }) {
         reviewerAmount,
         description,
     } = props;
-    console.log(_id);
     return (
         <div className="mt-2">
             <Link href={`/expertprofile/${_id}`}>

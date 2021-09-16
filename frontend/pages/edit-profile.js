@@ -55,14 +55,11 @@ export default function Profile() {
                 headers: { Authorization: "Bearer " + state.token },
             });
             if (`${response.status}`.startsWith("2")) {
-                console.log("ENTERING");
                 getMe(state.token, dispatch);
                 setIsLoading(false);
             }
         } catch (error) {
             setIsLoading(false);
-            console.log(error);
-            // alert(error.message);
             toast.error(
                 error.response?.data?.message ??
                     "Server Error! Please try again later"

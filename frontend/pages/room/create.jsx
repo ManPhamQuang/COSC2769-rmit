@@ -83,7 +83,6 @@ const Create = () => {
                 setCategories(response.data.data.categories);
             })
             .catch((error) => {
-                console.log(error);
                 toast.error(
                     error.response?.data?.message ??
                         "Server Error! Please try again later"
@@ -119,9 +118,7 @@ const Create = () => {
                     formData
                 );
                 thumbnail = response.data.secure_url;
-            } catch (error) {
-                console.log(error);
-            }
+            } catch (error) {}
         }
         let data = {
             thumbnail: thumbnail,
@@ -201,7 +198,6 @@ const Create = () => {
     );
 
     const minDate = MinDateTimeFormatter(new Date());
-    console.log(minDate);
 
     return (
         <div>
@@ -421,7 +417,9 @@ const Create = () => {
                                                     type="datetime-local"
                                                     className="rounded-md text-gray-800"
                                                     onChange={(e) =>
-                                                        setStartDate(e.target.value)
+                                                        setStartDate(
+                                                            e.target.value
+                                                        )
                                                     }
                                                     min={minDate}
                                                 />
