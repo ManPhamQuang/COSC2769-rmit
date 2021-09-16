@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/authContext/AuthContext";
 import axios from "../../components/axios";
 import ImageUpload from "../../components/ImageUpload";
 import { getMe } from "../../context/authContext/apiCalls";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const Breaker = () => (
     <div className="hidden sm:block" aria-hidden="true">
@@ -39,7 +39,10 @@ export default function Profile() {
                 avatar = response.data.secure_url;
             } catch (error) {
                 // alert("error.message");
-                toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+                toast.error(
+                    error.response?.data?.message ??
+                        "Server Error! Please try again later"
+                );
             }
         }
         const body = {
@@ -52,15 +55,16 @@ export default function Profile() {
                 headers: { Authorization: "Bearer " + state.token },
             });
             if (`${response.status}`.startsWith("2")) {
-                console.log("ENTERING");
                 getMe(state.token, dispatch);
                 setIsLoading(false);
             }
         } catch (error) {
             setIsLoading(false);
-            console.log(error);
             // alert(error.message);
-            toast.error(error.response?.data?.message ?? "Server Error! Please try again later");
+            toast.error(
+                error.response?.data?.message ??
+                    "Server Error! Please try again later"
+            );
         }
     };
 

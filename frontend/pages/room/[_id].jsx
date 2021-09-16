@@ -43,16 +43,12 @@ export default function RoomDetail() {
                             },
                         }
                     );
-                    console.log(request);
                     setHasPaid(request.data.data.hasPaid);
-                } catch (error) {
-                    console.log(error);
-                }
+                } catch (error) {}
             }
         };
         checkIfPaid();
     }, [state?.user]);
-    console.log(data);
     return (
         <div>
             <div>

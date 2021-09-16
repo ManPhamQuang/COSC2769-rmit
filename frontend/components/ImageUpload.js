@@ -19,7 +19,6 @@ const ImageUpload = ({ image, setImage, currentAvatar }) => {
         e.preventDefault();
         const file = e.target.files[0];
         if (!file) return setImage(null);
-        console.log(file.size);
         if (file.size > 2097152) {
             alert("File is too big!");
             clear();

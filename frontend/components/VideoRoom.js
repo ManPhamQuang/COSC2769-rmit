@@ -10,7 +10,6 @@ const Room = ({ username, roomName, room, handleLogout, token }) => {
 
     useEffect(() => {
         const participantConnected = (participant) => {
-            console.log(participant);
             setParticipants((prevParticipants) => [
                 ...prevParticipants,
                 participant,

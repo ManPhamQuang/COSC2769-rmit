@@ -9,7 +9,7 @@ import {
     logout,
     resetStart,
     resetSuccess,
-    resetFailure
+    resetFailure,
 } from "./AuthActions";
 import router from "next/router";
 import jwt_decode from "jwt-decode";
@@ -22,7 +22,6 @@ const saveLocalStorageAndSetTimeOut = (responseData, dispatch) => {
     localStorage.setItem("accessToken", token);
     // Convert to milliseconds to compare Date.now()
     localStorage.setItem("expiredAt", exp * 1000);
-    console.log(exp * 1000 - Date.now());
     let id = setTimeout(() => {
         dispatch(logout());
         localStorage.removeItem("user");
@@ -41,7 +40,6 @@ export const login = async (userCredentials, dispatch) => {
     dispatch(authenStart());
     try {
         const res = await axios.post("/users/login", userCredentials);
-        console.log(res.data.data);
         dispatch(authenSuccess(res.data.data));
         saveLocalStorageAndSetTimeOut(res.data.data, dispatch);
         router.push("/");
@@ -57,7 +55,6 @@ export const getMe = async (token, dispatch) => {
         const res = await axios.get("/users/getMe", {
             headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(res.data.data);
         dispatch(getMeSuccess(res.data.data));
         localStorage.setItem("user", JSON.stringify(res.data.data));
     } catch (err) {
@@ -69,7 +66,6 @@ export const signup = async (userCredentials, dispatch) => {
     dispatch(authenStart());
     try {
         const res = await axios.post("/users/signup", userCredentials);
-        console.log(res.data.data);
         dispatch(authenSuccess(res.data.data));
         saveLocalStorageAndSetTimeOut(res.data.data, dispatch);
         router.push("/");
@@ -82,7 +78,6 @@ export const loginWithGoogle = async (userCredentials, dispatch) => {
     dispatch(authenStart());
     try {
         const res = await axios.post("/users/loginWithGoogle", userCredentials);
-        console.log(res.data.data);
         dispatch(authenSuccess(res.data.data));
         saveLocalStorageAndSetTimeOut(res.data.data, dispatch);
         router.push("/");
@@ -94,12 +89,17 @@ export const loginWithGoogle = async (userCredentials, dispatch) => {
 export const forgotPass = async (userCredentials, dispatch) => {
     dispatch(resetStart());
     try {
-        const res = await axios.post("/users/request-reset-password", userCredentials);
-        console.log(res.data);
+        const res = await axios.post(
+            "/users/request-reset-password",
+            userCredentials
+        );
         dispatch(resetSuccess());
-        toast.success("We've sent an email allowing you to reset your password.", {
-            position: toast.POSITION.TOP_RIGHT,
-        });
+        toast.success(
+            "We've sent an email allowing you to reset your password.",
+            {
+                position: toast.POSITION.TOP_RIGHT,
+            }
+        );
     } catch (err) {
         dispatch(resetFailure(err.response.data.message));
     }
@@ -109,11 +109,13 @@ export const resetPass = async (userCredentials, dispatch) => {
     dispatch(resetStart());
     try {
         const res = await axios.post("/users/reset-password", userCredentials);
-        console.log(res.data);
         dispatch(resetSuccess());
-        toast.success("Your password has been reset successfully. Log in again to start joining chatrooms.", {
-            position: toast.POSITION.TOP_RIGHT,
-        });
+        toast.success(
+            "Your password has been reset successfully. Log in again to start joining chatrooms.",
+            {
+                position: toast.POSITION.TOP_RIGHT,
+            }
+        );
         router.push("/login");
     } catch (err) {
         dispatch(resetFailure(err.response.data.message));

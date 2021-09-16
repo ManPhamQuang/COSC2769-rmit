@@ -6,7 +6,6 @@ const LoginGoogle = () => {
     const { state, dispatch } = useContext(AuthContext);
 
     const handleLoginWithGoogle = (e) => {
-        console.log(e);
         const data = { id: e.tokenId };
         loginWithGoogle(data, dispatch);
     };

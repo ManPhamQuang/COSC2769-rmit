@@ -95,9 +95,7 @@ export default function UpdateForm({ roomDetail }) {
             .then((response) => {
                 setCategories(response.data.data.categories);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }, []);
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -161,9 +159,7 @@ export default function UpdateForm({ roomDetail }) {
                     formData
                 );
                 thumbnail = response.data.secure_url;
-            } catch (error) {
-                console.log(error);
-            }
+            } catch (error) {}
         }
         let data = {
             thumbnail: thumbnail,
@@ -194,10 +190,6 @@ export default function UpdateForm({ roomDetail }) {
 
     // const currentDate = new Date();
     const minDate = MinDateTimeFormatter(new Date());
-    console.log(minDate);
-    console.log(oldThumb.length);
-    console.log(files.length);
-    console.log(oldThumb);
 
     return (
         <div>

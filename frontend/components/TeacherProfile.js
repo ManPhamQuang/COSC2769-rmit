@@ -27,9 +27,7 @@ export default function TeacherProfile({ props }) {
             });
             const { url } = request.data.data;
             router.push(url);
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (error) {}
     };
 
     return (

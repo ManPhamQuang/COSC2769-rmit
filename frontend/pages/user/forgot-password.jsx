@@ -11,7 +11,6 @@ const forgotPassword = () => {
 
     const handleForgotSubmit = (e) => {
         forgotPass({ email }, dispatch);
-        console.log(state);
         e.preventDefault();
     };
 
@@ -32,7 +31,10 @@ const forgotPassword = () => {
                                 <h1>Forgot Password</h1>
                             </div>
                             <div className="inline-block align-middle mr-8">
-                                <b className="capitalize">Success!</b> You should soon receive an email allowing you to reset your password. Please make sure to check your spam and trash if you can't find the email.
+                                <b className="capitalize">Success!</b> You
+                                should soon receive an email allowing you to
+                                reset your password. Please make sure to check
+                                your spam and trash if you can't find the email.
                             </div>
                         </div>
                     ) : (
